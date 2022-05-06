@@ -86,7 +86,6 @@ export default function Anime({ anime, episodes }) {
           <AnimePlayer
             animeplaylist={episodes}
             animeSubTitle={anime.title.en}
-            animeEpisodeComing={anime.comingUp}
           />
         </div>
       </main>
@@ -191,7 +190,7 @@ export const getServerSideProps = async (context) => {
   let formatTitle = animeInfo.data[0].title.split(" / ");
   let animeTitle = formatTitle[0];
   let animeTitleEn = formatTitle[1].split("[")[0];
-  let animeEpisodeComing = formatTitle[1].split("[")[1].replaceAll("]", "");
+  // let animeEpisodeComing = formatTitle[1].split("[")[1].replaceAll("]", "");
   let animeDesc = animeInfo.data[0].description.replaceAll("<br />", "");
 
   let anime = {
@@ -203,7 +202,7 @@ export const getServerSideProps = async (context) => {
       ru: animeTitle,
       en: animeTitleEn,
     },
-    comingUp: animeEpisodeComing,
+    // comingUp: animeEpisodeComing,
     description: animeDesc,
     extra: {
       director: animeInfo.data[0].director,

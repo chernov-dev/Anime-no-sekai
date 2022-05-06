@@ -52,9 +52,7 @@ const AnimePlayer = ({ animeplaylist, animeSubTitle, animeEpisodeComing }) => {
   return (
     <>
       <div className="flex justify-between px-5 py-3">
-        <div className="anime-player__title">
-          {animeSubTitle} ({animeEpisodeComing ?? ""})
-        </div>
+        <div className="anime-player__title">{animeSubTitle}</div>
         <div className="flex gap-2 flex-wrap justify-end items-center">
           <form onSubmitCapture={(e) => handleEpisodeSubmit(e)}>
             <input
