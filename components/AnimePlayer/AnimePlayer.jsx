@@ -74,21 +74,15 @@ const AnimePlayer = ({ animeplaylist, animeSubTitle, animeEpisodeComing }) => {
       </div>
       <div className="player-wrapper">
         {isSSR ? null : (
-          // <ReactPlayer
-          //   className="react-player"
-          //   width="100%"
-          //   height="100%"
-          //   url={playerState.url}
-          //   playing={playerState.playing}
-          //   volume={playerState.volume}
-          //   controls={playerState.controls}
-
-          //   // onPause={() => setPlayerState({ ...playerState, playing: false })}
-          //   // onPlay={() =>
-          //   //   setPlayerState({ ...playerState, controls: true, playing: true })
-          //   // }
-          // />
-          <p>test</p>
+          <ReactPlayer
+            className="react-player"
+            width="100%"
+            height="100%"
+            url={playerState.url}
+            playing={playerState.playing}
+            volume={playerState.volume}
+            controls={playerState.controls}
+          />
         )}
       </div>
     </>

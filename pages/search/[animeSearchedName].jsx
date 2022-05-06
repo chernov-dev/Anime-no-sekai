@@ -39,7 +39,7 @@ export default function Search({ foundAnimes }) {
 }
 
 export const getServerSideProps = async (context) => {
-  const [animeInfo] = await Promise.all([
+  const [animeSearch] = await Promise.all([
     fetch(`${requests.fetchSearchAnime}`, {
       method: "POST", // *GET, POST, PUT, DELETE, etc.
       headers: {
@@ -51,7 +51,7 @@ export const getServerSideProps = async (context) => {
 
   return {
     props: {
-      foundAnimes: { ...animeInfo },
+      foundAnimes: { ...animeSearch },
     },
   };
 };
