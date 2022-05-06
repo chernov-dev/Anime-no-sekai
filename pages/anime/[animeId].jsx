@@ -168,15 +168,9 @@ export const getServerSideProps = async (context) => {
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
       },
-      body: `id=${context.query.animeId}`,
+      body: `id=${context.params.animeId}`,
     }).then((res) => res.json()),
   ]);
-
-  if (!animeInfo) {
-    return {
-      notFound: true,
-    };
-  }
 
   let animeEpisodes = animeInfo.data[0].series
     .replace("{", "")
