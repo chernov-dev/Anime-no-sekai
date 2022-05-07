@@ -47,7 +47,7 @@ export default function Home({ animes }) {
           {animes.map((anime, index) => (
             <AnimeContainerComponent key={index} {...anime} />
           ))}
-          <PaginationComponent pageCount={10} currentPage={page} />
+          <PaginationComponent pageCount={7} currentPage={page} />
         </div>
       </main>
     </div>

@@ -53,10 +53,11 @@ const PaginationComponent = ({ pageCount, currentPage }) => {
       <ReactPaginate
         forcePage={(currentPage ?? 1) - 1}
         breakLabel="..."
-        nextLabel="Вперед >"
-        previousLabel="< Назад"
+        nextLabel=">"
+        previousLabel="<"
         onPageChange={handlePageClick}
         pageRangeDisplayed={3}
+        nex
         pageCount={pageCount}
         renderOnZeroPageCount={null}
         className="pagination"

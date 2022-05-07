@@ -12,6 +12,15 @@
   margin-left: 0.45rem;
 }
 
+@media screen and (max-width: 600px) {
+  .pagination .next a {
+    display: hidden;
+  }
+  .pagination .previous a {
+    display: hidden;
+  }
+}
+
 .page-link {
   position: relative;
   display: grid;
