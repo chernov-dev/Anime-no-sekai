@@ -179,8 +179,8 @@ export const getServerSideProps = async (context) => {
     .map((episode_) => {
       let episodeId = episode_.replace(/'/g, "").split(":")[1];
       let episodeName = episode_.replace(/'/g, "").split(":")[0];
-      let episodeUrlHd = `http://video.animetop.info/720/${episodeId}.mp4`;
-      let episodeUrlStd = `http://video.animetop.info/${episodeId}.mp4`;
+      let episodeUrlHd = `https://video.animetop.info/720/${episodeId}.mp4`;
+      let episodeUrlStd = `https://video.animetop.info/${episodeId}.mp4`;
       return {
         name: episodeName,
         hd: episodeUrlHd,
