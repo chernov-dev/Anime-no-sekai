@@ -21,9 +21,9 @@ const AnimePlayer = ({ animeplaylist, animeSubTitle, animeEpisodeComing }) => {
     stopOnUnmount: false,
   };
   const [playerState, setPlayerState] = useState(playerDefaults);
-
+  const [episodeInput, setEpisodeInput] = useState(1);
   const [playerEpisodes, setPlayerEpisodes] = useState({
-    currentEpisode: 1,
+    currentEpisode: episodeInput,
     episodes: animeplaylist,
   });
 
@@ -34,13 +34,14 @@ const AnimePlayer = ({ animeplaylist, animeSubTitle, animeEpisodeComing }) => {
   }, []);
 
   const handleEpisodeChange = (e) => {
-    setPlayerEpisodes((prev) => {
-      return { ...prev, currentEpisode: Number(e.target.value) };
-    });
+    setEpisodeInput(Number(e.target.value));
   };
 
   const handleEpisodeSubmit = (e) => {
     e.preventDefault();
+    setPlayerEpisodes((prev) => {
+      return { ...prev, currentEpisode: episodeInput };
+    });
     setPlayerState((prev) => {
       return {
         ...prev,

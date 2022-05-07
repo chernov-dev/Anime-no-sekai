@@ -11,7 +11,7 @@ const logoStyles = {
 
 const Header = () => {
   const [hasScrolled, setHasScroll] = useState(false);
-
+  const random = Math.floor(Math.random() * 2811);
   // useEffect(() => {
   //   document.addEventListener("scroll", () => {
   //     console.log("go");
@@ -60,7 +60,7 @@ const Header = () => {
               </Link>
             </li>
             <li>
-              <Link href={`/anime/${Math.floor(Math.random() * 2811)}`}>
+              <Link href={`/anime/${random}`}>
                 <a
                   className="block py-2 pr-4 pl-3  md:p-0 text-gray-400 md:hover:text-white hover:bg-gray-700 hover:text-white md:hover:bg-transparent border-gray-700"
                   aria-current="page"
