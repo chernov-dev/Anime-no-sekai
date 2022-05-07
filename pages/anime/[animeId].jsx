@@ -191,7 +191,7 @@ export const getServerSideProps = async (context) => {
   let animeTitle = formatTitle[0];
   let animeTitleEn = formatTitle[1].split("[")[0];
   // let animeEpisodeComing = formatTitle[1].split("[")[1].replaceAll("]", "");
-  let animeDesc = animeInfo.data[0].description.replaceAll("<br />", "");
+  let animeDesc = animeInfo.data[0].description.replace("<br />", "");
 
   let anime = {
     img: {
