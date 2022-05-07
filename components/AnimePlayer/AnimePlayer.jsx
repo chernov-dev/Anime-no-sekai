@@ -3,7 +3,10 @@ import ReactPlayer from "react-player/file";
 
 const AnimePlayer = ({ animeplaylist, animeSubTitle, animeEpisodeComing }) => {
   const playerDefaults = {
-    url: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+    url:
+      animeplaylist[0].hd ??
+      animeplaylist[0].std ??
+      "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
     pip: true,
     playing: false,
     controls: true,
