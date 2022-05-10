@@ -27,12 +27,6 @@ const AnimePlayer = ({ animeplaylist, animeSubTitle, animeEpisodeComing }) => {
     episodes: animeplaylist,
   });
 
-  const [isSSR, setIsSSR] = useState(true);
-
-  useEffect(() => {
-    setIsSSR(false);
-  }, []);
-
   const handleEpisodeChange = (e) => {
     setEpisodeInput(Number(e.target.value));
   };
@@ -46,9 +40,9 @@ const AnimePlayer = ({ animeplaylist, animeSubTitle, animeEpisodeComing }) => {
       return {
         ...prev,
         url:
-          playerEpisodes.episodes[playerEpisodes.currentEpisode - 1].hd != null
-            ? playerEpisodes.episodes[playerEpisodes.currentEpisode - 1].hd
-            : playerEpisodes.episodes[playerEpisodes.currentEpisode - 1].std,
+          playerEpisodes.episodes[playerEpisodes.currentEpisode - 1].std != null
+            ? playerEpisodes.episodes[playerEpisodes.currentEpisode - 1].std
+            : playerEpisodes.episodes[playerEpisodes.currentEpisode - 1].hd,
       };
     });
   };
@@ -77,17 +71,15 @@ const AnimePlayer = ({ animeplaylist, animeSubTitle, animeEpisodeComing }) => {
         </div>
       </div>
       <div className="player-wrapper">
-        {isSSR ? null : (
-          <ReactPlayer
-            className="react-player"
-            width="100%"
-            height="100%"
-            url={playerState.url}
-            playing={playerState.playing}
-            volume={playerState.volume}
-            controls={playerState.controls}
-          />
-        )}
+        <ReactPlayer
+          className="react-player"
+          width="100%"
+          height="100%"
+          url={playerState.url}
+          playing={playerState.playing}
+          volume={playerState.volume}
+          controls={playerState.controls}
+        />
       </div>
     </>
   );

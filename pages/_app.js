@@ -7,6 +7,8 @@ import Header from "../components/layout/Header";
 import Footer from "../components/layout/Footer";
 import { SearchInput } from "../components/Inputs/SearchInput";
 
+import NextNProgress from "nextjs-progressbar";
+
 function MyApp({ Component, pageProps }) {
   return (
     <>
@@ -16,6 +18,13 @@ function MyApp({ Component, pageProps }) {
         <div className="w-full border-b border-gray-400 border-opacity-10 py-5 px-7">
           <SearchInput />
         </div>
+        <NextNProgress
+          color="#bdb7ab"
+          startPosition={0.3}
+          stopDelayMs={200}
+          height={10}
+          showOnShallow={true}
+        />
         <Component {...pageProps} />
         <Footer />
       </div>
