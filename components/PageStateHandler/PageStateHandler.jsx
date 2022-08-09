@@ -1,3 +1,4 @@
+import Image from "next/image";
 import hinataFailedSvg from "../../hinata-failed.svg";
 import Loading from "../Loader/Loading";
 
@@ -16,7 +17,7 @@ export const PageStateHandler = ({
   if (showError) {
     return (
       <div className="position-absolute h-100 w-100 start-0 d-flex flex-column justify-content-center align-items-center">
-        <img
+        <Image
           src={hinataFailedSvg}
           alt="hinata is furious"
           className="animate__animated animate__headShake"

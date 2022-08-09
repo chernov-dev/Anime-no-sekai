@@ -20,12 +20,15 @@ const AnimePlayer = ({ animeplaylist, animeSubTitle, animeEpisodeComing }) => {
     loop: false,
     stopOnUnmount: false,
   };
+
   const [playerState, setPlayerState] = useState(playerDefaults);
   const [episodeInput, setEpisodeInput] = useState(1);
   const [playerEpisodes, setPlayerEpisodes] = useState({
     currentEpisode: episodeInput,
     episodes: animeplaylist,
   });
+
+  console.log(animeplaylist);
 
   const handleEpisodeChange = (e) => {
     setEpisodeInput(Number(e.target.value));

@@ -47,6 +47,7 @@ const PaginationComponent = ({ pageCount, currentPage }) => {
   //   handlePrevPageClick,
   //   handleNextPageClick,
   // };
+
   if (currentPage > pageCount) return;
   return (
     <>

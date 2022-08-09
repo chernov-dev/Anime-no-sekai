@@ -8,7 +8,6 @@ import { BsHeartFill } from "react-icons/bs";
 
 const AnimeComponent = (props) => {
   const { anime } = props;
-  let selectRandomPreview = Math.floor(Math.random() * 3);
 
   return (
     <div
