@@ -28,8 +28,6 @@ const AnimePlayer = ({ animeplaylist, animeSubTitle, animeEpisodeComing }) => {
     episodes: animeplaylist,
   });
 
-  console.log(animeplaylist);
-
   const handleEpisodeChange = (e) => {
     setEpisodeInput(Number(e.target.value));
   };
@@ -57,7 +55,7 @@ const AnimePlayer = ({ animeplaylist, animeSubTitle, animeEpisodeComing }) => {
           {animeSubTitle} ({animeEpisodeComing ?? episodes.length + " Серий"})
         </div>
         <div className="flex gap-2 flex-wrap justify-end items-center">
-          <form onSubmitCapture={(e) => handleEpisodeSubmit(e)}>
+          <form onSubmit={(e) => handleEpisodeSubmit(e)}>
             <input
               type="number"
               name="epSelector"
