@@ -21,7 +21,7 @@ export default function Anime() {
 
   useEffect(() => {
     getAnimeInfo();
-  }, [router.isReady, animeId, getAnimeInfo]);
+  }, [router.isReady, animeId]);
 
   if (isLoading) return null;
   if (!animeInfo) return <p>Anime not found</p>;
