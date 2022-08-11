@@ -24,12 +24,23 @@ const AnimePlayer = ({ animeplaylist, animeSubTitle, animeEpisodeComing }) => {
   const [playerState, setPlayerState] = useState(playerDefaults);
   const [episodeInput, setEpisodeInput] = useState(1);
   const [playerEpisodes, setPlayerEpisodes] = useState({
-    currentEpisode: episodeInput,
     episodes: animeplaylist,
   });
 
+  const episodeOptions = playerEpisodes.episodes.map((episode, index) => {
+    return { value: index, label: `${episode.name}` };
+  });
+
   const handleEpisodeChange = (e) => {
-    setEpisodeInput(Number(e.target.value));
+    setPlayerState((prev) => {
+      return {
+        ...prev,
+        url:
+          playerEpisodes.episodes[e].std != null
+            ? playerEpisodes.episodes[e].std
+            : playerEpisodes.episodes[e].hd,
+      };
+    });
   };
 
   const handleEpisodeSubmit = (e) => {
@@ -55,20 +66,20 @@ const AnimePlayer = ({ animeplaylist, animeSubTitle, animeEpisodeComing }) => {
           {animeSubTitle} ({animeEpisodeComing ?? episodes.length + " Серий"})
         </div>
         <div className="flex gap-2 flex-wrap justify-end items-center">
-          <form onSubmit={(e) => handleEpisodeSubmit(e)}>
-            <input
-              type="number"
-              name="epSelector"
-              className="py-1 px-2 text-black rounded min-w-[90px]"
-              placeholder={"Episode"}
-              onChange={(e) => handleEpisodeChange(e)}
-              min={1}
-              max={playerEpisodes.episodes.length}
-            />
-          </form>
-          <div className="anime-player__episode">
-            {playerEpisodes.currentEpisode} Серия
-          </div>
+          <select
+            className="anime-player__episode"
+            name="Select episode"
+            defaultValue={episodeOptions[0].label}
+            onChange={(e) => handleEpisodeChange(e.target.value)}
+          >
+            {episodeOptions.map((episode, index) => {
+              return (
+                <option key={index} value={episode.value}>
+                  {episode.label}
+                </option>
+              );
+            })}
+          </select>
         </div>
       </div>
       <div className="player-wrapper">

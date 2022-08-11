@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
 html,
 body {
   @apply text-white;
@@ -30,7 +36,7 @@ main {
 }
 
 .page-container {
-  @apply bg-gray-900 max-w-[1200px] self-center;
+  @apply bg-gray-900 max-w-[1200px] self-center shadow-2xl shadow-gray-400;
   margin: 0 auto;
 }
 
@@ -41,8 +47,4 @@ main {
 a {
   color: inherit;
   text-decoration: none;
-}
-
-* {
-  box-sizing: border-box;
 }

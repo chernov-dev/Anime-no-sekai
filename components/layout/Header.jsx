@@ -12,11 +12,6 @@ const logoStyles = {
 const Header = () => {
   const [hasScrolled, setHasScroll] = useState(false);
   const random = Math.floor(Math.random() * 2811);
-  // useEffect(() => {
-  //   document.addEventListener("scroll", () => {
-  //     console.log("go");
-  //   });
-  // }, []);
 
   return (
     <nav className="border-gray-200 px-2 sm:px-4 py-2.5 bg-gray-800 sticky top-0 z-[100]">

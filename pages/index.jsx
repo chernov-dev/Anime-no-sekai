@@ -3,13 +3,12 @@ import styles from "../styles/Home.module.css";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import requests from "../utils/requests";
-import { AnimeContainerComponent } from "../components/AnimeComponents/AnimeCard/AnimeContainerComponent";
 import PaginationComponent from "../components/ReactPagination/PaginationComponent";
+import AnimeList from "../components/AnimeComponents/AnimeList";
 
 export default function Home({ animes }) {
   const router = useRouter();
   const { page } = router.query;
-
   let pageCount = 10;
 
   const [pageState, pageSetState] = useState({
@@ -43,12 +42,9 @@ export default function Home({ animes }) {
       </Head>
 
       <main>
-        <div className="animeList">
-          {animes.map((anime, index) => (
-            <AnimeContainerComponent key={index} {...anime} />
-          ))}
+        <AnimeList animeList={animes}>
           <PaginationComponent pageCount={7} currentPage={page} />
-        </div>
+        </AnimeList>
       </main>
     </div>
   );

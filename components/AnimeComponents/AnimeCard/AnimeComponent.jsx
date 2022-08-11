@@ -8,7 +8,6 @@ import { BsHeartFill } from "react-icons/bs";
 
 const AnimeComponent = (props) => {
   const { anime } = props;
-
   return (
     <div
       className="anime-preview-card animate__animated animate__fadeIn"
@@ -69,38 +68,3 @@ const AnimeComponent = (props) => {
 };
 
 export default AnimeComponent;
-
-// <img src={anime.urlImagePreview} className="animePreviewImage"></img>
-//       <div className="additionsWrapper">
-//         <div>
-//           <div>
-//             <h6 className="h6">genre</h6>
-//             <div className="">
-//               {/* {anime.genre.split(",").map((genre_, index) => (
-//                 <Badge bg="secondary" className="w-fit me-1" key={index}>
-//                   {genre_}
-//                 </Badge>
-//               ))} */}
-//             </div>
-//           </div>
-//           {anime.director ? (
-//             <div>
-//               <p className="h6">directed by</p>
-//               <Badge bg="secondary" className="">
-//                 {anime.director}
-//               </Badge>
-//             </div>
-//           ) : (
-//             <div></div>
-//           )}
-//           <div>
-//             <h6 className="h6">type</h6>
-//             <Badge bg="secondary" className="">
-//               {anime.type}
-//             </Badge>
-//           </div>
-//           <div>
-//             <h6 className="h6">{anime.year}</h6>
-//           </div>
-//         </div>
-//       </div>

@@ -7,7 +7,7 @@ export const SearchInput = () => {
 
   const handleSearch = (e) => {
     e.preventDefault();
-    Router.push(`/search/${searchInput}`);
+    if (searchInput.length > 0) Router.push(`/search/${searchInput}`);
   };
 
   const handleSearchChange = (e) => {
@@ -39,6 +39,7 @@ export const SearchInput = () => {
           className="block p-2 pl-10 w-full rounded-lg border sm:text-sm bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
           placeholder="Search..."
           onChange={handleSearchChange}
+          value={searchInput}
         />
         <button
           className="p-1.5 bg-gray-700 border-gray-600 border text-white rounded-lg"

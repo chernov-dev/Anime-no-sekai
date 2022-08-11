@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { useState, useEffect, Suspense } from "react";
 import { useRouter } from "next/router";
-import AnimePlayer from "../../components/AnimePlayer/AnimePlayer";
+import AnimePlayer from "../../components/AnimeComponents/AnimePlayer/AnimePlayer";
 import "../../styles/Home.module.css";
 import requests from "../../utils/requests";
 import Image from "next/image";
@@ -21,21 +21,8 @@ export default function Anime() {
 
   useEffect(() => {
     getAnimeInfo();
-  }, [router.isReady, animeId]);
+  }, [router.isReady, animeId, getAnimeInfo]);
 
-  // const [previewImage, setPreviewImage] = useState(
-  //   `https://static.openni.ru/${anime.screenImage[0]}`
-  // );
-  // const [previewSequence, setPreviewSequence] = useState(0);
-
-  // const handlePreviewClick = () => {
-  //   setPreviewSequence((current) => ++current);
-  //   if (previewSequence >= anime.screenImage.length - 1) {
-  //     setPreviewSequence(0);
-  //   }
-  //   let url = `https://static.openni.ru/${anime.screenImage[previewSequence]}`;
-  //   setPreviewImage(url);
-  // };
   if (isLoading) return null;
   if (!animeInfo) return <p>Anime not found</p>;
   return (
@@ -169,62 +156,3 @@ export default function Anime() {
     }
   }
 }
-
-// export const getServerSideProps = async (context) => {
-//   const [animeInfo] = await Promise.all([
-//     fetch(`${requests.fetchAnimeInfo}`, {
-//       method: "POST", // *GET, POST, PUT, DELETE, etc.
-//       headers: {
-//         "Content-Type": "application/x-www-form-urlencoded",
-//       },
-//       body: `id=${context.params.animeId}`,
-//     }).then((res) => res.json()),
-//   ]);
-
-//   let animeEpisodes = animeInfo.data[0].series
-//     .replace("{", "")
-//     .replace("}", "")
-//     .split(",")
-//     .map((episode_) => {
-//       let episodeId = episode_.replace(/'/g, "").split(":")[1];
-//       let episodeName = episode_.replace(/'/g, "").split(":")[0];
-//       let episodeUrlHd = `https://video.animetop.info/720/${episodeId}.mp4`;
-//       let episodeUrlStd = `https://video.animetop.info/${episodeId}.mp4`;
-//       return {
-//         name: episodeName,
-//         hd: episodeUrlHd,
-//         std: episodeUrlStd,
-//       };
-//     });
-
-//   let formatTitle = animeInfo.data[0].title.split(" / ");
-//   let animeTitle = formatTitle[0];
-//   let animeTitleEn = formatTitle[1].split("[")[0];
-//   let animeEpisodeComing = formatTitle[1].split("[")[1].replace(/]/g, "");
-//   let animeDesc = animeInfo.data[0].description.replace(/<([^>]*)>/g, "");
-
-//   let anime = {
-//     img: {
-//       src: animeInfo.data[0].urlImagePreview,
-//     },
-//     title: {
-//       formatted: formatTitle,
-//       ru: animeTitle,
-//       en: animeTitleEn,
-//     },
-//     comingUp: animeEpisodeComing,
-//     description: animeDesc,
-//     extra: {
-//       director: animeInfo.data[0].director,
-//       year: animeInfo.data[0].year,
-//       genres: animeInfo.data[0].genre,
-//       type: animeInfo.data[0].type,
-//     },
-//   };
-//   return {
-//     props: {
-//       anime: anime,
-//       episodes: animeEpisodes,
-//     },
-//   };
-// };
