@@ -1,5 +1,4 @@
 import Head from "next/head";
-import styles from "../styles/Home.module.css";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import requests from "../utils/requests";
@@ -34,7 +33,7 @@ export default function Home({ animes }) {
   // }, [searchParams, itemsPerPage]);
 
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
         <title>ANS - Home</title>
         <meta name="description" content="ANS - animevost API" />

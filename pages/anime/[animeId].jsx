@@ -49,7 +49,7 @@ export default function Anime() {
                   layout="fixed"
                 />
               </div>
-              <div className="anime-card__header-body">
+              <div className="anime-preview-card__header-content">
                 <h4 className="anime-card__title">{animeInfo.title.ru}</h4>
                 <h4 className="anime-card__subtitle">{animeInfo.title.en}</h4>
                 <h4 className="anime-card__info">
@@ -57,7 +57,9 @@ export default function Anime() {
                 </h4>
                 <div className="anime-card__type">
                   <p>{animeInfo.extra.type}</p>
-                  {animeInfo.extra.genre}
+                  {animeInfo.extra.genres.split(", ").map((genre, index) => (
+                    <p key={index}>{genre}</p>
+                  ))}
                 </div>
               </div>
             </div>

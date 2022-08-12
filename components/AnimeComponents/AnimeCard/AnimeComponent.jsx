@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Router from "next/router";
-import { ReadMore } from "../../utils/ReadMore";
+import { shimmer, toBase64 } from "../../utils/shimmer";
 
 import {
   BsFillCalendarCheckFill,
@@ -17,24 +17,41 @@ const AnimeComponent = (props) => {
     <div
       className="anime-preview-card"
       ref={cardRef}
-      style={{
-        backgroundImage: `url(https://static.openni.ru/${anime.screenImage[0]})`,
-      }}
+      // style={{
+      //   backgroundImage: `url(https://static.openni.ru/${anime.screenImage[0]})`,
+      // }}
       onClick={(e) => {
         Router.push(`/anime/${anime.id}`);
       }}
     >
+      <div className="anime-preview-card__overlay">
+        <Image
+          src={`https://static.openni.ru/${anime.screenImage[0]}`}
+          alt="preview"
+          layout="fill"
+          objectFit="cover"
+          placeholder="blur"
+          blurDataURL={`data:image/svg+xml;base64,${toBase64(
+            shimmer(700, 475)
+          )}`}
+          priority
+        />
+      </div>
       {/* <div className="anime-preview-card__overlay"></div> */}
       <div className="anime-preview-card__wrapper">
         <div className="anime-preview-card__header">
           <div className="anime-preview-card__img">
             <Image
               src={anime.urlImagePreview}
-              className=""
               alt="preview"
               width="150px"
               height="225px"
               layout="fixed"
+              priority
+              placeholder="blur"
+              blurDataURL={`data:image/svg+xml;base64,${toBase64(
+                shimmer(700, 475)
+              )}`}
             />
           </div>
           <div className="anime-preview-card__header-content">
@@ -46,7 +63,9 @@ const AnimeComponent = (props) => {
             </h4>
             <div className="anime-preview-card__type">
               <p>{anime.type}</p>
-              {anime.genre}
+              {anime.genre.split(", ").map((g, index) => (
+                <p key={index}>{g}</p>
+              ))}
             </div>
           </div>
         </div>

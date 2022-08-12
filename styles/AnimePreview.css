@@ -11,9 +11,6 @@
 
 .anime-preview-card {
   pointer-events: visible;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position-x: -220px;
   width: 100%;
   max-width: 800px;
   height: 100%;
@@ -25,11 +22,23 @@
   transition: all 0.2s ease-in;
 }
 
-.anime-preview-card:before {
+.anime-preview-card__overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+}
+
+.anime-preview-card__overlay img {
+  filter: blur(2px) brightness(0.6);
+  border-radius: 15px;
+}
+
+.anime-preview-card:after {
   content: "";
   width: 100%;
   height: 100%;
-  border-radius: 8px;
+  border-radius: inherit;
   background: linear-gradient(
     90deg,
     rgba(42, 159, 255, 0.2) 0%,
@@ -57,6 +66,7 @@
   flex-direction: column;
   position: relative;
   padding: 1em 1.2em 1em 0;
+  z-index: 20;
 }
 
 .anime-preview-card__header {
@@ -76,7 +86,7 @@
   top: 0;
   left: 0;
   z-index: 0;
-  @apply bg-gray-700 bg-opacity-30;
+  @apply bg-gray-700 bg-opacity-40;
   background-blend-mode: multiply;
 }
 
@@ -84,26 +94,10 @@
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+  gap: 0.3rem;
+  width: 100%;
   position: inherit;
   padding: 1rem;
-}
-
-.anime-preview-card__overlay {
-  width: 100%;
-  height: 100%;
-  border-radius: 8px;
-  background: linear-gradient(
-    90deg,
-    rgba(42, 159, 255, 0.2) 0%,
-    rgba(33, 33, 32, 1) 60%,
-    rgba(33, 33, 32, 1) 100%
-  );
-  background-blend-mode: multiply;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
 }
 
 .anime-preview-card__share {
@@ -130,6 +124,7 @@
 
 .anime-preview-card__img {
   position: relative;
+  height: 225px;
 }
 .anime-preview-card__img > span {
   border-top-left-radius: 8px;
@@ -151,8 +146,8 @@
 
 .anime-preview-card__type {
   display: flex;
-  gap: 0.45rem;
-  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.25rem;
   font-size: 0.9em;
   color: #cee4fd;
   line-height: 0.9;
@@ -161,9 +156,9 @@
 }
 
 .anime-preview-card__type p {
-  @apply bg-gray-500;
+  @apply bg-gray-500 text-gray-300;
   border-radius: 0.25rem;
-  padding: 0.2rem 0.375rem;
+  padding: 0.3rem 0.375rem;
 }
 
 .anime-preview-card__desc {
@@ -214,7 +209,7 @@
     float: inherit;
     padding: 1em;
   }
-  .anime-preview-card:before {
+  .anime-preview-card:after {
     background: linear-gradient(
       180deg,
       rgba(42, 159, 255, 0.2) 0%,
@@ -227,14 +222,21 @@
   .anime-preview-card__header {
     flex-direction: column-reverse;
     text-align: center;
-    align-items: center;
   }
   .anime-preview-card__header-content {
-    gap: 0.3rem;
+    align-items: center;
+  }
+
+  .anime-preview-card__img {
+    margin-bottom: 0.5em;
   }
 
   .anime-preview-card__img > span {
     border-radius: 8px;
+  }
+
+  .anime-preview-card__type {
+    justify-content: center;
   }
 }
 

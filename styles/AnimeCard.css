@@ -135,11 +135,13 @@
 
 .anime-card__title {
   color: #ffffff;
-  margin-bottom: 0.15em;
 }
 .anime-card__subtitle {
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 0.95em;
   color: #ffffffa2;
-  margin-bottom: 0.75em;
+  margin-bottom: 0.25em;
 }
 
 .anime-card__info {
@@ -151,19 +153,19 @@
 
 .anime-card__type {
   display: flex;
-  gap: 0.45rem;
-  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.25rem;
   font-size: 0.9em;
   color: #cee4fd;
   line-height: 0.9;
-  margin-top: 0.35em;
+  margin-top: 0.25em;
   font-weight: 500;
 }
 
 .anime-card__type p {
-  @apply bg-gray-500;
+  @apply bg-gray-500 text-gray-300;
   border-radius: 0.25rem;
-  padding: 0.125rem 0.375rem;
+  padding: 0.3rem 0.375rem;
 }
 
 .anime-card__desc {
