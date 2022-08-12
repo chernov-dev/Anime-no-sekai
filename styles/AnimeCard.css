@@ -174,12 +174,6 @@
   color: #cfd6e1;
 }
 
-.short {
-  display: -webkit-box;
-  -webkit-line-clamp: 5;
-  -webkit-box-orient: vertical;
-}
-
 .anime-card__footer {
   width: 100%;
   display: flex;
