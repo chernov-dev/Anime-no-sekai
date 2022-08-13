@@ -63,7 +63,7 @@
   gap: 0.65em;
   flex-direction: column;
   position: relative;
-  padding: 1em 1.2em 1em 0;
+  padding: 1rem;
   z-index: 20;
 }
 

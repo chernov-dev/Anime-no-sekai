@@ -9,7 +9,7 @@ import {
 const AnimeInfo = ({ animeInfo }) => {
   return (
     <div className="animeCard">
-      <div className="animeCard-content">
+      <div className="animeCard-content w-full">
         <div className="animeCard-header">
           <div>
             <Image
