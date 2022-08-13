@@ -1,11 +1,11 @@
 import React from "react";
-import AnimeComponent from "./AnimeCard/AnimeComponent";
+import AnimeCard from "./AnimeCard/AnimeCard";
 
 function AnimeList({ animeList, children }) {
   return (
     <div className="animeList">
       {animeList.map((anime, index) => (
-        <AnimeComponent key={index} anime={anime}></AnimeComponent>
+        <AnimeCard key={index} anime={anime}></AnimeCard>
       ))}
       {children}
     </div>

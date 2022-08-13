@@ -9,13 +9,13 @@ import {
 } from "react-icons/bs";
 import { useRef } from "react";
 
-const AnimeComponent = (props) => {
+const AnimeCard = (props) => {
   const { anime } = props;
   const cardRef = useRef(null);
 
   return (
     <div
-      className="anime-preview-card"
+      className="animeCard"
       ref={cardRef}
       // style={{
       //   backgroundImage: `url(https://static.openni.ru/${anime.screenImage[0]})`,
@@ -24,7 +24,7 @@ const AnimeComponent = (props) => {
         Router.push(`/anime/${anime.id}`);
       }}
     >
-      <div className="anime-preview-card__overlay">
+      <div className="animeCard-overlay">
         <Image
           src={`https://static.openni.ru/${anime.screenImage[0]}`}
           alt="preview"
@@ -37,10 +37,10 @@ const AnimeComponent = (props) => {
           priority
         />
       </div>
-      {/* <div className="anime-preview-card__overlay"></div> */}
-      <div className="anime-preview-card__wrapper">
-        <div className="anime-preview-card__header">
-          <div className="anime-preview-card__img">
+      {/* <div className="animeCard-overlay"></div> */}
+      <div className="animeCard-content">
+        <div className="animeCard-header">
+          <div className="animeCard-img">
             <Image
               src={anime.urlImagePreview}
               alt="preview"
@@ -54,14 +54,12 @@ const AnimeComponent = (props) => {
               )}`}
             />
           </div>
-          <div className="anime-preview-card__header-content">
-            <h4 className="anime-preview-card__title">
-              {anime.title.split("/")[0]}
-            </h4>
-            <h4 className="anime-preview-card__info">
+          <div className="animeCard-header__content">
+            <h4 className="anime-title">{anime.title.split("/")[0]}</h4>
+            <p className="anime-info">
               {anime.year}, {anime.director}
-            </h4>
-            <div className="anime-preview-card__type">
+            </p>
+            <div className="anime-type">
               <p>{anime.type}</p>
               {anime.genre.split(", ").map((g, index) => (
                 <p key={index}>{g}</p>
@@ -69,13 +67,13 @@ const AnimeComponent = (props) => {
             </div>
           </div>
         </div>
-        <div className="anime-preview-card__body">
-          <p className="anime-preview-card__desc short">
-            {anime.description.slice(0, 150)}...
+        <div className="animeCard-body">
+          <p className="anime-desc short">
+            {anime.description.slice(0, 190)}...
           </p>
         </div>
-        <div className="anime-preview-card__footer">
-          <div className="anime-preview-card__share">
+        <div className="anime-footer">
+          <div className="animeCard-share">
             <span onClick={(e) => e.stopPropagation()}>
               <BsHeartFill />
             </span>
@@ -92,4 +90,4 @@ const AnimeComponent = (props) => {
   );
 };
 
-export default AnimeComponent;
+export default AnimeCard;

@@ -45,22 +45,14 @@ const Header = () => {
               </Link>
             </li>
             <li>
-              <Link href="/">
+              <Link href="/search?name=bl">
                 <a
                   className="block py-2 pr-4 pl-3 md:border-0  md:p-0 text-gray-400 md:hover:text-white hover:bg-gray-700 hover:text-white md:hover:bg-transparent border-gray-700"
                   aria-current="page"
                 >
-                  Animes
+                  Search
                 </a>
               </Link>
-            </li>
-            <li>
-              <a
-                className="block py-2 pr-4 pl-3  md:p-0 text-gray-400 md:hover:text-white hover:bg-gray-700 hover:text-white md:hover:bg-transparent border-gray-700"
-                aria-current="page"
-              >
-                Random
-              </a>
             </li>
           </ul>
         </div>

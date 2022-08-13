@@ -1,4 +1,4 @@
-import "../styles/AnimePreview.css";
+import "../styles/Anime.css";
 import "../styles/AnimeCard.css";
 import "../styles/AnimePlayer.css";
 import "../styles/pagination.css";

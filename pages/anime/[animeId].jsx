@@ -9,6 +9,7 @@ import { BsShareFill } from "react-icons/bs";
 import { BsFillCalendarCheckFill } from "react-icons/bs";
 import { BsHeartFill } from "react-icons/bs";
 import { BsArrowRight } from "react-icons/bs";
+import AnimeInfo from "../../components/AnimeComponents/AnimeCard/AnimeInfo";
 
 export default function Anime() {
   const router = useRouter();
@@ -34,54 +35,8 @@ export default function Anime() {
       </Head>
 
       <main className="flex items-center">
-        <div className="anime-card">
-          <div className="anime-card__overlay"></div>
-          <div className="anime-card__content">
-            <div className="anime-card__header">
-              <div className="anime-card__header-overlay__gradient" />
-              <div>
-                <Image
-                  src={animeInfo.img.src}
-                  className="anime-card__img"
-                  alt="preview"
-                  height="394px"
-                  width="300px"
-                  layout="fixed"
-                />
-              </div>
-              <div className="anime-preview-card__header-content">
-                <h4 className="anime-card__title">{animeInfo.title.ru}</h4>
-                <h4 className="anime-card__subtitle">{animeInfo.title.en}</h4>
-                <h4 className="anime-card__info">
-                  {animeInfo.extra.year}, {animeInfo.extra.director}
-                </h4>
-                <div className="anime-card__type">
-                  <p>{animeInfo.extra.type}</p>
-                  {animeInfo.extra.genres.split(", ").map((genre, index) => (
-                    <p key={index}>{genre}</p>
-                  ))}
-                </div>
-              </div>
-            </div>
-            <div className="anime-card__body">
-              <p className="anime-card__desc">{animeInfo.description}</p>
-            </div>
-            <div className="anime-card__footer">
-              <div className="anime-card__share">
-                <span onClick={() => console.log("go")}>
-                  <BsHeartFill />
-                </span>
-                <span onClick={() => console.log("go")}>
-                  <BsFillCalendarCheckFill />
-                </span>
-                <span onClick={() => console.log("go")}>
-                  <BsShareFill />
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="anime-player-card">
+        <AnimeInfo animeInfo={animeInfo} />
+        <div className="anime-player">
           <AnimePlayer
             animeplaylist={animeInfo.episodes}
             animeSubTitle={animeInfo.title.en}
