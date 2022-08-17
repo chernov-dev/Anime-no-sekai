@@ -51,10 +51,6 @@
   left: 0;
 }
 
-.animeCard:hover {
-  @apply shadow-lg shadow-gray-400;
-}
-
 .animeCard-content {
   display: flex;
   height: 100%;

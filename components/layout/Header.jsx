@@ -13,8 +13,30 @@ const Header = () => {
   const [hasScrolled, setHasScroll] = useState(false);
   const random = Math.floor(Math.random() * 2811);
 
+  const [scroll, setScroll] = useState(false);
+
+  const focusSearch = () => {
+    const searchInput = document.getElementById("search-input");
+    searchInput.focus();
+  };
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      window.addEventListener("scroll", () =>
+        setScroll(window.pageYOffset > 80)
+      );
+    }
+    () => {
+      window.removeEventListener("scroll");
+    };
+  }, []);
+
   return (
-    <nav className="border-gray-200 px-2 sm:px-4 py-2.5 bg-gray-800 sticky top-0 z-[100]">
+    <nav
+      className={`${
+        scroll ? "shadow-md shadow-slate-400" : ""
+      } border-gray-200 px-2 sm:px-4 py-2.5 bg-gray-800 sticky top-0 z-[100]`}
+    >
       <div className="container flex flex-wrap justify-between items-center mx-auto">
         <div className="navbar flex gap-2">
           <Link href="/">
@@ -45,14 +67,14 @@ const Header = () => {
               </Link>
             </li>
             <li>
-              <Link href="/search?name=bl">
+              <button onClick={focusSearch}>
                 <a
                   className="block py-2 pr-4 pl-3 md:border-0  md:p-0 text-gray-400 md:hover:text-white hover:bg-gray-700 hover:text-white md:hover:bg-transparent border-gray-700"
                   aria-current="page"
                 >
                   Search
                 </a>
-              </Link>
+              </button>
             </li>
           </ul>
         </div>

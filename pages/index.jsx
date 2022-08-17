@@ -51,7 +51,7 @@ export default function Home({ animes }) {
 
 export const getServerSideProps = async (context) => {
   let currentPage = context.query.page ?? 1;
-  let itemsPerPage = 6;
+  let itemsPerPage = 8;
   const [animes] = await Promise.all([
     fetch(
       `${requests.fetchLastAnimes}?page=${currentPage}&quantity=${itemsPerPage}`,

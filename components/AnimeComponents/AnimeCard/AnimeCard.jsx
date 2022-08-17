@@ -10,16 +10,12 @@ import {
 import { useRef } from "react";
 
 const AnimeCard = (props) => {
-  const { anime } = props;
-  const cardRef = useRef(null);
+  const { anime, ref, inView } = props;
 
   return (
     <div
       className="animeCard"
-      ref={cardRef}
-      // style={{
-      //   backgroundImage: `url(https://static.openni.ru/${anime.screenImage[0]})`,
-      // }}
+      ref={ref}
       onClick={(e) => {
         Router.push(`/anime/${anime.id}`);
       }}

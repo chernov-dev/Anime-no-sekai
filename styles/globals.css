@@ -48,3 +48,8 @@ a {
   color: inherit;
   text-decoration: none;
 }
+
+#search-input::-webkit-search-cancel-button {
+  position: relative;
+  right: 20px;
+}

@@ -6,7 +6,6 @@ import "../styles/globals.css";
 import Header from "../components/layout/Header";
 import Footer from "../components/layout/Footer";
 import { SearchInput } from "../components/Inputs/SearchInput";
-import backgroundImage from "../public/background.svg";
 
 import NextNProgress from "nextjs-progressbar";
 
