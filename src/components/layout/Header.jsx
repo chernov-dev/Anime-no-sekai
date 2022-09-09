@@ -2,7 +2,6 @@ import Logo from "../../../public/logo.svg";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { throttle } from "lodash";
 import { SearchInput } from "../Inputs/SearchInput";
 
 const logoStyles = {
