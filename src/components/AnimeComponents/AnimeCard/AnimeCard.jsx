@@ -35,8 +35,7 @@ const AnimeCard = (props) => {
               alt="preview"
               width="150px"
               height="225px"
-              layout="fixed"
-              priority
+              layout="responsive"
               placeholder="blur"
               blurDataURL={`data:image/svg+xml;base64,${toBase64(
                 shimmer(700, 475)

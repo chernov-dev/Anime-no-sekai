@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
-import ShareOptions from "../../Social/ShareOptions";
-import { shimmer, toBase64 } from "../../utils/shimmer";
+import ShareOptions from "../Social/ShareOptions";
+import { shimmer, toBase64 } from "../utils/shimmer";
 
 const AnimeDetails = ({ animeInfo }) => {
   return (
@@ -41,7 +41,9 @@ const AnimeDetails = ({ animeInfo }) => {
           </div>
         </div>
         <div className="anime-body">
-          <p className="anime-desc">{animeInfo.description}</p>
+          <p className="anime-desc">
+            {animeInfo.description.replaceAll("<br />", "")}
+          </p>
         </div>
         <div className="anime-footer">
           <div className="anime-share">

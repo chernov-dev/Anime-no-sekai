@@ -7,11 +7,6 @@ export const getPlaylistById = async (id) => {
     new URLSearchParams({
       id: `${id}`,
     })
-    // {
-    //   headers: {
-    //     "access-control-allow-origin": "*",
-    //   },
-    // }
   );
   const { data: playlist } = response;
   //Sort playlist by their episode name, eg. 1 Episode - 6 Episode

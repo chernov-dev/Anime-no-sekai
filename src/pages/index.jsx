@@ -5,7 +5,7 @@ import AnimeList from "../components/AnimeComponents/AnimeList";
 import { getLastAnimes } from "../api/getLastAnimes";
 
 function HomePage({ currentPage }) {
-  const { data, isLoading } = useQuery(["animes"], () =>
+  const { data, isLoading } = useQuery(["animes", currentPage], () =>
     getLastAnimes(currentPage)
   );
 
@@ -33,8 +33,9 @@ function HomePage({ currentPage }) {
 export const getServerSideProps = async (context) => {
   const queryClient = new QueryClient();
   let currentPage = context.query.page ?? 1;
-
-  await queryClient.prefetchQuery(["animes"], () => getLastAnimes(currentPage));
+  await queryClient.prefetchQuery(["animes", currentPage], () =>
+    getLastAnimes(currentPage)
+  );
 
   return {
     props: {

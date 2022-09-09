@@ -1,6 +1,6 @@
 import Head from "next/head";
 import AnimePlayer from "../../components/AnimeComponents/AnimePlayer/AnimePlayer";
-import AnimeDetails from "../../components/AnimeComponents/AnimeCard/AnimeDetails";
+import AnimeDetails from "../../components/AnimeComponents/AnimeDetails";
 import { getAnimeById } from "../../api/getAnimeById";
 import { getPlaylistById } from "../../api/getPlaylistById";
 import { dehydrate, QueryClient, useQuery } from "@tanstack/react-query";

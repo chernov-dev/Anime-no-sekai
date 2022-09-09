@@ -30,14 +30,11 @@ body {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  overflow: hidden;
 }
 
 main {
   width: 100%;
   padding: 2rem 0;
-  overflow: hidden;
-  overflow-y: auto;
   position: relative;
   /* @apply bg-gradient-to-b from-gray-900/10 to-[#010511]; */
 }

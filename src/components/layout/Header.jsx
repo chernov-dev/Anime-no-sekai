@@ -34,6 +34,7 @@ const Header = () => {
                   alt="logo"
                   width={"65px"}
                   height={"65px"}
+                  layout="intrinsic"
                   style={logoStyles}
                 />
               </a>
