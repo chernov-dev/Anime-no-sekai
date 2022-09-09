@@ -1,7 +1,6 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
 import Error from "next/error";
-import requests from "../../utils/requests";
 import AnimeList from "../../components/AnimeComponents/AnimeList";
 import { getAnimeByName } from "../../api/getAnimeByName";
 import { dehydrate, QueryClient, useQuery } from "@tanstack/react-query";
