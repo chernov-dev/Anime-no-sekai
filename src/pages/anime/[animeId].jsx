@@ -23,36 +23,34 @@ export default function AnimeDetailsPage() {
     isSuccess: isPlayerSuccess,
   } = useQuery(["anime-playlist", animeId], () => getPlaylistById(animeId));
 
-  {
-    isAnimeLoading && <div className="text-center">Loading anime..</div>;
-  }
+  if (isAnimeSuccess) {
+    return (
+      <>
+        <Head>
+          <title>ANS - {animeDetails.title}</title>
+          <meta name="description " content={`ANS - ${animeDetails.title}`} />
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
 
-  return (
-    <>
-      <Head>
-        <title>ANS - {animeDetails.title}</title>
-        <meta name="description " content={`ANS - ${animeDetails.title}`} />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <main>
-        <div className="animeList">
-          <AnimeDetails animeInfo={animeDetails} />
-          <div className="anime-player">
-            {isPlayerLoading && (
-              <div className="text-center w-full text-slate-400">
-                Loading player
-              </div>
-            )}
-            <AnimePlayer
-              animePlayList={animePlaylist}
-              animeTitle={animeDetails.title}
-            />
+        <main>
+          <div className="animeList">
+            <AnimeDetails animeInfo={animeDetails} />
+            <div className="anime-player">
+              {isPlayerLoading && (
+                <div className="text-center w-full text-slate-400">
+                  Loading player
+                </div>
+              )}
+              <AnimePlayer
+                animePlayList={animePlaylist}
+                animeTitle={animeDetails.title}
+              />
+            </div>
           </div>
-        </div>
-      </main>
-    </>
-  );
+        </main>
+      </>
+    );
+  }
 }
 
 export const getServerSideProps = async (context) => {
