@@ -72,7 +72,6 @@ export const getServerSideProps = async (context) => {
 
   return {
     props: {
-      animeId,
       dehydratedState: dehydrate(queryClient),
     },
   };
