@@ -27,10 +27,6 @@ export default function AnimeDetailsPage() {
     isAnimeLoading && <div className="text-center">Loading anime..</div>;
   }
 
-  if (!isAnimeSuccess) {
-    return <Error statusCode={"404"} title={`Anime couldn't be found`} />;
-  }
-
   return (
     <>
       <Head>
