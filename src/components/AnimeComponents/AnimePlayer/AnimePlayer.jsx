@@ -1,8 +1,10 @@
+import Error from "next/error";
 import { React, useEffect, useState } from "react";
 import ReactPlayer from "react-player/file";
 
 const AnimePlayer = ({ animePlayList, animeTitle }) => {
   let firstEpisode = animePlayList[0];
+  console.log("playlist", firstEpisode);
 
   //React Player SSR fix
   const [hasWindow, setHasWindow] = useState(false);
@@ -14,10 +16,10 @@ const AnimePlayer = ({ animePlayList, animeTitle }) => {
 
   const playerDefaults = {
     url:
-      firstEpisode.hd ??
-      firstEpisode.std ??
+      firstEpisode?.hd ??
+      firstEpisode?.std ??
       "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
-    light: firstEpisode.preview,
+    light: firstEpisode?.preview,
     pip: true,
     playing: false,
     controls: true,
@@ -48,6 +50,16 @@ const AnimePlayer = ({ animePlayList, animeTitle }) => {
       };
     });
   };
+  if (animePlayList.length == 0) {
+    return (
+      <div className="flex justify-between px-2 pb-3 gap-2">
+        <div className="anime-player__title">
+          <p>{animeTitle} </p>
+          <p className="text-gray-400 text-lg">No video available right now!</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <>
@@ -62,7 +74,7 @@ const AnimePlayer = ({ animePlayList, animeTitle }) => {
           <select
             className="anime-player__episode"
             name="Select episode"
-            defaultValue={episodeOptions[0].label}
+            defaultValue={episodeOptions[0]?.label}
             onChange={(e) => handleEpisodeChange(e.target.value)}
           >
             {episodeOptions.map((episode, index) => {

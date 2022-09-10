@@ -4,6 +4,7 @@ import AnimeDetails from "../../components/AnimeComponents/AnimeDetails";
 import { getAnimeById } from "../../api/getAnimeById";
 import { getPlaylistById } from "../../api/getPlaylistById";
 import { dehydrate, QueryClient, useQuery } from "@tanstack/react-query";
+import Error from "next/error";
 
 export default function AnimeDetailsPage({ animeId }) {
   const {
@@ -20,6 +21,10 @@ export default function AnimeDetailsPage({ animeId }) {
 
   {
     isAnimeLoading && <div className="text-center">Loading anime..</div>;
+  }
+
+  if (!isAnimeSuccess) {
+    return <Error statusCode={"404"} title={`Anime couldn't be found`} />;
   }
 
   return (
@@ -39,12 +44,10 @@ export default function AnimeDetailsPage({ animeId }) {
                 Loading player
               </div>
             )}
-            {isPlayerSuccess && (
-              <AnimePlayer
-                animePlayList={animePlaylist}
-                animeTitle={animeDetails.title}
-              />
-            )}
+            <AnimePlayer
+              animePlayList={animePlaylist}
+              animeTitle={animeDetails.title}
+            />
           </div>
         </div>
       </main>
