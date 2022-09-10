@@ -42,11 +42,12 @@ export const SearchInput = () => {
             id="search-input"
             className="border text-sm rounded-lg block w-full pl-10 p-2.5  bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-gray-500 focus:border-gray-500"
             placeholder="Search"
+            enterKeyHint="search"
             onChange={handleSearchChange}
             required
           />
         </div>
-        <button
+        {/* <button
           type="submit"
           className="p-2.5 ml-2 text-sm font-medium text-white rounded-lg border border-gray-700 focus:ring-4 focus:outline-none bg-gray-600 hover:bg-gray-700 focus:ring-gray-800"
         >
@@ -65,7 +66,7 @@ export const SearchInput = () => {
             ></path>
           </svg>
           <span className="sr-only">Search</span>
-        </button>
+        </button> */}
       </form>
     </>
   );

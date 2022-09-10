@@ -9,12 +9,11 @@ export default function Search() {
   let router = useRouter();
   const { animeSearchedName } = router.query;
 
-  const { data, isLoading, isError } = useQuery(
+  const { data, isLoading, status } = useQuery(
     ["searched-animes", animeSearchedName],
     () => getAnimeByName(animeSearchedName)
   );
-
-  if (isError) {
+  if (status != "success") {
     return (
       <Error
         statusCode={"404"}

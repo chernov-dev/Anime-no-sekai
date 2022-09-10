@@ -12,12 +12,11 @@ const logoStyles = {
 const Header = () => {
   const random = Math.floor(Math.random() * 2811);
 
-  const [scrollVisible, setScrollVisible] = useState(false);
+  const [searchVisible, setSearchVisible] = useState(false);
 
-  const focusSearch = () => {
-    setScrollVisible(true);
-    const searchInput = document.getElementById("search-input");
-    window.setTimeout(() => searchInput.focus(), 0);
+  //TODO link is still uncrawlable for Search Engines
+  const handleSearchDropdown = () => {
+    setSearchVisible(!searchVisible);
   };
 
   return (
@@ -57,7 +56,7 @@ const Header = () => {
               </li>
               <li>
                 <button
-                  onClick={focusSearch}
+                  onClick={handleSearchDropdown}
                   className="block py-2 pr-4 pl-3 md:border-0  md:p-0 text-gray-400 md:hover:text-white hover:bg-gray-700 hover:text-white md:hover:bg-transparent border-gray-700"
                 >
                   Search
@@ -104,9 +103,9 @@ const Header = () => {
       </div>
       <div
         className={`
-        ${scrollVisible ? `block` : "hidden"}
+        ${searchVisible ? `block` : "hidden"}
         w-full border-b border-gray-400 bg-gray-900 border-opacity-10 py-5 px-7`}
-        onBlur={() => setScrollVisible(false)}
+        onBlur={() => setSearchVisible(false)}
       >
         <SearchInput />
       </div>
