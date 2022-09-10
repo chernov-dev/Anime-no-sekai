@@ -27,8 +27,8 @@ export default function AnimeDetailsPage() {
     return (
       <>
         <Head>
-          <title>ANS - {animeDetails?.title}</title>
-          <meta name="description " content={`ANS - ${animeDetails?.title}`} />
+          <title>ANS - {animeDetails.title}</title>
+          <meta name="description " content={`ANS - ${animeDetails.title}`} />
           <link rel="icon" href="/favicon.ico" />
         </Head>
 
@@ -43,7 +43,7 @@ export default function AnimeDetailsPage() {
               )}
               <AnimePlayer
                 animePlayList={animePlaylist}
-                animeTitle={animeDetails?.title}
+                animeTitle={animeDetails.title}
               />
             </div>
           </div>

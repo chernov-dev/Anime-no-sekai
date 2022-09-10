@@ -42,7 +42,7 @@ const AnimeDetails = ({ animeInfo }) => {
         </div>
         <div className="anime-body">
           <p className="anime-desc">
-            {animeInfo.description.replaceAll("<br />", "")}
+            {animeInfo.description?.replaceAll("<br />", "")}
           </p>
         </div>
         <div className="anime-footer">
