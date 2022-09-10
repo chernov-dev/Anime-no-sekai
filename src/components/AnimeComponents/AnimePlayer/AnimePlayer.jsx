@@ -3,8 +3,10 @@ import { React, useEffect, useState } from "react";
 import ReactPlayer from "react-player/file";
 
 const AnimePlayer = ({ animePlayList, animeTitle }) => {
-  let firstEpisode = animePlayList[0];
-  console.log("playlist", firstEpisode);
+  let firstEpisode =
+    animePlayList.length > 0
+      ? animePlayList[0]
+      : { hd: undefined, preview: undefined };
 
   //React Player SSR fix
   const [hasWindow, setHasWindow] = useState(false);
@@ -16,10 +18,10 @@ const AnimePlayer = ({ animePlayList, animeTitle }) => {
 
   const playerDefaults = {
     url:
-      firstEpisode?.hd ??
-      firstEpisode?.std ??
+      firstEpisode.hd ??
+      firstEpisode.std ??
       "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
-    light: firstEpisode?.preview,
+    light: firstEpisode.preview,
     pip: true,
     playing: false,
     controls: true,
@@ -50,6 +52,7 @@ const AnimePlayer = ({ animePlayList, animeTitle }) => {
       };
     });
   };
+  //Anime player ERROR state
   if (animePlayList.length == 0) {
     return (
       <div className="flex justify-between px-2 pb-3 gap-2">
