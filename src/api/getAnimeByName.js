@@ -1,9 +1,9 @@
 import axios from "axios";
-import { BASE_URL } from "./config";
+import { VOST_URL } from "./config";
 
 export const getAnimeByName = async (name) => {
   const response = await axios.post(
-    `${BASE_URL}/search`,
+    `${VOST_URL}/search`,
     new URLSearchParams({
       name: `${name}`,
     })

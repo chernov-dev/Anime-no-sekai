@@ -1,9 +1,9 @@
 import axios from "axios";
-import { BASE_URL } from "./config";
+import { VOST_URL } from "./config";
 
 export const getAnimeById = async (id) => {
   const response = await axios.post(
-    `${BASE_URL}/info`,
+    `${VOST_URL}/info`,
     new URLSearchParams({
       id: `${id}`,
     })

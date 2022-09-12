@@ -9,7 +9,7 @@ const ShareOptions = () => {
   return (
     <>
       <span onClick={(e) => e.stopPropagation()}>
-        <BsHeartFill />
+        <BsHeartFill></BsHeartFill>
       </span>
       <span onClick={(e) => e.stopPropagation()}>
         <BsFillCalendarCheckFill />

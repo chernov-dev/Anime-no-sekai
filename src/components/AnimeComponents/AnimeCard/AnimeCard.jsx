@@ -14,19 +14,6 @@ const AnimeCard = (props) => {
         Router.push(`/anime/${anime.id}`);
       }}
     >
-      <div className="animeCard-overlay">
-        <Image
-          src={`https://static.openni.ru/${anime.screenImage[0]}`}
-          alt="preview"
-          layout="fill"
-          objectFit="cover"
-          placeholder="blur"
-          blurDataURL={`data:image/svg+xml;base64,${toBase64(
-            shimmer(700, 475)
-          )}`}
-          priority
-        />
-      </div>
       <div className="animeCard-content">
         <div className="animeCard-header">
           <div className="animeCard-img">

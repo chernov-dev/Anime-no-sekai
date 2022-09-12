@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["static.openni.ru"],
+    domains: ["static.openni.ru", "anilibria.tv"],
     formats: ["image/avif", "image/webp"],
   },
 };

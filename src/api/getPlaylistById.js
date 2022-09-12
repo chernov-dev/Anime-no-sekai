@@ -1,9 +1,9 @@
 import axios from "axios";
-import { BASE_URL } from "./config";
+import { VOST_URL } from "./config";
 
 export const getPlaylistById = async (id) => {
   const response = await axios.post(
-    `${BASE_URL}/playlist`,
+    `${VOST_URL}/playlist`,
     new URLSearchParams({
       id: `${id}`,
     })
