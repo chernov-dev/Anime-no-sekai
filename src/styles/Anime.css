@@ -159,6 +159,10 @@
   line-height: 0.8;
 }
 
+.anime-type {
+  @apply bg-cyan-300 bg-opacity-50 !important;
+}
+
 .anime-desc {
   font-weight: 300;
   font-size: clamp(0.9875rem, 0.9717rem + 0.0672vw, 1.0625rem);

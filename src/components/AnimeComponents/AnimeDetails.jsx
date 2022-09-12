@@ -33,7 +33,7 @@ const AnimeDetails = ({ animeInfo }) => {
                 (animeInfo.director !== "" ? animeInfo.director : "missing")}
             </h4>
             <div className="anime-genres">
-              <p>{animeInfo.type}</p>
+              <p className="anime-type">{animeInfo.type}</p>
               {animeInfo.genre.split(", ").map((genre, index) => (
                 <p key={index}>{genre}</p>
               ))}

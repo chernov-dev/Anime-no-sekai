@@ -37,7 +37,7 @@ const AnimeCard = (props) => {
                 (anime.director !== "" ? anime.director : "missing")}
             </p>
             <div className="anime-genres">
-              <p>{anime.type.toLowerCase()}</p>
+              <p className="anime-type">{anime.type.toLowerCase()}</p>
               {anime.genre.split(", ").map((g, index) => (
                 <p key={index}>{g}</p>
               ))}
