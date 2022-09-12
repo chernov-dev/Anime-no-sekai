@@ -7,10 +7,10 @@ const RandomPage = () => {
   const { data, isLoading, isError, error } = useQuery(
     ["random-anime"],
     () => getRandomAnime(),
-    { refetchOnWindowFocus: false, refetchOnMount: false }
+    { refetchOnWindowFocus: false }
   );
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <main className="text-center">Loading...</main>;
 
   if (isError) return <div>{error.message}</div>;
 
@@ -22,17 +22,5 @@ const RandomPage = () => {
     </main>
   );
 };
-
-export async function getStaticProps() {
-  const queryClient = new QueryClient();
-
-  await queryClient.prefetchQuery(["random-anime"], () => getRandomAnime());
-
-  return {
-    props: {
-      dehydratedState: dehydrate(queryClient),
-    },
-  };
-}
 
 export default RandomPage;
