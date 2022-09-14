@@ -5,7 +5,7 @@ const UserPreferencesContext = React.createContext({ animes: {}, prefs: {} });
 
 const UserPreferencesProvider = ({ children }) => {
   const [favourite, setFavourite] = useLocalStorage("ans-favourite", []);
-  const [email, setEmail] = useLocalStorage("ans-email", undefined);
+  const [email, setEmail] = useLocalStorage("ans-email", null);
   const [colorMode, setColorMode] = useLocalStorage("ans-mode", "dark");
 
   return (
