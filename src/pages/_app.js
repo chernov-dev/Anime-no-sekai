@@ -21,15 +21,15 @@ import { UserPreferencesProvider } from "../context/userPreferencesProvider";
 
 function MyApp({ Component, pageProps }) {
   return (
-    <QueryClientProvider client={queryClient}>
-      <Hydrate state={pageProps.dehydratedState}>
-        <UserPreferencesProvider>
+    <UserPreferencesProvider>
+      <QueryClientProvider client={queryClient}>
+        <Hydrate state={pageProps.dehydratedState}>
           <Header />
           <Component {...pageProps} />
           <ReactQueryDevtools position="bottom-left" />
-        </UserPreferencesProvider>
-      </Hydrate>
-    </QueryClientProvider>
+        </Hydrate>
+      </QueryClientProvider>
+    </UserPreferencesProvider>
   );
 }
 
