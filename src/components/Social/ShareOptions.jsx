@@ -27,7 +27,6 @@ const ShareOptions = ({ anime }) => {
         })
       );
     } else {
-      console.log("adding anime to ls", anime);
       setFavourite((prevState) => [...prevState, anime]);
     }
     setLiked((prevState) => !prevState);
