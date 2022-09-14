@@ -1,7 +1,10 @@
 import React from "react";
 import useLocalStorage from "../utils/useLocalStorage";
 
-const UserPreferencesContext = React.createContext({ animes: {}, prefs: {} });
+export const UserPreferencesContext = React.createContext({
+  animes: {},
+  prefs: {},
+});
 
 const UserPreferencesProvider = ({ children }) => {
   const [favourite, setFavourite] = useLocalStorage("ans-favourite", []);
@@ -20,4 +23,4 @@ const UserPreferencesProvider = ({ children }) => {
   );
 };
 
-export { UserPreferencesProvider, UserPreferencesContext };
+export default UserPreferencesProvider;
