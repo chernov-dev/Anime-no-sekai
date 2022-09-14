@@ -17,14 +17,17 @@ const queryClient = new QueryClient();
 import Header from "../components/layout/Header";
 import Footer from "../components/layout/Footer";
 import { SearchInput } from "../components/Inputs/SearchInput";
+import { UserPreferencesProvider } from "../context/userPreferencesProvider";
 
 function MyApp({ Component, pageProps }) {
   return (
     <QueryClientProvider client={queryClient}>
       <Hydrate state={pageProps.dehydratedState}>
-        <Header />
-        <Component {...pageProps} />
-        <ReactQueryDevtools position="bottom-left" />
+        <UserPreferencesProvider>
+          <Header />
+          <Component {...pageProps} />
+          <ReactQueryDevtools position="bottom-left" />
+        </UserPreferencesProvider>
       </Hydrate>
     </QueryClientProvider>
   );

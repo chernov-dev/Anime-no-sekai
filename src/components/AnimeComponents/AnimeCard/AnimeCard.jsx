@@ -51,7 +51,7 @@ const AnimeCard = (props) => {
         </div>
         <div className="anime-footer">
           <div className="animeCard-share">
-            <ShareOptions />
+            <ShareOptions anime={anime} />
           </div>
         </div>
       </div>

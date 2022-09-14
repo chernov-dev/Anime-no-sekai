@@ -108,16 +108,15 @@
 }
 
 .animeCard-share svg {
-  color: #ffffff;
+  @apply text-gray-400;
   height: 100%;
-  opacity: 0.4;
   background: none;
   padding: 0;
   transition: all 0.5s;
 }
 
 .animeCard-share svg:hover {
-  opacity: 1;
+  @apply text-gray-600;
 }
 
 .animeCard-img {

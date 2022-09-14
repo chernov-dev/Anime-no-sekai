@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { SearchInput } from "../Inputs/SearchInput";
+import RandomAnime from "../AnimeComponents/RandomAnime";
 
 const logoStyles = {
   filter:
@@ -64,14 +65,7 @@ const Header = () => {
                 </button>
               </li>
               <li>
-                <Link href="/random">
-                  <a
-                    aria-current="page"
-                    className="block py-2 pr-4 pl-3 md:border-0  md:p-0 text-gray-400 md:hover:text-white hover:bg-gray-700 hover:text-white md:hover:bg-transparent border-gray-700"
-                  >
-                    Random
-                  </a>
-                </Link>
+                <RandomAnime />
               </li>
             </ul>
           </div>

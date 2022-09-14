@@ -45,7 +45,7 @@ const AnimeDetails = ({ animeInfo }) => {
         </div>
         <div className="anime-footer">
           <div className="anime-share">
-            <ShareOptions />
+            <ShareOptions anime={animeInfo} />
           </div>
         </div>
       </div>
