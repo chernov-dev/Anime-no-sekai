@@ -4,7 +4,7 @@ import {
   BsHeartFill,
   BsShareFill,
 } from "react-icons/bs";
-import { UserPreferencesContext } from "../../context/userPreferencesProvider";
+import { UserPreferencesContext } from "../../contexts/userPreferencesProvider";
 
 const ShareOptions = ({ anime }) => {
   const preferences = useContext(UserPreferencesContext);

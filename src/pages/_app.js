@@ -17,7 +17,7 @@ const queryClient = new QueryClient();
 import Header from "../components/layout/Header";
 import Footer from "../components/layout/Footer";
 import { SearchInput } from "../components/Inputs/SearchInput";
-import { UserPreferencesProvider } from "../context/userPreferencesProvider";
+import { UserPreferencesProvider } from "../contexts/userPreferencesProvider";
 
 function MyApp({ Component, pageProps }) {
   return (
