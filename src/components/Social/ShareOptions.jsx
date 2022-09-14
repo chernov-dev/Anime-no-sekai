@@ -5,7 +5,6 @@ import {
   BsShareFill,
 } from "react-icons/bs";
 import { UserPreferencesContext } from "../../context/userPreferencesProvider";
-import useLocalStorage from "../../utils/useLocalStorage";
 
 const ShareOptions = ({ anime }) => {
   const preferences = useContext(UserPreferencesContext);
