@@ -1,5 +1,5 @@
 .header {
-  @apply flex flex-col gap-3 bg-white dark:bg-gray-900 px-2 sm:px-4 py-2.5  sticky w-full z-[999] top-0 left-0 border-b border-gray-200;
+  @apply flex flex-col gap-3 bg-white dark:bg-gray-900 px-2 sm:px-4 py-2.5  sticky w-full z-[999] top-0 left-0 border-b border-gray-200 dark:border-gray-500;
 }
 
 .wrapper {
@@ -11,17 +11,21 @@
 }
 
 .menuBtn {
-  @apply inline-flex items-center p-2 text-sm text-secondary rounded-lg md:hidden hover:bg-primary focus:outline-none focus:ring-2 focus:ring-gray-200;
+  @apply inline-flex  items-center p-2 text-sm text-black dark:text-white rounded-lg hover:text-white md:hidden hover:bg-primary focus:outline-none focus:ring-2 focus:ring-gray-200;
 }
 
 .navOption {
-  @apply text-white p-2 w-full hover:bg-secondary hover:text-opacity-50 md:border-0 md:hover:bg-transparent md:bg-transparent md:p-0;
+  @apply text-black dark:text-white rounded p-2 w-full hover:bg-gray-300 dark:hover:bg-gray-600 md:border-0 md:hover:bg-transparent md:bg-transparent md:p-0;
+}
+
+.navOption.active {
+  @apply bg-primary text-white md:text-gray-400 md:bg-transparent;
 }
 
 .navList {
-  @apply flex flex-col list-none p-4 mt-4 bg-primary rounded-lg border border-gray-100 border-opacity-25 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-transparent;
+  @apply flex flex-col bg-gray-100 dark:bg-gray-700 list-none p-4 mt-4 rounded-lg border border-gray-200 dark:border-gray-500 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-transparent;
 }
 
 .navList li {
-  @apply flex border-b md:border-none gap-2;
+  @apply flex gap-2;
 }

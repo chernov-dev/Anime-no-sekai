@@ -20,7 +20,7 @@ export const SearchInput = ({ show, onBlur }) => {
       <div
         className={`
             ${show ? `block` : "hidden"}
-            w-full px-2`}
+            w-full`}
         onBlur={onBlur}
       >
         <form className="flex items-center" onSubmit={handleSearch}>

@@ -101,7 +101,6 @@ const Header = () => {
             <FcSettings size={30} />
           </div>
         </div>
-
         <div
           className={`${
             showMenu ? "block" : "hidden"
@@ -113,8 +112,9 @@ const Header = () => {
             <li>
               <Link href="/">
                 <a
-                  className={`${styles.navOption} 
-                  ${router.pathname == "/" ? "active" : ""}`}
+                  className={`${styles.navOption} ${
+                    router.pathname == "/" ? styles.active : ""
+                  }`}
                   aria-current="page"
                   onClick={() => handleMenuDropdownClose()}
                 >
