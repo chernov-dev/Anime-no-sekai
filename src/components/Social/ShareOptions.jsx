@@ -4,7 +4,7 @@ import {
   BsHeartFill,
   BsShareFill,
 } from "react-icons/bs";
-import { UserPreferencesContext } from "../../contexts/userPreferencesProvider";
+import { UserPreferencesContext } from "../../context/UserPreferencesProvider";
 
 const ShareOptions = ({ anime }) => {
   const preferences = useContext(UserPreferencesContext);
@@ -21,11 +21,7 @@ const ShareOptions = ({ anime }) => {
     e.stopPropagation();
 
     if (isFavourite) {
-      setFavourite((prevState) =>
-        prevState.filter((e) => {
-          return e.id != anime.id;
-        })
-      );
+      setFavourite((prevState) => prevState.filter((e) => e.id != anime.id));
     } else {
       setFavourite((prevState) => [...prevState, anime]);
     }
