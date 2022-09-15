@@ -1,0 +1,27 @@
+.header {
+  @apply flex flex-col gap-3 bg-white dark:bg-gray-900 px-2 sm:px-4 py-2.5  sticky w-full z-[999] top-0 left-0 border-b border-gray-200;
+}
+
+.wrapper {
+  @apply container flex flex-wrap justify-between items-center mx-auto;
+}
+
+.primaryBtn {
+  @apply text-white bg-primary hover:bg-secondary font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0;
+}
+
+.menuBtn {
+  @apply inline-flex items-center p-2 text-sm text-secondary rounded-lg md:hidden hover:bg-primary focus:outline-none focus:ring-2 focus:ring-gray-200;
+}
+
+.navOption {
+  @apply text-white p-2 w-full hover:bg-secondary hover:text-opacity-50 md:border-0 md:hover:bg-transparent md:bg-transparent md:p-0;
+}
+
+.navList {
+  @apply flex flex-col list-none p-4 mt-4 bg-primary rounded-lg border border-gray-100 border-opacity-25 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-transparent;
+}
+
+.navList li {
+  @apply flex border-b md:border-none gap-2;
+}

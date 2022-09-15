@@ -1,9 +1,12 @@
-import Logo from "../../../public/logo.svg";
+import Logo from "../../../public/favicon.ico";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { SearchInput } from "../Inputs/SearchInput";
-import RandomAnime from "../AnimeComponents/RandomAnime";
+import styles from "./Header.module.css";
+import { useRouter } from "next/router";
+import { FcSettings } from "react-icons/fc";
+import { UserPreferencesContext } from "../../context/UserPreferencesProvider";
 
 const logoStyles = {
   filter:
@@ -11,75 +14,78 @@ const logoStyles = {
 };
 
 const Header = () => {
+  const userPreferences = useContext(UserPreferencesContext);
+  const { colorMode } = userPreferences.prefs;
   const random = Math.floor(Math.random() * 2811);
-
+  const router = useRouter();
   const [searchVisible, setSearchVisible] = useState(false);
+  const [showMenu, setShowMenu] = useState(false);
+
+  const max = 2840;
+  const randomValue = Math.floor(Math.random(0) * max);
 
   //TODO link is still uncrawlable for Search Engines
   const handleSearchDropdown = () => {
-    setSearchVisible(!searchVisible);
+    const input = document.getElementById("search-input");
+    setSearchVisible((prevValue) => !prevValue);
+    setTimeout(() => {
+      input.focus();
+    }, 0);
+  };
+
+  const handleMenuDropdownClose = () => {
+    setShowMenu(false);
+  };
+
+  const handleMenuDropdown = () => {
+    const sticky = document.getElementById("navbar-sticky");
+    setShowMenu((prevValue) => !prevValue);
   };
 
   return (
-    <nav id="header">
-      <div
-        className={`border-gray-200 px-2 sm:px-4 py-2.5 bg-gray-900 sticky top-0 z-[100] transition-all`}
-      >
-        <div className="container flex flex-wrap justify-between items-center mx-auto">
-          <div className="navbar flex gap-2">
-            <Link href="/">
-              <a className="flex items-center">
-                <Image
-                  src={Logo}
-                  alt="logo"
-                  width={"65px"}
-                  height={"65px"}
-                  layout="intrinsic"
-                  style={logoStyles}
-                />
-              </a>
-            </Link>
-          </div>
-          <div
-            className="to-hidden justify-between items-center to-w-full md:flex md:w-auto md:order-2"
-            id="mobile-menu-3"
+    <nav className={styles.header}>
+      <div className={styles.wrapper}>
+        <Link href="/">
+          <a
+            className="flex items-center"
+            onClick={() => handleMenuDropdownClose()}
           >
-            <ul className="flex flex-row mt-4 to-md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium">
-              <li>
-                <Link href="/">
-                  <a
-                    className="block py-2 pr-4 pl-3 rounded md:bg-transparent md:p-0 "
-                    aria-current="page"
-                  >
-                    Home
-                  </a>
-                </Link>
-              </li>
-              <li>
-                <button
-                  onClick={handleSearchDropdown}
-                  className="block py-2 pr-4 pl-3 md:border-0  md:p-0 text-gray-400 md:hover:text-white hover:bg-gray-700 hover:text-white md:hover:bg-transparent border-gray-700"
-                  aria-current="page"
-                >
-                  Search
-                </button>
-              </li>
-              <li>
-                <RandomAnime />
-              </li>
-            </ul>
-          </div>
-          {/* <div className="flex md:order-1">
+            <Image
+              src={Logo}
+              alt="logo"
+              width={"65px"}
+              height={"65px"}
+              layout="intrinsic"
+              style={logoStyles}
+            />
+          </a>
+        </Link>
+        <div className="flex md:order-2 items-center gap-3">
           <button
-            data-collapse-toggle="mobile-menu-3"
             type="button"
-            className="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-            aria-controls="mobile-menu-3"
+            onClick={handleSearchDropdown}
+            className={`${!searchVisible ? `block` : "hidden"} ${
+              styles.primaryBtn
+            } `}
+          >
+            Search
+          </button>
+          <SearchInput
+            show={searchVisible}
+            onBlur={() => setSearchVisible(false)}
+          />
+          <button
+            data-collapse-toggle="navbar-sticky"
+            type="button"
+            className={`${styles.menuBtn}`}
+            onClick={handleMenuDropdown}
+            aria-controls="navbar-sticky"
             aria-expanded="false"
           >
             <span className="sr-only">Open main menu</span>
             <svg
               className="w-6 h-6"
+              aria-hidden="true"
               fill="currentColor"
               viewBox="0 0 20 20"
               xmlns="http://www.w3.org/2000/svg"
@@ -90,29 +96,69 @@ const Header = () => {
                 clipRule="evenodd"
               ></path>
             </svg>
-            <svg
-              className="hidden w-6 h-6"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fillRule="evenodd"
-                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                clipRule="evenodd"
-              ></path>
-            </svg>
           </button>
-        </div> */}
+          <div className="hidden md:block">
+            <FcSettings size={30} />
+          </div>
         </div>
-      </div>
-      <div
-        className={`
-        ${searchVisible ? `block` : "hidden"}
-        w-full border-b border-gray-400 bg-gray-900 border-opacity-10 py-5 px-7`}
-        onBlur={() => setSearchVisible(false)}
-      >
-        <SearchInput />
+
+        <div
+          className={`${
+            showMenu ? "block" : "hidden"
+          } justify-between items-center w-full md:flex md:w-auto md:order-1`}
+          id="navbar-sticky"
+          onBlur={() => setShowMenu(false)}
+        >
+          <ul className={styles.navList}>
+            <li>
+              <Link href="/">
+                <a
+                  className={`${styles.navOption} 
+                  ${router.pathname == "/" ? "active" : ""}`}
+                  aria-current="page"
+                  onClick={() => handleMenuDropdownClose()}
+                >
+                  Ongoing
+                </a>
+              </Link>
+            </li>
+            <li>
+              <Link href="/favourite">
+                <a
+                  className={`${styles.navOption} 
+                  ${router.pathname == "/favourite" ? "active" : ""}`}
+                  aria-current="page"
+                  onClick={() => handleMenuDropdownClose()}
+                >
+                  Favourite
+                </a>
+              </Link>
+            </li>
+            <li>
+              <Link href="/top100">
+                <a
+                  className={`${styles.navOption} 
+                  ${router.pathname == "/top100" ? "active" : ""}`}
+                  aria-current="page"
+                  onClick={() => handleMenuDropdownClose()}
+                >
+                  Top 100
+                </a>
+              </Link>
+            </li>
+            <li>
+              <Link href={`/anime/${randomValue}`}>
+                <a
+                  className={`${styles.navOption}`}
+                  aria-current="page"
+                  onClick={() => handleMenuDropdownClose()}
+                >
+                  Random anime
+                </a>
+              </Link>
+            </li>
+          </ul>
+        </div>
       </div>
     </nav>
   );

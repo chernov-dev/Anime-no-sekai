@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+.root,
+#root,
+#docs-root,
+#__next {
+  --primary: rgb(62, 92, 118);
+  --secondary: rgb(116, 140, 171);
+}
+
 *,
 *:before,
 *:after {
@@ -17,19 +25,20 @@ body {
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   font-size: clamp(1rem, 0.9869rem + 0.056vw, 1.0625rem);
-  -webkit-font-smoothing: antialiased;
+  /* -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: url(/background.svg) center center fixed;
   -webkit-background-size: contain;
   -moz-background-size: contain;
   -o-background-size: contain;
-  background-size: auto;
+  background-size: auto; */
+  @apply dark:bg-gray-900 bg-white;
 }
 
 #__next {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 100%;
 }
 
 main {
@@ -37,6 +46,26 @@ main {
   padding: 2rem 0;
   position: relative;
   /* @apply bg-gradient-to-b from-gray-900/10 to-[#010511]; */
+}
+
+.section-header {
+  @apply text-center p-5 pb-8;
+}
+
+.no-data {
+  height: 90vh;
+  display: grid;
+  place-content: center;
+  gap: 2rem;
+  text-align: center;
+}
+
+.active {
+  @apply text-opacity-50 !important;
+}
+
+.title {
+  @apply text-black dark:text-white text-2xl lg:text-3xl font-mono;
 }
 
 a {

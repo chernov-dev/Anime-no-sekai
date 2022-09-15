@@ -33,6 +33,9 @@ export default function AnimeDetailsPage() {
         </Head>
 
         <main>
+          <div className="section-header">
+            <h1 className="title">{animeDetails.title}</h1>
+          </div>
           <div className="animeList">
             <AnimeDetails animeInfo={animeDetails} />
             <div className="anime-player">

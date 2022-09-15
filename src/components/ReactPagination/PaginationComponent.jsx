@@ -16,7 +16,7 @@ const PaginationComponent = ({ pageCount, currentPage }) => {
       <ReactPaginate
         forcePage={(currentPage ?? 1) - 1}
         breakLabel="..."
-        nextLabel=">"
+        nextLabel={">"}
         previousLabel="<"
         onPageChange={handlePageClick}
         pageRangeDisplayed={3}

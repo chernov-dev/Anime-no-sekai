@@ -5,6 +5,7 @@ import {
   BsShareFill,
 } from "react-icons/bs";
 import { UserPreferencesContext } from "../../context/UserPreferencesProvider";
+import ShareOptionsContainer from "./ShareOptionsContainer";
 
 const ShareOptions = ({ anime }) => {
   const preferences = useContext(UserPreferencesContext);
@@ -17,29 +18,25 @@ const ShareOptions = ({ anime }) => {
     setLiked(isFavourite);
   }, [isFavourite]);
 
-  const handleLike = (e) => {
+  const onHeartClick = (e) => {
     e.stopPropagation();
-
+    console.log(e);
     if (isFavourite) {
-      setFavourite((prevState) => prevState.filter((e) => e.id != anime.id));
+      setFavourite((prevState) =>
+        prevState.filter((e) => {
+          return e.id != anime.id;
+        })
+      );
     } else {
       setFavourite((prevState) => [...prevState, anime]);
     }
     setLiked((prevState) => !prevState);
   };
 
+  const likeColor = liked ? "red" : "";
+
   return (
-    <>
-      <span onClick={(setName) => handleLike(setName)}>
-        <BsHeartFill color={`${liked ? "red" : ""}`}></BsHeartFill>
-      </span>
-      <span onClick={(e) => e.stopPropagation()}>
-        <BsFillCalendarCheckFill />
-      </span>
-      <span onClick={(e) => e.stopPropagation()}>
-        <BsShareFill />
-      </span>
-    </>
+    <ShareOptionsContainer heartColor={likeColor} onHeartClick={onHeartClick} />
   );
 };
 

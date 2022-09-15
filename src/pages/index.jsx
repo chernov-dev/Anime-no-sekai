@@ -22,6 +22,9 @@ function HomePage({ currentPage }) {
       </Head>
 
       <main>
+        <div className="section-header">
+          <h1 className="title">Ongoing animes</h1>
+        </div>
         <AnimeList animeList={data}>
           <PaginationComponent pageCount={7} currentPage={currentPage} />
         </AnimeList>

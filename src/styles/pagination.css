@@ -33,16 +33,16 @@
   width: 32px;
   aspect-ratio: 1/1;
   color: #d9d9d9;
-  background-color: #212529;
+  background-color: var(--primary);
   border: 1px solid #444444;
   transition: 0.4s all;
 }
 
 .page-item:not(.selected):hover {
   z-index: 2;
-  color: #000 !important;
+  color: #fff !important;
   text-decoration: none;
-  background-color: #fff !important;
+  background-color: var(--secondaryz) !important;
   border-color: #343a40 !important;
 }
 
@@ -56,4 +56,9 @@
 .page-item.disabled {
   opacity: 0.5;
   cursor: default;
+}
+
+.next,
+.previous {
+  @apply text-black dark:text-white text-xl;
 }

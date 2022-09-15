@@ -5,7 +5,12 @@ module.exports = {
     "./src/contexts/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        primary: "var(--primary)",
+        secondary: "var(--secondary)",
+      },
+    },
   },
   plugins: [],
 };

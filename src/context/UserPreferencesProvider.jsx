@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import useLocalStorage from "../utils/useLocalStorage";
 
 export const UserPreferencesContext = React.createContext({
@@ -9,7 +9,15 @@ export const UserPreferencesContext = React.createContext({
 const UserPreferencesProvider = ({ children }) => {
   const [favourite, setFavourite] = useLocalStorage("ans-favourite", []);
   const [email, setEmail] = useLocalStorage("ans-email", null);
-  const [colorMode, setColorMode] = useLocalStorage("ans-mode", "dark");
+
+  // useEffect(() => {
+  //   const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
+  //   if (prefersDarkScheme.matches) {
+  //     setColorMode("dark");
+  //   }
+  // });
+
+  const [colorMode, setColorMode] = useLocalStorage("ans-mode", "white");
 
   return (
     <UserPreferencesContext.Provider
