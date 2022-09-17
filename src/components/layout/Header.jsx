@@ -7,6 +7,8 @@ import styles from "./Header.module.css";
 import { useRouter } from "next/router";
 import { FcSettings } from "react-icons/fc";
 import { UserPreferencesContext } from "../../context/UserPreferencesProvider";
+import { getRandomId } from "./../../api/getRandomAnime";
+import { useQuery } from "@tanstack/react-query";
 
 const logoStyles = {
   filter:
@@ -14,15 +16,29 @@ const logoStyles = {
 };
 
 const Header = () => {
+  const router = useRouter();
   const userPreferences = useContext(UserPreferencesContext);
   const { colorMode } = userPreferences.prefs;
-  const random = Math.floor(Math.random() * 2811);
-  const router = useRouter();
   const [searchVisible, setSearchVisible] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
 
-  const max = 2840;
-  const randomValue = Math.floor(Math.random(0) * max);
+  const [randomId, setRandomId] = useState();
+
+  // const {
+  //   data: randomId,
+  //   isLoading,
+  //   isSuccess,
+  //   refetch,
+  // } = useQuery(["random-anime-id"], () => getrandomId());
+
+  const fetchRandomId = async () => {
+    const id = await getRandomId();
+    setRandomId(id);
+  };
+
+  useEffect(() => {
+    fetchRandomId();
+  }, [router.asPath]);
 
   //TODO link is still uncrawlable for Search Engines
   const handleSearchDropdown = () => {
@@ -118,7 +134,20 @@ const Header = () => {
                   aria-current="page"
                   onClick={() => handleMenuDropdownClose()}
                 >
-                  Ongoing
+                  Airing
+                </a>
+              </Link>
+            </li>
+            <li>
+              <Link href="/upcoming">
+                <a
+                  className={`${styles.navOption} ${
+                    router.pathname == "/upcoming" ? styles.active : ""
+                  }`}
+                  aria-current="page"
+                  onClick={() => handleMenuDropdownClose()}
+                >
+                  Upcoming
                 </a>
               </Link>
             </li>
@@ -147,7 +176,7 @@ const Header = () => {
               </Link>
             </li>
             <li>
-              <Link href={`/anime/${randomValue}`}>
+              <Link href={`/anime/${randomId}`}>
                 <a
                   className={`${styles.navOption}`}
                   aria-current="page"

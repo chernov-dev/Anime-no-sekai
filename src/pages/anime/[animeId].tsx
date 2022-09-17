@@ -4,8 +4,8 @@ import AnimeDetails from "../../components/AnimeComponents/AnimeDetails";
 import { getAnimeById } from "../../api/getAnimeById";
 import { getPlaylistById } from "../../api/getPlaylistById";
 import { dehydrate, QueryClient, useQuery } from "@tanstack/react-query";
-import Error from "next/error";
 import { useRouter } from "next/router";
+import { IAnime } from "../../types/Anime";
 
 export default function AnimeDetailsPage() {
   const router = useRouter();
@@ -15,30 +15,32 @@ export default function AnimeDetailsPage() {
     data: animeDetails,
     isLoading: isAnimeLoading,
     isSuccess: isAnimeSuccess,
-  } = useQuery(["anime-details", animeId], () => getAnimeById(animeId));
+  } = useQuery(["anime-details", animeId], () => getAnimeById(+animeId));
 
-  const {
-    data: animePlaylist,
-    isLoading: isPlayerLoading,
-    isSuccess: isPlayerSuccess,
-  } = useQuery(["anime-playlist", animeId], () => getPlaylistById(animeId));
+  let details = animeDetails as IAnime;
 
-  if (isAnimeSuccess) {
+  // const {
+  //   data: animePlaylist,
+  //   isLoading: isPlayerLoading,
+  //   isSuccess: isPlayerSuccess,
+  // } = useQuery(["anime-playlist", animeId], () => getPlaylistById(animeId));
+
+  if (isAnimeSuccess && details) {
     return (
       <>
         <Head>
-          <title>ANS - {animeDetails.title}</title>
-          <meta name="description " content={`ANS - ${animeDetails.title}`} />
+          <title>ANS - {details.titles.en}</title>
+          <meta name="description " content={`ANS - ${details.titles.en}`} />
           <link rel="icon" href="/favicon.ico" />
         </Head>
 
         <main>
           <div className="section-header">
-            <h1 className="title">{animeDetails.title}</h1>
+            <h1 className="title">{details.titles.en}</h1>
           </div>
           <div className="animeList">
-            <AnimeDetails animeInfo={animeDetails} />
-            <div className="anime-player">
+            <AnimeDetails anime={details} />
+            {/* <div className="anime-player">
               {isPlayerLoading && (
                 <div className="text-center w-full text-slate-400">
                   Loading player
@@ -48,7 +50,7 @@ export default function AnimeDetailsPage() {
                 animePlayList={animePlaylist}
                 animeTitle={animeDetails.title}
               />
-            </div>
+            </div> */}
           </div>
         </main>
       </>
@@ -63,9 +65,9 @@ export const getServerSideProps = async (context) => {
   await queryClient.prefetchQuery(["anime-details", animeId], () =>
     getAnimeById(animeId)
   );
-  await queryClient.prefetchQuery(["anime-playlist", animeId], () =>
-    getPlaylistById(animeId)
-  );
+  // await queryClient.prefetchQuery(["anime-playlist", animeId], () =>
+  //   getPlaylistById(animeId)
+  // );
 
   return {
     props: {

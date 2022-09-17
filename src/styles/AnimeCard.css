@@ -35,7 +35,7 @@
   width: 100%;
   height: 100%;
   border-radius: inherit;
-  @apply bg-gradient-to-l from-primary via-gray-500 to-gray-300 dark:from-gray-800 dark:via-gray-800 dark:to-primary;
+  @apply bg-gradient-to-tl from-gray-200 via-slate-400 dark:from-gray-800 dark:via-slate-700 to-primary;
   background-blend-mode: multiply;
   position: absolute;
   top: 0;
@@ -80,7 +80,7 @@
 .animeCard-header__content {
   display: flex;
   flex-direction: column;
-  gap: 0.3rem;
+  gap: 0.5rem;
   width: 100%;
   position: relative;
   padding: 1rem;
@@ -147,7 +147,7 @@
     padding: 1em;
   }
   .animeCard:after {
-    @apply bg-gradient-to-t from-primary via-gray-500 to-gray-300 dark:from-gray-800 dark:via-gray-800 dark:to-primary;
+    @apply bg-gradient-to-tr from-gray-200 via-slate-400 dark:from-gray-800 dark:via-gray-800 to-primary;
   }
 }
 @media screen and (max-width: 600px) {

@@ -3,6 +3,7 @@ import Head from "next/head";
 import React, { useContext, useEffect, useState } from "react";
 import { BsHeartFill } from "react-icons/bs";
 import AnimeList from "../../components/AnimeComponents/AnimeList";
+import JikaiList from "../../components/AnimeComponents/JikaiList";
 import ShareOptions from "../../components/Social/ShareOptions";
 import ShareOptionsContainer from "../../components/Social/ShareOptionsContainer";
 import { UserPreferencesContext } from "../../context/UserPreferencesProvider";
@@ -10,16 +11,16 @@ import { UserPreferencesContext } from "../../context/UserPreferencesProvider";
 const UserFavouriteAnimePage = () => {
   const preferences = useContext(UserPreferencesContext);
   const { favourite, setFavourite } = preferences.animes;
+  const [error, setError] = useState(false);
 
   const [animes, setAnimes] = useState([]);
 
   useEffect(() => {
     if (favourite) {
       setAnimes(favourite);
+      setError(() => (animes.length == 0 ? true : false));
     }
-  }, [favourite]);
-
-  const isError = animes.length == 0 ? true : false;
+  }, [animes.length, favourite]);
 
   const helperText = (
     <div className="text-white flex flex-wrap items-center justify-center gap-2">
@@ -32,7 +33,7 @@ const UserFavouriteAnimePage = () => {
     </div>
   );
 
-  if (isError) {
+  if (error) {
     return (
       <main className="no-data">
         <p className="title">Your favourite animes</p>
@@ -42,6 +43,7 @@ const UserFavouriteAnimePage = () => {
       </main>
     );
   }
+
 
   return (
     <>
@@ -54,7 +56,7 @@ const UserFavouriteAnimePage = () => {
         <div className="section-header">
           <h1 className="title">Your favourite animes</h1>
         </div>
-        <AnimeList animeList={animes} />
+        <JikaiList animeArray={animes} />
       </main>
     </>
   );

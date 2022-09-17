@@ -106,7 +106,7 @@
   line-height: 1.1;
 }
 .anime-subtitle {
-  @apply text-gray-200;
+  @apply text-slate-200;
   font-weight: 300;
   font-size: 16px;
   line-height: 0.95em;
@@ -114,7 +114,7 @@
 }
 
 .anime-info {
-  @apply text-primary;
+  @apply text-slate-400 dark:text-secondary;
   font-size: 0.9em;
   line-height: 1;
   font-weight: 700;
@@ -129,7 +129,7 @@
 }
 
 .anime-genres p {
-  @apply bg-black bg-opacity-20 text-white font-mono;
+  @apply bg-white dark:bg-black bg-opacity-50 dark:bg-opacity-50 text-black dark:text-white font-mono;
   border-radius: 0.25rem;
   font-size: clamp(0.8625rem, 0.8467rem + 0.0672vw, 0.9375rem);
   padding: 0.35rem 0.25rem;
@@ -139,7 +139,7 @@
 }
 
 .anime-type {
-  @apply bg-primary !important;
+  @apply bg-primary text-white !important;
 }
 
 .anime-desc {
@@ -147,7 +147,7 @@
   font-size: clamp(0.9875rem, 0.9717rem + 0.0672vw, 1.0625rem);
   padding: 0.35em 0.45em;
   white-space: break-spaces;
-  @apply text-white;
+  @apply text-black dark:text-white;
 }
 
 .anime-footer {
@@ -224,7 +224,6 @@
 }
 
 .anime-body {
-  @apply bg-black bg-opacity-20;
   border-radius: 0.25em;
   margin-bottom: 1em;
   height: min-content;
