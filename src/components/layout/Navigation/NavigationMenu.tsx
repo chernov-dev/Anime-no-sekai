@@ -1,14 +1,9 @@
-import { Menu, Popover, Transition } from "@headlessui/react";
+import { Popover, Transition } from "@headlessui/react";
 import Link from "next/link";
-import { Fragment, useState } from "react";
-import { BsChevronBarDown, BsStar } from "react-icons/bs";
+import { Fragment } from "react";
 import {
-  CgCalendarNext,
   CgClose,
-  CgHeart,
-  CgHome,
   CgMenu,
-  CgProfile,
 } from "react-icons/cg";
 import { RiCalendarEventFill } from "react-icons/ri";
 

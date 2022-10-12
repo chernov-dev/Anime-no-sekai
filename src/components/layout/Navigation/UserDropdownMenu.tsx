@@ -3,7 +3,6 @@ import { useRouter } from "next/router";
 import { Fragment, useState } from "react";
 import { CgProfile } from "react-icons/cg";
 import { FiLogIn, FiLogOut, FiSettings } from "react-icons/fi";
-import { HiOutlineUserCircle } from "react-icons/hi";
 import useLogOut from "../../../hooks/useLogout";
 import useUser from "../../../hooks/useUser";
 import SettingsModal from "../../../components/Modals/SettingsModal";

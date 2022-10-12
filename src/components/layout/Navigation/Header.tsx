@@ -13,9 +13,9 @@ import { useQuery } from "@tanstack/react-query";
 
 const Header = () => {
 
-  const { data, isLoading, isSuccess, refetch } = useQuery(["random-anime-id"], () =>
-    getRandomAnimeId()
-  );
+  // const { data, isLoading, isSuccess, refetch } = useQuery(["random-anime-id"], () =>
+  //   getRandomAnimeId()
+  // );
 
   
 const MenuOptions = [
@@ -37,24 +37,13 @@ const MenuOptions = [
     icon: <CgCalendarNext size={18} />,
     accessKey: "c",
   },
-  {
-    name: "Random",
-    href: `/anime/${data}`,
-    icon: <FaRandom size={18} />,
-    accessKey: "v",
-  },
+  // {
+  //   name: "Random",
+  //   href: `/anime/${data}`,
+  //   icon: <FaRandom size={18} />,
+  //   accessKey: "v",
+  // },
 ];
-
-  const [showMenu, setShowMenu] = useState(false);
-
-  //TODO link is still uncrawlable for Search Engines
-  const handleMenuDropdownClose = () => {
-    setShowMenu(false);
-  };
-
-  const handleMenuDropdown = () => {
-    setShowMenu((prevValue) => !prevValue);
-  };
 
   return (
     <nav className="neumorphic-nav">
