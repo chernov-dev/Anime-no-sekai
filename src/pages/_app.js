@@ -12,8 +12,8 @@ import {
   QueryClientProvider,
 } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import HeaderComponent from "../components/Navigation/HeaderComponent";
 import UserPreferencesProvider from "../context/UserPreferencesProvider";
-import HeaderComponent from "../components/Layout/Navigation/HeaderComponent";
 
 // Create a client
 const queryClient = new QueryClient({
