@@ -1,15 +1,9 @@
 import { Popover, Transition } from "@headlessui/react";
 import Link from "next/link";
 import { Fragment } from "react";
-import {
-  CgClose,
-  CgMenu,
-} from "react-icons/cg";
-import { RiCalendarEventFill } from "react-icons/ri";
+import { CgClose, CgMenu } from "react-icons/cg";
 
-const NavigationMenu = ({options}) => {
-  
-
+const NavigationMenu = ({ options }) => {
   return (
     <>
       <Popover as="div" className="relative block md:hidden">
@@ -44,21 +38,7 @@ const NavigationMenu = ({options}) => {
                       </Link>
                     ))}
                     <h2 className="px-2 text-right">ANS - Navigation</h2>
-                    {/* <div className="shadow-neumorphic">
-                      <Link href="/home">
-                        <a className="text-white"><span>Home</span></a>
-                      </Link>
-                    </div> */}
                   </div>
-                  {/* <button
-                    className={`${
-                        ? "bg-gray-400 bg-opacity-20 text-neumorph-accent"
-                        : "text-neumorph-secondary "
-                    } group flex gap-2 w-full items-center rounded-md px-2 py-2 text-sm md:text-base`}
-                  >
-                    <CgProfile size={20} />
-                    Profile
-                  </button> */}
                 </div>
               </Popover.Panel>
             </Transition>
@@ -66,29 +46,6 @@ const NavigationMenu = ({options}) => {
         )}
       </Popover>
     </>
-    // <button
-    //   data-collapse-toggle="navbar-sticky"
-    //   type="button"
-    //   className={`neumorphic-icon flex lg:hidden w-[35px] h-[35px]`}
-    //   onClick={handleMenuDropdown}
-    //   aria-controls="navbar-sticky"
-    //   aria-expanded="false"
-    // >
-    //   <span className="sr-only">Open main menu</span>
-    //   <svg
-    //     className="w-6 h-6"
-    //     aria-hidden="true"
-    //     fill="currentColor"
-    //     viewBox="0 0 20 20"
-    //     xmlns="http://www.w3.org/2000/svg"
-    //   >
-    //     <path
-    //       fillRule="evenodd"
-    //       d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-    //       clipRule="evenodd"
-    //     ></path>
-    //   </svg>
-    // </button>
   );
 };
 

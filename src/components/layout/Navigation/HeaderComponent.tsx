@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { BsStar } from "react-icons/bs";
 import { CgCalendarNext, CgHeart, CgHome } from "react-icons/cg";
 import { FaRandom } from "react-icons/fa";
@@ -16,7 +15,6 @@ const HeaderComponent = () => {
   // const { data, isLoading, isSuccess, refetch } = useQuery(["random-anime-id"], () =>
   //   getRandomAnimeId()
   // );
-
   
 const MenuOptions = [
   {
