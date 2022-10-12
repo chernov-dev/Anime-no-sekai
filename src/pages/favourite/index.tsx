@@ -1,23 +1,13 @@
-import { Switch } from "@headlessui/react";
 import Head from "next/head";
 import React, { useContext, useEffect, useState } from "react";
 import { BsHeartFill } from "react-icons/bs";
-import AnimeFavoriteFilter from "../../components/AnimeComponents/AnimeFavoriteFilter";
 import AnimeFavoriteList from "../../components/AnimeComponents/AnimeFavoriteList";
-import AnimeGridLayoutView from "../../components/AnimeComponents/AnimeGridLayoutView";
-import AnimeHome from "../../components/AnimeComponents/AnimeHome";
 import AnimeRecommendedList from "../../components/AnimeComponents/AnimeRecommendedList";
 import AnimeWeeklyNotificationsComponent from "../../components/AnimeComponents/AnimeWeeklyNotificationsComponent";
-import AnimeWeeklyNotificationSwitch from "../../components/AnimeComponents/AnimeWeeklyNotificationSwitch";
 import ProtectedWrapper from "../../components/AuthComponents/Protected";
-import LayoutChanger from "../../components/Shared/LayoutChanger";
 import PageLoader from "../../components/Shared/PageLoader";
-import ShareOptionsContainer from "../../components/Social/ShareOptionsContainer";
+import ShareOptionsContainer from "../../components/Shared/ShareOptionsContainer";
 import UserProfileInfoComponent from "../../components/UserComponents/UserProfileInfoComponent";
-import {
-  UserPreferencesContext,
-  useUserPreferences,
-} from "../../context/UserPreferencesProvider";
 import useFavorites from "../../hooks/useFavorites";
 import useUser from "../../hooks/useUser";
 import { IAnimeInfo } from "../../types/Anime";

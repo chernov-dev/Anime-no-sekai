@@ -5,10 +5,6 @@ import AnsSvgLogo from "../../../../public/AnsSvgLogo";
 import NewUserLogin from "../../../components/AuthComponents/NewUserLogin";
 import UserIsBackLogin from "../../../components/AuthComponents/UserIsBackLogin";
 import { UserPreferencesContext } from "../../../context/UserPreferencesProvider";
-import GoogleButton from "react-google-button";
-import GoogleNeumorphismButton from "../../../components/NeumUI/Button/GoogleNeumorphismButton";
-import NeumorphismButton from "../../../components/NeumUI/Button/NeumorphismButton";
-import { FaUserTimes } from "react-icons/fa";
 import useLogin from "../../../hooks/useLogin";
 
 const LoginPage = () => {

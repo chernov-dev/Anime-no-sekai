@@ -1,9 +1,4 @@
 import React, { useContext, useEffect, useState } from "react";
-import {
-  BsFillCalendarCheckFill,
-  BsHeartFill,
-  BsShareFill,
-} from "react-icons/bs";
 import { UserPreferencesContext } from "../../context/UserPreferencesProvider";
 import useAddFavorite from "../../hooks/useAddFavorite";
 import useFavorites from "../../hooks/useFavorites";

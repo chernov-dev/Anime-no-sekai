@@ -32,7 +32,7 @@ const Item = ({
   const router = useRouter();
 
   let tooltip = `${title} \n Episode ${anime.episodeNumber} - ${anime.episodeTitle}`;
-  let imageUrl = anime.image ?? anime.images.jpg.image_url;
+  let imageUrl = anime.image;
 
   const addFavorite = useAddFavorite(anime.id);
   const { data: favorites, isLoading: isFavoritesLoading } = useFavorites();

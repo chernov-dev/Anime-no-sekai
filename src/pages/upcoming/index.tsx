@@ -1,14 +1,10 @@
-import { dehydrate, QueryClient, useQuery } from "@tanstack/react-query";
+import {  useQuery } from "@tanstack/react-query";
 import Head from "next/head";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import { AiFillLike } from "react-icons/ai";
 import { animeApi } from "../../api/Anime_API";
-import { getUpcomingAnimes } from "../../api/Anime_API/getUpcomingAnimes";
-import AnimeCardFooterExtraDetails from "../../components/AnimeComponents/AnimeCardFooterExtraDetails";
-import AnimeGridLayoutView from "../../components/AnimeComponents/AnimeGridLayoutView";
-import AnimeHome from "../../components/AnimeComponents/AnimeHome";
 import ProtectedWrapper from "../../components/AuthComponents/Protected";
 import PageLoader from "../../components/Shared/PageLoader";
 import Spinner from "../../components/Shared/Spinner";

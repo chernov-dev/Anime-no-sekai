@@ -1,16 +1,8 @@
 import Head from "next/head";
-import PaginationComponent from "../components/ReactPagination/PaginationComponent";
-import AnimeList from "../components/AnimeComponents/AnimeList";
-import { getRecentAnimes } from "../api/Anime_API/getRecentAnimes";
-import JikaiList from "../components/AnimeComponents/JikaiList";
-import AnimeHome from "../components/AnimeComponents/AnimeHome";
 import { IoArrowForwardCircleSharp } from "react-icons/io5";
 import { GoSync } from "react-icons/go";
-import loginForm from "../../public/web-log-in-choose-google-account.png";
 import AnsSvgLogo from "../../public/AnsSvgLogo";
-import { BsHeartFill } from "react-icons/bs";
 import { RiHeartAddFill, RiNotification3Fill } from "react-icons/ri";
-import ShareOptionsContainer from "../components/Social/ShareOptionsContainer";
 import Link from "next/link";
 
 function WelcomePage({ currentPage }) {

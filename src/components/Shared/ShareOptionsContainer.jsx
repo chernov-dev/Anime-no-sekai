@@ -1,9 +1,5 @@
 import React from "react";
-import {
-  BsFillCalendarCheckFill,
-  BsHeartFill,
-  BsShareFill,
-} from "react-icons/bs";
+import { BsHeartFill } from "react-icons/bs";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { RiNotification3Fill } from "react-icons/ri";
