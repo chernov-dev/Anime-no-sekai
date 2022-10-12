@@ -5,7 +5,7 @@ import AnsSvgLogo from "../../public/AnsSvgLogo";
 import { RiHeartAddFill, RiNotification3Fill } from "react-icons/ri";
 import Link from "next/link";
 
-function WelcomePage({ currentPage }) {
+function WelcomePage() {
   return (
     <>
       <Head>
@@ -104,10 +104,6 @@ function WelcomePage({ currentPage }) {
             </div>
           </div>
         </div>
-        {/* <HomeGrid animes={data} title="Recently added"/> */}
-        {/* <JikaiList animeArray={data}>
-          <PaginationComponent pageCount={7} currentPage={currentPage} />
-        </JikaiList> */}
       </main>
     </>
   );

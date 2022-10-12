@@ -13,7 +13,8 @@ import {
 } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import UserPreferencesProvider from "../context/UserPreferencesProvider";
-import Header from "../components/Layout/Navigation/Header";
+import HeaderComponent from "../components/Layout/Navigation/HeaderComponent";
+
 // Create a client
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -30,7 +31,7 @@ function MyApp({ Component, pageProps }) {
     <QueryClientProvider client={queryClient} contextSharing={true}>
       <Hydrate state={pageProps.dehydratedState}>
         <UserPreferencesProvider>
-          <Header />
+          <HeaderComponent />
           <Component {...pageProps} />
           <ReactQueryDevtools position="bottom-left" />
         </UserPreferencesProvider>

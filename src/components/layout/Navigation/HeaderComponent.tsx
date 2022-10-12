@@ -11,7 +11,7 @@ import UserDropdownMenu from "./UserDropdownMenu";
 import { useQuery } from "@tanstack/react-query";
 
 
-const Header = () => {
+const HeaderComponent = () => {
 
   // const { data, isLoading, isSuccess, refetch } = useQuery(["random-anime-id"], () =>
   //   getRandomAnimeId()
@@ -60,4 +60,4 @@ const MenuOptions = [
   );
 };
 
-export default Header;
+export default HeaderComponent;
