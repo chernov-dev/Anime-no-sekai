@@ -2,12 +2,33 @@
 @tailwind components;
 @tailwind utilities;
 
-.root,
-#root,
-#docs-root,
-#__next {
-  --primary: rgb(62, 92, 118);
+body {
+  --neumorph-light: #191b1b;
+  --neumorph-dark: #e4ebf5;
   --secondary: rgb(116, 140, 171);
+  /* neumorphism colors */
+  --neumorph-primary: #e4ebf5;
+  --neumorph-primary-light: #ffffff;
+  --neumorph-primary-dark: #c8d0e7;
+  --neumorph-secondary: #6c7794;
+  --neumorph-accent: #6d5dfc;
+  --s1-w: 40vmin;
+  --s2-w: 60vmin;
+  --s3-w: 10vmin;
+}
+
+html.dark body {
+  --neumorph-light: #949281;
+  --neumorph-dark: #232727;
+  --neumorph-primary: #232727;
+  --neumorph-primary-light: #2e3333;
+  --neumorph-primary-dark: #191b1b;
+  --neumorph-secondary: #949281;
+  --neumorph-accent: #e6af2e;
+}
+
+.header {
+  @apply flex flex-col gap-3 bg-white dark:bg-gray-900 px-2 sm:px-4 py-2.5  sticky w-full z-[999] top-0 left-0 border-b border-gray-200 dark:border-gray-500;
 }
 
 *,
@@ -18,12 +39,9 @@
 
 html,
 body {
-  color: white;
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: "Noto Sans", "Noto Sans JP", sans-serif;
   font-size: clamp(1rem, 0.9869rem + 0.056vw, 1.0625rem);
   /* -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -32,7 +50,7 @@ body {
   -moz-background-size: contain;
   -o-background-size: contain;
   background-size: auto; */
-  @apply dark:bg-gray-900 bg-white;
+  @apply text-neumorph-secondary bg-neumorph-primary;
 }
 
 #__next {
@@ -43,21 +61,134 @@ body {
 
 main {
   width: 100%;
-  padding: 2rem 0;
+  z-index: 0;
+  @apply p-0.5 md:p-2;
   position: relative;
   /* @apply bg-gradient-to-b from-gray-900/10 to-[#010511]; */
 }
 
-.section-header {
-  @apply text-center p-5 pb-8;
+.section-welcome {
+  z-index: 100;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+  align-items: center;
+  text-align: center;
+  align-self: center;
+  margin: 0 2rem 0 2rem;
+  max-width: 1140px;
 }
 
-.no-data {
-  height: 90vh;
-  display: grid;
-  place-content: center;
-  gap: 2rem;
-  text-align: center;
+.welcome-logo {
+  width: 100%;
+  height: 100%;
+  max-width: 400px;
+  overflow: hidden;
+  aspect-ratio: 2/1;
+  border-radius: 2rem;
+  position: relative;
+}
+
+.welcome-logo:after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  border: 1rem solid var(--neumorph-accent);
+  filter: blur(5px);
+}
+
+.app-examples-section {
+  width: 100%;
+  max-width: 1400px;
+  align-self: center;
+}
+
+.example-img {
+  background: url("../../public/web-log-in-choose-google-account.png") 50% 10% /
+    cover;
+  width: 100%;
+  aspect-ratio: 1/1.1;
+  max-width: 500px;
+  border-radius: 1rem;
+  border: 1rem solid var(--neumorph-accent);
+  filter: blur(5px);
+  position: relative;
+}
+
+.app-examples-section .favorite-anime-example-row {
+  @apply flex flex-col lg:flex-row justify-around items-center gap-12 p-6 py-12;
+}
+.app-examples-section div:has(.example-img:first-child) {
+  @apply flex-col-reverse lg:flex-row;
+}
+
+.paginate-btn {
+  @apply hover:text-neumorph-accent disabled:hover:text-neumorph-secondary disabled:opacity-40;
+}
+
+.short {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.section-heading {
+  @apply text-neumorph-secondary text-lg xl:text-2xl;
+}
+
+.line-clamp-1 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
+
+.line-clamp-2 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.line-clamp-3 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.line-clamp-4 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+}
+
+.line-clamp-5 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 5;
+}
+
+.react-player {
+  border-radius: 2rem;
+}
+
+.swiper-pagination-bullet {
+  @apply bg-neumorph-accent !important;
+}
+
+.swiper-slide {
+  height: auto !important;
+}
+
+.swiper-pagination {
+  bottom: 0px !important;
 }
 
 .active {
@@ -73,7 +204,6 @@ a {
   text-decoration: none;
 }
 
-#search-input::-webkit-search-cancel-button {
-  position: relative;
-  right: 20px;
+.image-overlay::after {
+  filter: brightness(75%) saturate(140%);
 }

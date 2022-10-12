@@ -1,8 +1,8 @@
 import React from "react";
-import { IAnime } from "../../types/Anime";
 import AnimeCard from "./AnimeCard/AnimeCard";
+import AnimeDetails from "./AnimeDetails";
 
-function AnimeList({ animeArray, children } : {animeArray: IAnime[], children?: React.ReactNode}) {
+function AnimeList({ animeArray, children } : {animeArray, children?: React.ReactNode}) {
   return (
     <div className="animeList">
       {animeArray?.map((anime) => (

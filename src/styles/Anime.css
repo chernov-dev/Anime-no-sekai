@@ -6,30 +6,32 @@
   max-width: 800px;
   height: min-content;
   display: block;
-  border-radius: 8px;
-  box-shadow: 0px 8px 12px 0px rgba(0, 0, 0, 0.25);
+  border-radius: 40px;
+  box-shadow: 0px 40px 12px 0px rgba(0, 0, 0, 0.25);
   position: relative;
   transition: all 0.5s;
   font-size: 1.1rem;
 }
 
 .anime-player {
-  padding: 0.75rem;
-  border-radius: 8px;
+  @apply py-4 px-3 md:px-5 lg:px-6 xl:px-8;
+  border-radius: 2rem;
   width: 90%;
-  max-width: 800px;
   height: min-content;
   display: block;
-  box-shadow: 0px 8px 12px 0px rgba(0, 0, 0, 0.25);
   position: relative;
   transition: all 0.5s;
-  @apply bg-slate-700;
+  @apply shadow-neumorphic border-[1px] border-black dark:border-white border-opacity-10 dark:border-opacity-10;
+}
+
+.anime-player .react-player__preview {
+  border-radius: inherit;
 }
 
 .anime-overlay {
   width: 100%;
   height: 100%;
-  border-radius: 8px;
+  border-radius: 40px;
   background: linear-gradient(
     90deg,
     rgba(42, 159, 255, 0.2) 0%,
@@ -82,7 +84,7 @@
   width: 100%;
   height: 100%;
   background-position: 200px 0;
-  border-radius: 8px;
+  border-radius: 40px;
   position: absolute;
   filter: blur(1.5px) opacity(0.2);
   background: linear-gradient(
@@ -95,18 +97,24 @@
 }
 
 .anime-img {
+  border-radius: 1rem;
   position: relative;
-  border-top-left-radius: 8px;
-  border-bottom-left-radius: 8px;
-  box-shadow: 0 0 20px -10px rgba(54, 54, 54, 0.5);
+}
+
+.anime-img span {
+  border-radius: inherit;
 }
 
 .anime-title {
-  @apply text-white;
+  @apply text-neumorph-accent;
   line-height: 1.1;
 }
+
+.anime-home__title {
+  @apply leading-[1.1] text-neumorph-secondary text-base;
+}
 .anime-subtitle {
-  @apply text-slate-200;
+  @apply text-neumorph-secondary;
   font-weight: 300;
   font-size: 16px;
   line-height: 0.95em;
@@ -123,31 +131,36 @@
 .anime-genres {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.25rem;
+  gap: 0.65rem;
   font-size: 0.9em;
   margin-top: 0.25em;
 }
 
-.anime-genres p {
-  @apply bg-white dark:bg-black bg-opacity-50 dark:bg-opacity-50 text-black dark:text-white font-mono;
-  border-radius: 0.25rem;
+.anime-genres .neumorphic-chip {
+  @apply text-neumorph-secondary;
+  border-radius: 0.55rem;
   font-size: clamp(0.8625rem, 0.8467rem + 0.0672vw, 0.9375rem);
-  padding: 0.35rem 0.25rem;
   text-transform: lowercase;
   font-weight: 500;
   line-height: 0.8;
+  padding: 0.4rem 0.5rem;
 }
 
 .anime-type {
-  @apply bg-primary text-white !important;
+  @apply text-black dark:text-white text-opacity-50 dark:text-opacity-50 h-8 flex items-center justify-center w-fit px-2.5 py-2 shadow-neumorphic border-[1px] border-black dark:border-white border-opacity-10 dark:border-opacity-10;
+  border-radius: 9px;
+  background: linear-gradient(
+    145deg,
+    --neumorph-primary-dark,
+    --neumorph-secondary
+  );
 }
 
 .anime-desc {
-  font-weight: 300;
+  font-weight: 450;
   font-size: clamp(0.9875rem, 0.9717rem + 0.0672vw, 1.0625rem);
   padding: 0.35em 0.45em;
-  white-space: break-spaces;
-  @apply text-black dark:text-white;
+  @apply text-neumorph-secondary;
 }
 
 .anime-footer {
@@ -167,7 +180,7 @@
   width: min-content;
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 1024px) {
   .anime {
     width: 90%;
     background-position: 50% 0%;
@@ -176,10 +189,8 @@
   }
 }
 
-@media screen and (max-width: 640px) {
+@media screen and (max-width: 768px) {
   .anime-img {
-    border-top-right-radius: 8px;
-    border-bottom-right-radius: 8px;
     margin-right: 0;
   }
 
@@ -198,13 +209,13 @@
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 768px) {
   .anime-genres {
     justify-content: center;
   }
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 1024px) {
   .anime-overlay {
     background: linear-gradient(
       180deg,
@@ -227,4 +238,152 @@
   border-radius: 0.25em;
   margin-bottom: 1em;
   height: min-content;
+}
+
+.anime-home {
+  display: flex;
+  @apply flex-col xl:flex-row items-center lg:items-start mx-4 mt-4 lg:mx-0 lg:ml-4;
+  gap: 1.25rem;
+}
+
+.anime-home__sidebar {
+  @apply shadow-neumorphic w-full xl:w-[35%] border-[1px] border-black dark:border-white border-opacity-10 dark:border-opacity-10 flex flex-col gap-4 self-center lg:self-start rounded-2xl;
+  padding: 1rem;
+  position: relative;
+}
+
+.anime-home__container {
+  @apply -mx-[0.5rem] w-full xl:w-[65%];
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.anime-home__header {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+  align-items: center;
+  gap: 1rem;
+  padding: 0 1.5rem;
+  justify-content: space-between;
+  color: var(--neumorph-secondary);
+}
+
+.anime-home__grid {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.anime-status-overlay {
+  @apply text-neumorph-accent bg-black bg-opacity-50 p-1;
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 18%;
+  text-align: center;
+  z-index: 10;
+  bottom: 0;
+  left: 0;
+}
+
+.anime-home__grid:has(.anime-home-item__wrapper:hover)
+  .anime-home-item__wrapper:hover {
+  scale: 0.95;
+}
+
+.anime-home__fullWidth {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.anime-home__grid .anime-home-item__wrapper {
+  @apply w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 p-[0.5rem];
+  transition: scale 350ms ease, opacity 350ms linear;
+}
+
+.anime-home__grid-item {
+  @apply flex flex-col h-full justify-start flex-grow-0 gap-1;
+  cursor: pointer;
+}
+
+.anime-home__grid-item__title {
+  transition: color 450ms ease-in;
+}
+
+.anime-home__grid-item:hover > .anime-home__grid-item__title {
+  @apply text-neumorph-accent;
+}
+
+.anime-home__grid-item__header {
+  position: relative;
+  border-radius: inherit;
+  overflow: hidden;
+  border-radius: 0.25rem;
+  width: 100%;
+  @apply flex flex-col text-white dark:text-black bg-neumorph-primary rounded-xl;
+}
+
+.image-inner-shadow span {
+  border-radius: 0.25rem;
+  @apply shadow-neumorphic;
+}
+
+.skewed-text {
+  /* hacks to make one side slant only */
+  display: flex;
+  opacity: 0.7;
+  gap: 0.25rem;
+
+  z-index: 1;
+  height: 100%;
+  -webkit-transform: skew(-20deg);
+  -ms-transform: skew(-20deg);
+  transform: skew(-20deg);
+}
+
+.skewed-text div {
+  @apply rounded text-neumorph-primary text-xs sm:text-sm md:text-base;
+  height: fit-content;
+  padding: 0.15rem 0.25rem;
+  position: relative;
+}
+
+.skewed-text div:first-child {
+  @apply bg-neumorph-accent;
+}
+.skewed-text div:first-child span {
+  margin-left: -0.35rem;
+}
+
+.skewed-text div:first-child:before {
+  content: "";
+  width: 80%;
+  height: 100%;
+  position: absolute;
+  border-radius: 0.25rem;
+  left: -5px;
+  top: 0px;
+  @apply bg-inherit;
+  transform: skewX(20deg);
+  box-sizing: border-box;
+}
+
+.skewed-text div > span {
+  @apply h-full w-full;
+  -webkit-transform: skew(20deg);
+  -ms-transform: skew(20deg);
+  transform: skew(20deg);
+}
+
+.rating-status {
+  @apply bg-neumorph-secondary text-neumorph-primary !important;
+}
+
+.ep-status {
+  @apply bg-neumorph-accent text-neumorph-primary !important;
 }

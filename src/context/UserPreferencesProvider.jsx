@@ -1,33 +1,83 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import useLocalStorage from "../utils/useLocalStorage";
 
-export const UserPreferencesContext = React.createContext({
-  animes: {},
-  prefs: {},
-});
+export function getInitialTheme() {
+  if (typeof window !== "undefined" && window.localStorage) {
+    const storedPrefs = window.localStorage.getItem("ans-theme");
+    if (typeof storedPrefs === "string") {
+      return storedPrefs;
+    }
 
-const UserPreferencesProvider = ({ children }) => {
-  const [favourite, setFavourite] = useLocalStorage("ans-favourite", []);
-  const [email, setEmail] = useLocalStorage("ans-email", null);
-  const [colorMode, setColorMode] = useLocalStorage("ans-mode", "white");
+    const userMedia = window.matchMedia("(prefers-color-scheme: dark)");
+    if (userMedia.matches) {
+      return "dark";
+    }
+  }
+}
+
+export const UserPreferencesContext = React.createContext({});
+
+const UserPreferencesProvider = ({ initialTheme, children }) => {
+  // User preferences states
+  const [favorite, setFavorite] = useLocalStorage("ans-favorite", []);
+  const [email, setEmail] = useLocalStorage("ans-email", "");
+  const [layout, setLayout] = useLocalStorage("ans-layout", "grid");
+  const [theme, setTheme] = useState(getInitialTheme);
+
+  const [loading, setLoading] = useState(true);
+
+  // useEffect(() => {
+  //   if (user) {
+  //     const preferences = { email, favorite, layout, theme };
+  //     updateUserPreferences(user.uid, preferences);
+  //   }
+  // }, [email, favorite, layout, theme, user]);
+
+  const rawSetTheme = (theme) => {
+    const root = window.document.documentElement;
+    const isDark = theme === "dark";
+
+    root.classList.remove(isDark ? "light" : "dark");
+    root.classList.add(theme);
+
+    localStorage.setItem("ans-theme", theme);
+    setLoading(false);
+  };
+
+  if (initialTheme) {
+    rawSetTheme(initialTheme);
+  }
+
+  // Helper function to load data from Firebase
+  // collRef: collection reference defined above
+  // stateValue: state variable set above (series, books, or sections)
+  // setStateFunction: setter function defined above
 
   useEffect(() => {
-    const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
-    if (prefersDarkScheme.matches) {
-      setColorMode("dark");
-    }
-  });
+    setLoading(true);
+
+    rawSetTheme(theme);
+  }, [theme]);
 
   return (
     <UserPreferencesContext.Provider
       value={{
-        animes: { favourite, setFavourite },
-        prefs: { email, setEmail, colorMode, setColorMode },
+        favorite,
+        setFavorite,
+        email,
+        setEmail,
+        theme,
+        setTheme,
+        layout,
+        setLayout,
       }}
     >
       {children}
     </UserPreferencesContext.Provider>
   );
 };
-
 export default UserPreferencesProvider;
+
+export function useUserPreferences() {
+  return useContext(UserPreferencesContext);
+}

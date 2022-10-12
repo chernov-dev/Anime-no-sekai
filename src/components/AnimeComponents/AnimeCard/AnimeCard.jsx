@@ -2,7 +2,7 @@ import Image from "next/image";
 import Router from "next/router";
 import { shimmer, toBase64 } from "../../utils/shimmer";
 
-import ShareOptions from "../../Social/ShareOptions";
+import ShareOptions from "../../Shared/ShareOptions";
 
 const AnimeCard = (props) => {
   const { anime } = props;

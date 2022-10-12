@@ -1,10 +1,10 @@
 import Image from "next/image";
 import { Router } from "next/router";
 import React from "react";
-import { IAnime } from "../../types/Anime";
-import ShareOptions from "../Social/ShareOptions";
+import ShareOptions from "../Shared/ShareOptions";
 import { shimmer, toBase64 } from "../utils/shimmer";
 import { useRouter } from 'next/router'
+import AnimeDetails from "./AnimeDetails";
 
 const JikaiCard = ({ anime }: { anime: IAnime }) => {
   const router = useRouter();
@@ -66,7 +66,7 @@ const JikaiList = ({
   return (
     <div className="animeList">
       {animeArray?.map((anime) => (
-        <JikaiCard key={anime.id} anime={anime}></JikaiCard>
+        <AnimeDetails key={anime.id} anime={anime}></AnimeDetails>
       ))}
       {children}
     </div>

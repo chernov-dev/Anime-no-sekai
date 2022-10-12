@@ -1,11 +1,13 @@
 import Head from "next/head";
 import AnimePlayer from "../../components/AnimeComponents/AnimePlayer/AnimePlayer";
 import AnimeDetails from "../../components/AnimeComponents/AnimeDetails";
-import { getAnimeById } from "../../api/getAnimeById";
-import { getPlaylistById } from "../../api/getPlaylistById";
+import { getAnimeInfoById } from "../../api/Anime_API/getAnimeInfoById";
 import { dehydrate, QueryClient, useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
-import { IAnime } from "../../types/Anime";
+import Image from "next/image";
+import { shimmer, toBase64 } from "../../components/utils/shimmer";
+import AnimeRecommendations from "../../components/AnimeComponents/AnimeRecommendations";
+import ProtectedWrapper from "../../components/AuthComponents/Protected";
 
 export default function AnimeDetailsPage() {
   const router = useRouter();
@@ -15,9 +17,7 @@ export default function AnimeDetailsPage() {
     data: animeDetails,
     isLoading: isAnimeLoading,
     isSuccess: isAnimeSuccess,
-  } = useQuery(["anime-details", animeId], () => getAnimeById(+animeId));
-
-  let details = animeDetails as IAnime;
+  } = useQuery(["anime-details", animeId], () => getAnimeInfoById(+animeId));
 
   // const {
   //   data: animePlaylist,
@@ -25,35 +25,50 @@ export default function AnimeDetailsPage() {
   //   isSuccess: isPlayerSuccess,
   // } = useQuery(["anime-playlist", animeId], () => getPlaylistById(animeId));
 
-  if (isAnimeSuccess && details) {
+  if (isAnimeSuccess && animeDetails) {
     return (
-      <>
+      <ProtectedWrapper>
         <Head>
-          <title>ANS - {details.titles.en}</title>
-          <meta name="description " content={`ANS - ${details.titles.en}`} />
+          <title>ANS - {animeDetails.title.english}</title>
+          <meta
+            name="description "
+            content={`ANS - ${animeDetails.title.english}`}
+          />
           <link rel="icon" href="/favicon.ico" />
         </Head>
 
-        <main>
-          <div className="section-header">
-            <h1 className="title">{details.titles.en}</h1>
+        <div className="flex items-center flex-col justify-center">
+          {animeDetails.cover && (
+            <div className="shadow-neumorphic-inner w-full py-4 mb-2">
+              <div className="w-[full] h-[200px] sm:h-[253px] md:h-[283px] lg:h-[339px] xl:h-[389px] relative">
+                <Image
+                  src={animeDetails.cover}
+                  alt="cover of the current anime"
+                  layout="fill"
+                  placeholder="blur"
+                  objectFit="cover"
+                  objectPosition="50% 50%"
+                  blurDataURL={`data:image/svg+xml;base64,${toBase64(
+                    shimmer(700, 300)
+                  )}`}
+                />
+              </div>
+            </div>
+          )}
+          <div className="flex flex-col items-center gap-5 md:mx-0 lg:mx-8 w-full">
+            <AnimeDetails anime={animeDetails} />
+            {animeDetails.episodes.length > 0 && (
+              <div className="anime-player">
+                <AnimePlayer
+                  episodes={animeDetails.episodes}
+                  animeCover={animeDetails.cover}
+                />
+              </div>
+            )}
+            <AnimeRecommendations recommendations={animeDetails.recommendations} />
           </div>
-          <div className="animeList">
-            <AnimeDetails anime={details} />
-            {/* <div className="anime-player">
-              {isPlayerLoading && (
-                <div className="text-center w-full text-slate-400">
-                  Loading player
-                </div>
-              )}
-              <AnimePlayer
-                animePlayList={animePlaylist}
-                animeTitle={animeDetails.title}
-              />
-            </div> */}
-          </div>
-        </main>
-      </>
+        </div>
+      </ProtectedWrapper>
     );
   }
 }
@@ -63,7 +78,7 @@ export const getServerSideProps = async (context) => {
   const { animeId } = context.query;
 
   await queryClient.prefetchQuery(["anime-details", animeId], () =>
-    getAnimeById(animeId)
+    getAnimeInfoById(animeId)
   );
   // await queryClient.prefetchQuery(["anime-playlist", animeId], () =>
   //   getPlaylistById(animeId)

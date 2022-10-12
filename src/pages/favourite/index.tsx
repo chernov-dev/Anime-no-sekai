@@ -1,64 +1,120 @@
-import Error from "next/error";
+import { Switch } from "@headlessui/react";
 import Head from "next/head";
 import React, { useContext, useEffect, useState } from "react";
 import { BsHeartFill } from "react-icons/bs";
-import AnimeList from "../../components/AnimeComponents/AnimeList";
-import JikaiList from "../../components/AnimeComponents/JikaiList";
-import ShareOptions from "../../components/Social/ShareOptions";
+import AnimeFavoriteFilter from "../../components/AnimeComponents/AnimeFavoriteFilter";
+import AnimeFavoriteList from "../../components/AnimeComponents/AnimeFavoriteList";
+import AnimeGridLayoutView from "../../components/AnimeComponents/AnimeGridLayoutView";
+import AnimeHome from "../../components/AnimeComponents/AnimeHome";
+import AnimeRecommendedList from "../../components/AnimeComponents/AnimeRecommendedList";
+import AnimeWeeklyNotificationsComponent from "../../components/AnimeComponents/AnimeWeeklyNotificationsComponent";
+import AnimeWeeklyNotificationSwitch from "../../components/AnimeComponents/AnimeWeeklyNotificationSwitch";
+import ProtectedWrapper from "../../components/AuthComponents/Protected";
+import LayoutChanger from "../../components/Shared/LayoutChanger";
+import PageLoader from "../../components/Shared/PageLoader";
 import ShareOptionsContainer from "../../components/Social/ShareOptionsContainer";
-import { UserPreferencesContext } from "../../context/UserPreferencesProvider";
+import UserProfileInfoComponent from "../../components/UserComponents/UserProfileInfoComponent";
+import {
+  UserPreferencesContext,
+  useUserPreferences,
+} from "../../context/UserPreferencesProvider";
+import useFavorites from "../../hooks/useFavorites";
+import useUser from "../../hooks/useUser";
+import { IAnimeInfo } from "../../types/Anime";
+
+function recommendedBasedOnFavorites(favoriteList: IAnimeInfo[], quantity) {
+  let recommendedBasedOnFavorites = [];
+
+  for (let i = 0; i < favoriteList.length; i++) {
+    let recommendations = favoriteList[i].recommendations;
+    let randomRecommendation = Math.floor(
+      Math.random() * favoriteList[i].recommendations.length
+    );
+    let recommended = recommendations[randomRecommendation];
+    if (!recommendedBasedOnFavorites.includes(recommended)) {
+      recommendedBasedOnFavorites.push(recommended);
+    } else {
+      --i;
+    }
+  }
+  return recommendedBasedOnFavorites;
+}
 
 const UserFavouriteAnimePage = () => {
-  const preferences = useContext(UserPreferencesContext);
-  const { favourite, setFavourite } = preferences.animes;
-  const [error, setError] = useState(false);
+  const [recommended, setRecommended] = useState([]);
 
-  const [animes, setAnimes] = useState([]);
+  const { data: favorites, isError, isSuccess, isLoading } = useFavorites();
+  const user = useUser();
+  const [ongoing, setOngoing] = useState([]);
+  const [completed, setCompleted] = useState([]);
 
   useEffect(() => {
-    if (favourite) {
-      setAnimes(favourite);
-      setError(() => (animes.length == 0 ? true : false));
+    if (isSuccess) {
+      setRecommended(recommendedBasedOnFavorites(favorites, 10));
+
+      setOngoing((prev) =>
+        favorites.filter((anime) => {
+          if (anime.status) return anime.status == "Ongoing";
+        })
+      );
+      setCompleted((prev) =>
+        favorites.filter((anime) => {
+          if (anime.status) return anime.status == "Completed";
+        })
+      );
     }
-  }, [animes.length, favourite]);
+  }, [favorites, isSuccess]);
 
-  const helperText = (
-    <div className="text-white flex flex-wrap items-center justify-center gap-2">
-      <b>No anime found</b>, add them by touching
-      <BsHeartFill color="red" />
-      icon on bottom right of the anime card
-      <div className="p-2 bg-white rounded bg-opacity-20 flex gap-2">
-        <ShareOptionsContainer />
-      </div>
-    </div>
-  );
+  const [enabled, setEnabled] = useState(false);
 
-  if (error) {
-    return (
-      <main className="no-data">
-        <p className="title">Your favourite animes</p>
-        <div className="mx-5 p-5 md:p-10 lg:p-12 rounded text-base sm:text-lg lg:text-xl bg-primary bg-opacity-60">
-          {helperText}
-        </div>
-      </main>
-    );
+  if (isLoading) {
+    return <PageLoader />;
   }
 
-
+  if ((isSuccess && !favorites.length) || isError) {
+    return (
+      <div className="flex flex-wrap items-center justify-center gap-2">
+        <b>No anime found</b>, add them by touching
+        <BsHeartFill color={"var(--neumorph-accent)"} />
+        icon on bottom right of the anime card
+        <div className="p-2 rounded bg-opacity-20 flex gap-2">
+          <ShareOptionsContainer />
+        </div>
+      </div>
+    );
+  }
   return (
-    <>
+    <ProtectedWrapper>
       <Head>
-        <title>ANS - Favourite animes</title>
+        <title>ANS - Favourite anime</title>
         <meta name="description" content="ANS - animevost API" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>
-        <div className="section-header">
-          <h1 className="title">Your favourite animes</h1>
-        </div>
-        <JikaiList animeArray={animes} />
+      <main className="w-full">
+        {isSuccess && (
+          <>
+            <div className="flex flex-col lg:flex-row w-full justify-center">
+              <AnimeFavoriteList
+                anime={favorites}
+                ongoing={ongoing}
+                completed={completed}
+              />
+              <div className="p-5 w-full lg:w-[20%] xl:w-[30%] flex flex-col gap-4">
+                <UserProfileInfoComponent favorites={favorites} user={user} />
+                <AnimeWeeklyNotificationsComponent
+                  enabled={enabled}
+                  setEnabled={setEnabled}
+                  ongoingNumber={ongoing.length}
+                />
+                {recommended.length > 0 && (
+                  <AnimeRecommendedList anime={recommended}/>
+                )}
+              </div>
+            </div>
+          </>
+        )}
       </main>
-    </>
+    </ProtectedWrapper>
   );
 };
 

@@ -23,7 +23,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "src/context/UserPreferencesProvider.jsx", "src/utils/useLocalFireStoreDocument.js"  ],
   "exclude": [
     "node_modules"
   ]
