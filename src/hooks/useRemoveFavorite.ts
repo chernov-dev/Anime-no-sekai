@@ -3,15 +3,6 @@ import { useMutation } from "@tanstack/react-query";
 import supabase from "../supabase/supabase-js";
 
 const removeFavorite = async (animeId: any, userId: string) => {
-  const { data: foundAnimeId, error } = await supabase
-    .from("users.favorites")
-    .select("anime_id")
-    .eq("user_id", userId)
-    .match({ anime_id: animeId })
-    .single();
-
-  const exists = foundAnimeId === animeId;
-
   const { data, error: err } = await supabase
     .from("users.favorites")
     .delete()

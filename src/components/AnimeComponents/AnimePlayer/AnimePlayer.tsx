@@ -37,8 +37,12 @@ const AnimePlayer = ({ episodes, animeCover }) => {
   useEffect(() => {
     if (data) {
       const url =
-        data.sources[0].url ??
+        data.sources[3].url ??
+        data.sources[4].url ??
+        data.sources[2].url ??
         data.sources[1].url ??
+        data.sources[0].url ??
+        data.sources[5].url ??
         "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4";
 
       setPlayerState((prevState) => {
