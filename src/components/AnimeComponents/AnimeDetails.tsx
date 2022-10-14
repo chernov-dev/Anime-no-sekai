@@ -48,9 +48,11 @@ const AnimeDetails = ({ anime }) => {
           <div className="animeCard-header__content">
             <div className="flex flex-col justify-between gap-1">
               <div className="anime-title text-xl lg:text-2xl">
-              {anime.title.english}
+                {anime.title.english}
               </div>
-              <div className="anime-subtitle font-medium">{anime.title.native}</div>
+              <div className="anime-subtitle font-medium">
+                {anime.title.native}
+              </div>
             </div>
             <div className="anime-type">
               <p className=" text-neumorph-accent">Type: {anime.type}</p>
@@ -81,10 +83,12 @@ const AnimeDetails = ({ anime }) => {
             </div>
           </div>
         </div>
-        <div className="anime-body rounded-xl shadow-neumorphic-inner mt-8 ring-1 ring-black dark:ring-white ring-opacity-5 dark:ring-opacity-5">
-          <p className="anime-desc p-5">{parse(anime.description)}</p>
-        </div>
-        <div className="anime-footer">
+        {anime.description && (
+          <div className="anime-body rounded-xl shadow-neumorphic-inner ring-1 ring-black dark:ring-white ring-opacity-5 dark:ring-opacity-5">
+            <p className="anime-desc p-5">{parse(anime.description)}</p>
+          </div>
+        )}
+        <div className="anime-footer mt-4">
           <div className="animeCard-share">
             <ShareOptions anime={anime} />
           </div>

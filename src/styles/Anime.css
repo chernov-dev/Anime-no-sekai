@@ -114,10 +114,8 @@
   @apply leading-[1.1] text-neumorph-secondary text-base;
 }
 .anime-subtitle {
-  @apply text-neumorph-secondary;
+  @apply text-neumorph-secondary leading-3 text-sm md:text-base;
   font-weight: 300;
-  font-size: 16px;
-  line-height: 0.95em;
   margin-bottom: 0.25em;
 }
 
@@ -242,8 +240,7 @@
 
 .anime-home {
   display: flex;
-  @apply flex-col xl:flex-row items-center lg:items-start mx-4 mt-4 lg:mx-0 lg:ml-4;
-  gap: 1.25rem;
+  @apply flex-col xl:flex-row items-center lg:items-start mx-0.5 md:mx-4 mt-4 lg:mx-0 lg:ml-4 gap-3;
 }
 
 .anime-home__sidebar {
@@ -354,7 +351,7 @@
 }
 
 .skewed-text div:first-child {
-  @apply bg-neumorph-accent;
+  @apply bg-neumorph-accent ring-0;
 }
 .skewed-text div:first-child span {
   margin-left: -0.35rem;
@@ -374,7 +371,7 @@
 }
 
 .skewed-text div > span {
-  @apply h-full w-full;
+  @apply h-full w-full px-1;
   -webkit-transform: skew(20deg);
   -ms-transform: skew(20deg);
   transform: skew(20deg);

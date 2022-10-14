@@ -1,19 +1,19 @@
-import { Popover, Transition } from "@headlessui/react";
-import Link from "next/link";
+import { Menu, Transition } from "@headlessui/react";
 import { Fragment } from "react";
 import { CgClose, CgMenu } from "react-icons/cg";
+import NavigationLink from "../Shared/NavigationLink";
 
 const NavigationMenu = ({ options }) => {
   return (
     <>
-      <Popover as="div" className="relative block md:hidden">
+      <Menu as="div" className="relative block md:hidden">
         {({ open }) => (
           <>
             <div>
-              <Popover.Button className={`neumorphic-btn secondary`}>
+              <Menu.Button className={`neumorphic-btn secondary`}>
                 {open && <CgClose size={24} />}
                 {!open && <CgMenu size={24} />}
-              </Popover.Button>
+              </Menu.Button>
             </div>
             <Transition
               as={Fragment}
@@ -24,27 +24,22 @@ const NavigationMenu = ({ options }) => {
               leaveFrom="opacity-100 translate-y-0"
               leaveTo="opacity-0 translate-y-1"
             >
-              <Popover.Panel className="absolute bg-neumorph-primary -left-4 z-10 mt-3 w-screen max-w-xs transform">
+              <Menu.Items className="absolute bg-neumorph-primary -left-4 z-10 mt-3 w-screen max-w-xs transform">
                 <div className="overflow-hidden pl-2 rounded-lg shadow-neumorphic ring-1 ring-black dark:ring-white ring-opacity-10 dark:ring-opacity-10">
                   <div className="flex flex-col gap-3 p-2 text-neumorph-secondary ">
                     {options.map((option) => (
-                      <Link key={option.name} href={option.href}>
-                        <a className="neumorphic-chip text-neumorph-secondary hover:text-neumorph-accent transition-colors">
-                          <div>{option.icon}</div>
-                          <div>
-                            <p className="">{option.name}</p>
-                          </div>
-                        </a>
-                      </Link>
+                      <Menu.Item key={option.name}>
+                        <NavigationLink option={option} />
+                      </Menu.Item>
                     ))}
                     <h2 className="px-2 text-right">ANS - Navigation</h2>
                   </div>
                 </div>
-              </Popover.Panel>
+              </Menu.Items>
             </Transition>
           </>
         )}
-      </Popover>
+      </Menu>
     </>
   );
 };

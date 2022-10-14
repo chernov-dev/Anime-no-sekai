@@ -4,6 +4,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { RiNotification3Fill } from "react-icons/ri";
 import { PuffLoader } from "react-spinners";
+import Spinner from "./Spinner";
 
 const ShareOptionsContainer = ({
   onHeartClick = (e) => e.stopPropagation(),
@@ -13,7 +14,7 @@ const ShareOptionsContainer = ({
   return (
     <>
       {isFavoritesLoading ? (
-        <PuffLoader />
+        <Spinner />
       ) : (
         <button
           disabled={isFavoritesLoading}

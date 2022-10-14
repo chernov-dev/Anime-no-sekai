@@ -57,7 +57,7 @@ const AnimeHome = ({
             <div className="anime-home__header">
               <p className="text-xl md:text-2xl">{pageTitle}</p>
               <div className="flex items-center md:w-auto gap-3">
-                <LayoutChanger/>
+                <LayoutChanger />
                 {pagination && paginate && (
                   <HomePagePagination
                     paginate={paginate}
@@ -88,10 +88,13 @@ const AnimeHome = ({
           />
           {children}
         </div>
-        <aside className="anime-home__sidebar">
-          <div className="section-heading pl-2">
-            Trending anime
+        {pagination && paginate && (
+          <div className="block sm:hidden mb-3">
+          <HomePagePagination paginate={paginate} pagination={pagination} />
           </div>
+        )}
+        <aside className="anime-home__sidebar">
+          <div className="section-heading pl-2">Trending anime</div>
           <AnimeTrendingList />
         </aside>
       </div>

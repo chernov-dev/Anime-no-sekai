@@ -11,7 +11,7 @@ const HomePagePagination = ({
   pagination?: IPagination;
   paginate?: (number) => void;
 }) => {
-  const router = useRouter();
+
   const handlePageChange = (e,page) => {
     paginate(page);
   };
@@ -24,19 +24,11 @@ const HomePagePagination = ({
 
   return (
     <div className="text-neumorph-secondary flex gap-4">
-      {/* <button
-        className="paginate-btn"
-        title="Go to previous page"
-        disabled={pagination.currentPage == 1}
-        onClick={() => handlePageChange(1)}
-      >
-        <MdFirstPage size={25}/>
-      </button> */}
       <button
         accessKey="j"
         className="paginate-btn"
         title={
-          "Go to previous page " + "\nCan be accessed with ALT + A combination"
+          "Go to previous page " + "\nCan be accessed with ALT + J combination"
         }
         disabled={pagination.currentPage == 1}
         onClick={(e) => handlePageChange(e,--pagination.currentPage)}
@@ -47,21 +39,13 @@ const HomePagePagination = ({
         accessKey="l"
         className="paginate-btn"
         title={
-          "Go to next page " + "\nCan be accessed with ALT + D combination"
+          "Go to next page " + "\nCan be accessed with ALT + L combination"
         }
         disabled={pagination.currentPage == lastPage}
         onClick={(e) => handlePageChange(e,++pagination.currentPage)}
       >
         <FaChevronRight size={18} />
       </button>
-      {/* <button
-        className="paginate-btn"
-        title="Go to next page"
-        disabled={pagination.currentPage == lastPage}
-        onClick={() => handlePageChange(lastPage)}
-      >
-        <MdLastPage size={25}/>
-      </button> */}
     </div>
   );
 };

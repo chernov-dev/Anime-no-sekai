@@ -188,7 +188,8 @@ main {
 }
 
 .swiper-pagination {
-  bottom: 0px !important;
+  top: 0 !important;
+  height: fit-content;
 }
 
 .active {

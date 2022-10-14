@@ -9,6 +9,7 @@ import { getAnimeTrending } from "../../api/Anime_API/getAnimeTrending";
 import { useState, useMemo } from "react";
 import { IAnimeTypeFilter } from "../../types/Anime";
 import PageLoader from "../../components/Shared/PageLoader";
+import { getAnimeTopAiring } from "../../api/Anime_API/getAnimeTopAiring";
 
 function HomePage() {
   const [currentPage, setCurrentPage] = useState(1);
