@@ -75,27 +75,29 @@ const AnimeHome = ({
               </Tab.Panel>
             </Tab.Panels>
           </Tab.Group>
-          <ToastContainer
-            position="bottom-right"
-            autoClose={2000}
-            hideProgressBar={true}
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-          />
+          {pagination && paginate && (
+            <div className="block sm:hidden mb-3 self-center">
+              <HomePagePagination paginate={paginate} pagination={pagination} />
+            </div>
+          )}
           {children}
         </div>
-        {pagination && paginate && (
-          <div className="block sm:hidden mb-3">
-          <HomePagePagination paginate={paginate} pagination={pagination} />
-          </div>
-        )}
+        <ToastContainer
+          position="bottom-right"
+          autoClose={2000}
+          hideProgressBar={true}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
         <aside className="anime-home__sidebar">
-          <div className="section-heading pl-2">Trending anime</div>
-          <AnimeTrendingList />
+          <div className="shadow-neumorphic neumorphic-border p-4 rounded-[inherit] flex flex-col gap-2">
+            <div className="section-heading pl-2">Trending anime</div>
+            <AnimeTrendingList />
+          </div>
         </aside>
       </div>
     </>

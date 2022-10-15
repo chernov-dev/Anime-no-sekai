@@ -55,15 +55,15 @@ const SettingsModal = ({ isOpen, onOpen, onClose }) => {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Dialog.Panel className="w-full max-w-md transform overflow-hidden flex flex-col gap-3 rounded-2xl bg-neumorph-primary shadow-neumorphic border-[1px] border-black dark:border-white border-opacity-10 dark:border-opacity-10 p-6 text-left align-middle transition-all z-[999]">
+              <Dialog.Panel className="w-full max-w-md transform overflow-hidden flex flex-col gap-6 rounded-2xl bg-neumorph-primary shadow-neumorphic border-[1px] border-black dark:border-white border-opacity-10 dark:border-opacity-10 p-6 text-left align-middle transition-all z-[999]">
                 <Dialog.Title
                   as="div"
-                  className="neumorphic-chip flex gap-3 px-3 text-lg md:text-xl lg:text-2xl font-medium"
+                  className="neumorphic-chip flex gap-3 px-3 h-[2.5rem] text-lg md:text-xl lg:text-2xl font-medium"
                 >
                   <IoSettingsSharp size={20} />
                   <span>User Preferences</span>
                 </Dialog.Title>
-                <div className="mt-4 p-2 flex flex-col gap-5">
+                <div className="mt-4 p-2 flex flex-col gap-8">
                   <div className="flex items-center gap-5 px-2">
                     <button
                       className={`neumorphic-icon`}

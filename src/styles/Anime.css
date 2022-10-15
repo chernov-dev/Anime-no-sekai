@@ -15,8 +15,8 @@
 
 .anime-player {
   @apply py-4 px-3 md:px-5 lg:px-6 xl:px-8;
-  border-radius: 2rem;
-  width: 90%;
+  border-radius: 0.75rem;
+  width: 100%;
   height: min-content;
   display: block;
   position: relative;
@@ -31,7 +31,7 @@
 .anime-overlay {
   width: 100%;
   height: 100%;
-  border-radius: 40px;
+  border-radius: 0.75rem;
   background: linear-gradient(
     90deg,
     rgba(42, 159, 255, 0.2) 0%,
@@ -84,7 +84,7 @@
   width: 100%;
   height: 100%;
   background-position: 200px 0;
-  border-radius: 40px;
+  border-radius: 0.75rem;
   position: absolute;
   filter: blur(1.5px) opacity(0.2);
   background: linear-gradient(
@@ -97,7 +97,7 @@
 }
 
 .anime-img {
-  border-radius: 1rem;
+  border-radius: 0.75rem;
   position: relative;
 }
 
@@ -244,8 +244,8 @@
 }
 
 .anime-home__sidebar {
-  @apply shadow-neumorphic w-full xl:w-[35%] border-[1px] border-black dark:border-white border-opacity-10 dark:border-opacity-10 flex flex-col gap-4 self-center lg:self-start rounded-2xl;
-  padding: 1rem;
+  @apply w-full xl:w-[35%] self-center lg:self-start rounded-lg;
+  padding: 0.25rem;
   position: relative;
 }
 

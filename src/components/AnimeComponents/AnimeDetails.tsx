@@ -1,23 +1,10 @@
 import Image from "next/image";
 import React from "react";
+import { handleDate } from "../../utils/handleDate";
 import ShareOptions from "../Shared/ShareOptions";
 import { shimmer, toBase64 } from "../utils/shimmer";
 
-const handleDate = (nextAiringEpisodeTime: number) => {
-  // convert unix time to date and time
-  if (nextAiringEpisodeTime === undefined) {
-    return;
-  }
-  const date = new Date(nextAiringEpisodeTime * 1000);
-  const day = date.getDate();
-  const month = date.getMonth() + 1;
-  const year = date.getFullYear();
-  const hours = date.getHours();
-  const minutes = "0" + date.getMinutes();
-  return (
-    day + "/" + month + "/" + year + " " + hours + ":" + minutes.substr(-2)
-  );
-};
+
 
 const parse = require("html-react-parser");
 
@@ -29,7 +16,7 @@ const AnimeDetails = ({ anime }) => {
   const nextEpisode = handleDate(anime.nextAiringEpisode?.airingTime);
 
   return (
-    <div className="animeCard w-[90%]">
+    <div className="animeCard">
       <div className="animeCard-content w-full">
         <div className="animeCard-header">
           <div className="anime-img">
@@ -84,7 +71,7 @@ const AnimeDetails = ({ anime }) => {
           </div>
         </div>
         {anime.description && (
-          <div className="anime-body rounded-xl shadow-neumorphic-inner ring-1 ring-black dark:ring-white ring-opacity-5 dark:ring-opacity-5">
+          <div className="anime-body my-4 rounded-xl shadow-neumorphic-inner ring-1 ring-black dark:ring-white ring-opacity-5 dark:ring-opacity-5">
             <p className="anime-desc p-5">{parse(anime.description)}</p>
           </div>
         )}

@@ -10,6 +10,7 @@ import { useState, useMemo } from "react";
 import { IAnimeTypeFilter } from "../../types/Anime";
 import PageLoader from "../../components/Shared/PageLoader";
 import { getAnimeTopAiring } from "../../api/Anime_API/getAnimeTopAiring";
+import AnimeSchedule from "../../components/AnimeComponents/AnimeSchedule/AnimeSchedule";
 
 function HomePage() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -51,21 +52,23 @@ function HomePage() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      {isTrendingSuccess && <AnimeHeroSwiper animeList={trendingAnime} />}
+      <main className="w-full">
+        {isTrendingSuccess && <AnimeHeroSwiper animeList={trendingAnime} />}
 
-      {isSuccess && (
-        <>
-          <AnimeHome
-            anime={animeData.anime}
-            title="Recently added"
-            paginate={paginate}
-            pagination={animeData.pagination}
-          />
-        </>
-      )}
-      {/* <JikaiList animeArray={data}>
-          <PaginationComponent pageCount={7} currentPage={currentPage} />
-        </JikaiList> */}
+        {isSuccess && (
+          <>
+            <AnimeHome
+              anime={animeData.anime}
+              title="Recently added"
+              paginate={paginate}
+              pagination={animeData.pagination}
+            >
+              <AnimeSchedule />
+            </AnimeHome>
+          </>
+        )}
+        
+      </main>
     </ProtectedWrapper>
   );
 }

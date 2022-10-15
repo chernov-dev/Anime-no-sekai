@@ -36,7 +36,6 @@ export default function AnimeDetailsPage() {
           />
           <link rel="icon" href="/favicon.ico" />
         </Head>
-
         <div className="flex items-center flex-col justify-center">
           {animeDetails.cover && (
             <div className="shadow-neumorphic-inner w-full py-4 mb-2">
@@ -55,17 +54,25 @@ export default function AnimeDetailsPage() {
               </div>
             </div>
           )}
-          <div className="flex flex-col items-center gap-5 md:mx-0 lg:mx-8 w-full">
-            <AnimeDetails anime={animeDetails} />
-            {animeDetails.episodes.length > 0 && (
-              <div className="anime-player">
-                <AnimePlayer
-                  episodes={animeDetails.episodes}
-                  animeCover={animeDetails.cover}
-                />
-              </div>
-            )}
-            <AnimeRecommendations recommendations={animeDetails.recommendations} />
+          <div className="flex flex-col gap-5 w-full px-3 lg:px-8">
+            <section className="w-full" id="anime-details">
+              <AnimeDetails anime={animeDetails} />
+            </section>
+            <section className="w-full" id="anime-watch">
+              {animeDetails.episodes.length > 0 && (
+                <div className="anime-player">
+                  <AnimePlayer
+                    episodes={animeDetails.episodes}
+                    animeCover={animeDetails.cover}
+                  />
+                </div>
+              )}
+            </section>
+            <section className="w-full" id="anime-recommended">
+              <AnimeRecommendations
+                recommendations={animeDetails.recommendations}
+              />
+            </section>
           </div>
         </div>
       </ProtectedWrapper>

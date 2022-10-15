@@ -7,6 +7,7 @@ const AnsSvgLogo = (props: SVGProps<SVGSVGElement>) => (
     width={2560}
     height={1393.333}
     viewBox="0 0 1920 1045"
+  
     {...props}
   >
     <g stroke="currentColor">

@@ -55,6 +55,12 @@ export class AnimeApi {
       ...params,
     });
   }
+  async getAiringSchedule(params = {}) {
+    return this.consumetApiGetCall("/meta/anilist/airing-schedule", {
+      notYetAired: true,
+      ...params,
+    });
+  }
 
   async getUpcomingAnimes(params = {}) {
     return (

@@ -28,7 +28,7 @@ const Item = ({ anime }: { anime: IAnimeResult }) => {
         }}
       >
         <div className="animeCard-header h-[60vh] flex-col sm:flex-row ">
-          <div className="p-3 pb-1 rounded-[1rem] relative h-full aspect-[2/3] grow">
+          <div className="p-3 pb-1 rounded-[1rem] relative h-full aspect-[2/3]">
             <Image
               src={anime.image}
               className="anime-img"
@@ -46,7 +46,7 @@ const Item = ({ anime }: { anime: IAnimeResult }) => {
               <h1 className="anime-home__title mb-1">{title}</h1>
               <p className="anime-subtitle">{anime.title?.native}</p>
             </div>
-            <div className="grow h-full flex flex-col justify-end text-neumorph-secondary shadow-neumorphic-inner text-sm  border-[1px] border-black dark:border-white border-opacity-5 dark:border-opacity-5 overflow-hidden rounded-xl p-4 font-semibold w-full gap-2 bg-neumorph-primary">
+            <div className="h-full flex flex-col justify-end text-neumorph-secondary shadow-neumorphic-inner text-sm  border-[1px] border-black dark:border-white border-opacity-5 dark:border-opacity-5 overflow-hidden rounded-xl p-4 font-semibold w-full gap-2 bg-neumorph-primary">
               <div className="flex gap-2">
                 <span className="whitespace-nowrap">
                   Episode {anime.episodeNumber.toString()}:
@@ -78,11 +78,11 @@ const Item = ({ anime }: { anime: IAnimeResult }) => {
                 ))}
               </div>
             </div>
-          </div>
-        </div>
-        <div className="anime-footer">
-          <div className="animeCard-share">
-            <ShareOptions anime={anime} />
+            <div className="anime-footer grow">
+              <div className="animeCard-share h-10">
+                <ShareOptions anime={anime} />
+              </div>
+            </div>
           </div>
         </div>
       </div>

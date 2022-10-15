@@ -1,5 +1,5 @@
 .neumorphic-nav {
-  @apply sticky flex flex-col gap-3 rounded-br-xl rounded-bl-xl bg-neumorph-primary px-3 sm:px-4 py-2.5 w-full lg:w-[90%] self-center z-[999] top-0 left-0 shadow-neumorphic border-[1px] border-black dark:border-white border-opacity-10 dark:border-opacity-10;
+  @apply sticky flex flex-col gap-3 rounded-br-xl rounded-bl-xl bg-neumorph-primary px-3 sm:px-4 py-2.5 w-full lg:w-[90%] self-center z-[999] top-0 left-0 shadow-neumorphic border-[1px] border-black dark:border-white border-opacity-20 dark:border-opacity-20;
 }
 
 .neumorphic-dropdown {
@@ -7,7 +7,7 @@
 }
 
 .neumorphic-dropdown ul {
-  @apply flex flex-col h-full bg-neumorph-primary rounded-2xl list-none items-center mt-2.5 mb-1 py-1.5 lg:flex-row lg:m-0 gap-0.5;
+  @apply flex flex-col h-full bg-neumorph-primary rounded-xl list-none items-center mt-2.5 mb-1 py-1.5 lg:flex-row lg:m-0 gap-0.5;
   box-shadow: inset 14px 14px 28px var(--neumorph-primary-dark),
     inset -14px -14px 28px var(--neumorph-primary-light);
   overflow: hidden;
@@ -231,7 +231,7 @@
   place-content: center;
 }
 .neumorphic-modal {
-  @apply bg-neumorph-primary rounded-2xl outline-none border-[1px] border-black dark:border-white border-opacity-10 dark:border-opacity-10;
+  @apply bg-neumorph-primary rounded-lg outline-none border-[1px] border-black dark:border-white border-opacity-10 dark:border-opacity-10;
   box-shadow: 8px 8px 16px var(--neumorph-primary-dark),
     -8px -8px 16px var(--neumorph-primary-light);
   overflow: auto;
@@ -314,6 +314,10 @@
 }
 .neumorphic-genre span {
   @apply text-sm lg:text-base;
+}
+
+.neumorphic-border {
+  @apply border-[1px] border-black dark:border-white border-opacity-10 dark:border-opacity-10;
 }
 
 .neumorphic-circle {
@@ -412,7 +416,7 @@
   align-items: center;
 }
 .neumorphic-search > input {
-  @apply text-neumorph-secondary text-lg md:text-xl xl:text-2xl shadow-neumorphic-inner border-[1px] border-black dark:border-white border-opacity-5 dark:border-opacity-5;
+  @apply text-neumorph-secondary text-base md:text-lg xl:text-xl shadow-neumorphic-inner border-[1px] border-black dark:border-white border-opacity-5 dark:border-opacity-5;
   width: 100%;
   min-height: 2.5rem;
   border: none;
@@ -437,7 +441,7 @@
   height: 25px;
   aspect-ratio: 1/1;
   position: absolute;
-  font-size: 2rem;
+  font-size: 1.5rem;
   padding: 0 0.8rem;
   display: flex;
   transition: 0.3s ease;
