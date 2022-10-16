@@ -6,7 +6,7 @@ import AnimeFavoriteFilter from "./AnimeFavoriteFilter";
 import AnimeGridLayoutView from "./AnimeGridLayoutView";
 
 const AnimeFavoriteList = ({ anime, ongoing, completed }) => {
- 
+
   return (
     <div className="flex justify-center grow w-full">
       <div className="px-4 w-full">

@@ -22,7 +22,7 @@ const ShareOptionsContainer = ({
           onClick={onHeartClick}
         >
           <BsHeartFill
-            color={liked ? "red" : "inherit"}
+            color={liked ? "var(--neumorph-accent)" : "inherit"}
             size={15}
           ></BsHeartFill>
         </button>

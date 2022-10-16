@@ -2,7 +2,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import { AiFillLike } from "react-icons/ai";
-import { BsHeart } from "react-icons/bs";
+import { BsHeart, BsHeartFill } from "react-icons/bs";
 import { FcLike } from "react-icons/fc";
 import { toast, ToastContainer } from "react-toastify";
 import useAddFavorite from "../../hooks/useAddFavorite";
@@ -19,13 +19,13 @@ const Item = ({
   children,
   bulletIndex,
   epStatus,
-  ratingStatus
+  ratingStatus,
 }: {
   anime: IAnimeResult;
   children: JSX.Element;
   bulletIndex?: number;
-  epStatus? : boolean;
-  ratingStatus? : boolean;
+  epStatus?: boolean;
+  ratingStatus?: boolean;
 }) => {
   let title =
     anime.title.english ?? anime.title.userPreferred ?? anime.title.romaji;
@@ -35,6 +35,7 @@ const Item = ({
   let imageUrl = anime.image;
 
   const addFavorite = useAddFavorite(anime.id);
+  const removeFavorite = useRemoveFavorite(anime.id);
   const { data: favorites, isLoading: isFavoritesLoading } = useFavorites();
 
   const [liked, setLiked] = useState(false);
@@ -48,16 +49,41 @@ const Item = ({
       <div className="anime-home__grid-item">
         <div className="anime-home__grid-item__header">
           <div className="anime-img rounded-bl-none rounded-br-none">
-            {(bulletIndex || liked) && (
-              <div className="anime-status-overlay">
-                <div className="h-full px-1 text-4xl font-bold">
-                  {bulletIndex}
-                </div>
-                <div className={`${liked ? "block" : "hidden"} `}>
-                  <AiFillLike className={"w-full h-full p-1.5"} />
-                </div>
+            <div className="anime-status-overlay px-2">
+              <div className="h-full px-1 text-4xl font-bold">
+                {bulletIndex}
               </div>
-            )}
+              {liked && (
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    removeFavorite.mutate();
+                  }}
+                >
+                  <BsHeartFill
+                    size={25}
+                    className={
+                      "hover:text-neumorph-secondary transition-colors"
+                    }
+                  />
+                </button>
+              )}
+              {!liked && (
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    addFavorite.mutate();
+                  }}
+                >
+                  <BsHeartFill
+                    size={25}
+                    className={
+                      "text-neumorph-secondary hover:text-neumorph-accent transition-colors"
+                    }
+                  />
+                </button>
+              )}
+            </div>
             <Image
               src={imageUrl}
               alt="anime poster"
@@ -74,7 +100,11 @@ const Item = ({
               )}`}
             />
           </div>
-          <AnimeCardFooterExtraDetails anime={anime} epStatus={epStatus} ratingStatus={ratingStatus}/>
+          <AnimeCardFooterExtraDetails
+            anime={anime}
+            epStatus={epStatus}
+            ratingStatus={ratingStatus}
+          />
         </div>
         <div className="anime-home__grid-item__title py-2 ">
           <p className="line-clamp-2 anime-home__title">{title}</p>
@@ -98,7 +128,7 @@ const AnimeGridLayoutView = ({
   ratingStatus?: boolean;
 }) => {
   {
-    anime == null || (undefined && <Spinner/>);
+    anime == null || (undefined && <Spinner />);
   }
   return (
     <div className={`anime-home__grid`}>

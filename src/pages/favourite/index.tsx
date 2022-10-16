@@ -42,6 +42,7 @@ const UserFavouriteAnimePage = () => {
     if (isSuccess) {
       setRecommended(recommendedBasedOnFavorites(favorites, 10));
 
+
       setOngoing((prev) =>
         favorites.filter((anime) => {
           if (anime.status) return anime.status == "Ongoing";
@@ -96,9 +97,9 @@ const UserFavouriteAnimePage = () => {
                   setEnabled={setEnabled}
                   ongoingNumber={ongoing.length}
                 />
-                {recommended.length > 0 && (
+                {/* {recommended.length > 0 && (
                   <AnimeRecommendedList anime={recommended}/>
-                )}
+                )} */}
               </div>
             </div>
           </>

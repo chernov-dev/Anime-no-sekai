@@ -250,16 +250,13 @@
 }
 
 .anime-home__container {
-  @apply -mx-[0.5rem] w-full xl:w-[65%];
-  display: flex;
-  flex-direction: column;
+  @apply flex flex-col -mx-[0.5rem] w-full xl:w-[65%] gap-2;
   position: relative;
 }
 
 .anime-home__header {
   display: flex;
   flex-wrap: wrap;
-  margin-bottom: 1rem;
   align-items: center;
   gap: 1rem;
   padding: 0 1.5rem;

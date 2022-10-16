@@ -4,7 +4,7 @@ import React from "react";
 import { AiFillStar } from "react-icons/ai";
 import { GoPlay } from "react-icons/go";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { A11y, Pagination } from "swiper";
+import { A11y, Mousewheel, Pagination } from "swiper";
 import { IAnimeResult } from "../../types/Anime";
 import ShareOptions from "../Shared/ShareOptions";
 import { shimmer, toBase64 } from "../utils/shimmer";
@@ -12,6 +12,7 @@ import { shimmer, toBase64 } from "../utils/shimmer";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
+import "swiper/css/mousewheel";
 
 const Item = ({ anime }: { anime: IAnimeResult }) => {
   const router = useRouter();
@@ -100,8 +101,9 @@ const AnimeFullWidthLayoutView = ({
   return (
     <div className="flex relative mb-3">
       <Swiper
-        modules={[Pagination, A11y]}
+        modules={[Pagination, A11y, Mousewheel]}
         pagination={{ clickable: true }}
+        mousewheel={true}
         slidesPerView={1}
         grabCursor={true}
         loop={true}
