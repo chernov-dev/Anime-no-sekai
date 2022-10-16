@@ -3,13 +3,16 @@ import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import { getAnimeTrending } from "../../api/Anime_API/getAnimeTrending";
 import PageLoader from "../Shared/PageLoader";
+import { getAnimeTopAiring } from "../../api/Anime_API/getAnimeTopAiring";
 
-const AnimeTrendingList = () => {
-  const { data, isLoading, isSuccess } = useQuery(["anime-trending"], () =>
-    getAnimeTrending()
-  );
+const TopAiringList = () => {
+  const {
+    data: topAiring,
+    isLoading: isAiringLoading,
+    isSuccess: isAiringSuccess,
+  } = useQuery(["anime-airing"], () => getAnimeTopAiring());
 
-  if (isLoading) {
+  if (isAiringLoading) {
     return (
       <>
         <PageLoader />
@@ -17,18 +20,16 @@ const AnimeTrendingList = () => {
     );
   }
 
-  if (isSuccess) {
+  if (isAiringSuccess) {
     return (
       <>
+        <div className="section-heading pl-2">Top airing anime</div>
         <div className="neumorphic-list">
-          {data.map((anime, index) => {
+          {topAiring.map((anime, index) => {
             return (
               <div
                 key={anime.title.english}
-                onClick={() => {
-                  location.href = `/anime/${anime.id}`;
-                }}
-                className="cursor-pointer gap-3 items-center"
+                className="gap-3 items-center"
               >
                 <div className="hidden sm:block relative w-[400px] h-full">
                   <Image
@@ -43,11 +44,10 @@ const AnimeTrendingList = () => {
                     className="rounded-2xl"
                   />
                 </div>
-                <div className="flex gap-2 w-full grow justify-end items-center">
-                  <p className="text-neumorph-secondary opacity-90 line-clamp-1 mx-2.5 text-ellipsis">
-                    {anime.title.english ?? anime.title.userPreferred}
+                <div className="flex flex-col gap-2 w-full grow justify-end items-center px-2 md:px-6">
+                  <p className="text-neumorph-secondary opacity-90 line-clamp-1">
+                    {anime.title}
                   </p>
-                  <p className="anime-type mr-2">{anime.type}</p>
                 </div>
               </div>
             );
@@ -58,4 +58,4 @@ const AnimeTrendingList = () => {
   }
 };
 
-export default AnimeTrendingList;
+export default TopAiringList;

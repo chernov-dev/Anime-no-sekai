@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useMemo, useState } from "react";
+import { getAnimeTopAiring } from "../api/Anime_API/getAnimeTopAiring";
 import { getAnimeTrending } from "../api/Anime_API/getAnimeTrending";
 import { getRecentAnimes } from "../api/Anime_API/getRecentAnimes";
 import AnimeHeroSwiper from "../components/AnimeComponents/AnimeHeroSwiper";
@@ -26,6 +27,7 @@ const HomeScreen = () => {
     getRecentAnimes(nextPage)
   );
 
+
   const {
     data: trendingAnime,
     isLoading: isTrendingLoading,
@@ -36,14 +38,11 @@ const HomeScreen = () => {
     return setCurrentPage(pageNumber);
   };
 
-  {
-    isLoading && <PageLoader />;
-  }
-
   return (
     <>
       {isTrendingSuccess && <AnimeHeroSwiper animeList={trendingAnime} />}
 
+      {isLoading && <PageLoader /> }
       {isSuccess && (
         <>
           <AnimeHome

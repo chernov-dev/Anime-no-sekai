@@ -18,7 +18,7 @@ import Spinner from "../Shared/PageLoader";
 import AnimeFullWidthLayoutView from "./AnimeFullWidthLayoutView";
 import AnimeGridLayoutView from "./AnimeGridLayoutView";
 import AnimeHomeFilter from "./AnimeHomeFilter";
-import AnimeTrendingList from "./AnimeTrendingList";
+import TopAiringList from "./TopAiringList";
 import HomePagePagination from "./HomePagePagination";
 
 const AnimeHome = ({
@@ -95,8 +95,7 @@ const AnimeHome = ({
         />
         <aside className="anime-home__sidebar">
           <div className="shadow-neumorphic neumorphic-border p-4 rounded-[inherit] flex flex-col gap-2">
-            <div className="section-heading pl-2">Trending anime</div>
-            <AnimeTrendingList />
+            <TopAiringList />
           </div>
         </aside>
       </div>

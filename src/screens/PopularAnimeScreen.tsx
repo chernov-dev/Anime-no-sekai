@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { ToastContainer } from "react-toastify";
 import AnimeGridLayoutView from "../components/AnimeComponents/AnimeGridLayoutView";
-import AnimeTrendingList from "../components/AnimeComponents/AnimeTrendingList";
+import TopAiringList from "../components/AnimeComponents/TopAiringList";
 import HomePagePagination from "../components/AnimeComponents/HomePagePagination";
 import PageLoader from "../components/Shared/PageLoader";
 import Spinner from "../components/Shared/PageLoader";
@@ -66,7 +66,7 @@ const PopularAnimeScreen = ({
           <div className="text-neumorph-secondary text-xl md:text-2xl pl-2">
             Trending anime
           </div>
-          <AnimeTrendingList />
+          <TopAiringList />
         </aside>
       </div>
     </>

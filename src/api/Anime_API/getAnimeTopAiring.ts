@@ -7,6 +7,6 @@ export const getAnimeTopAiring = async () => {
     params: { perPage: 9},
   });
   //Destructuring response into our formatted
-  const anime = response.data.results as IAnimeResult[];
+  const anime = response.data.results;
   return anime;
 };
