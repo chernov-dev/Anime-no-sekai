@@ -9,7 +9,7 @@ import { useUserPreferences } from "../context/UserPreferencesProvider";
 import { IAnimeResult } from "../types/Anime";
 import { IPagination } from "../types/Pagination";
 
-const AnimeTopScreen = ({
+const PopularAnimeScreen = ({
   anime,
   title: pageTitle,
   pagination,
@@ -73,4 +73,4 @@ const AnimeTopScreen = ({
   );
 };
 
-export default AnimeTopScreen;
+export default PopularAnimeScreen;

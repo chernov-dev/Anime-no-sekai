@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { getAnimeTop } from "../../api/Anime_API/getAnimeTop";
 import { useQuery } from "@tanstack/react-query";
 import ProtectedWrapper from "../../components/AuthComponents/Protected";
-import AnimeTopScreen from "../../screens/AnimeTopScreen";
+import PopularAnimeScreen from "../../screens/PopularAnimeScreen";
 import PageLoader from "../../components/Shared/PageLoader";
 
 const AnimePopularPage = () => {
@@ -19,9 +19,7 @@ const AnimePopularPage = () => {
   };
 
   if (isLoading) {
-    return (
-        <PageLoader/>
-    );
+    return <PageLoader />;
   }
 
   return (
@@ -33,14 +31,12 @@ const AnimePopularPage = () => {
       </Head>
 
       <main>
-        <div>
-          <AnimeTopScreen
-            anime={data.anime}
-            title={"Popular anime"}
-            paginate={paginate}
-            pagination={data.pagination}
-          />
-        </div>
+        <PopularAnimeScreen
+          anime={data.anime}
+          title={"Popular anime"}
+          paginate={paginate}
+          pagination={data.pagination}
+        />
       </main>
     </ProtectedWrapper>
   );
