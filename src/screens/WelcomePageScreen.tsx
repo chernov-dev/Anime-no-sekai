@@ -9,24 +9,37 @@ const WelcomePageScreen = () => {
   return (
     <>
       <div className="section-welcome">
-        <h1 className=" text-2xl md:text-4xl p-2 uppercase">Anime no Sekai</h1>
-        <div className="welcome-logo">
-          <AnsSvgLogo
-            className={"text-black"}
-            fill={"var(--neumorph-accent)"}
-            stroke="red"
-          />
+        <div className="h-full w-full flex flex-col items-center justify-center px-2 gap-5">
+          <h1 className="text-2xl md:text-4xl p-2 uppercase ">
+            Anime no Sekai
+          </h1>
+          <Link passHref href={"/home"}>
+            <div className="welcome-logo">
+              <AnsSvgLogo
+                className={"text-black"}
+                fill={"var(--neumorph-accent)"}
+                stroke="red"
+              />
+            </div>
+          </Link>
+          <span className="text-lg max-w-[550px]">
+            <b className="text-neumorph-accent">Anime no Sekai</b> will let you{" "}
+            <b className="text-neumorph-accent">watch, track, get notified</b>{" "}
+            when anime is out and{" "}
+            <b>
+              <span className="text-neumorph-accent">
+                synchronize everything{" "}
+              </span>{" "}
+              between your devices
+            </b>
+            .
+          </span>
+          <Link passHref href={"/home"}>
+            <button className="neumorphic-btn secondary p-2 text-lg gap-1 font-semibold h-12">
+              <span>Go to Home</span> <IoArrowForwardCircleSharp size={32} />
+            </button>
+          </Link>
         </div>
-        <span className="text-lg max-w-[500px]">
-          Anime no Sekai will let you{" "}
-          <b className="text-neumorph-accent">watch, track, and get notified</b>{" "}
-          when anime is out.
-        </span>
-        <Link passHref href={"/home"}>
-          <button className="neumorphic-btn secondary p-2 text-lg gap-1 font-semibold h-12">
-            <span>Go to Home</span> <IoArrowForwardCircleSharp size={35} />
-          </button>
-        </Link>
       </div>
       <div className="app-examples-section mt-14">
         <div className="favorite-anime-example-row">
@@ -75,8 +88,13 @@ const WelcomePageScreen = () => {
             <div className="rounded-2xl bg-opacity-20 flex flex-col items-center gap-2">
               <span className="whitespace-wrap">
                 <p>
-                  Subscribe {" "}
-                  <b>and get <span className="text-neumorph-accent">notified weekly </span></b>
+                  Subscribe{" "}
+                  <b>
+                    and get{" "}
+                    <span className="text-neumorph-accent">
+                      notified weekly{" "}
+                    </span>
+                  </b>
                   when anime is supposed to come out
                 </p>
               </span>

@@ -28,7 +28,7 @@ const TopAiringList = () => {
           {topAiring.map((anime, index) => {
             return (
               <div
-                key={anime.title.english}
+                key={anime.id}
                 className="gap-3 items-center"
               >
                 <div className="hidden sm:block relative w-[400px] h-full">

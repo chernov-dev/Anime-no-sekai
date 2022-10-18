@@ -8,9 +8,12 @@ import UserDropdownMenu from "./UserDropdownMenu";
 import { useQuery } from "@tanstack/react-query";
 import WebsiteLogo from "../Shared/WebsiteLogo";
 import { SearchInput } from "../Inputs/SearchInput";
+import useScrollDirection from "../../utils/useScrollDirection";
 
 
 const HeaderComponent = () => {
+
+  const scrollDirection = useScrollDirection();
 
   // const { data, isLoading, isSuccess, refetch } = useQuery(["random-anime-id"], () =>
   //   getRandomAnimeId()
@@ -44,7 +47,7 @@ const MenuOptions = [
 ];
 
   return (
-    <nav className="neumorphic-nav">
+    <nav className={`neumorphic-nav ${scrollDirection === "down" ? "-top-24" : "top-0"}`}>
       <div className="flex items-center gap-4 justify-between">
         <div>
           <NavigationMenu options={MenuOptions} />

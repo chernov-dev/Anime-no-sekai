@@ -39,7 +39,7 @@ const AnimeSchedule = () => {
   }, []);
 
   return (
-    <div className="px-2 mt-3">
+    <div className="px-2 my-8">
       <div className="w-full h-fit shadow-neumorphic neumorphic-border rounded-lg">
         <div className="flex flex-col h-[15rem] bg-neumorph-primary dark:bg-neumorph-secondary rounded-lg relative">
           <div className="absolute flex flex-wrap items-center justify-between gap-0 md:gap-2 px-3 rounded-t-lg h-full top-0 left-0 z-30 w-full font-bold bg-black bg-opacity-60 text-white text-opacity-70">
@@ -76,7 +76,7 @@ const AnimeSchedule = () => {
               return (
                 <SwiperSlide
                   key={anime.id + anime.episode}
-                  className="mt-6 neumorphic-border border-t-0 border-l-0 border-r-0 border-b-[1px]"
+                  className="mt-10"
                 >
                   <div
                     onClick={() => (location.href = `/anime/${anime.id}`)}
