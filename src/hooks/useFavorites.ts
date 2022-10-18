@@ -2,6 +2,7 @@ import { getAnimeInfoById } from "../api/Anime_API/getAnimeInfoById";
 import { useQueries, useQuery } from "@tanstack/react-query";
 import supabase from "../supabase/supabase-js";
 import { getAnimeSearchById } from "../api/Anime_API/getAnimeSearchById";
+import { animeApi } from "../api/Anime_API";
 
 const fetchFavorites = async (user_id) => {
   const { data, error } = await supabase
@@ -14,10 +15,11 @@ const fetchFavorites = async (user_id) => {
   }
   const userFavoriteListId = data.map((item) => item.anime_id);
 
-  const userFavorites = await fetchUserFavoriteAnime(userFavoriteListId);
+  const userFavoriteList = await fetchUserFavoriteAnime(userFavoriteListId);
+
   //reversing an array to show in user's order
-  let reverse = [...userFavorites].reverse();
-  return reverse;
+  let filteredItems = [...userFavoriteList].reverse();
+  return filteredItems;
 };
 
 const fetchUserFavoriteAnime = async (idList: any[]) => {

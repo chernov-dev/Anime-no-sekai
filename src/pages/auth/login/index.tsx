@@ -18,6 +18,7 @@ const LoginPage = () => {
 
   if (loginMutation.isSuccess) {
     router.push("/home");
+    setPrefEmail(email)
   }
 
   const handleWrongUserButtonClick = () => {

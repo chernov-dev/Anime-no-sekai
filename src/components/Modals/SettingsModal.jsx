@@ -55,10 +55,10 @@ const SettingsModal = ({ isOpen, onOpen, onClose }) => {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Dialog.Panel className="w-full max-w-md transform overflow-hidden flex flex-col gap-6 rounded-2xl bg-neumorph-primary shadow-neumorphic border-[1px] border-black dark:border-white border-opacity-10 dark:border-opacity-10 p-6 text-left align-middle transition-all z-[999]">
+              <Dialog.Panel className="w-full max-w-md transform overflow-hidden flex flex-col rounded-2xl bg-neumorph-primary shadow-neumorphic border-[1px] border-black dark:border-white border-opacity-10 dark:border-opacity-10 p-6 text-left align-middle transition-all z-[999]">
                 <Dialog.Title
                   as="div"
-                  className="neumorphic-chip flex gap-3 px-3 h-[2.5rem] text-lg md:text-xl lg:text-2xl font-medium"
+                  className="neumorphic-chip h-[3rem] flex gap-3 px-3 text-lg md:text-xl lg:text-2xl font-medium items-center mb-12"
                 >
                   <IoSettingsSharp size={20} />
                   <span>User Preferences</span>
@@ -66,7 +66,7 @@ const SettingsModal = ({ isOpen, onOpen, onClose }) => {
                 <div className="mt-4 p-2 flex flex-col gap-8">
                   <div className="flex items-center gap-5 px-2">
                     <button
-                      className={`neumorphic-icon`}
+                      className={`neumorphic-icon h-12`}
                       title={`Join the ${
                         theme === "dark" ? "weak" : "dark"
                       } side`}
@@ -86,6 +86,7 @@ const SettingsModal = ({ isOpen, onOpen, onClose }) => {
                       type="email"
                       placeholder="Email"
                       value={email ?? ""}
+                      disabled={true}
                       onChange={(e) => setEmail(e.currentTarget.value)}
                       title="We will use this email to send notification when anime episode is out"
                     />

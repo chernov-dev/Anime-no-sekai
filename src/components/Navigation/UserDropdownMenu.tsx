@@ -1,11 +1,12 @@
 import { Menu, Transition } from "@headlessui/react";
 import { useRouter } from "next/router";
 import { Fragment, useState } from "react";
-import { CgProfile } from "react-icons/cg";
+import { CgLogOut, CgProfile } from "react-icons/cg";
 import { FiLogIn, FiLogOut, FiSettings } from "react-icons/fi";
 import useLogOut from "../../hooks/useLogout";
 import useUser from "../../hooks/useUser";
 import SettingsModal from "../../components/Modals/SettingsModal";
+import { AiFillHeart, AiFillSetting } from "react-icons/ai";
 
 
 const UserDropdownMenu = () => {
@@ -57,8 +58,8 @@ const UserDropdownMenu = () => {
                         onClick={() => {
                           location.href = "/favourite";
                         }}>
-                        <CgProfile size={20} />
-                        Favorites
+                        <AiFillHeart size={20} />
+                        My favorites
                       </button>
                     )}
                   </Menu.Item>
@@ -74,7 +75,7 @@ const UserDropdownMenu = () => {
                           setSettingsOpen((prev) => !prev);
                         }}
                       >
-                        <FiSettings size={20} />
+                        <AiFillSetting size={20} />
                         Settings
                       </button>
                     )}
@@ -91,7 +92,7 @@ const UserDropdownMenu = () => {
                         } group flex gap-2 w-full items-center rounded-md px-2 py-2 text-sm md:text-base`}
                         onClick={() => logoutMutation.mutate()}
                       >
-                        <FiLogOut size={20} />
+                        <CgLogOut size={20} />
                         Logout
                       </button>
                     )}

@@ -75,13 +75,13 @@ const UserScreen = () => {
     <>
       {isSuccess && (
         <>
-          <div className="flex flex-col lg:flex-row w-full justify-center">
+          <div className="flex flex-col md:flex-row justify-center">
             <AnimeFavoriteList
               anime={favorites}
               ongoing={ongoing}
               completed={completed}
             />
-            <div className="p-5 w-full lg:w-[20%] xl:w-[30%] flex flex-col gap-4">
+            <aside className="flex w-full md:w-[35%] lg:w-[40%] flex-col gap-4 p-3">
               <UserProfileInfoComponent favorites={favorites} user={user} />
               <AnimeWeeklyNotificationsComponent
                 enabled={enabled}
@@ -91,7 +91,7 @@ const UserScreen = () => {
               {/* {recommended.length > 0 && (
               <AnimeRecommendedList anime={recommended}/>
             )} */}
-            </div>
+            </aside>
           </div>
         </>
       )}

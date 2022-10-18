@@ -8,7 +8,7 @@ import AnimeGridLayoutView from "./AnimeGridLayoutView";
 const AnimeFavoriteList = ({ anime, ongoing, completed }) => {
 
   return (
-    <div className="flex justify-center grow w-full">
+    <div className="flex w-full grow justify-center">
       <div className="px-4 w-full">
         <Tab.Group>
           <div className="anime-home__header mt-4">

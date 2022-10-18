@@ -41,7 +41,7 @@ const NewUserLogin = ({
         </Link>
         {isLoading ? <Spinner/> : <button className="neumorphic-btn secondary" type="button" onClick={() => onSubmit()}>Log in</button>}
       </form>
-      <Link href={"/signup"}>
+      <Link href={"/auth/signup"}>
         <a className="text-sm text-center underline opacity-70">Sign up</a>
       </Link>
     </>

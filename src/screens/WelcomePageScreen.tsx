@@ -18,10 +18,8 @@ const WelcomePageScreen = () => {
           />
         </div>
         <span className="text-lg max-w-[500px]">
-          Anime no Sekai is a website that lets user{" "}
-          <b className="text-neumorph-accent">
-            watch, sync, track ratings, schedule, favorite and get notified
-          </b>{" "}
+          Anime no Sekai will let you{" "}
+          <b className="text-neumorph-accent">watch, track, and get notified</b>{" "}
           when anime is out.
         </span>
         <Link passHref href={"/home"}>
@@ -33,7 +31,7 @@ const WelcomePageScreen = () => {
       <div className="app-examples-section mt-14">
         <div className="favorite-anime-example-row">
           <div className="example-img h-[325px]"></div>
-          <div className="flex flex-col justify-center gap-4 h-[325px] max-w-[500px] text-center shadow-neumorphic-inner rounded-[2rem] p-4">
+          <div className="flex flex-col justify-center gap-4 h-[325px] max-w-[500px] text-center shadow-neumorphic-inner rounded-lg p-4">
             <h1 className="text-2xl uppercase inline-flex justify-center items-center gap-2">
               Syncing <GoSync size={28} className="text-neumorph-accent" />
             </h1>
@@ -47,7 +45,7 @@ const WelcomePageScreen = () => {
           </div>
         </div>
         <div className="favorite-anime-example-row">
-          <div className="flex flex-col justify-center gap-4 h-[325px] max-w-[500px] text-center shadow-neumorphic-inner rounded-[2rem] p-4">
+          <div className="flex flex-col justify-center gap-4 h-[325px] max-w-[500px] text-center shadow-neumorphic-inner rounded-lg p-4">
             <h1 className="text-2xl uppercase inline-flex justify-center items-center gap-2">
               Preferences{" "}
               <RiHeartAddFill size={28} className="text-neumorph-accent" />
@@ -55,14 +53,12 @@ const WelcomePageScreen = () => {
             <div className=" rounded-2xl bg-opacity-20 flex flex-col items-center gap-2">
               <span className="whitespace-wrap">
                 <p>
-                  - The button can be used to
-                  <b> add anime to your favorite list.</b>
-                </p>
-                <p>
-                  {" "}
-                  - The button will then turn{" "}
-                  <span className="text-red-700">red</span> indicating current
-                  anime is favorite.
+                  Add{" "}
+                  <b>
+                    anime to your{" "}
+                    <span className="text-neumorph-accent">favorite list</span>
+                  </b>{" "}
+                  and <b>view them on a separate page</b>.
                 </p>
               </span>
             </div>
@@ -71,7 +67,7 @@ const WelcomePageScreen = () => {
         </div>
         <div className="favorite-anime-example-row">
           <div className="example-img h-[325px]"></div>
-          <div className="flex flex-col justify-center gap-4 h-[325px] max-w-[500px] text-center shadow-neumorphic-inner rounded-[2rem] p-4">
+          <div className="flex flex-col justify-center gap-4 h-[325px] max-w-[500px] text-center shadow-neumorphic-inner rounded-lg p-4">
             <h1 className="text-2xl uppercase inline-flex justify-center items-center gap-2">
               Notifications{" "}
               <RiNotification3Fill size={28} className="text-neumorph-accent" />
@@ -79,13 +75,9 @@ const WelcomePageScreen = () => {
             <div className="rounded-2xl bg-opacity-20 flex flex-col items-center gap-2">
               <span className="whitespace-wrap">
                 <p>
-                  - The button can be used to
-                  <b> get notified when anime is out.</b>
-                </p>
-                <p>
-                  - The button will then become
-                  <span className="text-neumorph-accent"> accent color </span>
-                  indicating current anime is favorite.
+                  Subscribe {" "}
+                  <b>and get <span className="text-neumorph-accent">notified weekly </span></b>
+                  when anime is supposed to come out
                 </p>
               </span>
             </div>
