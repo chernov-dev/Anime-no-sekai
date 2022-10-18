@@ -17,7 +17,7 @@ const CompletedTag = ({ totalEpisodes }) => {
         <div className="ep-status">
           <span className="flex items-center gap-1 text-xs md:text-md">
             <p className="whitespace-pre">{totalEpisodes}</p>
-            <BsCloudsFill size={19} />
+            <BsCloudsFill size={15} />
           </span>
         </div>
       )}
@@ -27,7 +27,7 @@ const CompletedTag = ({ totalEpisodes }) => {
 const EpisodeStatusTag = ({ episodeNumber }) => {
   return (
     <div className="ep-status">
-      <span className="flex items-center gap-1 text-xs md:text-sm">
+      <span className="flex items-center gap-1.5 text-xs md:text-sm">
         <p className="whitespace-pre">EP {episodeNumber}</p>
         <GoPlay size={15} />
       </span>
@@ -66,6 +66,7 @@ const AnimeCardFooterExtraDetails = ({
   return (
     <div className="text-neumorph-primary px-2 py-1.5 font-semibold items-center rounded-tl-none rounded-tr-none flex w-full h-full gap-2 justify-between bg-neumorph-primary-dark">
       <div className="skewed-text pl-1">
+        {ratingStatus && anime.rating && <RatingTag rating={anime.rating} />}
         {epStatus && (
           <>
             {anime.status == "Completed" && (
@@ -76,7 +77,6 @@ const AnimeCardFooterExtraDetails = ({
             )}
           </>
         )}
-        {ratingStatus && anime.rating && <RatingTag rating={anime.rating} />}
       </div>
       <p className="text-neumorph-secondary font-bold text-sm lg:text-base">
         {anime.type}

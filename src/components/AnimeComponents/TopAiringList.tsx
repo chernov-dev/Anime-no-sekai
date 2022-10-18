@@ -22,8 +22,8 @@ const TopAiringList = () => {
 
   if (isAiringSuccess) {
     return (
-      <>
-        <div className="section-heading pl-2">Top airing anime</div>
+      <div className="flex flex-col">
+        <div className="section-heading pl-2 mb-2">Top airing anime</div>
         <div className="neumorphic-list">
           {topAiring.map((anime, index) => {
             return (
@@ -53,7 +53,7 @@ const TopAiringList = () => {
             );
           })}
         </div>
-      </>
+      </div>
     );
   }
 };

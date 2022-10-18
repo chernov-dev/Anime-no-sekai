@@ -23,12 +23,12 @@ const Item = ({ anime }: { anime: IAnimeResult }) => {
   return (
     <div className="animeCard flex-shrink-0 pt-8">
       <div
-        className="animeCard-content p-2 gap-3 "
+        className="animeCard-content p-2 gap-3"
         onClick={() => {
           router.push(`/anime/${anime.id}`);
         }}
       >
-        <div className="animeCard-header h-[60vh] flex-col sm:flex-row ">
+        <div className="animeCard-header h-[60vh] flex-col sm:flex-row">
           <div className="p-3 pb-1 rounded-[1rem] relative h-full aspect-[2/3]">
             <Image
               src={anime.image}
@@ -47,14 +47,23 @@ const Item = ({ anime }: { anime: IAnimeResult }) => {
               <h1 className="anime-home__title mb-1">{title}</h1>
               <p className="anime-subtitle">{anime.title?.native}</p>
             </div>
-            <div className="h-full flex flex-col justify-end text-neumorph-secondary shadow-neumorphic-inner text-sm  border-[1px] border-black dark:border-white border-opacity-5 dark:border-opacity-5 overflow-hidden rounded-xl p-4 font-semibold w-full gap-2 bg-neumorph-primary">
+            <div className="h-full flex flex-col text-neumorph-secondary shadow-neumorphic-inner text-sm border-[1px] border-black dark:border-white border-opacity-5 dark:border-opacity-5 rounded-xl p-4 font-semibold w-full gap-2 bg-neumorph-primary">
+              {anime.description && (
+                <div className="h-40 text-ellipsis overflow-hidden">
+                  {anime.description}
+                </div>
+              )}
               <div className="flex gap-2">
-                <span className="whitespace-nowrap">
-                  Episode {anime.episodeNumber.toString()}:
-                </span>
-                <span className="line-clamp-1 text-neumorph-accent whitespace-nowrap">
-                  {anime.episodeTitle.toString()}
-                </span>
+                {anime.episodeNumber && (
+                  <span className="whitespace-nowrap">
+                    Episode {anime.episodeNumber.toString()}:
+                  </span>
+                )}
+                {anime.episodeTitle && (
+                  <span className="line-clamp-1 text-neumorph-accent whitespace-nowrap">
+                    {anime.episodeTitle.toString()}
+                  </span>
+                )}
               </div>
               <div className="flex font-semibold">Type: {anime.type}</div>
               {anime.rating && (
@@ -65,9 +74,9 @@ const Item = ({ anime }: { anime: IAnimeResult }) => {
                   </span>
                 </div>
               )}
-              <div className="skewed-text opacity-100 flex-row flex-wrap h-fit">
-                <div className="flex ml-2 neumorphic-genre">
-                  <span className="">Genres</span>
+              <div className="skewed-text ml-1 opacity-100 flex-row flex-wrap h-fit">
+                <div className="flex bg-neumorph-primary-darkneumorphic-genre mr-1">
+                  <span className="text-xs lg:text-sm">Genres</span>
                 </div>
                 {anime.genres?.map((genre, index) => (
                   <div

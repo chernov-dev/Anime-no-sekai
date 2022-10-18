@@ -12,7 +12,7 @@ const UpcomingAnimeCard = ({ anime }: { anime: any }) => {
     let title = anime.title;
     const router = useRouter();
   
-    let tooltip = `${title} \n Episode ${anime.episodeNumber} - ${anime.episodeTitle}`;
+    let tooltip = `${title}`;
     let imageUrl = anime.image ?? anime.images.jpg.image_url;
   
     const addFavorite = useAddFavorite(anime.id);
@@ -25,7 +25,7 @@ const UpcomingAnimeCard = ({ anime }: { anime: any }) => {
     }, [anime.id, favorites]);
   
     return (
-      <div className="anime-home-item__wrapper" title={tooltip}>
+      <div className="anime-upcoming-item__wrapper" title={tooltip}>
         <div className="anime-home__grid-item">
           <div className="anime-home__grid-item__header">
             <div className="anime-img rounded-bl-none rounded-br-none">
@@ -39,8 +39,10 @@ const UpcomingAnimeCard = ({ anime }: { anime: any }) => {
               <Image
                 src={imageUrl}
                 alt="anime poster"
-                height={450}
+                height={150}
                 width={345}
+                objectFit="cover"
+                objectPosition={"50% 0%"}
                 layout="responsive"
                 className="p-1 filter dark:brightness-[90%]"
                 onClick={() => {
@@ -52,10 +54,10 @@ const UpcomingAnimeCard = ({ anime }: { anime: any }) => {
                 )}`}
               />
             </div>
-          <UpcomingAnimeCardFooter type={anime.type} popularity={anime.popularity}/>
+          <UpcomingAnimeCardFooter type={anime.type} popularity={anime.popularity} year={anime.year} favorites={anime.favorites}/>
           </div>
           <div className="anime-home__grid-item__title py-2 ">
-            <p className="line-clamp-2 leading-[1.1] text-neumorph-secondary">
+            <p className="line-clamp-1 leading-[1.1] text-neumorph-secondary">
               {title}
             </p>
             <p className="text-neumorph-secondary">

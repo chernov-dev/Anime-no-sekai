@@ -38,14 +38,6 @@ const PopularAnimeScreen = ({
         <div className="anime-home__container">
           <div className="anime-home__header">
             <p className="text-xl md:text-2xl">{pageTitle}</p>
-            <div className="flex items-center md:w-auto gap-3">
-              {pagination && paginate && (
-                <HomePagePagination
-                  paginate={paginate}
-                  pagination={pagination}
-                />
-              )}
-            </div>
           </div>
           {(!hasWindow || !anime) && <Spinner />}
           {anime && <AnimeGridLayoutView anime={anime} bullets={true} />}
@@ -63,10 +55,9 @@ const PopularAnimeScreen = ({
           {children}
         </div>
         <aside className="anime-home__sidebar">
-          <div className="text-neumorph-secondary text-xl md:text-2xl pl-2">
-            Trending anime
+          <div className="shadow-neumorphic neumorphic-border p-4 rounded-[inherit] gap-2">
+            <TopAiringList />
           </div>
-          <TopAiringList />
         </aside>
       </div>
     </>

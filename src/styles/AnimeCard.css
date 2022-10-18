@@ -51,7 +51,7 @@
   width: 100%;
   border-radius: 0.75rem;
   background-color: var(--neumorph-primary);
-  @apply shadow-neumorphic border-[1px] border-black border-opacity-10;
+  @apply shadow-neumorphic ring-1 ring-black dark:ring-white ring-opacity-10 dark:ring-opacity-10;
 }
 
 .animeCard-header__content {

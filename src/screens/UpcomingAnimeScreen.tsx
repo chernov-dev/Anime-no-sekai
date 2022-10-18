@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
 import { animeApi } from "../api/Anime_API";
 import UpcomingAnimeCard from "../components/AnimeComponents/AnimeUpcomingCard/UpcomingAnimeCard";
+import TopAiringList from "../components/AnimeComponents/TopAiringList";
 import PageLoader from "../components/Shared/PageLoader";
 import Spinner from "../components/Shared/Spinner";
 import { IAnimeResult } from "../types/Anime";
@@ -21,22 +22,24 @@ const UpcomingAnimeScreen = () => {
     return setCurrentPage(pageNumber);
   };
   return (
-    <div className="flex flex-col max-w-[1000px] items-center">
-      <p className="text-xl md:text-2xl text-neumorph-secondary py-1">
-        Upcoming
-      </p>
-      <div className={`anime-home__grid`}>
-        {isLoading && <Spinner />}
-        {data &&
-          data.data.map((anime: IAnimeResult, index) => (
-            <UpcomingAnimeCard key={`${anime.mal_id}`} anime={anime} />
-          ))}
+    <div className="anime-home">
+      <div className="anime-home__container">
+        <div className="anime-home__header">
+          <p className="text-xl md:text-2xl">Upcoming</p>
+        </div>
+        <div className={`anime-home__grid`}>
+          {isLoading && <Spinner />}
+          {data &&
+            data.data.map((anime: IAnimeResult, index) => (
+              <UpcomingAnimeCard key={`${anime.mal_id}`} anime={anime} />
+            ))}
+        </div>
       </div>
-      {/* <AnimeGridLayoutView
-            anime={upcomingAnime.data}
-            ratingStatus={false}
-            epStatus={false}
-          /> */}
+      <aside className="anime-home__sidebar">
+        <div className="shadow-neumorphic neumorphic-border p-4 rounded-[inherit] gap-2">
+          <TopAiringList />
+        </div>
+      </aside>
     </div>
   );
 };

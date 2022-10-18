@@ -271,6 +271,20 @@
   justify-content: flex-start;
 }
 
+.anime-home__grid > div {
+  transition: scale 350ms ease, opacity 350ms linear;
+}
+
+.anime-home__grid .anime-home-item__wrapper {
+  @apply w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 p-[0.5rem];
+}
+.anime-home__grid .anime-upcoming-item__wrapper {
+  @apply text-center w-full sm:w-1/2 lg:w-1/3 p-[0.5rem];
+}
+.anime-home__grid > div:hover {
+  scale: 0.95;
+}
+
 .anime-status-overlay {
   @apply text-neumorph-accent bg-black bg-opacity-50 p-1;
   position: absolute;
@@ -284,20 +298,10 @@
   left: 0;
 }
 
-.anime-home__grid:has(.anime-home-item__wrapper:hover)
-  .anime-home-item__wrapper:hover {
-  scale: 0.95;
-}
-
 .anime-home__fullWidth {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
-}
-
-.anime-home__grid .anime-home-item__wrapper {
-  @apply w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 p-[0.5rem];
-  transition: scale 350ms ease, opacity 350ms linear;
 }
 
 .anime-home__grid-item {
@@ -348,10 +352,10 @@
 }
 
 .skewed-text div:first-child {
-  @apply bg-neumorph-accent ring-0;
+  @apply bg-neumorph-secondary ring-0;
 }
 .skewed-text div:first-child span {
-  margin-left: -0.35rem;
+  margin-right: 0.25rem;
 }
 
 .skewed-text div:first-child:before {
@@ -375,9 +379,13 @@
 }
 
 .rating-status {
-  @apply bg-neumorph-secondary text-neumorph-primary !important;
+  @apply bg-neumorph-accent text-neumorph-primary !important;
 }
 
 .ep-status {
-  @apply bg-neumorph-accent text-neumorph-primary !important;
+  @apply bg-neumorph-secondary text-neumorph-primary !important;
+}
+
+.popularity-status {
+  @apply bg-neumorph-accent !important;
 }

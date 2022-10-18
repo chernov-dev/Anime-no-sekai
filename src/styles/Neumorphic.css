@@ -310,6 +310,9 @@
 }
 
 .neumorphic-genre {
+  @apply bg-neumorph-primary-dark !important;
+}
+.neumorphic-genre {
   @apply shadow-neumorphic ring-1 ring-black dark:ring-white ring-opacity-10 dark:ring-opacity-10;
 }
 .neumorphic-genre span {
@@ -416,7 +419,7 @@
   align-items: center;
 }
 .neumorphic-search > input {
-  @apply text-neumorph-secondary text-base md:text-lg xl:text-xl shadow-neumorphic-inner border-[1px] border-black dark:border-white border-opacity-5 dark:border-opacity-5;
+  @apply text-neumorph-secondary text-base md:text-lg xl:text-xl shadow-neumorphic ring-1 ring-black dark:ring-white ring-opacity-10 dark:ring-opacity-10;
   width: 100%;
   min-height: 2.5rem;
   border: none;
@@ -427,7 +430,7 @@
 }
 .neumorphic-search > input:focus {
   outline: none;
-  @apply shadow-neumorphic ring-[1px] ring-black dark:ring-white ring-opacity-10 dark:ring-opacity-10;
+  @apply shadow-neumorphic-inner ring-1 ring-black dark:ring-white ring-opacity-10 dark:ring-opacity-10;
 }
 .neumorphic-search input:focus + .neumorphic-search__icon {
   @apply text-neumorph-accent;

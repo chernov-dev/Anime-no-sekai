@@ -94,7 +94,7 @@ const AnimeHome = ({
           pauseOnHover
         />
         <aside className="anime-home__sidebar">
-          <div className="shadow-neumorphic neumorphic-border p-4 rounded-[inherit] flex flex-col gap-2">
+          <div className="shadow-neumorphic neumorphic-border p-4 rounded-[inherit] gap-2">
             <TopAiringList />
           </div>
         </aside>

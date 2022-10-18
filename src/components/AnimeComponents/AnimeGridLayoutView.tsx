@@ -31,7 +31,7 @@ const Item = ({
     anime.title.english ?? anime.title.userPreferred ?? anime.title.romaji;
   const router = useRouter();
 
-  let tooltip = `${title} \n Episode ${anime.episodeNumber} - ${anime.episodeTitle}`;
+  let tooltip = `${title}`;
   let imageUrl = anime.image;
 
   const addFavorite = useAddFavorite(anime.id);

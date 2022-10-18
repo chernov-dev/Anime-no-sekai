@@ -75,7 +75,7 @@ const AnimeHeroSwiper = ({
                       objectFit="cover"
                       objectPosition={"50% 10%"}
                       blurDataURL={`data:image/svg+xml;base64,${toBase64(
-                        shimmer(700, 300)
+                        shimmer(800, 400)
                       )}`}
                     />
                   </div>
