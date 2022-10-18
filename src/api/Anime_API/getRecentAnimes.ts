@@ -8,7 +8,7 @@ export const getRecentAnimes = async (currentPage = 0) => {
   const response = await axios.get(
     `${CONSUMET_URL}/meta/anilist/recent-episodes`, 
     {
-      params: {perPage: isMobile ? 11 : 10, page: currentPage},
+      params: {perPage: 10, page: currentPage},
     }
   );
   const anime = response.data.results as IAnimeResult[];
