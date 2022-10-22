@@ -22,6 +22,7 @@ const HomeScreen = () => {
     getRecentAnimes(currentPage)
   );
 
+  //Preloading next page
   const nextPage = useMemo(() => currentPage + 1, [currentPage]);
   const { data: nextPageData } = useQuery(["anime-recent", nextPage], () =>
     getRecentAnimes(nextPage)

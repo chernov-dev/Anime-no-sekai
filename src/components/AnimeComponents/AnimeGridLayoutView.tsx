@@ -11,8 +11,8 @@ import useRemoveFavorite from "../../hooks/useRemoveFavorite";
 import { IAnimeResult } from "../../types/Anime";
 import Spinner from "../Shared/Spinner";
 import { shimmer, toBase64 } from "../utils/shimmer";
-import AnimeCardFooterExtraDetails from "./AnimeCardFooterExtraDetails";
-import AnimeExtraDetails from "./AnimeCardFooterExtraDetails";
+import AnimeCardFooterExtraDetails from "./AnimeCard/AnimeCardFooterExtraDetails";
+import AnimeExtraDetails from "./AnimeCard/AnimeCardFooterExtraDetails";
 
 const Item = ({
   anime,

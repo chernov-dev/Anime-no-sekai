@@ -20,7 +20,7 @@ export const UserPreferencesContext = React.createContext({});
 const UserPreferencesProvider = ({ initialTheme, children }) => {
   // User preferences states
   const [favorite, setFavorite] = useLocalStorage("ans-favorite", []);
-  const [email, setEmail] = useLocalStorage("ans-email", "");
+  const [user, setUser] = useLocalStorage("ans-user__cached");
   const [layout, setLayout] = useLocalStorage("ans-layout", "grid");
   const [theme, setTheme] = useState(getInitialTheme);
 
@@ -64,8 +64,8 @@ const UserPreferencesProvider = ({ initialTheme, children }) => {
       value={{
         favorite,
         setFavorite,
-        email,
-        setEmail,
+        user,
+        setUser,
         theme,
         setTheme,
         layout,

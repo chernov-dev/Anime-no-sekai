@@ -7,7 +7,7 @@ import useLogOut from "../../hooks/useLogout";
 import useUser from "../../hooks/useUser";
 import SettingsModal from "../../components/Modals/SettingsModal";
 import { AiFillHeart, AiFillSetting } from "react-icons/ai";
-
+import Spinner from "../Shared/Spinner";
 
 const UserDropdownMenu = () => {
   const router = useRouter();
@@ -31,7 +31,7 @@ const UserDropdownMenu = () => {
       <Menu as="div" className="relative inline-block text-left">
         <div>
           <Menu.Button className="neumorphic-btn secondary">
-            <CgProfile size={24} />
+            {user.isLoading ? <Spinner size={20} /> : <CgProfile size={24} />}
           </Menu.Button>
         </div>
         <Transition
@@ -57,7 +57,8 @@ const UserDropdownMenu = () => {
                         } group flex gap-2 w-full items-center rounded-md px-2 py-2 text-sm md:text-base`}
                         onClick={() => {
                           location.href = "/favourite";
-                        }}>
+                        }}
+                      >
                         <AiFillHeart size={20} />
                         My favorites
                       </button>
@@ -90,7 +91,13 @@ const UserDropdownMenu = () => {
                             ? "bg-gray-400 bg-opacity-20 text-neumorph-accent"
                             : "text-neumorph-secondary "
                         } group flex gap-2 w-full items-center rounded-md px-2 py-2 text-sm md:text-base`}
-                        onClick={() => logoutMutation.mutate()}
+                        onClick={() => {
+                          localStorage.setItem(
+                            "ans-user__cached",
+                            JSON.stringify(user.data)
+                          );
+                          logoutMutation.mutate();
+                        }}
                       >
                         <CgLogOut size={20} />
                         Logout

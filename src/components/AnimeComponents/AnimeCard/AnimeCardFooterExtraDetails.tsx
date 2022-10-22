@@ -8,7 +8,7 @@ import {
   MdOutlineCloudDone,
   MdOutlineDone,
 } from "react-icons/md";
-import { IAnimeResult } from "../../types/Anime";
+import { IAnimeResult } from "../../../types/Anime";
 
 const CompletedTag = ({ totalEpisodes }) => {
   return (

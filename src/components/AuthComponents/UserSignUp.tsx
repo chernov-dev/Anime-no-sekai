@@ -39,7 +39,7 @@ const UserSignUp = ({ handleSubmit, setEmail, setPassword, setUsername }) => {
           Sign up
         </button>
       </form>
-      <Link href={"/login"}>
+      <Link href={"/auth/login"}>
         <a className="text-sm text-center">Already have an account?</a>
       </Link>
     </>

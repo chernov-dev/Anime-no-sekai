@@ -1,24 +1,27 @@
 import Link from "next/link";
 import React from "react";
+import { IUserType } from "../../types/User";
 import Spinner from "../Shared/Spinner";
 
 const UserIsBackLogin = ({
-  name,
+  user,
   onWrongUserButtonClick,
+  setEmail,
   setPassword,
   isLoading,
   onSubmit,
 }: {
-  name?: string;
+  user: IUserType;
   onWrongUserButtonClick: () => void;
   isLoading: boolean;
+  setEmail: React.Dispatch<React.SetStateAction<string>>;
   setPassword: React.Dispatch<React.SetStateAction<string>>;
   onSubmit: any;
 }) => {
   return (
     <>
       <div className="auth-header flex flex-col items-center gap-1 text-2xl">
-        Welcome back {name ?? ""}
+        Welcome back {user.username ?? ""}
         <p className="text-base opacity-75">Continue where you left off</p>
       </div>
       <form
@@ -34,12 +37,29 @@ const UserIsBackLogin = ({
           onChange={(e) => setPassword(e.target.value)}
         />
         <Link href={"/forgot"}>
-          <a className="text-sm float-left pl-3 underline opacity-70">Forgot password?</a>
+          <a className="text-sm float-left pl-3 underline opacity-70">
+            Forgot password?
+          </a>
         </Link>
-        {isLoading ? <Spinner/> : <button className="neumorphic-btn secondary" type="button" onClick={() => onSubmit()}>Log in</button>}
+        {isLoading ? (
+          <Spinner />
+        ) : (
+          <button
+            className="neumorphic-btn secondary"
+            type="button"
+            onClick={() => {
+              setEmail(user.email);
+              setTimeout(() => {
+                onSubmit();
+              }, 0)
+            }}
+          >
+            Log in
+          </button>
+        )}
       </form>
       <button onClick={onWrongUserButtonClick}>
-        <a className="text-sm text-center underline opacity-70">Not {name}?</a>
+        <a className="text-sm text-center underline opacity-70">Not {user.username}?</a>
       </button>
     </>
   );

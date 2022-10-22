@@ -1,28 +1,41 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import AnsSvgLogo from "../../../../public/AnsSvgLogo";
 import NewUserLogin from "../../../components/AuthComponents/NewUserLogin";
 import UserIsBackLogin from "../../../components/AuthComponents/UserIsBackLogin";
+import Spinner from "../../../components/Shared/Spinner";
 import { UserPreferencesContext } from "../../../context/UserPreferencesProvider";
 import useLogin from "../../../hooks/useLogin";
+import useUser from "../../../hooks/useUser";
+import supabase from "../../../supabase/supabase-js";
 
 const LoginPage = () => {
   let router = useRouter();
+
   const context = useContext(UserPreferencesContext);
-  const { email: prefEmail, setEmail: setPrefEmail }: any = context;
+  const { user: cachedUser, setUser: setCachedUser }: any = context;
+
+  const [loading,setLoading] = useState(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  useEffect(() => {
+    //Making sure local storage is available
+    if (typeof window !== "undefined") {
+      setLoading(false)
+    }
+  }, [])
 
   const loginMutation = useLogin({ email, password });
 
   if (loginMutation.isSuccess) {
-    router.push("/home");
-    setPrefEmail(email)
+    location.href = ("/home");
+   
   }
 
   const handleWrongUserButtonClick = () => {
-    setPrefEmail(null);
+    setCachedUser(null);
   };
 
   return (
@@ -46,17 +59,19 @@ const LoginPage = () => {
                 color="black"
               />
             </div>
-            <div className="flex flex-col gap-5 p-4 px-8 pt-0 mx-8 max-w-[550px] w-full">
-              {prefEmail && (
+            {loading && <div className="my-2"><Spinner/></div>}
+           {!loading && <div className="flex flex-col gap-5 p-4 px-8 pt-0 mx-8 max-w-[550px] w-full">
+              {cachedUser && (
                 <UserIsBackLogin
-                  name={`${prefEmail.split("@")[0]}`}
+                  user={cachedUser}
+                  setEmail={setEmail}
                   onWrongUserButtonClick={handleWrongUserButtonClick}
                   setPassword={setPassword}
                   isLoading={loginMutation.isLoading}
                   onSubmit={loginMutation.mutate}
                 />
               )}
-              {!prefEmail && (
+              {!cachedUser && (
                 <NewUserLogin
                   setEmail={setEmail}
                   setPassword={setPassword}
@@ -75,7 +90,7 @@ const LoginPage = () => {
                 <FaUserTimes size={22} />
                 <p>Sign in anonymously</p>
               </NeumorphismButton> */}
-            </div>
+            </div>}
             {loginMutation.isError && (
               <p className="text-sm mb-8 text-red-500">
                 {//@ts-ignore
