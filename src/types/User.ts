@@ -3,4 +3,6 @@ export type IUserType = {
   created_at: Date;
   username: string;
   email: string;
+  theme: "light" | "dark";
+  layout: "fullwidth" | "grid" | string;
 };

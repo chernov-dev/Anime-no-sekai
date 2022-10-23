@@ -3,8 +3,6 @@ import { BsHeartFill } from "react-icons/bs";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { RiNotification3Fill } from "react-icons/ri";
-import { PuffLoader } from "react-spinners";
-import Spinner from "./Spinner";
 
 const ShareOptionsContainer = ({
   onHeartClick = (e) => e.stopPropagation(),
@@ -13,20 +11,16 @@ const ShareOptionsContainer = ({
 }) => {
   return (
     <>
-      {isFavoritesLoading ? (
-        <Spinner />
-      ) : (
-        <button
-          disabled={isFavoritesLoading}
-          className={`neumorphic-icon ${liked ? "active" : ""}`}
-          onClick={onHeartClick}
-        >
-          <BsHeartFill
-            color={liked ? "var(--neumorph-accent)" : "inherit"}
-            size={15}
-          ></BsHeartFill>
-        </button>
-      )}
+      <button
+        disabled={isFavoritesLoading}
+        className={`neumorphic-icon ${liked ? "active" : ""}`}
+        onClick={onHeartClick}
+      >
+        <BsHeartFill
+          color={liked ? "var(--neumorph-accent)" : "inherit"}
+          size={15}
+        ></BsHeartFill>
+      </button>
       <button className="neumorphic-icon" onClick={(e) => e.stopPropagation()}>
         <RiNotification3Fill size={15} color="inherit" />
       </button>

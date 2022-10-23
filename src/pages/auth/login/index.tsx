@@ -5,16 +5,14 @@ import AnsSvgLogo from "../../../../public/AnsSvgLogo";
 import NewUserLogin from "../../../components/AuthComponents/NewUserLogin";
 import UserIsBackLogin from "../../../components/AuthComponents/UserIsBackLogin";
 import Spinner from "../../../components/Shared/Spinner";
-import { UserPreferencesContext } from "../../../context/UserPreferencesProvider";
+import { UserPreferencesContext, useUserPreferences } from "../../../context/UserPreferencesProvider";
 import useLogin from "../../../hooks/useLogin";
-import useUser from "../../../hooks/useUser";
-import supabase from "../../../supabase/supabase-js";
+
 
 const LoginPage = () => {
   let router = useRouter();
 
-  const context = useContext(UserPreferencesContext);
-  const { user: cachedUser, setUser: setCachedUser }: any = context;
+  const { user: cachedUser, setUser: setCachedUser } = useUserPreferences();
 
   const [loading,setLoading] = useState(true);
   const [email, setEmail] = useState("");

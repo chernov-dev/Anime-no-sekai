@@ -1,27 +1,17 @@
 import { Fragment } from "react";
-import { useContext } from "react";
-import { IoMdClose } from "react-icons/io";
 import { MdDarkMode } from "react-icons/md";
 import { MdOutlineDarkMode } from "react-icons/md";
 import { IoSettingsSharp } from "react-icons/io5";
-import Modal from "react-modal";
-import {
-  UserPreferencesContext,
-  useUserPreferences,
-} from "../../context/UserPreferencesProvider";
+import { useUserPreferences } from "../../context/UserPreferencesProvider";
 import { Dialog, Transition } from "@headlessui/react";
+import useUpdateTheme from "../../hooks/useUpdateTheme";
 
 const SettingsModal = ({ isOpen, onOpen, onClose }) => {
-  // Make sure to bind modal to your appElement (https://reactcommunity.org/react-modal/accessibility/)
-  // Modal.setAppElement("#__next");
-  Modal.setAppElement(
-    typeof window !== "undefined" && document.getElementById("__next")
-  );
-
   const { email, setEmail, theme, setTheme } = useUserPreferences();
+  const updateTheme = useUpdateTheme();
 
   const toggleDarkMode = () => {
-    setTheme(theme === "dark" ? "light" : "dark");
+    updateTheme.mutate();
   };
 
   return (

@@ -1,16 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { BsHeartFill } from "react-icons/bs";
 import AnimeFavoriteList from "../components/AnimeComponents/AnimeFavoriteList";
 import AnimeWeeklyNotificationsComponent from "../components/AnimeComponents/AnimeWeeklyNotificationsComponent";
-import PageLoader from "../components/Shared/PageLoader";
 import ShareOptionsContainer from "../components/Shared/ShareOptionsContainer";
 import UserProfileInfoComponent from "../components/UserComponents/UserProfileInfoComponent";
-import useFavorites from "../hooks/useFavorites";
+import { UserPreferencesContext } from "../context/UserPreferencesProvider";
 import useUser from "../hooks/useUser";
 import { IAnimeInfo } from "../types/Anime";
 
-function recommendedBasedOnFavorites(favoriteList: IAnimeInfo[], quantity) {
-  let recommendedBasedOnFavorites = [];
+function recommendedBasedOnfavorite(favoriteList: IAnimeInfo[], quantity) {
+  let recommendedBasedOnfavorite = [];
 
   for (let i = 0; i < favoriteList.length; i++) {
     let recommendations = favoriteList[i].recommendations;
@@ -18,47 +17,41 @@ function recommendedBasedOnFavorites(favoriteList: IAnimeInfo[], quantity) {
       Math.random() * favoriteList[i].recommendations.length
     );
     let recommended = recommendations[randomRecommendation];
-    if (!recommendedBasedOnFavorites.includes(recommended)) {
-      recommendedBasedOnFavorites.push(recommended);
+    if (!recommendedBasedOnfavorite.includes(recommended)) {
+      recommendedBasedOnfavorite.push(recommended);
     } else {
       --i;
     }
   }
-  return recommendedBasedOnFavorites;
+  return recommendedBasedOnfavorite;
 }
 
 const UserScreen = () => {
   const [recommended, setRecommended] = useState([]);
 
-  const { data: favorites, isError, isSuccess, isLoading } = useFavorites();
+  const { favorite } = useContext(UserPreferencesContext);
   const user = useUser();
   const [ongoing, setOngoing] = useState([]);
   const [completed, setCompleted] = useState([]);
 
   useEffect(() => {
-    if (isSuccess) {
-      setRecommended(recommendedBasedOnFavorites(favorites, 10));
+    setRecommended(recommendedBasedOnfavorite(favorite, 10));
 
-      setOngoing((prev) =>
-        favorites.filter((anime) => {
-          if (anime.status) return anime.status == "Ongoing";
-        })
-      );
-      setCompleted((prev) =>
-        favorites.filter((anime) => {
-          if (anime.status) return anime.status == "Completed";
-        })
-      );
-    }
-  }, [favorites, isSuccess]);
+    setOngoing((prev) =>
+      favorite.filter((anime) => {
+        if (anime.status) return anime.status == "Ongoing";
+      })
+    );
+    setCompleted((prev) =>
+      favorite.filter((anime) => {
+        if (anime.status) return anime.status == "Completed";
+      })
+    );
+  }, [favorite]);
 
   const [enabled, setEnabled] = useState(false);
 
-  if (isLoading) {
-    return <PageLoader />;
-  }
-
-  if ((isSuccess && !favorites.length) || isError) {
+  if ((!favorite.length)) {
     return (
       <div className="flex flex-wrap items-center justify-center gap-2">
         <b>No anime found</b>, add them by touching
@@ -73,16 +66,14 @@ const UserScreen = () => {
 
   return (
     <>
-      {isSuccess && (
-        <>
           <div className="flex flex-col md:flex-row justify-center">
             <AnimeFavoriteList
-              anime={favorites}
+              anime={favorite}
               ongoing={ongoing}
               completed={completed}
             />
             <aside className="flex w-full md:w-[35%] lg:w-[40%] flex-col gap-4 p-3">
-              <UserProfileInfoComponent favorites={favorites} user={user} />
+              <UserProfileInfoComponent favorites={favorite} user={user} />
               <AnimeWeeklyNotificationsComponent
                 enabled={enabled}
                 setEnabled={setEnabled}
@@ -93,8 +84,6 @@ const UserScreen = () => {
             )} */}
             </aside>
           </div>
-        </>
-      )}
     </>
   );
 };

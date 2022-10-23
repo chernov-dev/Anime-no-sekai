@@ -1,18 +1,14 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { useState, useEffect } from "react";
-import { AiFillLike } from "react-icons/ai";
+import { useState, useEffect, useContext } from "react";
 import { BsHeart, BsHeartFill } from "react-icons/bs";
-import { FcLike } from "react-icons/fc";
-import { toast, ToastContainer } from "react-toastify";
+import UserPreferencesProvider, { UserPreferencesContext, useUserPreferences } from "../../context/UserPreferencesProvider";
 import useAddFavorite from "../../hooks/useAddFavorite";
-import useFavorites from "../../hooks/useFavorites";
 import useRemoveFavorite from "../../hooks/useRemoveFavorite";
 import { IAnimeResult } from "../../types/Anime";
 import Spinner from "../Shared/Spinner";
 import { shimmer, toBase64 } from "../utils/shimmer";
 import AnimeCardFooterExtraDetails from "./AnimeCard/AnimeCardFooterExtraDetails";
-import AnimeExtraDetails from "./AnimeCard/AnimeCardFooterExtraDetails";
 
 const Item = ({
   anime,
@@ -34,15 +30,16 @@ const Item = ({
   let tooltip = `${title}`;
   let imageUrl = anime.image;
 
+  const {favorite} = useUserPreferences();
   const addFavorite = useAddFavorite(anime.id);
   const removeFavorite = useRemoveFavorite(anime.id);
-  const { data: favorites, isLoading: isFavoritesLoading } = useFavorites();
+
 
   const [liked, setLiked] = useState(false);
 
   useEffect(() => {
-    setLiked(favorites?.some((e) => e.id === anime.id));
-  }, [anime.id, favorites]);
+    setLiked(favorite?.some((e) => e.id === anime.id));
+  }, [anime.id, favorite]);
 
   return (
     <div className="anime-home-item__wrapper" title={tooltip}>
@@ -91,7 +88,7 @@ const Item = ({
               width={205}
               layout="responsive"
               className="p-1 filter dark:brightness-[90%]"
-              onClick={() => {
+              onAuxClick={() => {
                 location.href = `/anime/${anime.id}`;
               }}
               placeholder="blur"

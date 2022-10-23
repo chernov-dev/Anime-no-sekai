@@ -33,16 +33,16 @@ const createUser = async (user: User) => {
 export default function useCreateUser(user: User) {
   return useMutation(() => createUser(user), {
     onSuccess: async (data) => {
-      const { data: insertData, error: insertError } = await supabase
+      const { data: insertData, error: insertDataError } = await supabase
         .from("users")
         .insert({
           email: user.email,
           username: user.username,
           id: data.user.id,
         });
-
-      if (insertError) {
-        throw insertError.message;
+     
+      if (insertDataError) {
+        throw insertDataError.message;
       }
 
       return insertData;

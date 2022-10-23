@@ -20,6 +20,8 @@ import AnimeGridLayoutView from "./AnimeGridLayoutView";
 import AnimeHomeFilter from "./AnimeHomeFilter";
 import TopAiringList from "./TopAiringList";
 import HomePagePagination from "./HomePagePagination";
+import useUpdateLayout from "../../hooks/useUpdateLayout";
+import { type } from "os";
 
 const AnimeHome = ({
   anime,
@@ -39,6 +41,12 @@ const AnimeHome = ({
   const isFullWidthLayout = layout == "fullWidth" ? true : false;
   const [hasWindow, setHasWindow] = useState(false);
 
+  const [selectedLayoutIndex, setSelectedLayoutIndex] = useState(
+    layout === "grid" ? 0 : 1
+  );
+
+  const updateLayout = useUpdateLayout();
+
   useEffect(() => {
     if (typeof window !== "undefined") {
       setHasWindow(true);
@@ -53,7 +61,13 @@ const AnimeHome = ({
     <>
       <div className="anime-home">
         <div className="anime-home__container">
-          <Tab.Group>
+          <Tab.Group
+            selectedIndex={selectedLayoutIndex}
+            onChange={(i) => {
+              setSelectedLayoutIndex(i);
+              updateLayout.mutate();
+            }}
+          >
             <div className="anime-home__header">
               <p className="text-xl md:text-2xl">{pageTitle}</p>
               <div className="flex items-center md:w-auto gap-3">

@@ -2,8 +2,10 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react'
 import { AiFillLike } from 'react-icons/ai';
+import { BsHeartFill } from 'react-icons/bs';
 import useAddFavorite from '../../../hooks/useAddFavorite';
 import useFavorites from '../../../hooks/useFavorites';
+import useRemoveFavorite from '../../../hooks/useRemoveFavorite';
 import { shimmer, toBase64 } from '../../utils/shimmer';
 import UpcomingAnimeCardFooter from './UpcomingAnimeCardFooter';
 
@@ -15,27 +17,11 @@ const UpcomingAnimeCard = ({ anime }: { anime: any }) => {
     let tooltip = `${title}`;
     let imageUrl = anime.image ?? anime.images.jpg.image_url;
   
-    const addFavorite = useAddFavorite(anime.id);
-    const { data: favorites, isLoading: isFavoritesLoading } = useFavorites();
-  
-    const [liked, setLiked] = useState(false);
-  
-    useEffect(() => {
-      setLiked(favorites?.some((e) => e.id === anime.id));
-    }, [anime.id, favorites]);
-  
     return (
       <div className="anime-upcoming-item__wrapper" title={tooltip}>
         <div className="anime-home__grid-item">
           <div className="anime-home__grid-item__header">
             <div className="anime-img rounded-bl-none rounded-br-none">
-              {liked && (
-                <div className="anime-status-overlay">
-                  <div className={`${liked ? "block" : "hidden"} `}>
-                    <AiFillLike className={"w-full h-full p-1.5"} />
-                  </div>
-                </div>  
-              )}
               <Image
                 src={imageUrl}
                 alt="anime poster"
