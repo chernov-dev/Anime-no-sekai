@@ -20,25 +20,27 @@ export function getInitialTheme() {
 }
 
 export type IUserPreferencesContextType = {
-  favorite: Array<IAnimeResult>,
-  setFavorite: React.Dispatch<React.SetStateAction<IAnimeResult>>,
-  user: IUserType,
-  setUser: React.Dispatch<React.SetStateAction<IUserType>>,
-  theme: string,
-  setTheme: React.Dispatch<React.SetStateAction<string>>,
-  layout: string,
-  setLayout: React.Dispatch<React.SetStateAction<string>>,
-}
+  favorite: Array<IAnimeResult>;
+  setFavorite: React.Dispatch<React.SetStateAction<IAnimeResult[]>>;
+  user: IUserType;
+  setUser: React.Dispatch<React.SetStateAction<IUserType>>;
+  theme: string;
+  setTheme: React.Dispatch<React.SetStateAction<string>>;
+  layout: string;
+  setLayout: React.Dispatch<React.SetStateAction<string>>;
+};
 
-export const UserPreferencesContext = React.createContext<IUserPreferencesContextType>(null);
+export const UserPreferencesContext =
+  React.createContext<IUserPreferencesContextType>(null);
 
 const UserPreferencesProvider = ({ initialTheme, children }) => {
   const userFavorites = useFavorites();
   const userFetched = useUser();
 
+  const [isLoading, setIsLoading] = useState(true);
   // Caching User preferences states
-  const [favorite, setFavorite] = usePersistState("ans-favorite", null);
-  const [user, setUser] = usePersistState("ans-user__cached", null);
+  const [favorite, setFavorite] = useState<IAnimeResult[]>([]);
+  const [user, setUser] = useState<IUserType>();
   const [layout, setLayout] = usePersistState("ans-layout", "grid");
   const [theme, setTheme] = usePersistState("ans-theme", getInitialTheme());
 
@@ -57,11 +59,19 @@ const UserPreferencesProvider = ({ initialTheme, children }) => {
       let { layout, theme, ...user } = userFetched.data;
       let favorites = userFavorites.data;
       setLayout(layout);
-      setUser(user);
+      setUser(user as IUserType);
       setFavorite(favorites);
       setTheme(theme);
+      setIsLoading(false);
     }
-  }, [userFetched.data, userFetched.isSuccess, userFavorites.isSuccess, userFavorites.data, setLayout, setUser, setFavorite, setTheme]);
+  }, [
+    userFetched.data,
+    userFetched.isSuccess,
+    userFavorites.isSuccess,
+    userFavorites.data,
+    setLayout,
+    setTheme,
+  ]);
 
   return (
     <UserPreferencesContext.Provider
@@ -76,7 +86,7 @@ const UserPreferencesProvider = ({ initialTheme, children }) => {
         setLayout,
       }}
     >
-      {children}
+      {!isLoading && children}
     </UserPreferencesContext.Provider>
   );
 };

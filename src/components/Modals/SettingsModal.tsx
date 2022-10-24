@@ -7,7 +7,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import useUpdateTheme from "../../hooks/useUpdateTheme";
 
 const SettingsModal = ({ isOpen, onOpen, onClose }) => {
-  const { email, setEmail, theme, setTheme } = useUserPreferences();
+  const { theme, setTheme, user } = useUserPreferences();
   const updateTheme = useUpdateTheme();
 
   const toggleDarkMode = () => {
@@ -16,13 +16,7 @@ const SettingsModal = ({ isOpen, onOpen, onClose }) => {
 
   return (
     <Transition appear show={isOpen} as={Fragment}>
-      <Dialog
-        as="div"
-        isOpen={isOpen}
-        className="neumorphic-modal relative"
-        onClose={onClose}
-        onAfterOpen={onOpen}
-      >
+      <Dialog as="div" className="neumorphic-modal relative" onClose={onClose}>
         <Transition.Child
           as={Fragment}
           enter="ease-out duration-300"
@@ -75,9 +69,8 @@ const SettingsModal = ({ isOpen, onOpen, onClose }) => {
                       id="preferredEmail"
                       type="email"
                       placeholder="Email"
-                      value={email ?? ""}
+                      value={user.email ?? ""}
                       disabled={true}
-                      onChange={(e) => setEmail(e.currentTarget.value)}
                       title="We will use this email to send notification when anime episode is out"
                     />
                     <label

@@ -10,13 +10,13 @@ const UserProfileInfoComponent = ({ favorites, user }) => {
         <p className="text-neumorph-secondary text-base">
           Username:{" "}
           <span className="opacity-60 text-black dark:text-white">
-            {user.data.username}
+            {user.username}
           </span>
         </p>
         <p className="text-neumorph-secondary text-base">
           Email:{" "}
           <span className="opacity-60 text-black dark:text-white">
-            {user.data.email}
+            {user.email}
           </span>
         </p>
       </div>

@@ -15,6 +15,7 @@ export default function useLogOut() {
   return useMutation(() => logout(), {
     onSuccess: () => {
       queryClient.removeQueries()
+      location.href = "/"
     }
   })
 }

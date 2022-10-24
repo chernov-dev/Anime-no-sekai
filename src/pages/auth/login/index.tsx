@@ -1,18 +1,18 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import AnsSvgLogo from "../../../../public/AnsSvgLogo";
 import NewUserLogin from "../../../components/AuthComponents/NewUserLogin";
 import UserIsBackLogin from "../../../components/AuthComponents/UserIsBackLogin";
 import Spinner from "../../../components/Shared/Spinner";
-import { UserPreferencesContext, useUserPreferences } from "../../../context/UserPreferencesProvider";
 import useLogin from "../../../hooks/useLogin";
+import usePersistState from "../../../utils/usePersistState";
 
 
 const LoginPage = () => {
   let router = useRouter();
 
-  const { user: cachedUser, setUser: setCachedUser } = useUserPreferences();
+  const [cachedUser, setCachedUser] = usePersistState("ans-user__cached");
 
   const [loading,setLoading] = useState(true);
   const [email, setEmail] = useState("");
@@ -29,7 +29,7 @@ const LoginPage = () => {
 
   if (loginMutation.isSuccess) {
     location.href = ("/home");
-   
+    localStorage.removeItem("ans-user__cached")
   }
 
   const handleWrongUserButtonClick = () => {
