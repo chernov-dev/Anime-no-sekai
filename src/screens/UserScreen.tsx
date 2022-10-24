@@ -70,6 +70,7 @@ const UserScreen = () => {
           completed={completed}
           />
           )}
+          
         <aside className="flex w-full md:w-[35%] lg:w-[40%] flex-col gap-4 p-3">
           <UserProfileInfoComponent favorites={favorite} user={user} />
           <AnimeWeeklyNotificationsComponent

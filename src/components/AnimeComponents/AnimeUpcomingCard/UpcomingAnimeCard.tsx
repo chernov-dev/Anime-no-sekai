@@ -1,11 +1,6 @@
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react'
-import { AiFillLike } from 'react-icons/ai';
-import { BsHeartFill } from 'react-icons/bs';
-import useAddFavorite from '../../../hooks/useAddFavorite';
-import useFavorites from '../../../hooks/useFavorites';
-import useRemoveFavorite from '../../../hooks/useRemoveFavorite';
 import { shimmer, toBase64 } from '../../utils/shimmer';
 import UpcomingAnimeCardFooter from './UpcomingAnimeCardFooter';
 

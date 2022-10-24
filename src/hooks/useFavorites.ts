@@ -5,6 +5,10 @@ import { getAnimeSearchById } from "../api/Anime_API/getAnimeSearchById";
 import { animeApi } from "../api/Anime_API";
 
 const fetchFavorites = async (user_id) => {
+  if (!user_id) {
+    throw new Error("Not logged in");
+  }
+
   const { data, error } = await supabase
     .from("users.favorites")
     .select(`anime_id`)
@@ -33,7 +37,7 @@ const fetchUserFavoriteAnime = async (idList: any[]) => {
 };
 
 export default function useFavorites() {
-  const user = supabase.auth.user();
+  const user = supabase.auth.user() ?? null;
   const favorites = useQuery(["ans-favorites", user?.id], () =>
     fetchFavorites(user?.id)
   );

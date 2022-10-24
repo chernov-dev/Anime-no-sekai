@@ -69,7 +69,7 @@ const SettingsModal = ({ isOpen, onOpen, onClose }) => {
                       id="preferredEmail"
                       type="email"
                       placeholder="Email"
-                      value={user.email ?? ""}
+                      value={user?.email ?? ""}
                       disabled={true}
                       title="We will use this email to send notification when anime episode is out"
                     />

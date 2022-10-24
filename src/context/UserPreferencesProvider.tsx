@@ -1,4 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
+import PageLoader from "../components/Shared/PageLoader";
+import Spinner from "../components/Shared/Spinner";
 import useFavorites from "../hooks/useFavorites";
 import useUser from "../hooks/useUser";
 import { IAnimeResult } from "../types/Anime";
@@ -40,7 +42,7 @@ const UserPreferencesProvider = ({ initialTheme, children }) => {
   const [isLoading, setIsLoading] = useState(true);
   // Caching User preferences states
   const [favorite, setFavorite] = useState<IAnimeResult[]>([]);
-  const [user, setUser] = useState<IUserType>();
+  const [user, setUser] = useState<IUserType>(null);
   const [layout, setLayout] = usePersistState("ans-layout", "grid");
   const [theme, setTheme] = usePersistState("ans-theme", getInitialTheme());
 
@@ -55,15 +57,17 @@ const UserPreferencesProvider = ({ initialTheme, children }) => {
   }, [theme]);
 
   useEffect(() => {
-    if (userFetched.isSuccess && userFavorites.isSuccess) {
+    if (userFetched.isSuccess) {
       let { layout, theme, ...user } = userFetched.data;
-      let favorites = userFavorites.data;
       setLayout(layout);
       setUser(user as IUserType);
-      setFavorite(favorites);
       setTheme(theme);
-      setIsLoading(false);
+      if (userFavorites.isSuccess) {
+        let favorites = userFavorites.data;
+        setFavorite(favorites);
+      }
     }
+    setIsLoading(false);
   }, [
     userFetched.data,
     userFetched.isSuccess,
@@ -71,6 +75,7 @@ const UserPreferencesProvider = ({ initialTheme, children }) => {
     userFavorites.data,
     setLayout,
     setTheme,
+    userFavorites.isError,
   ]);
 
   return (
@@ -86,6 +91,7 @@ const UserPreferencesProvider = ({ initialTheme, children }) => {
         setLayout,
       }}
     >
+      {isLoading && <PageLoader />}
       {!isLoading && children}
     </UserPreferencesContext.Provider>
   );
