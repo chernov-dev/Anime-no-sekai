@@ -14,7 +14,7 @@ const AnimeFavoriteList = ({ anime, ongoing, completed }) => {
             <AnimeFavoriteFilter />
           </div>
           {!anime.length && (
-                <div className="flex flex-wrap items-center justify-center gap-2 my-12">
+                <div className="flex flex-wrap items-center justify-center gap-2 my-12 neumorphic-grid min-h-[200px] neumorphic-border">
                   <b>No anime found</b>, add them by touching
                   <BsHeartFill color={"var(--neumorph-accent)"} />
                   icon on bottom right of the anime card

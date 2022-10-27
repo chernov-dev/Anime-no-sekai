@@ -9,6 +9,7 @@ const HomePagePagination = ({
   paginate?: (number) => void;
 }) => {
 
+
   const handlePageChange = (e,page) => {
     paginate(page);
   };
@@ -39,7 +40,7 @@ const HomePagePagination = ({
           "Go to next page " + "\nCan be accessed with ALT + L combination"
         }
         disabled={pagination.currentPage == lastPage}
-        onClick={(e) => handlePageChange(e,++pagination.currentPage)}
+        onClick={(e) => handlePageChange(e, ++pagination.currentPage)}
       >
         <FaChevronRight size={18} />
       </button>

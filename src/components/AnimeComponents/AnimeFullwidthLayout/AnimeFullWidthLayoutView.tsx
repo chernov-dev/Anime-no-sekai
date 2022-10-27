@@ -45,7 +45,7 @@ const Item = ({ anime }: { anime: IAnimeResult }) => {
           <div className="animeCard-header__content gap-3 p-0 md:px-3 pb-0">
             <div className="flex flex-col w-full shadow-neumorphic rounded-xl border-[1px] border-black dark:border-white border-opacity-10 dark:border-opacity-10 p-2">
               <h1 className="anime-home__title mb-1">{title}</h1>
-              <p className="anime-subtitle">{anime.title?.native}</p>
+              <p className="anime-subtitle text-center">{anime.title?.native}</p>
             </div>
             <div className="h-full flex flex-col text-neumorph-secondary shadow-neumorphic-inner text-sm border-[1px] border-black dark:border-white border-opacity-5 dark:border-opacity-5 rounded-xl p-4 font-semibold w-full gap-2 bg-neumorph-primary">
               {anime.description && (

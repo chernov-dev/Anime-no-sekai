@@ -68,7 +68,7 @@ const AnimeDetails = ({ anime }) => {
             <p className="anime-desc p-5">{parse(anime.description)}</p>
           </div>
         )}
-        <div className="anime-footer mt-4">
+        <div className="anime-footer">
           <div className="animeCard-share">
             <ShareOptions anime={anime} />
           </div>

@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import React, { useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { animeApi } from "../api/Anime_API";
 import { getAnimeTopAiring } from "../api/Anime_API/getAnimeTopAiring";
 import AnimeHeroSwiper from "../components/AnimeComponents/AnimeHero/AnimeHeroSwiper";
@@ -18,15 +18,14 @@ const HomeScreen = () => {
     isLoading,
     isSuccess,
   } = useQuery(["anime-recent", currentPage], () =>
-    animeApi.getRecentEpisodes(currentPage)
+    animeApi.getRecentEpisodes({page: currentPage})
   );
 
   //Preloading next page
   const nextPage = useMemo(() => currentPage + 1, [currentPage]);
   const { data: nextPageData } = useQuery(["anime-recent", nextPage], () =>
-    animeApi.getRecentEpisodes(nextPage)
+    animeApi.getRecentEpisodes({page: nextPage})
   );
-
 
   const {
     data: trendingAnime,

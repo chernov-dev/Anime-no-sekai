@@ -323,6 +323,10 @@
   @apply border-[1px] border-black dark:border-white border-opacity-10 dark:border-opacity-10;
 }
 
+.neumorphic-grid {
+  @apply rounded-lg border-dashed border-2;
+}
+
 .neumorphic-circle {
   aspect-ratio: 1/1;
   justify-self: center;
