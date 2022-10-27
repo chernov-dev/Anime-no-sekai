@@ -1,8 +1,5 @@
-import { getAnimeInfoById } from "../api/Anime_API/getAnimeInfoById";
-import { useQueries, useQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import supabase from "../supabase/supabase-js";
-import { getAnimeSearchById } from "../api/Anime_API/getAnimeSearchById";
-import { animeApi } from "../api/Anime_API";
 
 const fetchFavoriteIds = async (user_id) => {
   if (!user_id) {
