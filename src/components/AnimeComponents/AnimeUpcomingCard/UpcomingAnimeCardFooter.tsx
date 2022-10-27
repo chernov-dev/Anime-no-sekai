@@ -1,6 +1,4 @@
-import React from "react";
 import { AiFillCalendar, AiFillHeart, AiFillStar } from "react-icons/ai";
-import { BsCloudsFill, BsStarFill } from "react-icons/bs";
 
 const UpcomingAnimeCardFooter = ({ type, popularity, year, favorites }) => {
   return (

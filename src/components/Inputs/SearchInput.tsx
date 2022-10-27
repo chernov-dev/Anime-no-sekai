@@ -1,6 +1,5 @@
-import { useState, useEffect } from "react";
-import { SVGProps } from "react";
 import { useRouter } from "next/router";
+import { SVGProps, useState } from "react";
 
 export const SearchInput = ({}) => {
   const [searchInput, setSearchInput] = useState("");

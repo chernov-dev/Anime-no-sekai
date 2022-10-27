@@ -1,5 +1,4 @@
 import { Tab } from "@headlessui/react";
-import React from "react";
 
 const AnimeFavoriteFilter = () => {
   return (

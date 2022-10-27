@@ -1,10 +1,9 @@
-import React, { useContext, useEffect, useState } from "react";
-import { UserPreferencesContext, useUserPreferences } from "../../context/UserPreferencesProvider";
-import useAddFavorite from "../../hooks/useAddFavorite";
+import { useEffect, useState } from "react";
 import "react-toastify/dist/ReactToastify.css";
+import { useUserPreferences } from "../../context/UserPreferencesProvider";
+import useAddFavorite from "../../hooks/useAddFavorite";
 import useRemoveFavorite from "../../hooks/useRemoveFavorite";
 import ShareOptionsContainer from "./ShareOptionsContainer";
-import { toast } from "react-toastify";
 
 const ShareOptions = ({ anime }) => {
 

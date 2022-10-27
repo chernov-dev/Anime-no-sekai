@@ -1,7 +1,4 @@
 import Image from "next/image";
-import React from "react";
-import { FcRefresh } from "react-icons/fc";
-import { IoRefresh } from "react-icons/io5";
 
 const AnimeRecommendedList = ({ anime }) => {
   return (

@@ -1,7 +1,6 @@
-import React from "react";
-import { useState, useEffect } from "react";
-import ReactPaginate from "react-paginate";
 import { useRouter } from "next/router";
+import React from "react";
+import ReactPaginate from "react-paginate";
 
 const PaginationComponent = ({ pageCount, currentPage }) => {
   const router = useRouter();

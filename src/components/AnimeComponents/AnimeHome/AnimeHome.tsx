@@ -1,27 +1,17 @@
 import { Tab } from "@headlessui/react";
-import React, {
-  Suspense,
-  useContext,
-  useState,
-  useEffect,
-  useMemo,
+import {
+  useEffect, useState
 } from "react";
-import { CgDisplayFullwidth, CgDisplayGrid } from "react-icons/cg";
-import { FaChevronRight, FaChevronLeft } from "react-icons/fa";
-import { ToastContainer } from "react-toastify";
 import { useUserPreferences } from "../../../context/UserPreferencesProvider";
+import useUpdateLayout from "../../../hooks/useUpdateLayout";
 import { IAnimeResult } from "../../../types/Anime";
 import { IPagination } from "../../../types/Pagination";
 import LayoutChanger from "../../Shared/LayoutChanger";
 import PageLoader from "../../Shared/PageLoader";
-import Spinner from "../../Shared/PageLoader";
 import AnimeFullWidthLayoutView from "../AnimeFullwidthLayout/AnimeFullWidthLayoutView";
 import AnimeGridLayoutView from "../AnimeGridLayout/AnimeGridLayoutView";
-import AnimeHomeFilter from "./AnimeHomeFilter";
 import TopTrendingList from "../AnimeTopTrending/TopTrendingList";
 import HomePagePagination from "./HomePagePagination";
-import useUpdateLayout from "../../../hooks/useUpdateLayout";
-import { type } from "os";
 
 const AnimeHome = ({
   anime,

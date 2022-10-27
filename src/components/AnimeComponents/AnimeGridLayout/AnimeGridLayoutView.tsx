@@ -1,18 +1,16 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { useState, useEffect, useContext } from "react";
-import { BsHeart, BsHeartFill } from "react-icons/bs";
-import UserPreferencesProvider, {
-  UserPreferencesContext,
-  useUserPreferences,
+import { useEffect, useState } from "react";
+import { BsHeartFill } from "react-icons/bs";
+import {
+  useUserPreferences
 } from "../../../context/UserPreferencesProvider";
 import useAddFavorite from "../../../hooks/useAddFavorite";
 import useRemoveFavorite from "../../../hooks/useRemoveFavorite";
 import { IAnimeResult } from "../../../types/Anime";
-import Spinner from "../../Shared/Spinner";
 import { shimmer, toBase64 } from "../../Shared/shimmer";
+import Spinner from "../../Shared/Spinner";
 import AnimeCardFooterExtraDetails from "../AnimeCard/AnimeCardFooterExtraDetails";
-import { toast, ToastContainer } from "react-toastify";
 
 const Item = ({
   anime,
@@ -56,7 +54,7 @@ const Item = ({
         <div className="anime-home__grid-item__header">
           <div className="anime-img rounded-bl-none rounded-br-none">
             <div className="anime-status-overlay px-2">
-              <div className="h-full px-1 text-4xl font-bold">
+              <div className="h-full px-1 text-4xl font-bold text-neumorph-primary">
                 {bulletIndex}
               </div>
               {liked && (
@@ -84,7 +82,7 @@ const Item = ({
                   <BsHeartFill
                     size={25}
                     className={
-                      "text-neumorph-secondary hover:text-neumorph-accent transition-colors"
+                      "text-neumorph-primary hover:text-neumorph-accent transition-colors"
                     }
                   />
                 </button>

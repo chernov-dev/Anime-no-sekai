@@ -1,14 +1,12 @@
 import { BsStar } from "react-icons/bs";
-import { CgCalendarNext, CgHeart, CgHome } from "react-icons/cg";
-import { FaRandom } from "react-icons/fa";
+import { CgCalendarNext, CgHome } from "react-icons/cg";
 
+import useScrollDirection from "../../utils/useScrollDirection";
+import { SearchInput } from "../Inputs/SearchInput";
+import WebsiteLogo from "../Shared/WebsiteLogo";
 import NavigationMenu from "./NavigationMenu";
 import NavigationOptions from "./NavigationOptions";
 import NavigationUserDropdownMenu from "./NavigationUserDropdownMenu";
-import { useQuery } from "@tanstack/react-query";
-import WebsiteLogo from "../Shared/WebsiteLogo";
-import { SearchInput } from "../Inputs/SearchInput";
-import useScrollDirection from "../../utils/useScrollDirection";
 
 
 const HeaderComponent = () => {

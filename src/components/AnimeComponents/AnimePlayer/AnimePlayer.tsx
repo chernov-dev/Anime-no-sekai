@@ -1,9 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
-import Error from "next/error";
-import { useEffect, useCallback, useState } from "react";
+import { useEffect, useState } from "react";
 import ReactPlayer from "react-player/lazy";
 import { getEpisodeStreamingLinks } from "../../../api/Anime_API/getEpisodeStreamingLinks";
-import { IAnimeEpisode, IEpisodeServer } from "../../../types/Anime";
+import { IAnimeEpisode } from "../../../types/Anime";
 import Spinner from "../../Shared/PageLoader";
 
 const AnimePlayer = ({ episodes, animeCover }) => {

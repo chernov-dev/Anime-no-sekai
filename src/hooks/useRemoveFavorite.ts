@@ -25,7 +25,6 @@ export default function useRemoveFavorite(animeId: any) {
     toast.promise(queryClient.refetchQueries(['ans-favoriteIds']),{pending: "Removing anime from Favorites" , success: "Removed from Favorites", error: "Error occured"}, {toastId: animeId});
     let updateSoon = setTimeout(() => {
       queryClient.refetchQueries(["ans-favorites"])
-      console.log("Refetching")
     }, refetchTimeout);
   }});
 }

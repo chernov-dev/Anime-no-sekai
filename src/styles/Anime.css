@@ -111,7 +111,7 @@
 }
 
 .anime-home__title {
-  @apply leading-[1.1] text-neumorph-secondary text-base;
+  @apply leading-[1.1] text-neumorph-secondary text-base text-center;
 }
 .anime-subtitle {
   @apply text-neumorph-secondary leading-3 text-sm md:text-base;
@@ -346,7 +346,7 @@
 
 .skewed-text div {
   @apply rounded text-neumorph-primary text-xs sm:text-sm md:text-base;
-  height: fit-content;
+  height: 100%;
   padding: 0.15rem 0.25rem;
   position: relative;
 }
@@ -364,7 +364,7 @@
   height: 100%;
   position: absolute;
   border-radius: 0.25rem;
-  left: -5px;
+  left: -3px;
   top: 0px;
   @apply bg-inherit;
   transform: skewX(20deg);

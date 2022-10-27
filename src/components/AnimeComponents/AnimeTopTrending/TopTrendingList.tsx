@@ -1,9 +1,7 @@
-import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
-import PageLoader from "../../Shared/PageLoader";
-import { getAnimeTopAiring } from "../../../api/Anime_API/getAnimeTopAiring";
 import { animeApi } from "../../../api/Anime_API";
+import PageLoader from "../../Shared/PageLoader";
 
 const TopTrendingList = () => {
   const {
@@ -26,6 +24,8 @@ const TopTrendingList = () => {
         <div className="section-heading pl-2 mb-2">Trending anime</div>
         <div className="neumorphic-list">
           {topAiring.map((anime, index) => {
+          
+          
             return (
               <div
                 key={anime.id}

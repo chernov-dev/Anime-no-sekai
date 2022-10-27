@@ -1,7 +1,6 @@
 import { useRouter } from 'next/router'
 import useUser from '../../hooks/useUser'
 import PageLoader from '../Shared/PageLoader'
-import Spinner from '../Shared/PageLoader'
 
 export default function ProtectedWrapper({children}) {
   const router = useRouter()

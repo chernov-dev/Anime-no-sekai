@@ -1,17 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
-import { BsHeartFill } from "react-icons/bs";
 import AnimeFavoriteList from "../components/AnimeComponents/AnimeFavorite/AnimeFavoriteList";
 import AnimeWeeklyNotificationsComponent from "../components/AnimeComponents/AnimeNotifications/AnimeWeeklyNotificationsComponent";
 import PageLoader from "../components/Shared/PageLoader";
-import ShareOptionsContainer from "../components/Shared/ShareOptionsContainer";
 import UserProfileInfoComponent from "../components/UserComponents/UserProfileInfoComponent";
-import {
-  UserPreferencesContext,
-  useUserPreferences,
-} from "../context/UserPreferencesProvider";
 import useFavorites from "../hooks/useFavorites";
-import useUser from "../hooks/useUser";
 import { IAnimeInfo } from "../types/Anime";
+
 
 function recommendedBasedOnfavorite(favoriteList: IAnimeInfo[], quantity) {
   let recommendedBasedOnfavorite = [];

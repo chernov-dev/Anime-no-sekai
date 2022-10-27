@@ -1,8 +1,5 @@
 import { Tab } from "@headlessui/react";
-import React from "react";
 import { CgDisplayFullwidth, CgDisplayGrid } from "react-icons/cg";
-import { useUserPreferences } from "../../context/UserPreferencesProvider";
-import useUpdateLayout from "../../hooks/useUpdateLayout";
 
 const LayoutChanger = () => {
 

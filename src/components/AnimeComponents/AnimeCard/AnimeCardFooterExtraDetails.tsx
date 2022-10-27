@@ -1,13 +1,6 @@
-import React from "react";
 import { AiFillStar } from "react-icons/ai";
-import { BsCloud, BsCloudsFill, BsFillDisplayFill } from "react-icons/bs";
+import { BsCloudsFill } from "react-icons/bs";
 import { GoPlay } from "react-icons/go";
-import {
-  MdCloudDone,
-  MdDoneAll,
-  MdOutlineCloudDone,
-  MdOutlineDone,
-} from "react-icons/md";
 import { IAnimeResult } from "../../../types/Anime";
 
 const CompletedTag = ({ totalEpisodes }) => {

@@ -1,4 +1,3 @@
-import React from "react";
 import { MoonLoader } from "react-spinners";
 
 const PageLoader = () => {

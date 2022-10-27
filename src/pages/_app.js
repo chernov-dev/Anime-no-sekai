@@ -39,8 +39,8 @@ function MyApp({ Component, pageProps }) {
             toastClassName={"neumorphic-toast"}
             theme="colored"
             hideProgressBar={true}
+            closeButton={false}
             newestOnTop={false}
-            closeOnClick
             rtl={false}
             pauseOnFocusLoss
             draggable

@@ -1,8 +1,6 @@
-import React from "react";
 import { BsHeartFill } from "react-icons/bs";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { RiNotification3Fill } from "react-icons/ri";
+import "react-toastify/dist/ReactToastify.css";
 
 const ShareOptionsContainer = ({
   onHeartClick = (e) => e.stopPropagation(),

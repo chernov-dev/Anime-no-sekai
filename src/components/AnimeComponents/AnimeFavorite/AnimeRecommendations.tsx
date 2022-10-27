@@ -1,4 +1,3 @@
-import React from "react";
 import AnimeGridLayoutView from "../AnimeGridLayout/AnimeGridLayoutView";
 
 const AnimeRecommendations = ({ recommendations }) => {
@@ -11,5 +10,6 @@ const AnimeRecommendations = ({ recommendations }) => {
     </div>
   );
 };
+
 
 export default AnimeRecommendations;

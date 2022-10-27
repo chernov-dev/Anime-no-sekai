@@ -1,9 +1,8 @@
-import { Fragment } from "react";
-import { MdDarkMode } from "react-icons/md";
-import { MdOutlineDarkMode } from "react-icons/md";
-import { IoSettingsSharp } from "react-icons/io5";
-import { useUserPreferences } from "../../context/UserPreferencesProvider";
 import { Dialog, Transition } from "@headlessui/react";
+import { Fragment } from "react";
+import { IoSettingsSharp } from "react-icons/io5";
+import { MdDarkMode, MdOutlineDarkMode } from "react-icons/md";
+import { useUserPreferences } from "../../context/UserPreferencesProvider";
 import useUpdateTheme from "../../hooks/useUpdateTheme";
 
 const SettingsModal = ({ isOpen, onOpen, onClose }) => {

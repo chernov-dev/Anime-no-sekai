@@ -1,12 +1,12 @@
 import { Menu, Transition } from "@headlessui/react";
 import { useRouter } from "next/router";
 import { Fragment, useState } from "react";
+import { AiFillHeart, AiFillSetting } from "react-icons/ai";
 import { CgLogOut, CgProfile } from "react-icons/cg";
 import { FiLogIn, FiLogOut, FiSettings } from "react-icons/fi";
 import useLogOut from "../../hooks/useLogout";
 import useUser from "../../hooks/useUser";
 import SettingsModal from "../Modals/SettingsModal";
-import { AiFillHeart, AiFillSetting } from "react-icons/ai";
 import Spinner from "../Shared/Spinner";
 
 const NavigationUserDropdownMenu = () => {

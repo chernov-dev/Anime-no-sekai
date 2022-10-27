@@ -1,4 +1,3 @@
-import React from "react";
 import { useUserPreferences } from "../../context/UserPreferencesProvider";
 import Spinner from "../Shared/Spinner";
 

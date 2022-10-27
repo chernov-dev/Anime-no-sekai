@@ -1,22 +1,17 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { AiFillStar } from "react-icons/ai";
-import { GoPlay } from "react-icons/go";
-import { Swiper, SwiperSlide } from "swiper/react";
 import { A11y, Mousewheel, Pagination } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
 import { IAnimeResult } from "../../../types/Anime";
 import ShareOptions from "../../Shared/ShareOptions";
 import { shimmer, toBase64 } from "../../Shared/shimmer";
 
 // Import Swiper styles
 import "swiper/css";
-import "swiper/css/pagination";
 import "swiper/css/mousewheel";
-import { ToastContainer } from "react-toastify";
-import { useUserPreferences } from "../../../context/UserPreferencesProvider";
-import useAddFavorite from "../../../hooks/useAddFavorite";
-import useRemoveFavorite from "../../../hooks/useRemoveFavorite";
+import "swiper/css/pagination";
 
 const Item = ({ anime }: { anime: IAnimeResult }) => {
   const router = useRouter();

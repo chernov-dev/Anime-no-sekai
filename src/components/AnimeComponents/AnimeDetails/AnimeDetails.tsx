@@ -1,10 +1,8 @@
 import Image from "next/image";
-import React from "react";
-import useFavoriteIds from "../../../hooks/useFavoriteIds";
 import { handleDate } from "../../../utils/handleDate";
 import ShareOptions from "../../Shared/ShareOptions";
 import { shimmer, toBase64 } from "../../Shared/shimmer";
-
+``
 const parse = require("html-react-parser");
 
 const AnimeDetails = ({ anime }) => {

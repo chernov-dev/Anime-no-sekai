@@ -1,5 +1,4 @@
 import Link from "next/link";
-import React from "react";
 
 const UserSignUp = ({ handleSubmit, setEmail, setPassword, setUsername }) => {
   return (

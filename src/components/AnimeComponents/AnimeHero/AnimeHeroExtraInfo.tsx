@@ -1,4 +1,3 @@
-import React from "react";
 import { AiFillCalendar, AiFillTag } from "react-icons/ai";
 import { BsPlayCircleFill } from "react-icons/bs";
 import { MdWatchLater } from "react-icons/md";

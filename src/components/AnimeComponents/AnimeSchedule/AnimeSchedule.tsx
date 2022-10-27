@@ -1,20 +1,20 @@
 import { useQuery } from "@tanstack/react-query";
+import Image from "next/image";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { IoPlayCircleSharp } from "react-icons/io5";
-import { EffectFade, Mousewheel, Navigation, Pagination } from "swiper";
+import { EffectFade, Mousewheel, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import AnsSvgLogo from "../../../../public/AnsSvgLogo";
 import { animeApi } from "../../../api/Anime_API";
 import { formatDate, handleDate } from "../../../utils/handleDate";
 import Spinner from "../../Shared/Spinner";
-import Image from "next/image";
 
 // Import Swiper styles
 import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/mousewheel";
 import "swiper/css/effect-fade";
+import "swiper/css/mousewheel";
+import "swiper/css/pagination";
 
 const AnimeSchedule = () => {
   const { data, isLoading, isSuccess } = useQuery(["anime-schedule"], () =>
