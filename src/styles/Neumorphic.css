@@ -511,6 +511,11 @@
   @apply ui-selected:text-neumorph-accent ui-selected:shadow-neumorphic-inner;
 }
 
+.neumorphic-toast {
+  @apply bg-neumorph-primary shadow-neumorphic text-neumorph-secondary hover:text-neumorph-accent
+  w-full rounded-lg py-1.5 px-2 text-sm md:text-base font-medium leading-5 border-[1px] border-black dark:border-white border-opacity-10 dark:border-opacity-10 !important;
+}
+
 [tooltip]:after {
   content: attr(tooltip);
   border-radius: 20px;

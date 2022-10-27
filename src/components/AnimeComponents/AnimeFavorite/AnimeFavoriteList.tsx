@@ -2,10 +2,9 @@ import { Tab } from "@headlessui/react";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import { BsHeartFill } from "react-icons/bs";
-import { getRecentAnimes } from "../../api/Anime_API/getRecentAnimes";
-import ShareOptionsContainer from "../Shared/ShareOptionsContainer";
+import ShareOptionsContainer from "../../Shared/ShareOptionsContainer";
 import AnimeFavoriteFilter from "./AnimeFavoriteFilter";
-import AnimeGridLayoutView from "./AnimeGridLayoutView";
+import AnimeGridLayoutView from "../AnimeGridLayout/AnimeGridLayoutView";
 
 const AnimeFavoriteList = ({ anime, ongoing, completed }) => {
   return (

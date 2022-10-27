@@ -1,14 +1,14 @@
 import { useQuery } from '@tanstack/react-query';
 import Error from 'next/error';
 import React from 'react'
-import { getAnimesByName } from '../api/Anime_API/getAnimesByName';
-import AnimeHome from '../components/AnimeComponents/AnimeHome';
+import { animeApi } from '../api/Anime_API';
+import AnimeHome from '../components/AnimeComponents/AnimeHome/AnimeHome';
 
 const SearchAnimeScreen = ({animeName}) => {
 
   const { data , isLoading, status } = useQuery(
     ["anime-search", animeName],
-    () => getAnimesByName(animeName)
+    () => animeApi.advancedSearch({query: animeName})
   );
   if (status == "success" && data.length == 0) {
     return (
@@ -21,7 +21,7 @@ const SearchAnimeScreen = ({animeName}) => {
   }
 
   return (
-    <><AnimeHome anime={data} title={`${animeName.toString().toUpperCase()} - Search`}/></>
+    <><AnimeHome anime={data} title={`${animeName?.toString().toUpperCase()} - Search`}/></>
   )
 }
 

@@ -1,36 +1,30 @@
 import { useEffect, useState } from "react";
-import { ToastContainer } from "react-toastify";
-import AnimeGridLayoutView from "../components/AnimeComponents/AnimeGridLayoutView";
-import TopAiringList from "../components/AnimeComponents/TopAiringList";
-import HomePagePagination from "../components/AnimeComponents/HomePagePagination";
+import AnimeGridLayoutView from "../components/AnimeComponents/AnimeGridLayout/AnimeGridLayoutView";
+import TopTrendingList from "../components/AnimeComponents/AnimeTopTrending/TopTrendingList";
+import HomePagePagination from "../components/AnimeComponents/AnimeHome/HomePagePagination";
 import PageLoader from "../components/Shared/PageLoader";
 import Spinner from "../components/Shared/PageLoader";
 import { useUserPreferences } from "../context/UserPreferencesProvider";
-import { IAnimeResult } from "../types/Anime";
-import { IPagination } from "../types/Pagination";
+import { useQuery } from "@tanstack/react-query";
+import { animeApi } from "../api/Anime_API";
 
 const PopularAnimeScreen = ({
-  anime,
   title: pageTitle,
-  pagination,
-  paginate,
   children,
 }: {
-  anime: IAnimeResult[];
   title: string;
-  pagination?: IPagination;
-  paginate?: (pageNumber: number) => void;
   children?: JSX.Element;
 }) => {
-  const { layout, setLayout }: any = useUserPreferences();
+  const [currentPage, setCurrentPage] = useState(1);
 
-  const [hasWindow, setHasWindow] = useState(false);
+  const { data, isLoading, isSuccess } = useQuery(
+    ["anime-popular", currentPage],
+    () => animeApi.getPopular(currentPage)
+  );
 
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      setHasWindow(true);
-    }
-  }, []);
+  // const paginate = (pageNumber: number) => {
+  //   return setCurrentPage(pageNumber);
+  // };
 
   return (
     <>
@@ -39,24 +33,15 @@ const PopularAnimeScreen = ({
           <div className="anime-home__header">
             <p className="text-xl md:text-2xl">{pageTitle}</p>
           </div>
-          {(!hasWindow || !anime) && <Spinner />}
-          {anime && <AnimeGridLayoutView anime={anime} bullets={true} />}
-          <ToastContainer
-            position="bottom-right"
-            autoClose={2000}
-            hideProgressBar={true}
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-          />
+          {isLoading && <Spinner />}
+          {isSuccess && (
+            <AnimeGridLayoutView anime={data.anime} bullets={true} />
+          )}
           {children}
         </div>
         <aside className="anime-home__sidebar">
           <div className="shadow-neumorphic neumorphic-border p-4 rounded-[inherit] gap-2">
-            <TopAiringList />
+            <TopTrendingList />
           </div>
         </aside>
       </div>

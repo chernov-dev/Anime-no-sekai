@@ -1,16 +1,16 @@
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
-import { getAnimeTrending } from "../../api/Anime_API/getAnimeTrending";
-import PageLoader from "../Shared/PageLoader";
-import { getAnimeTopAiring } from "../../api/Anime_API/getAnimeTopAiring";
+import PageLoader from "../../Shared/PageLoader";
+import { getAnimeTopAiring } from "../../../api/Anime_API/getAnimeTopAiring";
+import { animeApi } from "../../../api/Anime_API";
 
-const TopAiringList = () => {
+const TopTrendingList = () => {
   const {
     data: topAiring,
     isLoading: isAiringLoading,
     isSuccess: isAiringSuccess,
-  } = useQuery(["anime-airing"], () => getAnimeTopAiring());
+  } = useQuery(["anime-airing"], () => animeApi.getTrending({perPage: 9}));
 
   if (isAiringLoading) {
     return (
@@ -23,13 +23,16 @@ const TopAiringList = () => {
   if (isAiringSuccess) {
     return (
       <div className="flex flex-col">
-        <div className="section-heading pl-2 mb-2">Top airing anime</div>
+        <div className="section-heading pl-2 mb-2">Trending anime</div>
         <div className="neumorphic-list">
           {topAiring.map((anime, index) => {
             return (
               <div
                 key={anime.id}
-                className="gap-3 items-center"
+                className="gap-3 items-center hover:cursor-pointer"
+                onClick={() => {
+                  location.href = "/anime/" + anime.id
+                }}
               >
                 <div className="hidden sm:block relative w-[400px] h-full">
                   <Image
@@ -46,7 +49,7 @@ const TopAiringList = () => {
                 </div>
                 <div className="flex flex-col gap-2 w-full grow justify-end items-center px-2 md:px-6">
                   <p className="text-neumorph-secondary opacity-90 line-clamp-1">
-                    {anime.title}
+                    {anime.title.userPreferred ?? anime.title.romaji}
                   </p>
                 </div>
               </div>
@@ -58,4 +61,4 @@ const TopAiringList = () => {
   }
 };
 
-export default TopAiringList;
+export default TopTrendingList;

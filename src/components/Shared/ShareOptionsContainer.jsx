@@ -24,17 +24,6 @@ const ShareOptionsContainer = ({
       <button className="neumorphic-icon" onClick={(e) => e.stopPropagation()}>
         <RiNotification3Fill size={15} color="inherit" />
       </button>
-      <ToastContainer
-        position="bottom-right"
-        autoClose={2000}
-        hideProgressBar={true}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
     </>
   );
 };

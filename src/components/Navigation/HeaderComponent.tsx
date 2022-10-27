@@ -4,7 +4,7 @@ import { FaRandom } from "react-icons/fa";
 
 import NavigationMenu from "./NavigationMenu";
 import NavigationOptions from "./NavigationOptions";
-import UserDropdownMenu from "./UserDropdownMenu";
+import NavigationUserDropdownMenu from "./NavigationUserDropdownMenu";
 import { useQuery } from "@tanstack/react-query";
 import WebsiteLogo from "../Shared/WebsiteLogo";
 import { SearchInput } from "../Inputs/SearchInput";
@@ -55,7 +55,7 @@ const MenuOptions = [
         </div>
         <NavigationOptions options={MenuOptions} />
         <SearchInput />
-        <UserDropdownMenu />
+        <NavigationUserDropdownMenu />
       </div>
     </nav>
   );

@@ -1,9 +1,7 @@
 import "../styles/Anime.css";
 import "../styles/AnimeCard.css";
 import "../styles/AnimePlayer.css";
-import "../styles/pagination.css";
 import "../styles/Neumorphic.css";
-import "../styles/Header.css";
 import "../styles/globals.css";
 
 import {
@@ -14,6 +12,7 @@ import {
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import HeaderComponent from "../components/Navigation/HeaderComponent";
 import UserPreferencesProvider from "../context/UserPreferencesProvider";
+import { ToastContainer } from "react-toastify";
 
 // Create a client
 const queryClient = new QueryClient({
@@ -34,6 +33,19 @@ function MyApp({ Component, pageProps }) {
           <HeaderComponent />
           <Component {...pageProps} />
           <ReactQueryDevtools position="bottom-left" />
+          <ToastContainer
+            position="top-right"
+            autoClose={2000}
+            toastClassName={"neumorphic-toast"}
+            theme="colored"
+            hideProgressBar={true}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+          />
         </UserPreferencesProvider>
       </Hydrate>
     </QueryClientProvider>

@@ -43,13 +43,8 @@ body {
   margin: 0;
   font-family: "Noto Sans", "Noto Sans JP", sans-serif;
   font-size: clamp(1rem, 0.9869rem + 0.056vw, 1.0625rem);
-  /* -webkit-font-smoothing: antialiased;
+  -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: url(/background.svg) center center fixed;
-  -webkit-background-size: contain;
-  -moz-background-size: contain;
-  -o-background-size: contain;
-  background-size: auto; */
   @apply text-neumorph-secondary bg-neumorph-primary;
 }
 

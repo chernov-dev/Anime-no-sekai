@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react'
-import { shimmer, toBase64 } from '../../utils/shimmer';
+import { shimmer, toBase64 } from '../../Shared/shimmer';
 import UpcomingAnimeCardFooter from './UpcomingAnimeCardFooter';
 
 

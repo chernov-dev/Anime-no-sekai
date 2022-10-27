@@ -9,18 +9,18 @@ import React, {
 import { CgDisplayFullwidth, CgDisplayGrid } from "react-icons/cg";
 import { FaChevronRight, FaChevronLeft } from "react-icons/fa";
 import { ToastContainer } from "react-toastify";
-import { useUserPreferences } from "../../context/UserPreferencesProvider";
-import { IAnimeResult } from "../../types/Anime";
-import { IPagination } from "../../types/Pagination";
-import LayoutChanger from "../Shared/LayoutChanger";
-import PageLoader from "../Shared/PageLoader";
-import Spinner from "../Shared/PageLoader";
-import AnimeFullWidthLayoutView from "./AnimeFullWidthLayoutView";
-import AnimeGridLayoutView from "./AnimeGridLayoutView";
+import { useUserPreferences } from "../../../context/UserPreferencesProvider";
+import { IAnimeResult } from "../../../types/Anime";
+import { IPagination } from "../../../types/Pagination";
+import LayoutChanger from "../../Shared/LayoutChanger";
+import PageLoader from "../../Shared/PageLoader";
+import Spinner from "../../Shared/PageLoader";
+import AnimeFullWidthLayoutView from "../AnimeFullwidthLayout/AnimeFullWidthLayoutView";
+import AnimeGridLayoutView from "../AnimeGridLayout/AnimeGridLayoutView";
 import AnimeHomeFilter from "./AnimeHomeFilter";
-import TopAiringList from "./TopAiringList";
+import TopTrendingList from "../AnimeTopTrending/TopTrendingList";
 import HomePagePagination from "./HomePagePagination";
-import useUpdateLayout from "../../hooks/useUpdateLayout";
+import useUpdateLayout from "../../../hooks/useUpdateLayout";
 import { type } from "os";
 
 const AnimeHome = ({
@@ -96,20 +96,9 @@ const AnimeHome = ({
           )}
           {children}
         </div>
-        <ToastContainer
-          position="bottom-right"
-          autoClose={2000}
-          hideProgressBar={true}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-        />
         <aside className="anime-home__sidebar">
           <div className="shadow-neumorphic neumorphic-border p-4 rounded-[inherit] gap-2">
-            <TopAiringList />
+            <TopTrendingList />
           </div>
         </aside>
       </div>

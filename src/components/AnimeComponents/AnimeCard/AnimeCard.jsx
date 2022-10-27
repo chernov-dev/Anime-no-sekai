@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Router from "next/router";
-import { shimmer, toBase64 } from "../../utils/shimmer";
+import { shimmer, toBase64 } from "../../Shared/shimmer";
 
 import ShareOptions from "../../Shared/ShareOptions";
 

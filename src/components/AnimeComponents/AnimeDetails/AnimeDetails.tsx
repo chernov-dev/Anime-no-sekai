@@ -1,18 +1,13 @@
 import Image from "next/image";
 import React from "react";
-import { handleDate } from "../../utils/handleDate";
-import ShareOptions from "../Shared/ShareOptions";
-import { shimmer, toBase64 } from "../utils/shimmer";
-
-
+import useFavoriteIds from "../../../hooks/useFavoriteIds";
+import { handleDate } from "../../../utils/handleDate";
+import ShareOptions from "../../Shared/ShareOptions";
+import { shimmer, toBase64 } from "../../Shared/shimmer";
 
 const parse = require("html-react-parser");
 
 const AnimeDetails = ({ anime }) => {
-  // const validImgSrcUrl = `${
-  //   anime.images.jpg.large_image_url ?? anime.images.webp.large_image_url
-  // }`;
-
   const nextEpisode = handleDate(anime.nextAiringEpisode?.airingTime);
 
   return (

@@ -8,29 +8,26 @@ import { toast } from "react-toastify";
 
 const ShareOptions = ({ anime }) => {
 
-
-  const addFavorite = useAddFavorite(anime.id);
   const removeFavorite = useRemoveFavorite(anime.id);
-  const { favorite } = useUserPreferences();
+  const addFavorite = useAddFavorite(anime.id);
+
+  const { favoriteIds } = useUserPreferences();
 
   const [liked, setLiked] = useState(false);
 
   useEffect(() => {
-    setLiked(favorite?.some((e) => e.id === anime.id));
-  }, [anime.id, favorite]);
+    setLiked(favoriteIds?.some((e) => e == anime.id));
+  }, [anime.id, favoriteIds]);
 
   const onHeartClick = (e) => {
     e.stopPropagation();
-    if (liked) {
-      removeFavorite.mutate();
-      toast.info("Removed from Favorite", { icon: "❌" });
-      setLiked((prevState) => !prevState);
-    } else {
-      addFavorite.mutate();
-      toast.success("Added to Favorite", { icon: "✔️" });
-      setLiked((prevState) => !prevState);
+    if(liked) {
+      removeFavorite.mutate()
     }
-  };
+    else {
+      addFavorite.mutate()
+    }
+  }
 
   return (
     <ShareOptionsContainer

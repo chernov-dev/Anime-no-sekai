@@ -5,11 +5,11 @@ import { CgLogOut, CgProfile } from "react-icons/cg";
 import { FiLogIn, FiLogOut, FiSettings } from "react-icons/fi";
 import useLogOut from "../../hooks/useLogout";
 import useUser from "../../hooks/useUser";
-import SettingsModal from "../../components/Modals/SettingsModal";
+import SettingsModal from "../Modals/SettingsModal";
 import { AiFillHeart, AiFillSetting } from "react-icons/ai";
 import Spinner from "../Shared/Spinner";
 
-const UserDropdownMenu = () => {
+const NavigationUserDropdownMenu = () => {
   const router = useRouter();
 
   const [showMenu, setShowMenu] = useState(false);
@@ -179,4 +179,4 @@ const UserDropdownMenu = () => {
   );
 };
 
-export default UserDropdownMenu;
+export default NavigationUserDropdownMenu;

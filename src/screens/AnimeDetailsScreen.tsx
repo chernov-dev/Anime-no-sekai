@@ -1,9 +1,9 @@
 import Image from 'next/image'
 import React from 'react'
-import AnimeDetails from '../components/AnimeComponents/AnimeDetails'
+import AnimeDetails from '../components/AnimeComponents/AnimeDetails/AnimeDetails'
 import AnimePlayer from '../components/AnimeComponents/AnimePlayer/AnimePlayer'
-import AnimeRecommendations from '../components/AnimeComponents/AnimeRecommendations'
-import { shimmer, toBase64 } from '../components/utils/shimmer'
+import AnimeRecommendations from '../components/AnimeComponents/AnimeFavorite/AnimeRecommendations'
+import { shimmer, toBase64 } from '../components/Shared/shimmer'
 
 const AnimeDetailsScreen = ({animeDetails}) => {
   return (

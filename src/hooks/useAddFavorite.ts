@@ -1,3 +1,4 @@
+import { toast } from 'react-toastify';
 import { useQueryClient } from "@tanstack/react-query";
 import { useMutation } from "@tanstack/react-query";
 import supabase from "../supabase/supabase-js";
@@ -19,6 +20,6 @@ export default function useAddFavorite(anime_id: string) {
   const queryClient = useQueryClient();
   const user = supabase.auth.user();
   return useMutation(() => addFavorite(anime_id, user?.id),{onSuccess: () => {
-    queryClient.refetchQueries(['ans-favorites'])
+    toast.promise(queryClient.refetchQueries(['ans-favoriteIds']),{pending: "Adding anime to Favorites" , success: "Added to Favorites", error: "Error occured"}, {toastId: anime_id});
   }});
 }

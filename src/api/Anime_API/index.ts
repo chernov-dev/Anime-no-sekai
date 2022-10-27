@@ -1,4 +1,6 @@
 import axios from "axios";
+import { IAnimeResult } from "../../types/Anime";
+import { IPagination } from "../../types/Pagination";
 import { CONSUMET_URL } from "../config";
 
 const AnimeProviders = {
@@ -31,29 +33,43 @@ export class AnimeApi {
   }
 
   async advancedSearch(params = {}) {
-    return this.consumetApiGetCall("/meta/anilist/advanced-search", params);
+    return this.consumetApiGetCall("/meta/anilist/advanced-search", params).then((data) => data.results);
   }
 
   async getRandom(params = {}) {
     return this.consumetApiGetCall("/meta/anilist/random-anime", params);
   }
 
+  async getAnimeById(id: string | number, params = {}) {
+    return this.consumetApiGetCall("/meta/anilist/info/" + id, params);
+  }
+
   async getTrending(params = {}) {
-    return this.consumetApiGetCall("/meta/anilist/trending", params);
+    return this.consumetApiGetCall("/meta/anilist/trending", params).then((data) => data.results);
   }
 
   async getRecentEpisodes(params = {}) {
     return this.consumetApiGetCall("/meta/anilist/recent-episodes", {
       perPage: 15,
       ...params,
-    });
+    }).then((data) => ({
+      anime: data.results,
+      pagination: Object.fromEntries(
+        Object.entries(data as IPagination).slice(0, -1) 
+      ) as IPagination,
+    }));
   }
 
   async getPopular(params = {}) {
     return this.consumetApiGetCall("/meta/anilist/popular", {
-      perPage: 20,
+      perPage: 50,
       ...params,
-    });
+    }).then((data) => ({
+      anime: data.results,
+      pagination: Object.fromEntries(
+        Object.entries(data as IPagination).slice(0, -1) 
+      ) as IPagination,
+    }));;
   }
   async getAiringSchedule(params = {}) {
     return this.consumetApiGetCall("/meta/anilist/airing-schedule", {

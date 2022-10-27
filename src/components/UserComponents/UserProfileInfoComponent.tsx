@@ -1,6 +1,13 @@
 import React from "react";
+import { useUserPreferences } from "../../context/UserPreferencesProvider";
+import Spinner from "../Shared/Spinner";
 
-const UserProfileInfoComponent = ({ favorites, user }) => {
+const UserProfileInfoComponent = ({ favorites }) => {
+
+  const {user} = useUserPreferences();
+
+  if(!user) return <Spinner></Spinner>
+
   return (
     <div className="flex flex-col justify-between gap-2 px-3 py-2 w-full bg-neumorph-primary shadow-neumorphic rounded-xl ring-1 ring-black dark:ring-white ring-opacity-10 dark:ring-opacity-10">
       <h1 className="text-base md:text-xl text-neumorph-secondary">

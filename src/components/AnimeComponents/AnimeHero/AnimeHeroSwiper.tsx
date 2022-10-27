@@ -1,9 +1,9 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper";
-import { IAnimeResult } from "../../types/Anime";
+import { IAnimeResult } from "../../../types/Anime";
 import Image from "next/image";
-import { shimmer, toBase64 } from "../utils/shimmer";
+import { shimmer, toBase64 } from "../../Shared/shimmer";
 import { BsFillDisplayFill, BsPlayCircleFill } from "react-icons/bs";
 import { AiFillCalendar, AiFillTag } from "react-icons/ai";
 import { VscOpenPreview } from "react-icons/vsc";
@@ -13,7 +13,7 @@ import "swiper/css";
 import "swiper/css/autoplay";
 import { GoWatch } from "react-icons/go";
 import { MdWatchLater } from "react-icons/md";
-import AnimeHeroExtraInfo from "./AnimeHero/AnimeHeroExtraInfo";
+import AnimeHeroExtraInfo from "./AnimeHeroExtraInfo";
 
 const parse = require('html-react-parser');
 

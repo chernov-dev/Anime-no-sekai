@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import React from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { MdFirstPage, MdLastPage } from "react-icons/md";
-import { IPagination } from "../../types/Pagination";
+import { IPagination } from "../../../types/Pagination";
 
 const HomePagePagination = ({
   pagination,

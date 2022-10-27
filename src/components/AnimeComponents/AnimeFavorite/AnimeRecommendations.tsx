@@ -1,5 +1,5 @@
 import React from "react";
-import AnimeGridLayoutView from "./AnimeGridLayoutView";
+import AnimeGridLayoutView from "../AnimeGridLayout/AnimeGridLayoutView";
 
 const AnimeRecommendations = ({ recommendations }) => {
   return (

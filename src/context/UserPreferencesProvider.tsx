@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import PageLoader from "../components/Shared/PageLoader";
 import Spinner from "../components/Shared/Spinner";
+import useFavoriteIds from "../hooks/useFavoriteIds";
 import useFavorites from "../hooks/useFavorites";
 import useUser from "../hooks/useUser";
 import { IAnimeResult } from "../types/Anime";
@@ -22,8 +23,8 @@ export function getInitialTheme() {
 }
 
 export type IUserPreferencesContextType = {
-  favorite: Array<IAnimeResult>;
-  setFavorite: React.Dispatch<React.SetStateAction<IAnimeResult[]>>;
+  favoriteIds: any[];
+  setFavoriteIds: React.Dispatch<React.SetStateAction<[]>>;
   user: IUserType;
   setUser: React.Dispatch<React.SetStateAction<IUserType>>;
   theme: string;
@@ -36,12 +37,12 @@ export const UserPreferencesContext =
   React.createContext<IUserPreferencesContextType>(null);
 
 const UserPreferencesProvider = ({ initialTheme, children }) => {
-  const userFavorites = useFavorites();
+  const userFavoriteIds = useFavoriteIds();
   const userFetched = useUser();
 
   const [isLoading, setIsLoading] = useState(true);
   // Caching User preferences states
-  const [favorite, setFavorite] = useState<IAnimeResult[]>([]);
+  const [favoriteIds, setFavoriteIds] = useState([]);
   const [user, setUser] = useState<IUserType>(null);
   const [layout, setLayout] = usePersistState("ans-layout", "grid");
   const [theme, setTheme] = usePersistState("ans-theme", getInitialTheme());
@@ -62,27 +63,26 @@ const UserPreferencesProvider = ({ initialTheme, children }) => {
       setLayout(layout);
       setUser(user as IUserType);
       setTheme(theme);
-      if (userFavorites.isSuccess) {
-        let favorites = userFavorites.data;
-        setFavorite(favorites);
+      if (userFavoriteIds.isSuccess) {
+        let ids = userFavoriteIds.data;
+        setFavoriteIds(ids);
       }
     }
     setIsLoading(false);
   }, [
     userFetched.data,
     userFetched.isSuccess,
-    userFavorites.isSuccess,
-    userFavorites.data,
+    userFavoriteIds.isSuccess,
+    userFavoriteIds.data,
     setLayout,
     setTheme,
-    userFavorites.isError,
   ]);
 
   return (
     <UserPreferencesContext.Provider
       value={{
-        favorite,
-        setFavorite,
+        favoriteIds,
+        setFavoriteIds,
         user,
         setUser,
         theme,

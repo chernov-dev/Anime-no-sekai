@@ -1,10 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useMemo, useState } from "react";
+import { animeApi } from "../api/Anime_API";
 import { getAnimeTopAiring } from "../api/Anime_API/getAnimeTopAiring";
-import { getAnimeTrending } from "../api/Anime_API/getAnimeTrending";
-import { getRecentAnimes } from "../api/Anime_API/getRecentAnimes";
-import AnimeHeroSwiper from "../components/AnimeComponents/AnimeHeroSwiper";
-import AnimeHome from "../components/AnimeComponents/AnimeHome";
+import AnimeHeroSwiper from "../components/AnimeComponents/AnimeHero/AnimeHeroSwiper";
+import AnimeHome from "../components/AnimeComponents/AnimeHome/AnimeHome";
 import AnimeSchedule from "../components/AnimeComponents/AnimeSchedule/AnimeSchedule";
 import PageLoader from "../components/Shared/PageLoader";
 import { IAnimeTypeFilter } from "../types/Anime";
@@ -19,13 +18,13 @@ const HomeScreen = () => {
     isLoading,
     isSuccess,
   } = useQuery(["anime-recent", currentPage], () =>
-    getRecentAnimes(currentPage)
+    animeApi.getRecentEpisodes(currentPage)
   );
 
   //Preloading next page
   const nextPage = useMemo(() => currentPage + 1, [currentPage]);
   const { data: nextPageData } = useQuery(["anime-recent", nextPage], () =>
-    getRecentAnimes(nextPage)
+    animeApi.getRecentEpisodes(nextPage)
   );
 
 
@@ -33,7 +32,7 @@ const HomeScreen = () => {
     data: trendingAnime,
     isLoading: isTrendingLoading,
     isSuccess: isTrendingSuccess,
-  } = useQuery(["anime-trending"], () => getAnimeTrending());
+  } = useQuery(["anime-trending"], () => getAnimeTopAiring());
 
   const paginate = (pageNumber: number) => {
     return setCurrentPage(pageNumber);

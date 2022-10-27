@@ -1,9 +1,9 @@
 import Head from "next/head";
-import { getAnimeInfoById } from "../../api/Anime_API/getAnimeInfoById";
 import { dehydrate, QueryClient, useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
 import ProtectedWrapper from "../../components/AuthComponents/Protected";
 import AnimeDetailsScreen from "../../screens/AnimeDetailsScreen";
+import { animeApi } from "../../api/Anime_API";
 
 export default function AnimeDetailsPage() {
   const router = useRouter();
@@ -13,7 +13,7 @@ export default function AnimeDetailsPage() {
     data: animeDetails,
     isLoading: isAnimeLoading,
     isSuccess: isAnimeSuccess,
-  } = useQuery(["anime-details", animeId], () => getAnimeInfoById(+animeId));
+  } = useQuery(["anime-details", animeId], () => animeApi.getAnimeById(+animeId));
 
   // const {
   //   data: animePlaylist,
@@ -45,7 +45,7 @@ export const getServerSideProps = async (context) => {
   const { animeId } = context.query;
 
   await queryClient.prefetchQuery(["anime-details", animeId], () =>
-    getAnimeInfoById(animeId)
+    animeApi.getAnimeById(animeId)
   );
   // await queryClient.prefetchQuery(["anime-playlist", animeId], () =>
   //   getPlaylistById(animeId)

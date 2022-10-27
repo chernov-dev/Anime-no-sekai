@@ -1,6 +1,6 @@
 import React from "react";
 import AnimeCard from "./AnimeCard/AnimeCard";
-import AnimeDetails from "./AnimeDetails";
+import AnimeDetails from "./AnimeDetails/AnimeDetails";
 
 function AnimeList({ animeArray, children } : {animeArray, children?: React.ReactNode}) {
   return (

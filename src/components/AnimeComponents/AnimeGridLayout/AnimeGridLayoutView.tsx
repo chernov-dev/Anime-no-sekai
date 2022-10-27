@@ -2,13 +2,17 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { useState, useEffect, useContext } from "react";
 import { BsHeart, BsHeartFill } from "react-icons/bs";
-import UserPreferencesProvider, { UserPreferencesContext, useUserPreferences } from "../../context/UserPreferencesProvider";
-import useAddFavorite from "../../hooks/useAddFavorite";
-import useRemoveFavorite from "../../hooks/useRemoveFavorite";
-import { IAnimeResult } from "../../types/Anime";
-import Spinner from "../Shared/Spinner";
-import { shimmer, toBase64 } from "../utils/shimmer";
-import AnimeCardFooterExtraDetails from "./AnimeCard/AnimeCardFooterExtraDetails";
+import UserPreferencesProvider, {
+  UserPreferencesContext,
+  useUserPreferences,
+} from "../../../context/UserPreferencesProvider";
+import useAddFavorite from "../../../hooks/useAddFavorite";
+import useRemoveFavorite from "../../../hooks/useRemoveFavorite";
+import { IAnimeResult } from "../../../types/Anime";
+import Spinner from "../../Shared/Spinner";
+import { shimmer, toBase64 } from "../../Shared/shimmer";
+import AnimeCardFooterExtraDetails from "../AnimeCard/AnimeCardFooterExtraDetails";
+import { toast, ToastContainer } from "react-toastify";
 
 const Item = ({
   anime,
@@ -30,19 +34,24 @@ const Item = ({
   let tooltip = `${title}`;
   let imageUrl = anime.image;
 
-  const {favorite} = useUserPreferences();
+  const { favoriteIds } = useUserPreferences();
   const addFavorite = useAddFavorite(anime.id);
   const removeFavorite = useRemoveFavorite(anime.id);
-
 
   const [liked, setLiked] = useState(false);
 
   useEffect(() => {
-    setLiked(favorite?.some((e) => e.id === anime.id));
-  }, [anime.id, favorite]);
+    setLiked(favoriteIds?.some((e) => e == anime.id));
+  }, [anime.id, favoriteIds]);
 
   return (
-    <div className="anime-home-item__wrapper" title={tooltip}>
+    <div
+      className="anime-home-item__wrapper"
+      title={tooltip}
+      onClick={() => {
+        location.href = `/anime/${anime.id}`;
+      }}
+    >
       <div className="anime-home__grid-item">
         <div className="anime-home__grid-item__header">
           <div className="anime-img rounded-bl-none rounded-br-none">
@@ -88,9 +97,6 @@ const Item = ({
               width={205}
               layout="responsive"
               className="p-1 filter dark:brightness-[90%]"
-              onAuxClick={() => {
-                location.href = `/anime/${anime.id}`;
-              }}
               placeholder="blur"
               blurDataURL={`data:image/svg+xml;base64,${toBase64(
                 shimmer(700, 475)
