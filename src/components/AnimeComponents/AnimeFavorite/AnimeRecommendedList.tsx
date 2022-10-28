@@ -1,4 +1,6 @@
 import Image from "next/image";
+import Link from "next/link";
+import { shimmer, toBase64 } from "../../Shared/shimmer";
 
 const AnimeRecommendedList = ({ anime }) => {
   return (
@@ -9,11 +11,9 @@ const AnimeRecommendedList = ({ anime }) => {
       <div className="neumorphic-list">
         {anime.map((anime, index) => {
           return (
-            <div
+            <Link
               key={anime.title.english}
-              onClick={() => {
-                location.href = `/anime/${anime.id}`;
-              }}
+              href={`/anime/${anime.id}`}
               className="cursor-pointer"
             >
               <Image
@@ -22,13 +22,16 @@ const AnimeRecommendedList = ({ anime }) => {
                 width={60}
                 height={78}
                 alt="top anime"
-                layout="fixed"
+                placeholder="blur"
+                blurDataURL={`data:image/svg+xml;base64,${toBase64(
+                  shimmer(60, 78)
+                )}`}
               />
               <p className="text-neumorph-secondary opacity-90 short mx-2.5 grow">
                 {anime.title.english ?? anime.title.userPreferred}
               </p>
               <p className="anime-type mr-2">{anime.type}</p>
-            </div>
+            </Link>
           );
         })}
       </div>

@@ -32,11 +32,10 @@ const Item = ({ anime }: { anime: IAnimeResult }) => {
           <div className="p-3 pb-1 rounded-[1rem] relative h-full aspect-[2/3]">
             <Image
               src={anime.image}
-              className="anime-img"
               alt="preview"
-              layout="fill"
-              objectFit="cover"
-              objectPosition={"50% 20%"}
+              fill
+              className="anime-img object-cover object-center rounded-2xl"
+              placeholder="blur"
               blurDataURL={`data:image/svg+xml;base64,${toBase64(
                 shimmer(300, 251)
               )}`}

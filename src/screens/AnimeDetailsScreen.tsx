@@ -1,8 +1,7 @@
 import Image from 'next/image'
-import React from 'react'
 import AnimeDetails from '../components/AnimeComponents/AnimeDetails/AnimeDetails'
-import AnimePlayer from '../components/AnimeComponents/AnimePlayer/AnimePlayer'
 import AnimeRecommendations from '../components/AnimeComponents/AnimeFavorite/AnimeRecommendations'
+import AnimePlayer from '../components/AnimeComponents/AnimePlayer/AnimePlayer'
 import { shimmer, toBase64 } from '../components/Shared/shimmer'
 
 const AnimeDetailsScreen = ({animeDetails}) => {
@@ -14,10 +13,9 @@ const AnimeDetailsScreen = ({animeDetails}) => {
           <Image
             src={animeDetails.cover}
             alt="cover of the current anime"
-            layout="fill"
+            fill
             placeholder="blur"
-            objectFit="cover"
-            objectPosition="50% 50%"
+            className="object-cover object-center rounded-2xl"
             blurDataURL={`data:image/svg+xml;base64,${toBase64(
               shimmer(700, 300)
             )}`}

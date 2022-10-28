@@ -36,10 +36,8 @@ const UserIsBackLogin = ({
           className="neumorphic-input"
           onChange={(e) => setPassword(e.target.value)}
         />
-        <Link href={"/forgot"}>
-          <a className="text-sm float-left pl-3 underline opacity-70">
+        <Link href={"/forgot"} className="text-sm float-left pl-3 underline opacity-70">
             Forgot password?
-          </a>
         </Link>
         {isLoading ? (
           <Spinner />

@@ -97,12 +97,8 @@
 }
 
 .anime-img {
-  border-radius: 0.75rem;
+  @apply rounded-lg rounded-bl-none rounded-br-none h-[280px] relative;
   position: relative;
-}
-
-.anime-img span {
-  border-radius: inherit;
 }
 
 .anime-title {

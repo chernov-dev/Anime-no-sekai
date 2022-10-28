@@ -129,7 +129,7 @@
   opacity: 40%;
   z-index: -1;
 } */
-.neumorphic-list > div {
+.neumorphic-list > a {
   counter-increment: list-number;
   display: inline-flex;
   align-items: center;
@@ -140,44 +140,44 @@
   padding-left: 10px;
   @apply shadow-neumorphic border-[1px] border-black dark:border-white border-opacity-10 dark:border-opacity-10;
 }
-.neumorphic-list > div::before {
+.neumorphic-list > a::before {
   content: counter(list-number);
   margin-right: 1rem;
   font-size: 2.25rem;
 }
-.neumorphic-list > div:first-child:before {
+.neumorphic-list > a:first-child:before {
   color: var(--neumorph-accent);
   filter: saturate(5);
 }
-.neumorphic-list > div:nth-child(2)::before {
+.neumorphic-list > a:nth-child(2)::before {
   color: var(--neumorph-accent);
   filter: saturate(3.5);
 }
-.neumorphic-list > div:nth-child(3)::before {
+.neumorphic-list > a:nth-child(3)::before {
   color: var(--neumorph-accent);
   filter: saturate(2.5);
 }
-.neumorphic-list > div:nth-child(4)::before {
+.neumorphic-list > a:nth-child(4)::before {
   color: var(--neumorph-accent);
   filter: saturate(2);
 }
-.neumorphic-list > div:nth-child(5)::before {
+.neumorphic-list > a:nth-child(5)::before {
   color: var(--neumorph-accent);
   filter: saturate(1.5);
 }
-.neumorphic-list > div:nth-child(6)::before {
+.neumorphic-list > a:nth-child(6)::before {
   color: var(--neumorph-accent);
   filter: saturate(1.2);
 }
-.neumorphic-list > div:nth-child(7)::before {
+.neumorphic-list > a:nth-child(7)::before {
   color: var(--neumorph-accent);
   filter: saturate(0.9);
 }
-.neumorphic-list > div:nth-child(8)::before {
+.neumorphic-list > a:nth-child(8)::before {
   color: var(--neumorph-accent);
   filter: saturate(0.7);
 }
-.neumorphic-list > div:nth-child(9)::before {
+.neumorphic-list > a:nth-child(9)::before {
   color: var(--neumorph-accent);
   filter: saturate(0.6);
 }

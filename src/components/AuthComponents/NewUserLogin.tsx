@@ -19,9 +19,7 @@ const NewUserLogin = ({
         Welcome
         <p className="text-base opacity-75">Lets get started</p>
       </div>
-      <form
-        className="auth-inputs flex flex-col gap-4 rounded-[1rem]"
-      >
+      <form className="auth-inputs flex flex-col gap-4 rounded-[1rem]">
         <input
           type="email"
           name="email"
@@ -36,13 +34,29 @@ const NewUserLogin = ({
           className="neumorphic-input"
           onChange={(e) => setPassword(e.target.value)}
         />
-        <Link href={"/forgot"}>
-          <a className="text-sm float-left pl-3 underline opacity-70">Forgot password?</a>
+        <Link
+          href={"/forgot"}
+          className="text-sm float-left pl-3 underline opacity-70"
+        >
+          Forgot password?
         </Link>
-        {isLoading ? <Spinner/> : <button className="neumorphic-btn secondary" type="button" onClick={() => onSubmit()}>Log in</button>}
+        {isLoading ? (
+          <Spinner />
+        ) : (
+          <button
+            className="neumorphic-btn secondary"
+            type="button"
+            onClick={() => onSubmit()}
+          >
+            Log in
+          </button>
+        )}
       </form>
-      <Link href={"/auth/signup"}>
-        <a className="text-sm text-center underline opacity-70">Sign up</a>
+      <Link
+        href={"/auth/signup"}
+        className="text-sm text-center underline opacity-70"
+      >
+        Sign up{" "}
       </Link>
     </>
   );

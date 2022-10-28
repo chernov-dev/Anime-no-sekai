@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { shimmer, toBase64 } from '../../Shared/shimmer';
 import UpcomingAnimeCardFooter from './UpcomingAnimeCardFooter';
@@ -15,25 +16,18 @@ const UpcomingAnimeCard = ({ anime }: { anime: any }) => {
       <div className="anime-upcoming-item__wrapper" title={tooltip}>
         <div className="anime-home__grid-item">
           <div className="anime-home__grid-item__header">
-            <div className="anime-img rounded-bl-none rounded-br-none">
+            <Link href={`${anime.trailer.url ?? ""}`} className="relative h-[12rem] w-full">
               <Image
                 src={imageUrl}
                 alt="anime poster"
-                height={150}
-                width={345}
-                objectFit="cover"
-                objectPosition={"50% 0%"}
-                layout="responsive"
-                className="p-1 filter dark:brightness-[90%]"
-                onClick={() => {
-                  location.href = `${anime.trailer.url.toString()}`;
-                }}
+                fill
+                className="object-cover object-center rounded-bl-none rounded-br-none filter dark:brightness-[90%]"
                 placeholder="blur"
                 blurDataURL={`data:image/svg+xml;base64,${toBase64(
-                  shimmer(700, 475)
+                  shimmer(150, 345)
                 )}`}
               />
-            </div>
+            </Link>
           <UpcomingAnimeCardFooter type={anime.type} popularity={anime.popularity} year={anime.year} favorites={anime.favorites}/>
           </div>
           <div className="anime-home__grid-item__title py-2 ">

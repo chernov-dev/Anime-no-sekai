@@ -20,12 +20,12 @@ const AnimeCard = (props) => {
             <Image
               src={anime.urlImagePreview}
               alt="preview"
-              width="150px"
-              height="225px"
+              width="150"
+              height="225"
               layout="responsive"
               placeholder="blur"
               blurDataURL={`data:image/svg+xml;base64,${toBase64(
-                shimmer(700, 475)
+                shimmer(150, 225)
               )}`}
             />
           </div>

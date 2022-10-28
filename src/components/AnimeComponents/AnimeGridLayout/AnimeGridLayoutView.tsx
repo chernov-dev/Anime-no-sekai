@@ -52,7 +52,7 @@ const Item = ({
     >
       <div className="anime-home__grid-item">
         <div className="anime-home__grid-item__header">
-          <div className="anime-img rounded-bl-none rounded-br-none">
+          <div className="anime-img">
             <div className="anime-status-overlay px-2">
               <div className="h-full px-1 text-4xl font-bold text-neumorph-primary">
                 {bulletIndex}
@@ -91,13 +91,11 @@ const Item = ({
             <Image
               src={imageUrl}
               alt="anime poster"
-              height={287}
-              width={205}
-              layout="responsive"
-              className="p-1 filter dark:brightness-[90%]"
+              fill
+              className="filter dark:brightness-[90%] rounded-[inherit]"
               placeholder="blur"
               blurDataURL={`data:image/svg+xml;base64,${toBase64(
-                shimmer(700, 475)
+                shimmer(300, 205)
               )}`}
             />
           </div>
