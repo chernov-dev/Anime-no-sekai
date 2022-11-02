@@ -1,31 +1,45 @@
 import { Tab } from "@headlessui/react";
+import { useQuery } from "@tanstack/react-query";
 import {
-  useEffect, useState
+  useEffect, useMemo, useState
 } from "react";
+import { animeApi } from "../../../api/Anime_API";
 import { useUserPreferences } from "../../../context/UserPreferencesProvider";
 import useUpdateLayout from "../../../hooks/useUpdateLayout";
-import { IAnimeResult } from "../../../types/Anime";
-import { IPagination } from "../../../types/Pagination";
 import LayoutChanger from "../../Shared/LayoutChanger";
 import PageLoader from "../../Shared/PageLoader";
-import AnimeFullWidthLayoutView from "../AnimeFullwidthLayout/AnimeFullWidthLayoutView";
-import AnimeGridLayoutView from "../AnimeGridLayout/AnimeGridLayoutView";
 import TopTrendingList from "../AnimeTopTrending/TopTrendingList";
+import AnimeFullWidthLayoutView from "./AnimeFullwidthLayout/AnimeFullWidthLayoutView";
+import AnimeGridLayoutView from "./AnimeGridLayout/AnimeGridLayoutView";
 import HomePagePagination from "./HomePagePagination";
+import HomePagePaginationSkeleton from "./HomePagePaginationSkeleton";
 
 const AnimeHome = ({
-  anime,
   title: pageTitle,
-  pagination,
   paginate,
   children,
+  currentPage
 }: {
-  anime: IAnimeResult[];
   title: string;
-  pagination?: IPagination;
   paginate?: (pageNumber: number) => void;
   children?: JSX.Element;
+  currentPage: number
 }) => {
+
+  const {
+    data: animeData,
+    isLoading: isAnimeDataLoading,
+    isSuccess: isAnimeDataSuccess,
+  } = useQuery(["anime-recent", currentPage], () =>
+    animeApi.getRecentEpisodes({ page: currentPage })
+  );
+
+  //Preloading next page
+  const nextPage = useMemo(() => currentPage + 1, [currentPage]);
+  const { data: nextPageData } = useQuery(["anime-recent", nextPage], () =>
+    animeApi.getRecentEpisodes({ page: nextPage })
+  );
+
   const { layout, setLayout }: any = useUserPreferences();
   const isGridLayout = layout == "grid" ? true : false;
   const isFullWidthLayout = layout == "fullWidth" ? true : false;
@@ -43,7 +57,7 @@ const AnimeHome = ({
     }
   }, []);
 
-  if (!hasWindow || !anime) {
+  if (!hasWindow) {
     return <PageLoader />;
   }
 
@@ -55,6 +69,7 @@ const AnimeHome = ({
             selectedIndex={selectedLayoutIndex}
             onChange={(i) => {
               setSelectedLayoutIndex(i);
+              setLayout(layout == "grid" ? "fullWidth" : "grid")
               updateLayout.mutate();
             }}
           >
@@ -62,28 +77,29 @@ const AnimeHome = ({
               <p className="text-xl md:text-2xl">{pageTitle}</p>
               <div className="flex items-center md:w-auto gap-3">
                 <LayoutChanger />
-                {pagination && paginate && (
-                  <HomePagePagination
-                    paginate={paginate}
-                    pagination={pagination}
-                  />
-                )}
+                {isAnimeDataLoading && <HomePagePaginationSkeleton />}
+                {isAnimeDataSuccess && <HomePagePagination
+                  paginate={paginate}
+                  pagination={animeData.pagination}
+                />}
               </div>
             </div>
             <Tab.Panels>
               <Tab.Panel>
-                <AnimeGridLayoutView anime={anime} />
+                <AnimeGridLayoutView anime={animeData?.anime ?? undefined} />
               </Tab.Panel>
               <Tab.Panel>
-                <AnimeFullWidthLayoutView anime={anime} />
+                <AnimeFullWidthLayoutView anime={animeData?.anime} />
               </Tab.Panel>
             </Tab.Panels>
           </Tab.Group>
-          {pagination && paginate && (
-            <div className="block sm:hidden mb-3 self-center">
-              <HomePagePagination paginate={paginate} pagination={pagination} />
-            </div>
-          )}
+          <div className="block sm:hidden mb-3 self-center">
+            {isAnimeDataLoading && <HomePagePaginationSkeleton />}
+            {isAnimeDataSuccess && <HomePagePagination
+              paginate={paginate}
+              pagination={animeData.pagination}
+            />}
+          </div>
           {children}
         </div>
         <aside className="anime-home__sidebar">

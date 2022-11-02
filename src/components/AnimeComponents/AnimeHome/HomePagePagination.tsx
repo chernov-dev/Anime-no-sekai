@@ -9,16 +9,11 @@ const HomePagePagination = ({
   paginate?: (number) => void;
 }) => {
 
-
-  const handlePageChange = (e,page) => {
+  const handlePageChange = (e, page) => {
     paginate(page);
   };
 
   let lastPage = pagination.totalPages - 2 ?? !pagination.hasNextPage;
-
-  if (!paginate && !pagination) {
-    return <div></div>;
-  }
 
   return (
     <div className="text-neumorph-secondary flex gap-4">
@@ -29,7 +24,7 @@ const HomePagePagination = ({
           "Go to previous page " + "\nCan be accessed with ALT + J combination"
         }
         disabled={pagination.currentPage == 1}
-        onClick={(e) => handlePageChange(e,--pagination.currentPage)}
+        onClick={(e) => handlePageChange(e, --pagination.currentPage)}
       >
         <FaChevronLeft size={18} />
       </button>

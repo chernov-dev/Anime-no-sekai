@@ -10,6 +10,8 @@ const SettingsModal = ({ isOpen, onOpen, onClose }) => {
   const updateTheme = useUpdateTheme();
 
   const toggleDarkMode = () => {
+    console.log('here', theme)
+    setTheme(theme == "dark" ? "light" : 'dark');
     updateTheme.mutate();
   };
 
@@ -50,9 +52,8 @@ const SettingsModal = ({ isOpen, onOpen, onClose }) => {
                   <div className="flex items-center gap-5 px-2">
                     <button
                       className={`neumorphic-icon h-12`}
-                      title={`Join the ${
-                        theme === "dark" ? "weak" : "dark"
-                      } side`}
+                      title={`Join the ${theme === "dark" ? "weak" : "dark"
+                        } side`}
                       onClick={() => toggleDarkMode()}
                     >
                       {theme === "dark" ? (

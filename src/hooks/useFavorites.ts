@@ -1,6 +1,7 @@
-import { useQueries, useQuery } from "@tanstack/react-query";
-import supabase from "../supabase/supabase-js";
+import { useQuery } from "@tanstack/react-query";
 import { animeApi } from "../api/Anime_API";
+import supabase from "../supabase/supabase-js";
+import { IAnimeResult } from "./../types/Anime";
 
 const fetchFavorites = async (user_id) => {
   if (!user_id) {
@@ -17,7 +18,9 @@ const fetchFavorites = async (user_id) => {
   }
   const userFavoriteListId = data.map((item) => item.anime_id);
 
-  const userFavoriteList = await fetchUserFavoriteAnime(userFavoriteListId);
+  const userFavoriteList = (await fetchUserFavoriteAnime(
+    userFavoriteListId
+  )) as IAnimeResult[];
 
   //reversing an array to show in user's order
   let filteredItems = [...userFavoriteList].reverse();

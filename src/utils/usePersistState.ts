@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useCallback, useState } from "react";
 
 function persistItem(key: string, value: string) {
   typeof window !== "undefined" &&

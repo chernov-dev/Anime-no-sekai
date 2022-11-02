@@ -1,12 +1,9 @@
-import { useEffect, useState } from "react";
-import AnimeGridLayoutView from "../components/AnimeComponents/AnimeGridLayout/AnimeGridLayoutView";
-import TopTrendingList from "../components/AnimeComponents/AnimeTopTrending/TopTrendingList";
-import HomePagePagination from "../components/AnimeComponents/AnimeHome/HomePagePagination";
-import PageLoader from "../components/Shared/PageLoader";
-import Spinner from "../components/Shared/PageLoader";
-import { useUserPreferences } from "../context/UserPreferencesProvider";
 import { useQuery } from "@tanstack/react-query";
+import { useState } from "react";
 import { animeApi } from "../api/Anime_API";
+import AnimeGridLayoutView from "../components/AnimeComponents/AnimeHome/AnimeGridLayout/AnimeGridLayoutView";
+import TopTrendingList from "../components/AnimeComponents/AnimeTopTrending/TopTrendingList";
+import Spinner from "../components/Shared/PageLoader";
 
 const PopularAnimeScreen = ({
   title: pageTitle,

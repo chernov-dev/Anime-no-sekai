@@ -5,20 +5,20 @@ import { useEffect, useState } from "react";
 import { IoPlayCircleSharp } from "react-icons/io5";
 import { EffectFade, Mousewheel, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
-import AnsSvgLogo from "../../../../public/AnsSvgLogo";
 import { animeApi } from "../../../api/Anime_API";
 import { formatDate, handleDate } from "../../../utils/handleDate";
-import Spinner from "../../Shared/Spinner";
 
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/effect-fade";
 import "swiper/css/mousewheel";
 import "swiper/css/pagination";
+import AnsSvgLogo from "../../../../public/AnsSvgLogo";
 import { shimmer, toBase64 } from "../../Shared/shimmer";
+import AnimeScheduleSkeleton from "./AnimeScheduleSkeleton";
 
 const AnimeSchedule = () => {
-  const { data, isLoading, isSuccess } = useQuery(["anime-schedule"], () =>
+  const { data, isLoading, isSuccess, isError } = useQuery(["anime-schedule"], () =>
     animeApi.getAiringSchedule()
   );
 
@@ -44,10 +44,10 @@ const AnimeSchedule = () => {
       <div className="w-full h-fit shadow-neumorphic neumorphic-border rounded-lg">
         <div className="flex flex-col h-[10rem] bg-neumorph-primary dark:bg-neumorph-secondary rounded-lg relative">
           <div className="absolute flex flex-wrap items-center justify-between gap-0 md:gap-2 px-3 rounded-t-lg h-full top-0 left-0 z-30 w-full font-bold bg-black bg-opacity-60 text-white text-opacity-70">
-            <span className="dark:text-neumorph-secondary text-xl md:text-2xl">
+            <span className="text-xl md:text-2xl">
               Estimated Anime schedule{" "}
             </span>
-            <span className="text-xl dark:text-neumorph-secondary">
+            <span className="text-xl">
               {currentTime}
             </span>
           </div>
@@ -73,8 +73,8 @@ const AnimeSchedule = () => {
           pagination={{ clickable: true }}
           className="mt-4"
         >
-          {isLoading && <Spinner />}
-          {isSuccess &&
+          {(isLoading || isError) && <AnimeScheduleSkeleton />}
+          {(!isLoading || isSuccess) &&
             data.results.map((anime) => {
               return (
                 <SwiperSlide key={anime.id + anime.episode} className="mt-10">
@@ -85,10 +85,12 @@ const AnimeSchedule = () => {
                         alt={`${anime.title.userPreferred} poster`}
                         fill
                         placeholder="blur"
+                        sizes="(max-width: 768px) 50vw,
+                  (max-width: 1200px) 70vw"
                         blurDataURL={`data:image/svg+xml;base64,${toBase64(
                           shimmer(320, 70)
                         )}`}
-                        className="object-cover object-center rounded-2xl filter"
+                        className="object-cover object-center rounded-lg filter"
                       />
                     </Link>
                     <div className="m-0 sm:mx-4 flex w-full flex-col flex-wrap justify-center sm:justify-between items-center gap-2 sm:gap-4 text-sm md:text-base">
@@ -109,8 +111,7 @@ const AnimeSchedule = () => {
                         className="neumorphic-btn secondary gap-2 h-7 text-sm md:text-base"
                       >
                         <IoPlayCircleSharp size={20} />
-                        <span> Episode {anime.episode}</span>
-                      </Link>
+                        <span> Episode {anime.episode}</span></Link>
                     </div>
                   </div>
                 </SwiperSlide>

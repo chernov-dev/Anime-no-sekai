@@ -23,6 +23,9 @@ const AnimeRecommendedList = ({ anime }) => {
                 height={78}
                 alt="top anime"
                 placeholder="blur"
+                sizes="(max-width: 768px) 33vw,
+                  (max-width: 1200px) 25vw,
+                  20vw"
                 blurDataURL={`data:image/svg+xml;base64,${toBase64(
                   shimmer(60, 78)
                 )}`}

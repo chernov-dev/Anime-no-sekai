@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import AnimeFavoriteList from "../components/AnimeComponents/AnimeFavorite/AnimeFavoriteList";
 import AnimeWeeklyNotificationsComponent from "../components/AnimeComponents/AnimeNotifications/AnimeWeeklyNotificationsComponent";
-import PageLoader from "../components/Shared/PageLoader";
 import UserProfileInfoComponent from "../components/UserComponents/UserProfileInfoComponent";
 import useFavorites from "../hooks/useFavorites";
 import { IAnimeInfo } from "../types/Anime";
@@ -29,8 +28,8 @@ const UserScreen = () => {
   const [recommended, setRecommended] = useState([]);
 
   const { data: favorite, isLoading, isSuccess } = useFavorites();
-  const [ongoing, setOngoing] = useState([]);
-  const [completed, setCompleted] = useState([]);
+  const [ongoing, setOngoing] = useState(undefined);
+  const [completed, setCompleted] = useState(undefined);
 
   useEffect(() => {
     // setRecommended(recommendedBasedOnfavorite(favorite, 10));
@@ -50,26 +49,22 @@ const UserScreen = () => {
 
   const [enabled, setEnabled] = useState(false);
 
-  if (isLoading) {
-    return <PageLoader />;
-  }
-
   return (
     <>
-      <div className="flex flex-col md:flex-row justify-center">
-        {isSuccess && (
+      <div className="anime-home">
+        <div className="anime-home__container">
           <AnimeFavoriteList
             anime={favorite}
             ongoing={ongoing}
             completed={completed}
           />
-        )}
-        <aside className="flex w-full md:w-[35%] lg:w-[40%] flex-col gap-4 p-3">
-          <UserProfileInfoComponent favorites={favorite} />
+        </div>
+        <aside className="anime-home__sidebar flex flex-col gap-4 p-3">
+          <UserProfileInfoComponent favoritesQuantity={favorite?.length} />
           <AnimeWeeklyNotificationsComponent
             enabled={enabled}
             setEnabled={setEnabled}
-            ongoingNumber={ongoing.length}
+            ongoingNumber={ongoing?.length}
           />
         </aside>
         {/* {recommended.length > 0 && (

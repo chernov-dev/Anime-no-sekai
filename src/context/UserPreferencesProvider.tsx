@@ -1,10 +1,7 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import PageLoader from "../components/Shared/PageLoader";
-import Spinner from "../components/Shared/Spinner";
 import useFavoriteIds from "../hooks/useFavoriteIds";
-import useFavorites from "../hooks/useFavorites";
 import useUser from "../hooks/useUser";
-import { IAnimeResult } from "../types/Anime";
 import { IUserType } from "../types/User";
 import usePersistState from "../utils/usePersistState";
 
@@ -23,7 +20,7 @@ export function getInitialTheme() {
 }
 
 export type IUserPreferencesContextType = {
-  favoriteIds: any[];
+  favoriteIds: number[];
   setFavoriteIds: React.Dispatch<React.SetStateAction<[]>>;
   user: IUserType;
   setUser: React.Dispatch<React.SetStateAction<IUserType>>;
@@ -33,17 +30,17 @@ export type IUserPreferencesContextType = {
   setLayout: React.Dispatch<React.SetStateAction<string>>;
 };
 
-export const UserPreferencesContext =
-  React.createContext<IUserPreferencesContextType>(null);
+const UserPreferencesContext =
+  React.createContext<IUserPreferencesContextType | undefined>(undefined);
 
-const UserPreferencesProvider = ({ initialTheme, children }) => {
+const UserPreferencesProvider = ({ children }: { children: React.ReactNode }) => {
   const userFavoriteIds = useFavoriteIds();
   const userFetched = useUser();
 
   const [isLoading, setIsLoading] = useState(true);
   // Caching User preferences states
-  const [favoriteIds, setFavoriteIds] = useState([]);
-  const [user, setUser] = useState<IUserType>(null);
+  const [favoriteIds, setFavoriteIds] = useState<number[]>([]);
+  const [user, setUser] = useState<IUserType | undefined>(undefined);
   const [layout, setLayout] = usePersistState("ans-layout", "grid");
   const [theme, setTheme] = usePersistState("ans-theme", getInitialTheme());
 
@@ -51,7 +48,6 @@ const UserPreferencesProvider = ({ initialTheme, children }) => {
     if (typeof window !== undefined) {
       const root = window.document.documentElement;
       const isDark = theme === "dark";
-
       root.classList.remove(isDark ? "light" : "dark");
       root.classList.add(theme);
     }
@@ -79,25 +75,32 @@ const UserPreferencesProvider = ({ initialTheme, children }) => {
   ]);
 
   return (
-    <UserPreferencesContext.Provider
-      value={{
-        favoriteIds,
-        setFavoriteIds,
-        user,
-        setUser,
-        theme,
-        setTheme,
-        layout,
-        setLayout,
-      }}
-    >
-      {isLoading && <PageLoader />}
-      {!isLoading && children}
-    </UserPreferencesContext.Provider>
-  );
+    <>
+      {!isLoading && <UserPreferencesContext.Provider
+        value={{
+          favoriteIds,
+          setFavoriteIds,
+          user,
+          setUser,
+          theme,
+          setTheme,
+          layout,
+          setLayout,
+        }}
+      >
+        {isLoading && <PageLoader />}
+        {!isLoading && children}
+      </UserPreferencesContext.Provider>}
+    </>
+  )
 };
 export default UserPreferencesProvider;
 
 export function useUserPreferences() {
-  return useContext(UserPreferencesContext);
+  const userPreferences = useContext(UserPreferencesContext);
+  if (!userPreferences)
+    throw new Error(
+      'No UserPrerferences.Provider found when calling useUserPreferences.'
+    );
+  return userPreferences;
 }

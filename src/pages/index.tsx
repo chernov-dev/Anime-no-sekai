@@ -11,7 +11,7 @@ function WelcomePage() {
       </Head>
 
       <main className="flex flex-col justify-center w-full">
-        <WelcomePageScreen/>
+        <WelcomePageScreen />
       </main>
     </>
   );

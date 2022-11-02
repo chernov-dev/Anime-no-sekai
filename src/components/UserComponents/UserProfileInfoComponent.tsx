@@ -1,11 +1,12 @@
+import Skeleton from "react-loading-skeleton";
 import { useUserPreferences } from "../../context/UserPreferencesProvider";
 import Spinner from "../Shared/Spinner";
 
-const UserProfileInfoComponent = ({ favorites }) => {
+const UserProfileInfoComponent = ({ favoritesQuantity }) => {
 
-  const {user} = useUserPreferences();
+  const { user } = useUserPreferences();
 
-  if(!user) return <Spinner></Spinner>
+  if (!user) return <Spinner></Spinner>
 
   return (
     <div className="flex flex-col justify-between gap-2 px-3 py-2 w-full bg-neumorph-primary shadow-neumorphic rounded-xl ring-1 ring-black dark:ring-white ring-opacity-10 dark:ring-opacity-10">
@@ -16,19 +17,19 @@ const UserProfileInfoComponent = ({ favorites }) => {
         <p className="text-neumorph-secondary text-base">
           Username:{" "}
           <span className="opacity-60 text-black dark:text-white">
-            {user.username}
+            {user.username ?? <Skeleton width="10rem" />}
           </span>
         </p>
         <p className="text-neumorph-secondary text-base">
           Email:{" "}
           <span className="opacity-60 text-black dark:text-white">
-            {user.email}
+            {user.email ?? <Skeleton width="10rem" />}
           </span>
         </p>
       </div>
       <p className="text-neumorph-secondary">
         Anime in the list:{" "}
-        <span className="text-neumorph-accent">{favorites.length}</span>
+        <span className="text-neumorph-accent">{favoritesQuantity ?? <Skeleton width="5rem" />}</span>
       </p>
     </div>
   );

@@ -1,13 +1,12 @@
 import Head from "next/head";
-import ProtectedWrapper from "../../components/AuthComponents/Protected";
 import UpcomingAnimeScreen from "../../screens/UpcomingAnimeScreen";
 
 
 const UpcomingAnimesPage = () => {
-  
+
 
   return (
-    <ProtectedWrapper>
+    <>
       <Head>
         <title>ANS - Top</title>
         <meta name="description" content="ANS - animevost API" />
@@ -15,9 +14,9 @@ const UpcomingAnimesPage = () => {
       </Head>
 
       <main>
-        <UpcomingAnimeScreen/>
+        <UpcomingAnimeScreen />
       </main>
-    </ProtectedWrapper>
+    </>
   );
 };
 

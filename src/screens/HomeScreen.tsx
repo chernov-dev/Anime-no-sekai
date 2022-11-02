@@ -1,11 +1,7 @@
-import { useQuery } from "@tanstack/react-query";
-import { useMemo, useState } from "react";
-import { animeApi } from "../api/Anime_API";
-import { getAnimeTopAiring } from "../api/Anime_API/getAnimeTopAiring";
+import { useState } from "react";
 import AnimeHeroSwiper from "../components/AnimeComponents/AnimeHero/AnimeHeroSwiper";
 import AnimeHome from "../components/AnimeComponents/AnimeHome/AnimeHome";
 import AnimeSchedule from "../components/AnimeComponents/AnimeSchedule/AnimeSchedule";
-import PageLoader from "../components/Shared/PageLoader";
 import { IAnimeTypeFilter } from "../types/Anime";
 
 const HomeScreen = () => {
@@ -13,25 +9,6 @@ const HomeScreen = () => {
 
   const [filterType, setFilterType] = useState({} as IAnimeTypeFilter);
 
-  const {
-    data: animeData,
-    isLoading,
-    isSuccess,
-  } = useQuery(["anime-recent", currentPage], () =>
-    animeApi.getRecentEpisodes({page: currentPage})
-  );
-
-  //Preloading next page
-  const nextPage = useMemo(() => currentPage + 1, [currentPage]);
-  const { data: nextPageData } = useQuery(["anime-recent", nextPage], () =>
-    animeApi.getRecentEpisodes({page: nextPage})
-  );
-
-  const {
-    data: trendingAnime,
-    isLoading: isTrendingLoading,
-    isSuccess: isTrendingSuccess,
-  } = useQuery(["anime-trending"], () => getAnimeTopAiring());
 
   const paginate = (pageNumber: number) => {
     return setCurrentPage(pageNumber);
@@ -39,21 +16,15 @@ const HomeScreen = () => {
 
   return (
     <>
-      {isTrendingSuccess && <AnimeHeroSwiper animeList={trendingAnime} />}
+      <AnimeHeroSwiper />
 
-      {isLoading && <PageLoader /> }
-      {isSuccess && (
-        <>
-          <AnimeHome
-            anime={animeData.anime}
-            title="Recently added"
-            paginate={paginate}
-            pagination={animeData.pagination}
-          >
-            <AnimeSchedule />
-          </AnimeHome>
-        </>
-      )}
+      <AnimeHome
+        title="Recently added"
+        currentPage={currentPage}
+        paginate={paginate}
+      >
+        <AnimeSchedule />
+      </AnimeHome>
     </>
   );
 };

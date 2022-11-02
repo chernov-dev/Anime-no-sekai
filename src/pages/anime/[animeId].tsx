@@ -1,9 +1,8 @@
-import Head from "next/head";
 import { dehydrate, QueryClient, useQuery } from "@tanstack/react-query";
+import Head from "next/head";
 import { useRouter } from "next/router";
-import ProtectedWrapper from "../../components/AuthComponents/Protected";
-import AnimeDetailsScreen from "../../screens/AnimeDetailsScreen";
 import { animeApi } from "../../api/Anime_API";
+import AnimeDetailsScreen from "../../screens/AnimeDetailsScreen";
 
 export default function AnimeDetailsPage() {
   const router = useRouter();
@@ -23,7 +22,7 @@ export default function AnimeDetailsPage() {
 
   if (isAnimeSuccess && animeDetails) {
     return (
-      <ProtectedWrapper>
+      <>
         <Head>
           <title>ANS - {animeDetails.title.english}</title>
           <meta
@@ -33,9 +32,9 @@ export default function AnimeDetailsPage() {
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <main className="flex items-center flex-col justify-center">
-          <AnimeDetailsScreen animeDetails={animeDetails}/>
+          <AnimeDetailsScreen animeDetails={animeDetails} />
         </main>
-      </ProtectedWrapper>
+      </>
     );
   }
 }

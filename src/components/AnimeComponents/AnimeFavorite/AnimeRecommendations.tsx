@@ -1,4 +1,4 @@
-import AnimeGridLayoutView from "../AnimeGridLayout/AnimeGridLayoutView";
+import AnimeGridLayoutView from "../AnimeHome/AnimeGridLayout/AnimeGridLayoutView";
 
 const AnimeRecommendations = ({ recommendations }) => {
   return (
@@ -6,7 +6,7 @@ const AnimeRecommendations = ({ recommendations }) => {
       <div className="anime-home__header">
         <h1 className="text-xl md:text-2xl">You might also like these anime</h1>
       </div>
-      <AnimeGridLayoutView anime={recommendations} epStatus={false}/>
+      <AnimeGridLayoutView anime={recommendations} epStatus={false} />
     </div>
   );
 };

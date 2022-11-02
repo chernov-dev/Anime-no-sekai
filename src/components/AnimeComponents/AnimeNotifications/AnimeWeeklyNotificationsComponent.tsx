@@ -1,3 +1,4 @@
+import Skeleton from "react-loading-skeleton";
 import AnimeWeeklyNotificationSwitch from "./AnimeWeeklyNotificationSwitch";
 
 const AnimeWeeklyNotificationsComponent = ({
@@ -12,7 +13,7 @@ const AnimeWeeklyNotificationsComponent = ({
       </h1>
       <p className="text-neumorph-secondary">
         Ongoing Anime:{" "}
-        <span className="text-neumorph-accent">{ongoingNumber}</span>
+        <span className="text-neumorph-accent">{ongoingNumber || <Skeleton width="5rem" />}</span>
       </p>
       <div className="flex gap-3 items-center">
         <AnimeWeeklyNotificationSwitch

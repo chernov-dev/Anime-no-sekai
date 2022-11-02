@@ -1,6 +1,7 @@
 import { AiFillStar } from "react-icons/ai";
 import { BsCloudsFill } from "react-icons/bs";
 import { GoPlay } from "react-icons/go";
+import Skeleton from "react-loading-skeleton";
 import { IAnimeResult } from "../../../types/Anime";
 
 const CompletedTag = ({ totalEpisodes }) => {
@@ -42,39 +43,31 @@ const RatingTag = ({ rating }) => {
 };
 const AnimeCardFooterExtraDetails = ({
   anime,
-  epStatus = true,
-  ratingStatus = true,
 }: {
-  anime: IAnimeResult;
-  epStatus?: boolean;
-  ratingStatus?: boolean;
+  anime: IAnimeResult | undefined;
 }) => {
   const episodeNumber =
-    anime.episodeNumber ??
-    anime.totalEpisodes ??
-    (Array.isArray(anime.episodes)
-      ? anime.episodes.length
-      : anime.episodes ?? 0);
+    anime?.episodeNumber ??
+    anime?.totalEpisodes ??
+    (Array.isArray(anime?.episodes)
+      ? anime?.episodes.length
+      : anime?.episodes ?? 0);
 
   return (
     <div className="text-neumorph-primary px-2 py-1.5 font-semibold items-center rounded-tl-none rounded-tr-none flex w-full h-[35px] gap-2 justify-between bg-neumorph-primary-dark">
-      <div className="skewed-text pl-1">
-        {ratingStatus && anime.rating && <RatingTag rating={anime.rating} />}
-        {epStatus && (
-          <>
-            {anime.status == "Completed" && (
-              <CompletedTag totalEpisodes={anime.totalEpisodes} />
-            )}
-            {(anime.status == "Ongoing" || anime.status == undefined) && (
-              <EpisodeStatusTag episodeNumber={episodeNumber} />
-            )}
-          </>
+      {anime ? <div className="skewed-text pl-1 items-center">
+        {anime?.rating && <RatingTag rating={anime?.rating} />}
+        {anime?.status == "Completed" && (
+          <CompletedTag totalEpisodes={anime?.totalEpisodes} />
         )}
-      </div>
-      <div>
-      <p className="text-neumorph-secondary font-bold text-sm lg:text-base">
-        {anime.type}
-      </p>
+        {(anime?.status == "Ongoing" || anime?.status == undefined) && (
+          <EpisodeStatusTag episodeNumber={episodeNumber} />
+        )}
+      </div> : <Skeleton width="5rem" height="1.5rem" style={{ lineHeight: "inherit" }} baseColor="black" />}
+      <div className="w-12">
+        <p className="text-neumorph-secondary font-bold text-sm lg:text-base">
+          {anime?.type ?? <Skeleton baseColor="black" />}
+        </p>
       </div>
     </div>
   );

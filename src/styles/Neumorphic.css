@@ -320,7 +320,7 @@
 }
 
 .neumorphic-border {
-  @apply border-[1px] border-black dark:border-white border-opacity-10 dark:border-opacity-10;
+  @apply border-black dark:border-white border-opacity-10 dark:border-opacity-10;
 }
 
 .neumorphic-grid {

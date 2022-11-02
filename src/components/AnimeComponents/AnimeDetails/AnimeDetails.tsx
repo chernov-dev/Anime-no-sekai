@@ -12,17 +12,18 @@ const AnimeDetails = ({ anime }) => {
     <div className="animeCard">
       <div className="animeCard-content w-full">
         <div className="animeCard-header">
-            <Image
-              src={anime.image}
-              style={{ borderRadius: "inherit" }}
-              alt="preview"
-              height="394"
-              width="300"
-              placeholder="blur"
-              blurDataURL={`data:image/svg+xml;base64,${toBase64(
-                shimmer(394, 300)
-              )}`}
-            />
+          <Image
+            src={anime.image}
+            style={{ borderRadius: "inherit" }}
+            alt="preview"
+            height="394"
+            width="300"
+            placeholder="blur"
+            sizes="30vw"
+            blurDataURL={`data:image/svg+xml;base64,${toBase64(
+              shimmer(394, 300)
+            )}`}
+          />
           <div className="animeCard-header__content">
             <div className="flex flex-col justify-between gap-1">
               <div className="anime-title text-xl lg:text-2xl">
