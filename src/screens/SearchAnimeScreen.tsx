@@ -1,19 +1,18 @@
 import { useQuery } from '@tanstack/react-query';
 import Error from 'next/error';
-import React from 'react'
 import { animeApi } from '../api/Anime_API';
-import AnimeHome from '../components/AnimeComponents/AnimeHome/AnimeHome';
+import AnimeGridLayoutView from '../components/AnimeComponents/AnimeHome/AnimeGridLayout/AnimeGridLayoutView';
 
-const SearchAnimeScreen = ({animeName}) => {
+const SearchAnimeScreen = ({ animeName }) => {
 
-  const { data , isLoading, status } = useQuery(
+  const { data, isLoading, status } = useQuery(
     ["anime-search", animeName],
-    () => animeApi.advancedSearch({query: animeName})
+    () => animeApi.advancedSearch({ query: animeName })
   );
   if (status == "success" && data.length == 0) {
     return (
       <Error
-      //@ts-expect-error
+        //@ts-expect-error
         statusCode={"404"}
         title={`Anime - "${animeName}" couldn't be found`}
       />
@@ -21,7 +20,12 @@ const SearchAnimeScreen = ({animeName}) => {
   }
 
   return (
-    <><AnimeHome anime={data} title={`${animeName?.toString().toUpperCase()} - Search`}/></>
+    <>
+      <div className='flex flex-col'>
+        <h1>{`${animeName?.toString().toUpperCase()} - Search`}</h1>
+        <AnimeGridLayoutView anime={data} />
+      </div>
+    </>
   )
 }
 
