@@ -56,6 +56,7 @@ body {
   font-size: clamp(1rem, 0.9869rem + 0.056vw, 1.0625rem);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
   @apply text-primary bg-neumorph-primary;
 }
 
@@ -90,7 +91,7 @@ body {
   filter: blur(5px);
 }
 
-.app-examples-section {
+#app-examples-section {
   width: 100%;
   max-width: 1400px;
   align-self: center;
@@ -107,10 +108,10 @@ body {
   position: relative;
 }
 
-.app-examples-section .favorite-anime-example-row {
+#app-examples-section .favorite-anime-example-row {
   @apply flex flex-col lg:flex-row justify-around items-center gap-12 p-6 py-12;
 }
-.app-examples-section div:has(.example-img:first-child) {
+#app-examples-section div:has(.example-img:first-child) {
   @apply flex-col-reverse lg:flex-row;
 }
 

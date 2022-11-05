@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { GoSync } from "react-icons/go";
+import { HiChevronDoubleDown } from "react-icons/hi";
 import { IoArrowForwardCircleSharp } from "react-icons/io5";
 import { RiHeartAddFill, RiNotification3Fill } from "react-icons/ri";
 import AnsSvgLogo from "../../public/AnsSvgLogo";
@@ -8,20 +9,18 @@ const WelcomePageScreen = () => {
   return (
     <>
       <div className="section-welcome">
-        <div className="h-full w-full flex flex-col items-center justify-center px-2 gap-5 ">
+        <div className="h-full w-full flex flex-col items-center justify-center px-2 gap-5">
           <h1 className="text-2xl md:text-4xl p-2 uppercase">
             Anime no Sekai
           </h1>
-          <Link href={"/home"} className="w-full flex justify-center">
-            <div className="welcome-logo">
-              <AnsSvgLogo
-                className={"text-black"}
-                fill={"var(--neumorph-accent)"}
-                stroke="red"
-              />
-            </div>
-          </Link>
-          <span className="text-lg max-w-[550px]">
+          <div className="welcome-logo">
+            <AnsSvgLogo
+              className={"text-black"}
+              fill={"var(--neumorph-accent)"}
+              stroke="red"
+            />
+          </div>
+          <span className="text-lg max-w-2xl">
             <b className="text-neumorph-accent">Anime no Sekai</b> will let you{" "}
             <b className="text-neumorph-accent">watch, track, get notified</b>{" "}
             when anime is out and{" "}
@@ -38,12 +37,13 @@ const WelcomePageScreen = () => {
               <span>Go to Home</span> <IoArrowForwardCircleSharp size={32} />
             </button>
           </Link>
+          <Link href={"#app-examples-section"} scroll={false} className="py-6"><HiChevronDoubleDown size={33} /></Link>
         </div>
       </div>
-      <div className="app-examples-section mt-14">
+      <section id="app-examples-section" className="mt-14">
         <div className="favorite-anime-example-row">
           <div className="example-img h-[325px]"></div>
-          <div className="flex flex-col justify-center gap-4 h-[325px] max-w-[500px] text-center shadow-neumorphic-inner rounded-lg p-4">
+          <div className="flex flex-col justify-center gap-4 h-[325px] max-w-[500px] text-center shadow-neumorphic rounded-lg p-4">
             <h1 className="text-2xl uppercase inline-flex justify-center items-center gap-2">
               Syncing <GoSync size={28} className="text-neumorph-accent" />
             </h1>
@@ -57,7 +57,7 @@ const WelcomePageScreen = () => {
           </div>
         </div>
         <div className="favorite-anime-example-row">
-          <div className="flex flex-col justify-center gap-4 h-[325px] max-w-[500px] text-center shadow-neumorphic-inner rounded-lg p-4">
+          <div className="flex flex-col justify-center gap-4 h-[325px] max-w-[500px] text-center shadow-neumorphic rounded-lg p-4">
             <h1 className="text-2xl uppercase inline-flex justify-center items-center gap-2">
               Preferences{" "}
               <RiHeartAddFill size={28} className="text-neumorph-accent" />
@@ -79,7 +79,7 @@ const WelcomePageScreen = () => {
         </div>
         <div className="favorite-anime-example-row">
           <div className="example-img h-[325px]"></div>
-          <div className="flex flex-col justify-center gap-4 h-[325px] max-w-[500px] text-center shadow-neumorphic-inner rounded-lg p-4">
+          <div className="flex flex-col justify-center gap-4 h-[325px] max-w-[500px] text-center shadow-neumorphic rounded-lg p-4">
             <h1 className="text-2xl uppercase inline-flex justify-center items-center gap-2">
               Notifications{" "}
               <RiNotification3Fill size={28} className="text-neumorph-accent" />
@@ -100,7 +100,7 @@ const WelcomePageScreen = () => {
             </div>
           </div>
         </div>
-      </div>
+      </section>
     </>
   );
 };
