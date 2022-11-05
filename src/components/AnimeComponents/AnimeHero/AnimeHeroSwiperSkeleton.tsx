@@ -4,7 +4,7 @@ const AnimeHeroSwiperSkeleton = () => {
   return (
     <>
       <div className="flex flex-col-reverse lg:flex-row gap-5 rounded-2xl p-4 w-full">
-        <div className="w-full h-auto sm:h-[22rem] lg:h-[30rem] lg:w-[40%] shadow-neumorphic ring-1 ring-black dark:ring-white ring-opacity-10 dark:ring-opacity-10 px-6 py-4 rounded-[inherit] flex flex-col gap-4 justify-center text-neumorph-secondary">
+        <div className="w-full h-auto sm:h-[22rem] lg:h-[30rem] lg:w-[40%] shadow-neumorphic px-6 py-4 rounded-[inherit] flex flex-col gap-4 justify-center text-primary">
           <div className="text-center">
             <h1 className="anime-title text-xl lg:text-3xl truncate">
               <Skeleton height={20} width={`80%`} />

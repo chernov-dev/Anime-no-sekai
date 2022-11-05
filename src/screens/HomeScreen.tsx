@@ -17,7 +17,6 @@ const HomeScreen = () => {
   return (
     <>
       <AnimeHeroSwiper />
-
       <AnimeHome
         title="Recently added"
         currentPage={currentPage}

@@ -65,7 +65,7 @@ const AnimeCardFooterExtraDetails = ({
         )}
       </div> : <Skeleton width="5rem" height="1.5rem" style={{ lineHeight: "inherit" }} baseColor="black" />}
       <div className="w-12">
-        <p className="text-neumorph-secondary font-bold text-sm lg:text-base">
+        <p className="text-primary font-bold text-sm lg:text-base">
           {anime?.type ?? <Skeleton baseColor="black" />}
         </p>
       </div>

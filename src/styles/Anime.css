@@ -97,7 +97,7 @@
 }
 
 .anime-img {
-  @apply rounded-lg rounded-bl-none rounded-br-none h-[280px] relative;
+  @apply rounded-lg rounded-bl-none rounded-br-none h-[240px] sm:h-[280px] md:h-[300px] lg:h-[280px] xl:h-[240px] aspect-[16/9] relative;
   position: relative;
 }
 
@@ -107,16 +107,15 @@
 }
 
 .anime-home__title {
-  @apply leading-[1.1] text-neumorph-secondary text-base text-center;
+  @apply leading-[1.1] text-primary text-base text-center;
 }
 .anime-subtitle {
-  @apply text-neumorph-secondary leading-3 text-sm md:text-base;
+  @apply text-primary leading-3 text-sm md:text-lg;
   font-weight: 300;
   margin-bottom: 0.25em;
 }
 
 .anime-info {
-  @apply text-slate-400 dark:text-secondary;
   font-size: 0.9em;
   line-height: 1;
   font-weight: 700;
@@ -131,9 +130,8 @@
 }
 
 .anime-genres .neumorphic-chip {
-  @apply text-neumorph-secondary;
+  @apply text-primary text-base;
   border-radius: 0.55rem;
-  font-size: clamp(0.8625rem, 0.8467rem + 0.0672vw, 0.9375rem);
   text-transform: lowercase;
   font-weight: 500;
   line-height: 0.8;
@@ -154,7 +152,7 @@
   font-weight: 450;
   font-size: clamp(0.9875rem, 0.9717rem + 0.0672vw, 1.0625rem);
   padding: 0.35em 0.45em;
-  @apply text-neumorph-secondary;
+  @apply text-primary;
 }
 
 .anime-footer {
@@ -257,23 +255,18 @@
   gap: 1rem;
   padding: 0 1.5rem;
   justify-content: space-between;
-  color: var(--neumorph-secondary);
+  @apply text-primary;
 }
 
 .anime-home__grid {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: flex-start;
+  @apply grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-4 lg:gap-8 mx-4;
 }
 
 .anime-home__grid > div {
+  @apply p-[0.5rem];
   transition: scale 350ms ease, opacity 350ms linear;
 }
 
-.anime-home__grid .anime-home-item__wrapper {
-  @apply w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 p-[0.5rem];
-}
 .anime-home__grid .anime-upcoming-item__wrapper {
   @apply text-center w-full sm:w-1/2 lg:w-1/3 p-[0.5rem];
 }
@@ -282,13 +275,10 @@
 }
 
 .anime-status-overlay {
-  @apply text-neumorph-accent bg-black bg-opacity-50 p-1;
+  @apply text-neumorph-accent bg-black bg-opacity-75 p-1 px-2.5 flex justify-between items-center;
   position: absolute;
-  display: flex;
-  justify-content: space-between;
   width: 100%;
-  height: 18%;
-  text-align: center;
+  height: 20%;
   z-index: 10;
   bottom: 0;
   left: 0;
@@ -341,7 +331,7 @@
 }
 
 .skewed-text div {
-  @apply rounded text-neumorph-primary text-xs sm:text-sm md:text-base;
+  @apply rounded text-neumorph-primary text-2xs;
   height: 100%;
   padding: 0.15rem 0.25rem;
   position: relative;
@@ -379,7 +369,7 @@
 }
 
 .ep-status {
-  @apply bg-neumorph-secondary text-neumorph-primary !important;
+  @apply bg-neumorph-primary text-primary !important;
 }
 
 .popularity-status {

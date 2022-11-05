@@ -23,7 +23,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-, "src/context/UserPreferencesProvider.tsx", "src/utils/useLocalFireStoreDocument.js", "src/pages/_app.js", "src/components/Shared/NavigationLink.jsx"  ],
+, "src/context/UserPreferencesProvider.tsx", "src/utils/useLocalFireStoreDocument.js", "src/pages/_app.js", "src/components/Shared/NavigationLink.jsx", "src/utils/withOpacity.js"  ],
   "exclude": [
     "node_modules"
   ]

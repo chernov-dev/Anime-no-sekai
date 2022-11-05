@@ -9,9 +9,9 @@ function HomePage() {
         <meta name="description" content="ANS - animevost API" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="w-full">
+      <section>
         <HomeScreen />
-      </main>
+      </section>
     </>
   );
 }

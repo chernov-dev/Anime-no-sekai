@@ -1,7 +1,8 @@
+import "../styles/globals.css";
+
 import "../styles/Anime.css";
 import "../styles/AnimeCard.css";
 import "../styles/AnimePlayer.css";
-import "../styles/globals.css";
 import "../styles/Neumorphic.css";
 
 import "react-loading-skeleton/dist/skeleton.css";
@@ -14,7 +15,8 @@ import {
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { SkeletonTheme } from "react-loading-skeleton";
 import { ToastContainer } from "react-toastify";
-import HeaderComponent from "../components/Navigation/HeaderComponent";
+import AppLayout from "../components/Shared/AppLayout";
+import AppNavigation from "../components/Shared/AppNavigation";
 import UserPreferencesProvider from "../context/UserPreferencesProvider";
 
 // Create a client
@@ -28,18 +30,26 @@ const queryClient = new QueryClient({
   },
 });
 
+const isReady = typeof window !== "undefined";
+
 function MyApp({ Component, pageProps }) {
   return (
     <QueryClientProvider client={queryClient} contextSharing={true}>
       <Hydrate state={pageProps.dehydratedState}>
         <UserPreferencesProvider>
           <SkeletonTheme
-            baseColor="var(--neumorph-primary-dark)"
-            highlightColor="var(--neumorph-primary-light)"
+            baseColor="rgb(var(--neumorph-primary-dark))"
+            highlightColor="rgb(var(--neumorph-primary-light))"
             duration={3}
           >
-            <HeaderComponent />
-            <Component {...pageProps} />
+            {typeof window !== "undefined" && (
+              <>
+                <AppNavigation />
+                <AppLayout>
+                  <Component {...pageProps} />
+                </AppLayout>
+              </>
+            )}
           </SkeletonTheme>
           <ReactQueryDevtools position="bottom-left" />
           <ToastContainer

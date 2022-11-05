@@ -1,118 +1,159 @@
-.neumorphic-nav {
-  @apply sticky flex flex-col gap-3 rounded-br-xl rounded-bl-xl bg-neumorph-primary px-3 sm:px-4 py-2.5 w-full lg:w-[90%] self-center z-[999] top-0 left-0 shadow-neumorphic border-[1px] border-black dark:border-white border-opacity-20 dark:border-opacity-20;
-}
+@tailwind components;
 
-.neumorphic-dropdown {
-  @apply px-2 py-3 md:p-0 justify-between items-center lg:h-[3rem] lg:flex lg:w-auto lg:order-1;
-}
+@layer components {
+  .neumorphic-header {
+    @apply z-[999] left-0 w-full self-center
+    flex items-center gap-4 justify-between bg-neumorph-primary px-3 py-4 h-[80px];
+  }
 
-.neumorphic-dropdown ul {
-  @apply flex flex-col h-full bg-neumorph-primary rounded-xl list-none items-center mt-2.5 mb-1 py-1.5 lg:flex-row lg:m-0 gap-0.5;
-  box-shadow: inset 14px 14px 28px var(--neumorph-primary-dark),
-    inset -14px -14px 28px var(--neumorph-primary-light);
-  overflow: hidden;
-}
+  .neumorphic-sidebar {
+    @apply fixed top-[10px] left-0 h-screen z-[998] w-fit px-2
+    hidden md:flex flex-col bg-neumorph-primary text-primary text-opacity-50;
+  }
 
-.neumorphic-dropdown ul li {
-  @apply flex flex-col lg:flex-row m-0;
-  width: 100%;
-}
+  .neumorphic-sidebar__list {
+    @apply flex flex-col gap-5 pl-1 pr-1.5;
+  }
 
-.neumorphic-dropdown ul li a {
-  transition: all 0.4s ease;
-  @apply text-center text-neumorph-secondary text-opacity-50 w-full px-3 py-4;
-}
+  .neumorphic-sidebar__list-item {
+    @apply w-14 h-14 rounded-[50%] shadow-neumorphic border-[1px] border-black dark:border-white border-opacity-10 dark:border-opacity-10
+    hover:text-secondary hover:rounded-xl transition-all duration-200 ease-in relative;
+  }
 
-.neumorphic-dropdown ul li a.link-active {
-  @apply shadow-neumorphic-inner text-neumorph-accent;
-}
+  .neumorphic-sidebar__list-item.active {
+    @apply shadow-neumorphic-inner rounded-[25%];
+  }
+  .neumorphic-sidebar__list-item::after {
+    @apply scale-0 absolute content-[""] w-[16px] h-full bg-neumorph-accent top-0 -left-[25.2px] rounded-3xl transition-all duration-200 ease-linear;
+  }
+  .neumorphic-sidebar__list-item:hover::after {
+    @apply scale-100;
+  }
 
-.neumorphic-dropdown ul li a:hover {
-  @apply text-neumorph-accent shadow-neumorphic-inner;
-}
+  .neumorphic-sidebar__list-item.active::after {
+    @apply scale-100;
+  }
 
-.neumorphic-segmented-control {
-  @apply shadow-neumorphic;
-  padding: 1rem;
-  height: 3rem;
-  border-radius: 0.8rem;
-  display: flex;
-  align-items: center;
-  position: relative;
-}
-.neumorphic-segmented-control input {
-  display: none;
-}
+  .neumorphic-sidebar__list-item a {
+    @apply flex flex-col gap-1 items-center py-4 px-1 relative;
+  }
 
-.neumorphic-segmented-control label {
-  padding: 0.25rem;
-}
+  .neumorphic-sidebar__tooltip {
+    @apply absolute w-auto m-2 p-2 flex items-center h-full my-auto min-w-max top-0 left-20 rounded-md shadow-md text-primary bg-neumorph-primary border-[1px] border-black dark:border-white 
+    border-opacity-10 dark:border-opacity-10 text-xs lg:text-sm font-semibold transition-all duration-200 scale-0 origin-left whitespace-pre-wrap;
+  }
 
-.neumorphic-segmented-control input:checked + label {
-  @apply text-neumorph-accent;
-  transition: all 0.5s ease;
-}
+  .neumorphic-dropdown {
+    @apply px-2 py-3 md:p-0 justify-between items-center lg:h-[3rem] lg:flex lg:w-auto lg:order-1;
+  }
 
-.control-item__label {
-  width: 100%;
-  font-size: 1rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  @apply text-neumorph-secondary;
-  transition: all 0.5s ease;
-}
+  .neumorphic-dropdown ul {
+    @apply flex flex-col h-full bg-neumorph-primary rounded-xl list-none items-center mt-2.5 mb-1 py-1.5 lg:flex-row lg:m-0 gap-0.5;
+    box-shadow: inset 14px 14px 28px var(--neumorph-primary-dark),
+      inset -14px -14px 28px var(--neumorph-primary-light);
+    overflow: hidden;
+  }
 
-.control-item__label:hover {
-  @apply text-neumorph-accent;
-}
-.neumorphic-segmented-control__color {
-  @apply shadow-neumorphic-inner;
-  position: absolute;
-  height: 1.8rem;
-  width: 3rem;
-  margin-left: 0.3rem;
-  border-radius: 0.8rem;
-  pointer-events: none;
-}
+  .neumorphic-dropdown ul li {
+    @apply flex flex-col lg:flex-row m-0;
+    width: 100%;
+  }
 
-#control-item__input-0.active ~ .neumorphic-segmented-control__color {
-  transform: translateX(0);
-  transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
-}
-#control-item__input-1.active ~ .neumorphic-segmented-control__color {
-  width: 5rem;
-  transform: translateX(3rem);
-  transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
-}
-#control-item__input-2.active ~ .neumorphic-segmented-control__color {
-  transform: translateX(8rem);
-  transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
-}
-#control-item__input-3.active ~ .neumorphic-segmented-control__color {
-  transform: translateX(11rem);
-  transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
-}
-#control-item__input-4.active ~ .neumorphic-segmented-control__color {
-  transform: translateX(15rem);
-  transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
-}
-#control-item__input-5.active ~ .neumorphic-segmented-control__color {
-  transform: translateX(25rem);
-  transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
-}
+  .neumorphic-dropdown ul li a {
+    transition: all 0.4s ease;
+    @apply text-center text-primary text-opacity-50 w-full px-3 py-4;
+  }
 
-.neumorphic-list {
-  counter-reset: list-number;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  position: relative;
-  @apply text-base;
-}
-/* 
+  .neumorphic-dropdown ul li a.link-active {
+    @apply shadow-neumorphic-inner text-neumorph-accent;
+  }
+
+  .neumorphic-dropdown ul li a:hover {
+    @apply text-neumorph-accent shadow-neumorphic-inner;
+  }
+
+  .neumorphic-segmented-control {
+    @apply shadow-neumorphic;
+    padding: 1rem;
+    height: 3rem;
+    border-radius: 0.8rem;
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+  .neumorphic-segmented-control input {
+    display: none;
+  }
+
+  .neumorphic-segmented-control label {
+    padding: 0.25rem;
+  }
+
+  .neumorphic-segmented-control input:checked + label {
+    @apply text-neumorph-accent;
+    transition: all 0.5s ease;
+  }
+
+  .control-item__label {
+    width: 100%;
+    font-size: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    @apply text-primary;
+    transition: all 0.5s ease;
+  }
+
+  .control-item__label:hover {
+    @apply text-neumorph-accent;
+  }
+  .neumorphic-segmented-control__color {
+    @apply shadow-neumorphic-inner;
+    position: absolute;
+    height: 1.8rem;
+    width: 3rem;
+    margin-left: 0.3rem;
+    border-radius: 0.8rem;
+    pointer-events: none;
+  }
+
+  #control-item__input-0.active ~ .neumorphic-segmented-control__color {
+    transform: translateX(0);
+    transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  }
+  #control-item__input-1.active ~ .neumorphic-segmented-control__color {
+    width: 5rem;
+    transform: translateX(3rem);
+    transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  }
+  #control-item__input-2.active ~ .neumorphic-segmented-control__color {
+    transform: translateX(8rem);
+    transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  }
+  #control-item__input-3.active ~ .neumorphic-segmented-control__color {
+    transform: translateX(11rem);
+    transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  }
+  #control-item__input-4.active ~ .neumorphic-segmented-control__color {
+    transform: translateX(15rem);
+    transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  }
+  #control-item__input-5.active ~ .neumorphic-segmented-control__color {
+    transform: translateX(25rem);
+    transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  }
+
+  .neumorphic-list {
+    counter-reset: list-number;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    position: relative;
+    @apply text-base;
+  }
+  /* 
 .neumorphic-list::after {
   @apply border-b-8 border-neumorph-accent;
   content: "";
@@ -129,395 +170,392 @@
   opacity: 40%;
   z-index: -1;
 } */
-.neumorphic-list > a {
-  counter-increment: list-number;
-  display: inline-flex;
-  align-items: center;
-  justify-content: flex-start;
-  width: 100%;
-  border-radius: 0.75rem;
-  padding: 0.75rem;
-  padding-left: 10px;
-  @apply shadow-neumorphic border-[1px] border-black dark:border-white border-opacity-10 dark:border-opacity-10;
-}
-.neumorphic-list > a::before {
-  content: counter(list-number);
-  margin-right: 1rem;
-  font-size: 2.25rem;
-}
-.neumorphic-list > a:first-child:before {
-  color: var(--neumorph-accent);
-  filter: saturate(5);
-}
-.neumorphic-list > a:nth-child(2)::before {
-  color: var(--neumorph-accent);
-  filter: saturate(3.5);
-}
-.neumorphic-list > a:nth-child(3)::before {
-  color: var(--neumorph-accent);
-  filter: saturate(2.5);
-}
-.neumorphic-list > a:nth-child(4)::before {
-  color: var(--neumorph-accent);
-  filter: saturate(2);
-}
-.neumorphic-list > a:nth-child(5)::before {
-  color: var(--neumorph-accent);
-  filter: saturate(1.5);
-}
-.neumorphic-list > a:nth-child(6)::before {
-  color: var(--neumorph-accent);
-  filter: saturate(1.2);
-}
-.neumorphic-list > a:nth-child(7)::before {
-  color: var(--neumorph-accent);
-  filter: saturate(0.9);
-}
-.neumorphic-list > a:nth-child(8)::before {
-  color: var(--neumorph-accent);
-  filter: saturate(0.7);
-}
-.neumorphic-list > a:nth-child(9)::before {
-  color: var(--neumorph-accent);
-  filter: saturate(0.6);
-}
+  .neumorphic-list > a {
+    counter-increment: list-number;
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    border-radius: 0.75rem;
+    padding: 0.75rem;
+    padding-left: 10px;
+    @apply shadow-neumorphic border-[1px] border-black dark:border-white border-opacity-10 dark:border-opacity-10;
+  }
+  .neumorphic-list > a::before {
+    content: counter(list-number);
+    margin-right: 1rem;
+    font-size: 2.25rem;
+  }
+  .neumorphic-list > a:first-child:before {
+    color: rgb(var(--neumorph-accent));
+    filter: saturate(5);
+  }
+  .neumorphic-list > a:nth-child(2)::before {
+    color: rgb(var(--neumorph-accent));
+    filter: saturate(3.5);
+  }
+  .neumorphic-list > a:nth-child(3)::before {
+    color: rgb(var(--neumorph-accent));
+    filter: saturate(2.5);
+  }
+  .neumorphic-list > a:nth-child(4)::before {
+    color: rgb(var(--neumorph-accent));
+    filter: saturate(2);
+  }
+  .neumorphic-list > a:nth-child(5)::before {
+    color: rgb(var(--neumorph-accent));
+    filter: saturate(1.5);
+  }
+  .neumorphic-list > a:nth-child(6)::before {
+    color: rgb(var(--neumorph-accent));
+    filter: saturate(1.2);
+  }
+  .neumorphic-list > a:nth-child(7)::before {
+    color: rgb(var(--neumorph-accent));
+    filter: saturate(0.9);
+  }
+  .neumorphic-list > a:nth-child(8)::before {
+    color: rgb(var(--neumorph-accent));
+    filter: saturate(0.7);
+  }
+  .neumorphic-list > a:nth-child(9)::before {
+    color: rgb(var(--neumorph-accent));
+    filter: saturate(0.6);
+  }
 
-.neumorphic-navigation-group {
-  @apply shadow-neumorphic lg:flex !important;
-  width: 20.4rem;
-  height: 3rem;
-  border-radius: 0.75rem;
-  align-items: center;
-  position: relative;
-}
+  .neumorphic-navigation-group {
+    @apply shadow-neumorphic lg:flex !important;
+    width: 20.4rem;
+    height: 3rem;
+    border-radius: 0.75rem;
+    align-items: center;
+    position: relative;
+  }
 
-.neumorphic-navigation-group ul {
-  @apply flex flex-row items-center p-1;
-  width: 100%;
-  height: 100%;
-  transition: all 0.5s ease;
-}
-.neumorphic-navigation-group ul li {
-  @apply flex items-center;
-  width: 100%;
-  height: 100%;
-  transition: all 0.5s ease;
-  cursor: pointer;
-}
+  .neumorphic-navigation-group ul {
+    @apply flex flex-row items-center p-1;
+    width: 100%;
+    height: 100%;
+    transition: all 0.5s ease;
+  }
+  .neumorphic-navigation-group ul li {
+    @apply flex items-center;
+    width: 100%;
+    height: 100%;
+    transition: all 0.5s ease;
+    cursor: pointer;
+  }
 
-.neumorphic-navigation-group ul li a {
-  display: grid;
-  place-content: center;
-  transition: all 0.4s ease;
-  border-radius: 0.75rem;
-  width: 100%;
-  height: 100%;
-  @apply text-center text-neumorph-secondary;
-}
-.neumorphic-navigation-group ul li a:hover {
-  @apply text-neumorph-accent;
-}
-.neumorphic-navigation-group ul li a.link-active {
-  @apply shadow-neumorphic-inner text-neumorph-accent;
-  cursor: default;
-}
+  .neumorphic-navigation-group ul li a {
+    display: grid;
+    place-content: center;
+    transition: all 0.4s ease;
+    border-radius: 0.75rem;
+    width: 100%;
+    height: 100%;
+    @apply text-center text-primary;
+  }
+  .neumorphic-navigation-group ul li a:hover {
+    @apply text-neumorph-accent;
+  }
+  .neumorphic-navigation-group ul li a.link-active {
+    @apply shadow-neumorphic-inner text-neumorph-accent;
+    cursor: default;
+  }
 
-.neumorphic-modal_overlay {
-  @apply bg-neumorph-primary;
-  z-index: 9999;
-  position: fixed;
-  inset: 0;
-  display: grid;
-  place-content: center;
-}
-.neumorphic-modal {
-  @apply bg-neumorph-primary rounded-lg outline-none border-[1px] border-black dark:border-white border-opacity-10 dark:border-opacity-10;
-  box-shadow: 8px 8px 16px var(--neumorph-primary-dark),
-    -8px -8px 16px var(--neumorph-primary-light);
-  overflow: auto;
-}
-.neumorphic-form input {
-  @apply shadow-neumorphic w-full border-[1px] border-black dark:border-white border-opacity-10 dark:border-opacity-10;
-  height: 2.5rem;
-  border: none;
-  border-radius: 0.75rem;
-  font-size: 1.4rem;
-  padding-left: 1.4rem;
-  background: none;
-  font-family: inherit;
-}
-.neumorphic-form input:focus {
-  @apply shadow-neumorphic-inner;
-}
-.neumorphic-form input::placeholder {
-  @apply text-neumorph-secondary;
-}
+  .neumorphic-modal_overlay {
+    @apply bg-neumorph-primary;
+    z-index: 9999;
+    position: fixed;
+    inset: 0;
+    display: grid;
+    place-content: center;
+  }
+  .neumorphic-modal {
+    @apply bg-neumorph-primary rounded-lg outline-none border-[1px] border-black dark:border-white border-opacity-10 dark:border-opacity-10;
+    box-shadow: 8px 8px 16px var(--neumorph-primary-dark),
+      -8px -8px 16px var(--neumorph-primary-light);
+    overflow: auto;
+  }
+  .neumorphic-form input {
+    @apply shadow-neumorphic w-full border-[1px] border-black dark:border-white border-opacity-10 dark:border-opacity-10;
+    height: 2.5rem;
+    border: none;
+    border-radius: 0.75rem;
+    font-size: 1.4rem;
+    padding-left: 1.4rem;
+    background: none;
+    font-family: inherit;
+  }
+  .neumorphic-form input:focus {
+    @apply shadow-neumorphic-inner;
+  }
+  .neumorphic-form input::placeholder {
+    @apply text-primary;
+  }
 
-.neumorphic-switch {
-  display: flex;
-  justify-self: center;
-  width: 8rem;
-}
-.neumorphic-switch label {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  height: 3rem;
-  background: rgba(255, 255, 255, 0);
-  position: relative;
-  cursor: pointer;
-  border-radius: 1.6rem;
-  @apply shadow-neumorphic;
-}
-.neumorphic-switch label::after {
-  content: "";
-  position: absolute;
-  left: 0.4rem;
-  width: 2.1rem;
-  height: 2.1rem;
-  border-radius: 50%;
-  background: var(--primary-light);
-  transition: all 0.4s ease;
-}
-.neumorphic-switch label::before {
-  content: "";
-  width: 100%;
-  height: 100%;
-  border-radius: inherit;
-  @apply bg-gradient-to-l from-gray-700 via-gray-500 to-gray-300;
-  opacity: 0;
-  transition: all 0.4s ease;
-}
-.neumorphic-switch input {
-  display: none;
-}
-.neumorphic-switch input:checked ~ label::before {
-  opacity: 1;
-}
-.neumorphic-switch input:checked ~ label::after {
-  left: calc(93% - 2.1rem);
-  background: var(--neumorph-primary);
-}
-.neumorphic-chip {
-  justify-self: center;
-  padding: 0.5rem 0.7rem;
-  height: 2rem;
-  border-radius: 0.75rem;
-  @apply shadow-neumorphic text-sm lg:text-base border-[1px] border-black dark:border-white border-opacity-10 dark:border-opacity-10;
-  display: flex;
-  gap: 0.35rem;
-  align-items: center;
-}
+  .neumorphic-switch {
+    display: flex;
+    justify-self: center;
+    width: 8rem;
+  }
+  .neumorphic-switch label {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 3rem;
+    background: rgba(255, 255, 255, 0);
+    position: relative;
+    cursor: pointer;
+    border-radius: 1.6rem;
+    @apply shadow-neumorphic;
+  }
+  .neumorphic-switch label::after {
+    content: "";
+    position: absolute;
+    left: 0.4rem;
+    width: 2.1rem;
+    height: 2.1rem;
+    border-radius: 50%;
+    background: var(--primary-light);
+    transition: all 0.4s ease;
+  }
+  .neumorphic-switch label::before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    @apply bg-gradient-to-l from-gray-700 via-gray-500 to-gray-300;
+    opacity: 0;
+    transition: all 0.4s ease;
+  }
+  .neumorphic-switch input {
+    display: none;
+  }
+  .neumorphic-switch input:checked ~ label::before {
+    opacity: 1;
+  }
+  .neumorphic-switch input:checked ~ label::after {
+    left: calc(93% - 2.1rem);
+    background: var(--neumorph-primary);
+  }
+  .neumorphic-chip {
+    justify-self: center;
+    padding: 0.5rem 0.7rem;
+    height: 2rem;
+    border-radius: 0.75rem;
+    @apply shadow-neumorphic text-xs md:text-sm border-[1px] border-black dark:border-white border-opacity-10 dark:border-opacity-10;
+    display: flex;
+    gap: 0.35rem;
+    align-items: center;
+  }
 
-.neumorphic-genre {
-  @apply bg-neumorph-primary-dark !important;
-}
-.neumorphic-genre {
-  @apply shadow-neumorphic ring-1 ring-black dark:ring-white ring-opacity-10 dark:ring-opacity-10;
-}
-.neumorphic-genre span {
-  @apply text-xs lg:text-sm;
-}
+  .neumorphic-genre {
+    @apply bg-neumorph-primary-dark !important;
+  }
+  .neumorphic-genre {
+    @apply shadow-neumorphic ring-1 ring-black dark:ring-white ring-opacity-10 dark:ring-opacity-10;
+  }
+  .neumorphic-genre span {
+    @apply text-2xs sm:text-xs lg:text-sm;
+  }
 
-.neumorphic-border {
-  @apply border-black dark:border-white border-opacity-10 dark:border-opacity-10;
-}
+  .neumorphic-border {
+    @apply border-black dark:border-white border-opacity-10 dark:border-opacity-10;
+  }
 
-.neumorphic-grid {
-  @apply rounded-lg border-dashed border-2;
-}
+  .neumorphic-grid {
+    @apply rounded-lg border-dashed border-2;
+  }
 
-.neumorphic-circle {
-  aspect-ratio: 1/1;
-  justify-self: center;
-  border-radius: 0.75rem;
-  display: grid;
-  grid-template-rows: 1fr;
-  justify-items: center;
-  align-items: center;
-}
-.neumorphic-circle button {
-  @apply text-gray-700 shadow-neumorphic;
-  background-color: var(--neumorph-primary-light);
-  grid-row: 1 / 2;
-  grid-column: 1 / 2;
-  width: 3rem;
-  aspect-ratio: 1/1;
-  display: flex;
-  margin: 0.6rem;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
-  font-size: 3.2rem;
-  z-index: 300;
-  cursor: pointer;
-  position: relative;
-}
+  .neumorphic-circle {
+    aspect-ratio: 1/1;
+    justify-self: center;
+    border-radius: 0.75rem;
+    display: grid;
+    grid-template-rows: 1fr;
+    justify-items: center;
+    align-items: center;
+  }
+  .neumorphic-circle button {
+    @apply text-gray-700 shadow-neumorphic;
+    background-color: var(--neumorph-primary-light);
+    grid-row: 1 / 2;
+    grid-column: 1 / 2;
+    width: 3rem;
+    aspect-ratio: 1/1;
+    display: flex;
+    margin: 0.6rem;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    font-size: 3.2rem;
+    z-index: 300;
+    cursor: pointer;
+    position: relative;
+  }
 
-.neumorphic-btn {
-  @apply shadow-neumorphic;
-  padding: 1rem;
-  height: 2.5rem;
-  border-radius: 0.75rem;
-  justify-self: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: 0.3s ease;
-}
-.neumorphic-btn.primary {
-  background: var(--primary);
-  box-shadow: inset 0.2rem 0.2rem 1rem var(--primary-light),
-    inset -0.2rem -0.2rem 1rem var(--primary-dark),
-    0.3rem 0.3rem 0.6rem var(--neumorph-primary-dark),
-    -0.2rem -0.2rem 0.5rem var(--neumorph-primary-light);
-  color: var(--neumorph-primary);
-}
+  .neumorphic-btn {
+    padding: 1rem;
+    height: 2.5rem;
+    border-radius: 0.75rem;
+    justify-self: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: 0.3s ease;
+    @apply ring-1 ring-black dark:ring-white ring-opacity-10 dark:ring-opacity-10 shadow-neumorphic text-primary text-opacity-50;
+  }
+  .neumorphic-btn.primary {
+    @apply bg-neumorph-primary shadow-neumorphic;
+  }
 
-.neumorphic-btn.primary:hover {
-  color: var(--neumorph-primary-light);
-}
-.neumorphic-btn.primary:active {
-  box-shadow: inset 0.2rem 0.2rem 1rem var(--primary-dark),
-    inset -0.2rem -0.2rem 1rem var(--primary-light);
-}
+  .neumorphic-btn.primary:hover {
+    @apply text-primary;
+  }
 
-.neumorphic-btn.secondary {
-  grid-column: 1 / 2;
-  grid-row: 5 / 6;
-  @apply text-neumorph-secondary;
-  @apply border-[1px] border-black dark:border-white border-opacity-10 dark:border-opacity-10;
-}
+  .neumorphic-btn.primary:active {
+    @apply shadow-neumorphic-inner;
+  }
 
-.neumorphic-btn.secondary:hover {
-  @apply text-neumorph-accent;
-}
+  .neumorphic-btn.secondary {
+    @apply bg-neumorph-secondary shadow-neumorphic-secondary text-neumorph-primary;
+  }
 
-.neumorphic-btn.secondary:active {
-  @apply shadow-neumorphic-inner border-[1px] border-black dark:border-white border-opacity-5 dark:border-opacity-5;
-}
+  .neumorphic-btn.secondary:hover {
+    @apply bg-neumorph-primary shadow-neumorphic text-primary;
+  }
 
-.neumorphic-input {
-  @apply text-black dark:text-white shadow-neumorphic-inner;
-  min-height: 3rem;
-  border: none;
-  border-radius: 0.75rem;
-  padding-left: 0.8rem;
-  background: none;
-  font-family: inherit;
-}
+  .neumorphic-btn.secondary:active {
+    @apply shadow-neumorphic-inner;
+  }
 
-.neumorphic-input::placeholder {
-  @apply opacity-50;
-}
+  .neumorphic-input {
+    @apply text-black dark:text-white shadow-neumorphic-inner;
+    min-height: 3rem;
+    border: none;
+    border-radius: 0.75rem;
+    padding-left: 0.8rem;
+    background: none;
+    font-family: inherit;
+  }
 
-.neumorphic-input:focus {
-  outline: none;
-  @apply shadow-neumorphic;
-}
+  .neumorphic-input::placeholder {
+    @apply text-opacity-50;
+  }
 
-.neumorphic-search {
-  position: relative;
-  display: flex;
-  align-items: center;
-}
-.neumorphic-search > input {
-  @apply text-neumorph-secondary text-base md:text-lg xl:text-xl shadow-neumorphic ring-1 ring-black dark:ring-white ring-opacity-10 dark:ring-opacity-10;
-  width: 100%;
-  min-height: 2.5rem;
-  border: none;
-  border-radius: 0.75rem;
-  padding-left: 3rem;
-  background: none;
-  font-family: inherit;
-}
-.neumorphic-search > input:focus {
-  outline: none;
-  @apply shadow-neumorphic-inner ring-1 ring-black dark:ring-white ring-opacity-10 dark:ring-opacity-10;
-}
-.neumorphic-search input:focus + .neumorphic-search__icon {
-  @apply text-neumorph-accent;
-}
-.neumorphic-search input::placeholder {
-  @apply text-neumorph-secondary;
-}
+  .neumorphic-input:focus {
+    outline: none;
+    @apply shadow-neumorphic;
+  }
 
-.neumorphic-search .neumorphic-search__icon {
-  @apply text-neumorph-secondary;
-  height: 25px;
-  aspect-ratio: 1/1;
-  position: absolute;
-  font-size: 1.5rem;
-  padding: 0 0.8rem;
-  display: flex;
-  transition: 0.3s ease;
-}
+  .neumorphic-search {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  .neumorphic-search > input {
+    @apply text-primary text-xs md:text-sm xl:text-base shadow-neumorphic-inner ring-1 ring-black dark:ring-white ring-opacity-10 dark:ring-opacity-10;
+    width: 100%;
+    min-height: 40px;
+    border: none;
+    border-radius: 0.75rem;
+    padding-left: 3rem;
+    padding-right: 45px;
+    background: none;
+    font-family: inherit;
+  }
+  .neumorphic-search > input:focus {
+    outline: none;
+    @apply shadow-neumorphic ring-1 ring-black dark:ring-white ring-opacity-10 dark:ring-opacity-10;
+  }
+  .neumorphic-search input:focus + .neumorphic-search__icon {
+    @apply text-primary opacity-100;
+  }
+  .neumorphic-search input::placeholder {
+    @apply text-black dark:text-white text-opacity-25 dark:text-opacity-25;
+  }
 
-#search-input {
-  transition: visibility 0.3s linear, opacity 0.3s linear;
-}
+  .neumorphic-search .neumorphic-search__icon {
+    @apply text-primary text-opacity-50 text-sm lg:text-base;
+    height: 26px;
+    aspect-ratio: 1/1;
+    position: absolute;
+    padding: 0 0.8rem;
+    display: flex;
+    transition: 0.3s ease;
+  }
 
-#search-input::-webkit-search-cancel-button {
-  position: relative;
-  right: 20px;
-}
+  #search-input {
+    transition: visibility 0.3s linear, opacity 0.3s linear;
+  }
 
-#search-input:focus ~ #keyIcon {
-  visibility: hidden;
-  opacity: 0;
-}
-#search-input:not(:focus) ~ #keyIcon {
-  visibility: visible;
-  opacity: 1;
-}
+  #search-input::-webkit-search-cancel-button {
+    position: relative;
+    right: 20px;
+  }
 
-.neumorphic-icon {
-  display: flex;
-  justify-content: space-between;
-  @apply shadow-neumorphic text-neumorph-secondary border-[1px] border-black dark:border-white border-opacity-10 dark:border-opacity-10;
-  min-width: 35px;
-  aspect-ratio: 1/1;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  transition: all 0.5s ease;
-}
+  #search-input:focus ~ #keyIcon {
+    visibility: hidden;
+    opacity: 0;
+  }
+  #search-input:not(:focus) ~ #keyIcon {
+    visibility: visible;
+    opacity: 1;
+  }
 
-.neumorphic-icon svg {
-  border-radius: inherit;
-}
+  .neumorphic-icon {
+    display: flex;
+    justify-content: space-between;
+    @apply shadow-neumorphic text-primary text-opacity-50 border-[1px] border-black dark:border-white border-opacity-10 dark:border-opacity-10;
+    min-width: 35px;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.5s ease;
+  }
 
-.neumorphic-icon.active {
-  @apply shadow-neumorphic-inner;
-}
-.neumorphic-icon:active {
-  @apply shadow-neumorphic-inner;
-}
-.neumorphic-icon:hover {
-  @apply text-neumorph-accent;
-}
+  .neumorphic-icon svg {
+    border-radius: inherit;
+  }
 
-.neumorphic-card {
-  display: flex;
-  flex-direction: column;
-}
+  .neumorphic-icon.active {
+    @apply shadow-neumorphic-inner;
+  }
+  .neumorphic-icon:active {
+    @apply shadow-neumorphic-inner;
+  }
+  .neumorphic-icon:hover {
+    @apply text-secondary;
+  }
 
-.neumorphic-tab__list {
-  @apply space-x-5 bg-neumorph-primary;
-}
+  .neumorphic-card {
+    display: flex;
+    flex-direction: column;
+  }
 
-.neumorphic-tab__list button {
-  @apply shadow-neumorphic text-neumorph-secondary hover:text-neumorph-accent hover:shadow-neumorphic-inner
+  .neumorphic-tab__list {
+    @apply flex flex-row gap-2 bg-neumorph-primary;
+  }
+
+  .neumorphic-tab__list button {
+    @apply shadow-neumorphic text-primary text-opacity-60 hover:text-secondary
   w-full rounded-lg py-1.5 px-3 text-sm font-medium leading-5 border-[1px] border-black dark:border-white border-opacity-10 dark:border-opacity-10;
-  @apply ui-selected:text-neumorph-accent ui-selected:shadow-neumorphic-inner;
-}
+    @apply ui-selected:shadow-neumorphic-inner ui-selected:text-primary;
+  }
 
-.neumorphic-toast {
-  @apply bg-neumorph-primary shadow-neumorphic text-neumorph-secondary hover:text-neumorph-accent
+  .neumorphic-tab__list button:active {
+    @apply shadow-neumorphic-inner;
+  }
+
+  .neumorphic-toast {
+    @apply bg-neumorph-primary shadow-neumorphic text-primary hover:text-secondary
   w-full rounded-lg py-1.5 px-2 text-sm md:text-base font-medium leading-5 border-[1px] border-black dark:border-white border-opacity-10 dark:border-opacity-10 !important;
+  }
 }
 
 [tooltip]:after {
@@ -530,7 +568,7 @@
   opacity: 0;
   z-index: 99999;
   visibility: hidden;
-  @apply bg-neumorph-primary shadow-neumorphic-inner;
+  @apply bg-neumorph-primary shadow-neumorphic-inner flex flex-wrap;
 }
 [tooltip]:hover:after {
   opacity: 1;

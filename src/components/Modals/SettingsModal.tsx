@@ -84,7 +84,7 @@ const SettingsModal = ({ isOpen, onOpen, onClose }) => {
               </Dialog.Panel>
             </Transition.Child>
           </div>
-          {/* <div className="text-neumorph-secondary h-[400px]">
+          {/* <div className="text-primary h-[400px]">
             <div className="mb-5 p-5 flex items-center justify-between">
               <p className="neumorphic-chip flex gap-3 py-1.5 px-3 text-lg md:text-xl lg:text-2xl">
                 <IoSettingsSharp size={20} />

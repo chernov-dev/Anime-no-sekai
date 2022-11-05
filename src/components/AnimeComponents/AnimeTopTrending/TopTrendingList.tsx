@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import Link from "next/link";
 import Skeleton from "react-loading-skeleton";
-import { animeApi } from "../../../api/Anime_API";
+import { getAnimeTopAiring } from "../../../api/Anime_API/getAnimeTopAiring";
 import { shimmer, toBase64 } from "../../Shared/shimmer";
 
 const TopTrendingList = () => {
@@ -10,7 +10,7 @@ const TopTrendingList = () => {
     data: topAiring,
     isLoading: isAiringLoading,
     isSuccess: isAiringSuccess,
-  } = useQuery(["anime-airing"], () => animeApi.getTrending({ perPage: 9 }));
+  } = useQuery(["anime-airing"], () => getAnimeTopAiring());
 
   let airingList = [...Array(9)];
 
@@ -20,7 +20,7 @@ const TopTrendingList = () => {
 
   return (
     <div className="flex flex-col">
-      <div className="section-heading pl-2 mb-2">Trending anime</div>
+      <div className="section-heading pl-2 mb-4">Trending anime</div>
       <div className="neumorphic-list">
         {airingList.map((anime, index) => {
           return (
@@ -30,7 +30,7 @@ const TopTrendingList = () => {
               className="gap-3 items-center hover:cursor-pointer"
             >
               <div className="flex flex-col gap-2 w-full grow justify-end items-center px-2 md:px-6">
-                <p className="text-neumorph-secondary opacity-90 line-clamp-1">
+                <p className="text-primary opacity-90 line-clamp-1">
                   {(anime?.title.userPreferred ?? anime?.title.romaji) ?? <Skeleton width='10rem' height="2rem" />}
                 </p>
               </div>

@@ -9,12 +9,12 @@ const AnimeFavoriteList = ({ anime, ongoing, completed }) => {
     <div className="flex w-full grow justify-center">
       <div className="px-4 w-full">
         <Tab.Group>
-          <div className="anime-home__header mt-4">
-            <h1 className="text-xl md:text-2xl">Your favorite list</h1>
+          <div className="anime-home__header">
+            <h1 className="section-heading">Your favorite list</h1>
             <AnimeFavoriteFilter />
           </div>
           {(!anime && anime?.length) && (
-            <div className="flex flex-wrap items-center justify-center gap-2 my-12 neumorphic-grid min-h-[200px] neumorphic-border">
+            <div className="flex flex-wrap items-center justify-center gap-2 my-12 neumorphic-grid min-h-[200px]">
               <b>No anime found</b>, add them by touching
               <BsHeartFill color={"var(--neumorph-accent)"} />
               icon on bottom right of the anime card

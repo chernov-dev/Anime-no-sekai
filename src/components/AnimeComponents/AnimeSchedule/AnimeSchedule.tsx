@@ -18,8 +18,9 @@ import { shimmer, toBase64 } from "../../Shared/shimmer";
 import AnimeScheduleSkeleton from "./AnimeScheduleSkeleton";
 
 const AnimeSchedule = () => {
-  const { data, isLoading, isSuccess, isError } = useQuery(["anime-schedule"], () =>
-    animeApi.getAiringSchedule()
+  const { data, isLoading, isSuccess, isError } = useQuery(
+    ["anime-schedule"],
+    () => animeApi.getAiringSchedule()
   );
 
   const today = new Date();
@@ -43,13 +44,18 @@ const AnimeSchedule = () => {
     <div className="px-2 my-8">
       <div className="w-full h-fit shadow-neumorphic neumorphic-border rounded-lg">
         <div className="flex flex-col h-[10rem] bg-neumorph-primary dark:bg-neumorph-secondary rounded-lg relative">
-          <div className="absolute flex flex-wrap items-center justify-between gap-0 md:gap-2 px-3 rounded-t-lg h-full top-0 left-0 z-30 w-full font-bold bg-black bg-opacity-60 text-white text-opacity-70">
-            <span className="text-xl md:text-2xl">
-              Estimated Anime schedule{" "}
-            </span>
-            <span className="text-xl">
-              {currentTime}
-            </span>
+          <div className="absolute flex flex-wrap items-center justify-between gap-0 md:gap-2 px-3 rounded-t-lg h-full top-0 left-0 z-30 w-full font-bold bg-black bg-opacity-60">
+            <div className="section-heading w-full flex flex-wrap items-center justify-between">
+              <span className=" text-white text-opacity-70">
+                Estimated Anime schedule{" "}
+              </span>
+              <span
+                className=" text-white text-opacity-70 
+              text-base xl:text-lg"
+              >
+                {currentTime}
+              </span>
+            </div>
           </div>
           <AnsSvgLogo
             style={{
@@ -60,7 +66,7 @@ const AnimeSchedule = () => {
             preserveAspectRatio="xMinYMin slice"
             color="black"
             filter="brightness(0.2) sepia(1) hue-rotate(180deg) saturate(5)"
-            className="neumorphic-border fill-neumorph-secondary dark:fill-neumorph-primary opacity-60"
+            className="fill-neumorph-secondary dark:fill-neumorph-primary opacity-60"
           />
         </div>
         <Swiper
@@ -77,9 +83,12 @@ const AnimeSchedule = () => {
           {(!isLoading || isSuccess) &&
             data.results.map((anime) => {
               return (
-                <SwiperSlide key={anime.id + anime.episode} className="mt-10">
+                <SwiperSlide key={anime.id + anime.episode} className="my-10">
                   <div className="h-full flex flex-col sm:flex-row justify-between p-4 lg:px-8 items-center gap-2 text-sm md:text-base">
-                    <Link href={`/anime/${anime.id}`} className="grow relative w-full h-full">
+                    <Link
+                      href={`/anime/${anime.id}`}
+                      className="grow relative w-full h-full"
+                    >
                       <Image
                         src={anime.image}
                         alt={`${anime.title.userPreferred} poster`}
@@ -111,13 +120,15 @@ const AnimeSchedule = () => {
                         className="neumorphic-btn secondary gap-2 h-7 text-sm md:text-base"
                       >
                         <IoPlayCircleSharp size={20} />
-                        <span> Episode {anime.episode}</span></Link>
+                        <span> Episode {anime.episode}</span>
+                      </Link>
                     </div>
                   </div>
                 </SwiperSlide>
               );
             })}
         </Swiper>
+
       </div>
     </div>
   );

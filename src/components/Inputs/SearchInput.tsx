@@ -1,16 +1,14 @@
 import { useRouter } from "next/router";
 import { SVGProps, useState } from "react";
 
-export const SearchInput = ({}) => {
+export const SearchInput = ({ }) => {
   const [searchInput, setSearchInput] = useState("");
-  const [searchVisible, setSearchVisible] = useState(true);
   const router = useRouter();
 
   const handleSearch = (e) => {
     e.preventDefault();
     if (searchInput.length > 0) router.push(`/search/${searchInput}`);
   };
-
 
   // const handleUserKeyPress = (event) => {
   //   let search = document.getElementById("search-input");
@@ -35,11 +33,8 @@ export const SearchInput = ({}) => {
   return (
     <>
       <div
-        className={`
-            ${searchVisible ? `block` : "hidden"}
-            `}
       >
-        <form className="flex items-center" onSubmit={handleSearch}>
+        <form className="flex items-center min-w-[10rem] w-fit" onSubmit={handleSearch}>
           <label htmlFor="search-input" className="sr-only">
             Search
           </label>
@@ -90,11 +85,11 @@ export const SearchKeyboardKeyIcon = (props: SVGProps<SVGSVGElement>) => {
     <>
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        width="1em"
-        height="1em"
+        width="1.2em"
+        height="1.2em"
         viewBox="0 0 256 256"
-        fill="var(--neumorph-secondary)"
-        stroke="var(--neumorph-accent)"
+        fill="rgb(var(--primary))"
+        stroke="rgb(var(--neumorph-accent))"
         {...props}
       >
         <path d="M16.5 1.4C11.4 3.6 6.8 8.2 4.4 13.5l-2.4 5v219l2.4 5c2.5 5.4 7.1 10 12.3 12.2 4.8 1.9 217.8 1.9 222.6 0 5.2-2.2 9.8-6.8 12.3-12.2l2.4-5v-219l-2.4-5c-2.5-5.4-7.1-10-12.3-12.2C234.6-.6 21-.6 16.5 1.4zm192.4 26.7c6.9 1.5 12.3 5.6 15.5 12l2.6 5.3v165.2l-2.6 5.3c-3.2 6.4-8.6 10.5-15.5 12s-154.9 1.5-161.8 0c-6.9-1.5-12.3-5.6-15.5-12l-2.6-5.3V45.4l2.6-5.2c3.1-6.2 7.7-10.1 14.2-11.8 6.2-1.7 155.5-2 163.1-.3z" />

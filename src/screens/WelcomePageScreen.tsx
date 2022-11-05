@@ -1,5 +1,4 @@
 import Link from "next/link";
-import React from "react";
 import { GoSync } from "react-icons/go";
 import { IoArrowForwardCircleSharp } from "react-icons/io5";
 import { RiHeartAddFill, RiNotification3Fill } from "react-icons/ri";
@@ -9,11 +8,11 @@ const WelcomePageScreen = () => {
   return (
     <>
       <div className="section-welcome">
-        <div className="h-full w-full flex flex-col items-center justify-center px-2 gap-5">
-          <h1 className="text-2xl md:text-4xl p-2 uppercase ">
+        <div className="h-full w-full flex flex-col items-center justify-center px-2 gap-5 ">
+          <h1 className="text-2xl md:text-4xl p-2 uppercase">
             Anime no Sekai
           </h1>
-          <Link passHref href={"/home"}>
+          <Link href={"/home"} className="w-full flex justify-center">
             <div className="welcome-logo">
               <AnsSvgLogo
                 className={"text-black"}

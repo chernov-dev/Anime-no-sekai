@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
+import { useSessionStorage } from 'usehooks-ts';
 import PageLoader from "../components/Shared/PageLoader";
 import useFavoriteIds from "../hooks/useFavoriteIds";
 import useUser from "../hooks/useUser";
 import { IUserType } from "../types/User";
-import usePersistState from "../utils/usePersistState";
 
 export function getInitialTheme() {
   if (typeof window !== "undefined" && window.localStorage) {
@@ -33,6 +33,7 @@ export type IUserPreferencesContextType = {
 const UserPreferencesContext =
   React.createContext<IUserPreferencesContextType | undefined>(undefined);
 
+
 const UserPreferencesProvider = ({ children }: { children: React.ReactNode }) => {
   const userFavoriteIds = useFavoriteIds();
   const userFetched = useUser();
@@ -41,8 +42,8 @@ const UserPreferencesProvider = ({ children }: { children: React.ReactNode }) =>
   // Caching User preferences states
   const [favoriteIds, setFavoriteIds] = useState<number[]>([]);
   const [user, setUser] = useState<IUserType | undefined>(undefined);
-  const [layout, setLayout] = usePersistState("ans-layout", "grid");
-  const [theme, setTheme] = usePersistState("ans-theme", getInitialTheme());
+  const [layout, setLayout] = useSessionStorage("ans-layout", "grid");
+  const [theme, setTheme] = useSessionStorage("ans-theme", getInitialTheme());
 
   useEffect(() => {
     if (typeof window !== undefined) {

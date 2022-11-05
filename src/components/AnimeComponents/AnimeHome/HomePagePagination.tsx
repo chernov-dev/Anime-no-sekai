@@ -16,7 +16,7 @@ const HomePagePagination = ({
   let lastPage = pagination.totalPages - 2 ?? !pagination.hasNextPage;
 
   return (
-    <div className="text-neumorph-secondary flex gap-4">
+    <div className="text-primary flex gap-4">
       <button
         accessKey="j"
         className="paginate-btn"

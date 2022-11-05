@@ -1,8 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
-import React, { useState } from "react";
+import { useState } from "react";
 import { animeApi } from "../api/Anime_API";
-import UpcomingAnimeCard from "../components/AnimeComponents/AnimeUpcomingCard/UpcomingAnimeCard";
 import TopTrendingList from "../components/AnimeComponents/AnimeTopTrending/TopTrendingList";
+import UpcomingAnimeCard from "../components/AnimeComponents/AnimeUpcomingCard/UpcomingAnimeCard";
 import PageLoader from "../components/Shared/PageLoader";
 import Spinner from "../components/Shared/Spinner";
 import { IAnimeResult } from "../types/Anime";
@@ -36,7 +36,7 @@ const UpcomingAnimeScreen = () => {
         </div>
       </div>
       <aside className="anime-home__sidebar">
-        <div className="shadow-neumorphic neumorphic-border p-4 rounded-[inherit] gap-2">
+        <div className="shadow-neumorphic p-4 rounded-[inherit] gap-2">
           <TopTrendingList />
         </div>
       </aside>

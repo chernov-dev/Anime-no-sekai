@@ -44,7 +44,7 @@ const Item = ({
   return (
     <>
       <Link
-        className="anime-home-item__wrapper"
+        className="anime-grid__item"
         title={tooltip}
         href={anime?.id ? `/anime/${anime!.id}` : ""}
       >
@@ -52,8 +52,8 @@ const Item = ({
           <div className="anime-home__grid-item__header">
             <div className="anime-img">
               <div className="anime-status-overlay px-2">
-                <div className="h-full px-1 text-4xl font-bold text-neumorph-primary">
-                  {bulletIndex}
+                <div className="px-1 text-xl lg:text-2xl xl:text-3xl font-bold">
+                  <p className="text-neumorph-accent">{bulletIndex}</p>
                 </div>
                 {liked && (
                   <button
@@ -65,7 +65,7 @@ const Item = ({
                     <BsHeartFill
                       size={25}
                       className={
-                        "hover:text-neumorph-secondary transition-colors"
+                        "hover:text-secondary transition-colors"
                       }
                     />
                   </button>

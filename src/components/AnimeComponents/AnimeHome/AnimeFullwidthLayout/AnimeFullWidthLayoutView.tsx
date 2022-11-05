@@ -47,7 +47,7 @@ const Item = ({ anime }: { anime: IAnimeResult | undefined }) => {
               <h1 className="anime-home__title mb-1">{title || <Skeleton width={"10rem"} />}</h1>
               <p className="anime-subtitle text-center">{anime?.title?.native || <Skeleton width={"8rem"} />}</p>
             </div>
-            <div className="h-full flex flex-col text-neumorph-secondary shadow-neumorphic-inner text-sm border-[1px] border-black dark:border-white border-opacity-5 dark:border-opacity-5 rounded-xl p-4 font-semibold w-full gap-2 bg-neumorph-primary">
+            <div className="h-full flex flex-col text-primary shadow-neumorphic-inner text-sm border-[1px] border-black dark:border-white border-opacity-5 dark:border-opacity-5 rounded-xl p-4 font-semibold w-full gap-2 bg-neumorph-primary">
               {anime?.description && (
                 <div className="h-40 text-ellipsis overflow-hidden">
                   {anime?.description}
@@ -83,7 +83,7 @@ const Item = ({ anime }: { anime: IAnimeResult | undefined }) => {
                     className="flex bg-neumorph-primary-dark neumorphic-genre"
                     key={index}
                   >
-                    <span className="text-neumorph-secondary">{genre}</span>
+                    <span className="text-primary">{genre}</span>
                   </div>
                 ))}
               </div>

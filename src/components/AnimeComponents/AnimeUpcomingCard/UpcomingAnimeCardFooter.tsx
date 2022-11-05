@@ -32,7 +32,7 @@ const UpcomingAnimeCardFooter = ({ type, popularity, year, favorites }) => {
           </span>
         </div>
       </div>
-      <p className="text-neumorph-secondary font-bold text-sm lg:text-base">
+      <p className="text-primary font-bold text-sm lg:text-base">
         {type}
       </p>
     </div>

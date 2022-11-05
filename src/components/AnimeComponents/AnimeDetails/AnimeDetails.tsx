@@ -44,11 +44,11 @@ const AnimeDetails = ({ anime }) => {
               ))}
             </div>
             <div className="grow"></div>
-            <div className="text-neumorph-secondary">
+            <div className="text-primary">
               {anime.studios.length == 1 ? "Studio:" : "Studios:"}{" "}
               {anime.studios}
             </div>
-            <div className="shadow-neumorphic p-3 rounded-xl text-neumorph-secondary ring-1 ring-black dark:ring-white ring-opacity-10 dark:ring-opacity-10">
+            <div className="shadow-neumorphic p-3 rounded-xl text-primary ring-1 ring-black dark:ring-white ring-opacity-10 dark:ring-opacity-10">
               <div>Status: {anime.status}</div>
               <div className="">
                 <p>Release date: {anime.startDate.year}</p>

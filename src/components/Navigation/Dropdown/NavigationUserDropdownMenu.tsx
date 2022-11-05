@@ -4,10 +4,10 @@ import { Fragment, useState } from "react";
 import { AiFillHeart, AiFillSetting } from "react-icons/ai";
 import { CgLogOut, CgProfile } from "react-icons/cg";
 import { FiLogIn, FiLogOut, FiSettings } from "react-icons/fi";
-import useLogOut from "../../hooks/useLogout";
-import useUser from "../../hooks/useUser";
-import SettingsModal from "../Modals/SettingsModal";
-import Spinner from "../Shared/Spinner";
+import useLogOut from "../../../hooks/useLogout";
+import useUser from "../../../hooks/useUser";
+import SettingsModal from "../../Modals/SettingsModal";
+import Spinner from "../../Shared/Spinner";
 
 const NavigationUserDropdownMenu = () => {
   const router = useRouter();
@@ -30,7 +30,7 @@ const NavigationUserDropdownMenu = () => {
     <>
       <Menu as="div" className="relative inline-block text-left">
         <div>
-          <Menu.Button className="neumorphic-btn secondary">
+          <Menu.Button className="neumorphic-btn primary">
             {user.isLoading ? <Spinner size={20} /> : <CgProfile size={24} />}
           </Menu.Button>
         </div>
@@ -50,11 +50,10 @@ const NavigationUserDropdownMenu = () => {
                   <Menu.Item>
                     {({ active }) => (
                       <button
-                        className={`${
-                          active
-                            ? "bg-gray-400 bg-opacity-20 text-neumorph-accent"
-                            : "text-neumorph-secondary"
-                        } group flex gap-2 w-full items-center rounded-md px-2 py-2 text-sm md:text-base`}
+                        className={`${active
+                          ? "bg-gray-400 bg-opacity-20 text-neumorph-accent"
+                          : "text-primary"
+                          } group flex gap-2 w-full items-center rounded-md px-2 py-2 text-sm md:text-base`}
                         onClick={() => {
                           location.href = "/favourite";
                         }}
@@ -67,11 +66,10 @@ const NavigationUserDropdownMenu = () => {
                   <Menu.Item>
                     {({ active }) => (
                       <button
-                        className={`${
-                          active
-                            ? "bg-gray-400 bg-opacity-20 text-neumorph-accent"
-                            : "text-neumorph-secondary "
-                        } group flex gap-2 w-full items-center rounded-md px-2 py-2 text-sm md:text-base`}
+                        className={`${active
+                          ? "bg-gray-400 bg-opacity-20 text-neumorph-accent"
+                          : "text-primary "
+                          } group flex gap-2 w-full items-center rounded-md px-2 py-2 text-sm md:text-base`}
                         onClick={() => {
                           setSettingsOpen((prev) => !prev);
                         }}
@@ -86,11 +84,10 @@ const NavigationUserDropdownMenu = () => {
                   <Menu.Item>
                     {({ active }) => (
                       <button
-                        className={`${
-                          active
-                            ? "bg-gray-400 bg-opacity-20 text-neumorph-accent"
-                            : "text-neumorph-secondary "
-                        } group flex gap-2 w-full items-center rounded-md px-2 py-2 text-sm md:text-base`}
+                        className={`${active
+                          ? "bg-gray-400 bg-opacity-20 text-neumorph-accent"
+                          : "text-primary "
+                          } group flex gap-2 w-full items-center rounded-md px-2 py-2 text-sm md:text-base`}
                         onClick={() => {
                           localStorage.setItem(
                             "ans-user__cached",
@@ -113,11 +110,10 @@ const NavigationUserDropdownMenu = () => {
                   <Menu.Item>
                     {({ active }) => (
                       <button
-                        className={`${
-                          active
-                            ? "bg-gray-400 bg-opacity-20 text-neumorph-accent"
-                            : "text-neumorph-secondary "
-                        } group flex gap-2 w-full items-center rounded-md px-2 py-2 text-sm md:text-base`}
+                        className={`${active
+                          ? "bg-gray-400 bg-opacity-20 text-neumorph-accent"
+                          : "text-primary "
+                          } group flex gap-2 w-full items-center rounded-md px-2 py-2 text-sm md:text-base`}
                         onClick={() => {
                           router.push("/auth/login");
                         }}
@@ -130,11 +126,10 @@ const NavigationUserDropdownMenu = () => {
                   <Menu.Item>
                     {({ active }) => (
                       <button
-                        className={`${
-                          active
-                            ? "bg-gray-400 bg-opacity-20 text-neumorph-accent"
-                            : "text-neumorph-secondary "
-                        } group flex gap-2 w-full items-center rounded-md px-2 py-2 text-sm md:text-base`}
+                        className={`${active
+                          ? "bg-gray-400 bg-opacity-20 text-neumorph-accent"
+                          : "text-primary "
+                          } group flex gap-2 w-full items-center rounded-md px-2 py-2 text-sm md:text-base`}
                         onClick={() => {
                           router.push("/auth/signup");
                         }}
@@ -150,11 +145,10 @@ const NavigationUserDropdownMenu = () => {
                   <Menu.Item>
                     {({ active }) => (
                       <button
-                        className={`${
-                          active
-                            ? "bg-gray-400 bg-opacity-20 text-neumorph-accent"
-                            : "text-neumorph-secondary "
-                        } group flex gap-2 w-full items-center rounded-md px-2 py-2 text-sm md:text-base`}
+                        className={`${active
+                          ? "bg-gray-400 bg-opacity-20 text-neumorph-accent"
+                          : "text-primary "
+                          } group flex gap-2 w-full items-center rounded-md px-2 py-2 text-sm md:text-base`}
                         onClick={() => {
                           setSettingsOpen((prev) => !prev);
                         }}
@@ -171,7 +165,7 @@ const NavigationUserDropdownMenu = () => {
         </Transition>
         <SettingsModal
           isOpen={settingsOpen}
-          onOpen={() => {}}
+          onOpen={() => { }}
           onClose={() => setSettingsOpen(false)}
         />
       </Menu>

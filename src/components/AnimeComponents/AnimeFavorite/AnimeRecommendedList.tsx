@@ -30,7 +30,7 @@ const AnimeRecommendedList = ({ anime }) => {
                   shimmer(60, 78)
                 )}`}
               />
-              <p className="text-neumorph-secondary opacity-90 short mx-2.5 grow">
+              <p className="text-primary opacity-90 short mx-2.5 grow">
                 {anime.title.english ?? anime.title.userPreferred}
               </p>
               <p className="anime-type mr-2">{anime.type}</p>

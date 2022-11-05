@@ -19,7 +19,7 @@
 }
 
 .anime-player__title {
-  @apply text-neumorph-secondary text-2xl;
+  @apply text-primary text-2xl;
   display: inline-flex;
   flex-grow: 1;
   gap: 0.5rem;

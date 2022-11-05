@@ -74,7 +74,7 @@ const AnimeHome = ({
             }}
           >
             <div className="anime-home__header">
-              <p className="text-xl md:text-2xl">{pageTitle}</p>
+              <p className="text-lg md:text-xl section-heading">{pageTitle}</p>
               <div className="flex items-center md:w-auto gap-3">
                 <LayoutChanger />
                 {isAnimeDataLoading && <HomePagePaginationSkeleton />}
@@ -84,7 +84,7 @@ const AnimeHome = ({
                 />}
               </div>
             </div>
-            <Tab.Panels>
+            <Tab.Panels className={"mt-6"}>
               <Tab.Panel>
                 <AnimeGridLayoutView anime={animeData?.anime ?? undefined} />
               </Tab.Panel>
@@ -93,17 +93,19 @@ const AnimeHome = ({
               </Tab.Panel>
             </Tab.Panels>
           </Tab.Group>
-          <div className="block sm:hidden mb-3 self-center">
+          <div className="block self-center">
             {isAnimeDataLoading && <HomePagePaginationSkeleton />}
             {isAnimeDataSuccess && <HomePagePagination
               paginate={paginate}
               pagination={animeData.pagination}
             />}
           </div>
-          {children}
+          <section>
+            {children}
+          </section>
         </div>
         <aside className="anime-home__sidebar">
-          <div className="shadow-neumorphic neumorphic-border p-4 rounded-[inherit] gap-2">
+          <div className="shadow-neumorphic p-4 rounded-[inherit] gap-2">
             <TopTrendingList />
           </div>
         </aside>

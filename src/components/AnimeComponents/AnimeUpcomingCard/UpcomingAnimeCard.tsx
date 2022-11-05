@@ -34,10 +34,10 @@ const UpcomingAnimeCard = ({ anime }: { anime: any }) => {
           <UpcomingAnimeCardFooter type={anime.type} popularity={anime.popularity} year={anime.year} favorites={anime.favorites} />
         </div>
         <div className="anime-home__grid-item__title py-2 ">
-          <p className="line-clamp-1 leading-[1.1] text-neumorph-secondary">
+          <p className="line-clamp-1 leading-[1.1] text-primary">
             {title}
           </p>
-          <p className="text-neumorph-secondary">
+          <p className="text-primary">
             {anime.year && <span>Year - {anime.year}</span>}
           </p>
         </div>

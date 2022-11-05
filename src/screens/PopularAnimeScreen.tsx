@@ -28,7 +28,7 @@ const PopularAnimeScreen = ({
       <div className="anime-home">
         <div className="anime-home__container">
           <div className="anime-home__header">
-            <p className="text-xl md:text-2xl">{pageTitle}</p>
+            <p className="section-heading">{pageTitle}</p>
           </div>
           {isLoading && <Spinner />}
           {isSuccess && (
@@ -37,7 +37,7 @@ const PopularAnimeScreen = ({
           {children}
         </div>
         <aside className="anime-home__sidebar">
-          <div className="shadow-neumorphic neumorphic-border p-4 rounded-[inherit] gap-2">
+          <div className="shadow-neumorphi p-4 rounded-[inherit] gap-2">
             <TopTrendingList />
           </div>
         </aside>

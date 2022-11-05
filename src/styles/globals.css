@@ -1,34 +1,45 @@
 @tailwind base;
-@tailwind components;
 @tailwind utilities;
+@tailwind components;
 
-body {
-  --neumorph-light: #191b1b;
-  --neumorph-dark: #e4ebf5;
-  --secondary: rgb(116, 140, 171);
-  /* neumorphism colors */
-  --neumorph-primary: #e4ebf5;
-  --neumorph-primary-light: #ffffff9a;
-  --neumorph-primary-dark: #c8d0e7;
-  --neumorph-secondary: #6c7794;
-  --neumorph-accent: #6d5dfc;
-  --s1-w: 40vmin;
-  --s2-w: 60vmin;
-  --s3-w: 10vmin;
+@layer components {
+  .page-layout {
+    @apply m-0 md:ml-[75px];
+  }
 }
+@layer base {
+  :root {
+    --primary: 34 33 33;
+    --secondary: 25 27 32;
+    /* neumorphism colors */
+    --neumorph-primary: 224 224 224;
+    --neumorph-primary-light: 255 255 255;
+    --neumorph-primary-dark: 190 190 190;
 
-html.dark body {
-  --neumorph-light: #949281;
-  --neumorph-dark: #232727;
-  --neumorph-primary: #232727;
-  --neumorph-primary-light: #2e3333;
-  --neumorph-primary-dark: #191b1b;
-  --neumorph-secondary: #949281;
-  --neumorph-accent: #e6af2e;
-}
+    --neumorph-secondary: 54 119 193;
+    --neumorph-secondary-light: 100 160 229;
+    --neumorph-secondary-dark: 31 76 129;
 
-.header {
-  @apply flex flex-col gap-3 px-2 sm:px-4 py-2.5  sticky w-full z-[999] top-0 left-0 border-b border-gray-200 dark:border-gray-500;
+    --neumorph-accent: 54 119 193;
+  }
+
+  :root.dark {
+    --primary: 184 183 168;
+    --secondary: 232 247 232;
+    /* neumorphism colors */
+    --neumorph-light: 148 146 129;
+    --neumorph-dark: 35 39 39;
+
+    --neumorph-primary: 35 39 39;
+    --neumorph-primary-light: 46 51 51;
+    --neumorph-primary-dark: 25 27 27;
+
+    --neumorph-secondary: 230 175 46;
+    --neumorph-secondary-light: 46 51 51;
+    --neumorph-secondary-dark: 25 27 27;
+
+    --neumorph-accent: 230 175 46;
+  }
 }
 
 *,
@@ -45,21 +56,13 @@ body {
   font-size: clamp(1rem, 0.9869rem + 0.056vw, 1.0625rem);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  @apply text-neumorph-secondary bg-neumorph-primary;
+  @apply text-primary bg-neumorph-primary;
 }
 
 #__next {
   display: flex;
   flex-direction: column;
   height: 100%;
-}
-
-main {
-  width: 100%;
-  z-index: 0;
-  @apply p-0.5 md:p-2;
-  position: relative;
-  /* @apply bg-gradient-to-b from-gray-900/10 to-[#010511]; */
 }
 
 .section-welcome {
@@ -84,7 +87,6 @@ main {
   width: 100%;
   height: 100%;
   border-radius: inherit;
-  border: 1rem solid var(--neumorph-accent);
   filter: blur(5px);
 }
 
@@ -101,7 +103,6 @@ main {
   aspect-ratio: 1/1.1;
   max-width: 500px;
   border-radius: 1rem;
-  border: 1rem solid var(--neumorph-accent);
   filter: blur(5px);
   position: relative;
 }
@@ -114,52 +115,19 @@ main {
 }
 
 .paginate-btn {
-  @apply hover:text-neumorph-accent disabled:hover:text-neumorph-secondary disabled:opacity-40;
+  @apply hover:text-primary text-opacity-50 text-primary disabled:hover:text-opacity-50 disabled:opacity-40;
 }
 
-.short {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+.active-link {
+  @apply shadow-neumorphic-inner hover:shadow-neumorphic-inner opacity-100 !important;
+}
+
+.nav-link:active {
+  @apply shadow-neumorphic-inner !important;
 }
 
 .section-heading {
-  @apply text-neumorph-secondary text-lg xl:text-2xl;
-}
-
-.line-clamp-1 {
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 1;
-}
-
-.line-clamp-2 {
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-}
-
-.line-clamp-3 {
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
-}
-
-.line-clamp-4 {
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 4;
-}
-
-.line-clamp-5 {
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 5;
+  @apply text-secondary text-opacity-50 text-lg xl:text-xl;
 }
 
 .react-player {
@@ -177,10 +145,6 @@ main {
 .swiper-pagination {
   top: 0 !important;
   height: fit-content;
-}
-
-.active {
-  @apply text-opacity-50 !important;
 }
 
 .title {
