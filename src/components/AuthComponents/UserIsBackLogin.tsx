@@ -20,9 +20,9 @@ const UserIsBackLogin = ({
 }) => {
   return (
     <>
-      <div className="auth-header flex flex-col items-center gap-1 text-2xl">
-        Welcome back {user.username ?? ""}
-        <p className="text-base opacity-75">Continue where you left off</p>
+      <div className="auth-header flex flex-col items-center gap-1 text-xl">
+        Welcome back, {user.username ?? ""}
+        <p className="text-base text-primary opacity-75">Continue where you left off</p>
       </div>
       <form
         onSubmitCapture={() => onSubmit()}
@@ -36,14 +36,14 @@ const UserIsBackLogin = ({
           className="neumorphic-input"
           onChange={(e) => setPassword(e.target.value)}
         />
-        <Link href={"/forgot"} className="text-sm float-left pl-3 underline opacity-70">
-            Forgot password?
+        <Link href={"/forgot"} className="text-xs float-left pl-3 underline opacity-70">
+          Forgot password?
         </Link>
         {isLoading ? (
           <Spinner />
         ) : (
           <button
-            className="neumorphic-btn secondary"
+            className="neumorphic-btn secondary w-1/2 self-center mt-4"
             type="button"
             onClick={() => {
               setEmail(user.email);
@@ -57,7 +57,7 @@ const UserIsBackLogin = ({
         )}
       </form>
       <button onClick={onWrongUserButtonClick}>
-        <a className="text-sm text-center underline opacity-70">Not {user.username}?</a>
+        <a className="text-xs text-center underline opacity-70">Not {user.username}?</a>
       </button>
     </>
   );

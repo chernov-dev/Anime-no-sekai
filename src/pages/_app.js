@@ -1,9 +1,9 @@
-import "../styles/globals.css";
-
 import "../styles/Anime.css";
 import "../styles/AnimeCard.css";
 import "../styles/AnimePlayer.css";
 import "../styles/Neumorphic.css";
+
+import "../styles/globals.css";
 
 import "react-loading-skeleton/dist/skeleton.css";
 

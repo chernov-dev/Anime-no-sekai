@@ -17,7 +17,7 @@ const NewUserLogin = ({
     <>
       <div className="auth-header flex flex-col items-center gap-1 text-2xl">
         Welcome
-        <p className="text-base opacity-75">Lets get started</p>
+        <p className="text-base text-primary text-opacity-75">Lets get started</p>
       </div>
       <form className="auth-inputs flex flex-col gap-4 rounded-[1rem]">
         <input
@@ -44,7 +44,7 @@ const NewUserLogin = ({
           <Spinner />
         ) : (
           <button
-            className="neumorphic-btn secondary"
+            className="neumorphic-btn secondary w-1/2 self-center mt-4"
             type="button"
             onClick={() => onSubmit()}
           >

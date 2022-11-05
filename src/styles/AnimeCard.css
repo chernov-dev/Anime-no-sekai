@@ -55,13 +55,12 @@
 }
 
 .animeCard-header__content {
-  @apply lg:p-4;
+  @apply lg:px-4;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
   width: 100%;
   position: relative;
-  padding-bottom: 1rem;
 }
 
 .animeCard-header__content-body {

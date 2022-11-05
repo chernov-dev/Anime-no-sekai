@@ -291,7 +291,7 @@
     @apply shadow-neumorphic-inner;
   }
   .neumorphic-form input::placeholder {
-    @apply text-primary;
+    @apply text-primary text-opacity-40;
   }
 
   .neumorphic-switch {
@@ -341,8 +341,8 @@
   }
   .neumorphic-chip {
     justify-self: center;
-    padding: 0.5rem 0.7rem;
-    height: 2rem;
+    padding: 0.3rem 0.4rem;
+    min-height: 2rem;
     border-radius: 0.75rem;
     @apply shadow-neumorphic text-xs md:text-sm border-[1px] border-black dark:border-white border-opacity-10 dark:border-opacity-10;
     display: flex;
@@ -428,11 +428,11 @@
   }
 
   .neumorphic-btn.secondary:active {
-    @apply shadow-neumorphic-inner;
+    @apply shadow-neumorphic-inner text-neumorph-accent;
   }
 
   .neumorphic-input {
-    @apply text-black dark:text-white shadow-neumorphic-inner;
+    @apply text-primary shadow-neumorphic-inner;
     min-height: 3rem;
     border: none;
     border-radius: 0.75rem;
@@ -442,7 +442,7 @@
   }
 
   .neumorphic-input::placeholder {
-    @apply text-opacity-50;
+    @apply text-primary text-opacity-50;
   }
 
   .neumorphic-input:focus {

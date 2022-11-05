@@ -28,8 +28,8 @@ const Item = ({
   let title =
     (anime?.title.english ?? anime?.title.userPreferred ?? anime?.title.romaji) ?? null;
 
-  let tooltip = `${title}` ?? null;
-  let imageUrl = anime?.image ?? null;
+  let tooltip = `${title}`;
+  let imageUrl = anime?.image;
 
   const { favoriteIds } = useUserPreferences();
   const addFavorite = useAddFavorite(anime?.id);
@@ -45,7 +45,7 @@ const Item = ({
     <>
       <Link
         className="anime-grid__item"
-        title={tooltip}
+        title={tooltip!}
         href={anime?.id ? `/anime/${anime!.id}` : ""}
       >
         <div className="anime-home__grid-item">
@@ -65,7 +65,7 @@ const Item = ({
                     <BsHeartFill
                       size={25}
                       className={
-                        "hover:text-secondary transition-colors"
+                        "text-neumorphic-accent hover:text-white hover:text-opacity-50 transition-colors"
                       }
                     />
                   </button>
@@ -80,13 +80,13 @@ const Item = ({
                     {anime?.id ? <BsHeartFill
                       size={25}
                       className={
-                        "text-neumorph-primary hover:text-neumorph-accent transition-colors"
+                        "text-white text-opacity-50 hover:text-neumorph-accent transition-colors"
                       }
                     /> : <Skeleton circle width={"2rem"} height={"2rem"} style={{ lineHeight: "inherit" }} />}
                   </button>
                 )}
               </div>
-              {imageUrl == undefined || null ? <Skeleton height={"82%"} style={{ lineHeight: "inherit", borderRadius: "inherit" }} /> :
+              {!imageUrl ? <Skeleton height={"82%"} style={{ lineHeight: "inherit", borderRadius: "inherit" }} /> :
                 <Image
                   src={imageUrl}
                   alt="anime poster"

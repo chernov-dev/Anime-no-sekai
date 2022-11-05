@@ -41,95 +41,95 @@ const AnimeSchedule = () => {
   }, []);
 
   return (
-    <div className="px-2 my-8">
-      <div className="w-full h-fit shadow-neumorphic neumorphic-border rounded-lg">
-        <div className="flex flex-col h-[10rem] bg-neumorph-primary dark:bg-neumorph-secondary rounded-lg relative">
-          <div className="absolute flex flex-wrap items-center justify-between gap-0 md:gap-2 px-3 rounded-t-lg h-full top-0 left-0 z-30 w-full font-bold bg-black bg-opacity-60">
-            <div className="section-heading w-full flex flex-wrap items-center justify-between">
-              <span className=" text-white text-opacity-70">
-                Estimated Anime schedule{" "}
-              </span>
-              <span
-                className=" text-white text-opacity-70 
-              text-base xl:text-lg"
-              >
-                {currentTime}
-              </span>
-            </div>
-          </div>
-          <AnsSvgLogo
-            style={{
-              width: "100%",
-              height: "inherit",
-              borderRadius: "inherit",
-            }}
-            preserveAspectRatio="xMinYMin slice"
-            color="black"
-            filter="brightness(0.2) sepia(1) hue-rotate(180deg) saturate(5)"
-            className="fill-neumorph-secondary dark:fill-neumorph-primary opacity-60"
-          />
-        </div>
-        <Swiper
-          modules={[Pagination, Mousewheel, EffectFade]}
-          grabCursor={true}
-          slidesPerView={1}
-          mousewheel={true}
-          effect="fade"
-          fadeEffect={{ crossFade: true }}
-          pagination={{ clickable: true }}
-          className="mt-4"
+    <div className="w-full h-fit shadow-neumorphic neumorphic-border rounded-lg">
+      <div className="flex flex-col h-[10rem] bg-neumorph-primary dark:bg-neumorph-secondary rounded-lg relative">
+        <div
+          className="absolute flex flex-wrap justify-between gap-0 md:gap-2 pl-4 rounded-t-lg h-full
+           top-0 left-0 z-30 w-full font-bold bg-black bg-opacity-60"
         >
-          {(isLoading || isError) && <AnimeScheduleSkeleton />}
-          {(!isLoading || isSuccess) &&
-            data.results.map((anime) => {
-              return (
-                <SwiperSlide key={anime.id + anime.episode} className="my-10">
-                  <div className="h-full flex flex-col sm:flex-row justify-between p-4 lg:px-8 items-center gap-2 text-sm md:text-base">
-                    <Link
-                      href={`/anime/${anime.id}`}
-                      className="grow relative w-full h-full"
-                    >
-                      <Image
-                        src={anime.image}
-                        alt={`${anime.title.userPreferred} poster`}
-                        fill
-                        placeholder="blur"
-                        sizes="(max-width: 768px) 50vw,
-                  (max-width: 1200px) 70vw"
-                        blurDataURL={`data:image/svg+xml;base64,${toBase64(
-                          shimmer(320, 70)
-                        )}`}
-                        className="object-cover object-center rounded-lg filter"
-                      />
-                    </Link>
-                    <div className="m-0 sm:mx-4 flex w-full flex-col flex-wrap justify-center sm:justify-between items-center gap-2 sm:gap-4 text-sm md:text-base">
-                      <div className="text-center">
-                        <span className="text-base line-clamp-1 font-semibold">
-                          {anime.title.userPreferred}
-                        </span>
-                        <span className="text-sm line-clamp-1">
-                          {anime.title.native}
-                        </span>
-                      </div>
-                      <span className="text-black dark:text-white text-opacity-60 dark:text-opacity-60 font-medium">
-                        {handleDate(anime.airingAt)}
-                      </span>
-                      <Link
-                        href={`/anime/${anime.id}/#anime-watch`}
-                        scroll={false}
-                        className="neumorphic-btn secondary gap-2 h-7 text-sm md:text-base"
-                      >
-                        <IoPlayCircleSharp size={20} />
-                        <span> Episode {anime.episode}</span>
-                      </Link>
-                    </div>
-                  </div>
-                </SwiperSlide>
-              );
-            })}
-        </Swiper>
-
+          <div className="text-lg w-full flex flex-wrap items-center justify-around">
+            <p className="text-neumorph-accent mix-blend-plus-lighter">
+              Estimated Anime schedule
+            </p>
+            <p
+              className="text-neumorph-accent mix-blend-plus-lighter 
+              text-lg"
+            >
+              {currentTime}
+            </p>
+          </div>
+        </div>
+        <AnsSvgLogo
+          style={{
+            width: "100%",
+            height: "inherit",
+            borderRadius: "inherit",
+          }}
+          preserveAspectRatio="xMinYMin slice"
+          color="black"
+          filter="brightness(0.2) sepia(1) hue-rotate(180deg) saturate(5)"
+          className="fill-neumorph-secondary dark:fill-neumorph-primary opacity-60"
+        />
       </div>
+      <Swiper
+        modules={[Pagination, Mousewheel, EffectFade]}
+        grabCursor={true}
+        slidesPerView={1}
+        mousewheel={true}
+        effect="fade"
+        fadeEffect={{ crossFade: true }}
+        pagination={{ clickable: true }}
+        className="mt-4"
+      >
+        {(isLoading || isError) && <AnimeScheduleSkeleton />}
+        {(!isLoading || isSuccess) &&
+          data.results.map((anime) => {
+            return (
+              <SwiperSlide key={anime.id + anime.episode} className="my-10">
+                <div className="h-full flex flex-col sm:flex-row justify-between p-4 lg:px-8 items-center gap-2 text-sm md:text-base">
+                  <Link
+                    href={`/anime/${anime.id}`}
+                    className="grow relative w-full h-full"
+                  >
+                    <Image
+                      src={anime.image}
+                      alt={`${anime.title.userPreferred} poster`}
+                      fill
+                      placeholder="blur"
+                      sizes="(max-width: 768px) 50vw,
+                  (max-width: 1200px) 70vw"
+                      blurDataURL={`data:image/svg+xml;base64,${toBase64(
+                        shimmer(320, 70)
+                      )}`}
+                      className="object-cover object-center rounded-lg filter"
+                    />
+                  </Link>
+                  <div className="m-0 sm:mx-4 flex w-full flex-col flex-wrap justify-center sm:justify-between items-center gap-2 sm:gap-4 text-sm md:text-base">
+                    <div className="text-center">
+                      <span className="text-base line-clamp-1 font-semibold">
+                        {anime.title.userPreferred}
+                      </span>
+                      <span className="text-sm line-clamp-1">
+                        {anime.title.native}
+                      </span>
+                    </div>
+                    <span className="text-black dark:text-white text-opacity-60 dark:text-opacity-60 font-medium">
+                      {handleDate(anime.airingAt)}
+                    </span>
+                    <Link
+                      href={`/anime/${anime.id}/#anime-watch`}
+                      scroll={false}
+                      className="neumorphic-btn secondary gap-2 h-7 text-sm md:text-base"
+                    >
+                      <IoPlayCircleSharp size={20} />
+                      <span> Episode {anime.episode}</span>
+                    </Link>
+                  </div>
+                </div>
+              </SwiperSlide>
+            );
+          })}
+      </Swiper>
     </div>
   );
 };

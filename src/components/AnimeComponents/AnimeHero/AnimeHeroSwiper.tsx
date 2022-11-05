@@ -42,10 +42,10 @@ const AnimeHeroSwiper = () => {
               >
                 <div className="h-auto sm:h-[22rem] lg:h-[30rem] lg:w-[40%] shadow-neumorphic px-6 py-4 rounded-[inherit] flex flex-col gap-4 justify-center text-primary">
                   <div className="text-center">
-                    <h1 className="anime-title text-xl lg:text-2xl truncate">
+                    <h1 className="anime-title text-xl lg:text-2xl line-clamp-1">
                       {anime.title.english ?? anime.title.userPreferred}
                     </h1>
-                    <div className="anime-subtitle text-base lg:text-xl">
+                    <div className="anime-subtitle text-base lg:text-xl line-clamp-1">
                       {anime.title.native}
                     </div>
                   </div>

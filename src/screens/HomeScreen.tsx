@@ -1,7 +1,6 @@
 import { useState } from "react";
 import AnimeHeroSwiper from "../components/AnimeComponents/AnimeHero/AnimeHeroSwiper";
 import AnimeHome from "../components/AnimeComponents/AnimeHome/AnimeHome";
-import AnimeSchedule from "../components/AnimeComponents/AnimeSchedule/AnimeSchedule";
 import { IAnimeTypeFilter } from "../types/Anime";
 
 const HomeScreen = () => {
@@ -21,9 +20,7 @@ const HomeScreen = () => {
         title="Recently added"
         currentPage={currentPage}
         paginate={paginate}
-      >
-        <AnimeSchedule />
-      </AnimeHome>
+      />
     </>
   );
 };

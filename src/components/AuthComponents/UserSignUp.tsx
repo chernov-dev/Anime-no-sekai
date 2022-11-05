@@ -34,7 +34,7 @@ const UserSignUp = ({ handleSubmit, setEmail, setPassword, setUsername }) => {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        <button className="neumorphic-btn secondary mt-2" type="button" onClick={() => handleSubmit()}>
+        <button className="neumorphic-btn secondary w-1/2 self-center mt-4" type="button" onClick={() => handleSubmit()}>
           Sign up
         </button>
       </form>

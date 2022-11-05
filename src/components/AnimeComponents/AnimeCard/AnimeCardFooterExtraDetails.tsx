@@ -63,10 +63,10 @@ const AnimeCardFooterExtraDetails = ({
         {(anime?.status == "Ongoing" || anime?.status == undefined) && (
           <EpisodeStatusTag episodeNumber={episodeNumber} />
         )}
-      </div> : <Skeleton width="5rem" height="1.5rem" style={{ lineHeight: "inherit" }} baseColor="black" />}
+      </div> : <Skeleton width="5rem" height="1.5rem" style={{ lineHeight: "inherit" }} baseColor={"rgb(var(--neumorph-primary))"} />}
       <div className="w-12">
         <p className="text-primary font-bold text-sm lg:text-base">
-          {anime?.type ?? <Skeleton baseColor="black" />}
+          {anime?.type ?? <Skeleton baseColor={"rgb(var(--neumorph-primary))"} />}
         </p>
       </div>
     </div>

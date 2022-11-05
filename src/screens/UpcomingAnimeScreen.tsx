@@ -25,7 +25,7 @@ const UpcomingAnimeScreen = () => {
     <div className="anime-home">
       <div className="anime-home__container">
         <div className="anime-home__header">
-          <p className="text-xl md:text-2xl">Upcoming</p>
+          <p className="text-lg md:text-xl section-heading section-heading my-4">Upcoming</p>
         </div>
         <div className={`anime-home__grid`}>
           {isLoading && <Spinner />}
@@ -36,9 +36,7 @@ const UpcomingAnimeScreen = () => {
         </div>
       </div>
       <aside className="anime-home__sidebar">
-        <div className="shadow-neumorphic p-4 rounded-[inherit] gap-2">
-          <TopTrendingList />
-        </div>
+        <TopTrendingList />
       </aside>
     </div>
   );

@@ -8,6 +8,7 @@ import { useUserPreferences } from "../../../context/UserPreferencesProvider";
 import useUpdateLayout from "../../../hooks/useUpdateLayout";
 import LayoutChanger from "../../Shared/LayoutChanger";
 import PageLoader from "../../Shared/PageLoader";
+import AnimeSchedule from "../AnimeSchedule/AnimeSchedule";
 import TopTrendingList from "../AnimeTopTrending/TopTrendingList";
 import AnimeFullWidthLayoutView from "./AnimeFullwidthLayout/AnimeFullWidthLayoutView";
 import AnimeGridLayoutView from "./AnimeGridLayout/AnimeGridLayoutView";
@@ -93,21 +94,20 @@ const AnimeHome = ({
               </Tab.Panel>
             </Tab.Panels>
           </Tab.Group>
-          <div className="block self-center">
-            {isAnimeDataLoading && <HomePagePaginationSkeleton />}
+          <div className="block self-center w-full px-14 text-xl">
             {isAnimeDataSuccess && <HomePagePagination
               paginate={paginate}
               pagination={animeData.pagination}
             />}
           </div>
+          <div className="w-[95%] self-center h-[8px] bg-neumorph-primary shadow-neumorphic rounded-[50%] my-4"></div>
           <section>
             {children}
           </section>
         </div>
         <aside className="anime-home__sidebar">
-          <div className="shadow-neumorphic p-4 rounded-[inherit] gap-2">
-            <TopTrendingList />
-          </div>
+          <AnimeSchedule />
+          <TopTrendingList />
         </aside>
       </div>
     </>

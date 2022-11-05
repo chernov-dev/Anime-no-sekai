@@ -4,7 +4,7 @@
 
 @layer components {
   .page-layout {
-    @apply m-0 md:ml-[75px];
+    @apply m-0 md:ml-[80px];
   }
 }
 @layer base {
@@ -17,8 +17,8 @@
     --neumorph-primary-dark: 190 190 190;
 
     --neumorph-secondary: 54 119 193;
-    --neumorph-secondary-light: 100 160 229;
-    --neumorph-secondary-dark: 31 76 129;
+    --neumorph-secondary-light: 255 255 255;
+    --neumorph-secondary-dark: 190 190 190;
 
     --neumorph-accent: 54 119 193;
   }
@@ -76,7 +76,7 @@ body {
   width: 100%;
   max-width: 800px;
   overflow: hidden;
-  aspect-ratio: 1.7/1;
+  aspect-ratio: 2.5/1;
   border-radius: 2rem;
   position: relative;
 }

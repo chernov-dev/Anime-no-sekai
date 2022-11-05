@@ -8,15 +8,15 @@ const AnimeDetailsScreen = ({ animeDetails }) => {
   return (
     <>
       {animeDetails.cover && (
-        <div className="shadow-neumorphic-inner w-full py-4 mb-2">
-          <div className="w-[full] h-[200px] sm:h-[253px] md:h-[283px] lg:h-[339px] xl:h-[389px] relative">
+        <div className="shadow-neumorphic-inner w-full mb-2 p-2 rounded">
+          <div className="w-full h-[200px] sm:h-[253px] md:h-[283px] lg:h-[339px] xl:h-[389px] relative">
             <Image
               src={animeDetails.cover}
               alt="cover of the current anime"
               fill
               sizes="100vw"
               placeholder="blur"
-              className="object-cover object-center rounded-2xl"
+              className="object-cover object-center rounded"
               blurDataURL={`data:image/svg+xml;base64,${toBase64(
                 shimmer(700, 300)
               )}`}

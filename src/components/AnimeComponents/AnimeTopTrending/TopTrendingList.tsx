@@ -19,7 +19,7 @@ const TopTrendingList = () => {
   }
 
   return (
-    <div className="flex flex-col">
+    <div className="shadow-neumorphic p-4 rounded-[inherit] gap-2 flex flex-col">
       <div className="section-heading pl-2 mb-4">Trending anime</div>
       <div className="neumorphic-list">
         {airingList.map((anime, index) => {

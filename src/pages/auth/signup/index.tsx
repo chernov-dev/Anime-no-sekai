@@ -1,14 +1,29 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import AnsSvgLogo from "../../../../public/AnsSvgLogo";
 import UserSignUp from "../../../components/AuthComponents/UserSignUp";
+import AuthLayout from "../../../components/Shared/AuthLayout";
 import Spinner from "../../../components/Shared/Spinner";
 import useCreateUser from "../../../hooks/useCreateUser";
-import UserSignUpScreen from "../../../screens/UserSignUpScreen";
 
-const SignupPage = () => {
- 
+const SignupPage = ({ }) => {
+
+  let router = useRouter();
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const createUserMutation = useCreateUser({
+    email,
+    password,
+    username,
+  });
+
+  if (createUserMutation.isSuccess) {
+    router.push("/home");
+  }
+
+  const err = createUserMutation.error;
 
   return (
     <>
@@ -17,9 +32,18 @@ const SignupPage = () => {
         <meta name="description " content={`ANS - Signup page`} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="flex flex-col place-content-center">
-        <UserSignUpScreen/>
-      </main>
+      <AuthLayout error={err instanceof Error && err.message}>
+        {createUserMutation.isLoading ? (
+          <Spinner />
+        ) : (
+          <UserSignUp
+            handleSubmit={createUserMutation.mutate}
+            setEmail={setEmail}
+            setPassword={setPassword}
+            setUsername={setUsername}
+          />
+        )}
+      </AuthLayout>
     </>
   );
 };

@@ -36,7 +36,7 @@ const AnimeHeroSwiperSkeleton = () => {
               <Skeleton count={3} />
             </p>
           </div>
-          <button className="neumorphic-btn secondary flex gap-2" style={{ padding: 0 }}>
+          <button className="neumorphic-btn primary flex gap-2" style={{ padding: 0 }}>
             <p className="w-full h-full" style={{ lineHeight: "1rem" }} >
               <Skeleton height={"100%"} width={"100%"} borderRadius=".75rem" style={{ lineHeight: "1rem" }} />
             </p>

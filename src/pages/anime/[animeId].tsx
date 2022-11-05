@@ -31,9 +31,7 @@ export default function AnimeDetailsPage() {
           />
           <link rel="icon" href="/favicon.ico" />
         </Head>
-        <main className="flex items-center flex-col justify-center">
-          <AnimeDetailsScreen animeDetails={animeDetails} />
-        </main>
+        <AnimeDetailsScreen animeDetails={animeDetails} />
       </>
     );
   }

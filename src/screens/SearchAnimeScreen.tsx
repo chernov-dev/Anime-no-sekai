@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import Error from 'next/error';
 import { animeApi } from '../api/Anime_API';
 import AnimeGridLayoutView from '../components/AnimeComponents/AnimeHome/AnimeGridLayout/AnimeGridLayoutView';
+import TopTrendingList from '../components/AnimeComponents/AnimeTopTrending/TopTrendingList';
 
 const SearchAnimeScreen = ({ animeName }) => {
 
@@ -21,9 +22,16 @@ const SearchAnimeScreen = ({ animeName }) => {
 
   return (
     <>
-      <div className='flex flex-col'>
-        <h1>{`${animeName?.toString().toUpperCase()} - Search`}</h1>
-        <AnimeGridLayoutView anime={data} />
+      <div className="anime-home">
+        <div className="anime-home__container">
+          <div className="anime-home__header">
+            <p className="text-lg md:text-xl section-heading section-heading my-4">Search - {animeName}</p>
+          </div>
+          <AnimeGridLayoutView anime={data} />
+        </div>
+        <aside className="anime-home__sidebar">
+          <TopTrendingList />
+        </aside>
       </div>
     </>
   )

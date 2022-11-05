@@ -10,11 +10,9 @@ const AnimePopularPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>
-        <PopularAnimeScreen
-          title={"Popular anime"}
-        />
-      </main>
+      <PopularAnimeScreen
+        title={"Popular anime"}
+      />
     </>
   );
 };

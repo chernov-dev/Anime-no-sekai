@@ -27,7 +27,7 @@ const SettingsModal = ({ isOpen, onOpen, onClose }) => {
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <div className="fixed inset-0 bg-neumorph-primary bg-opacity-25 z-50" />
+          <div className="fixed inset-0 bg-neumorph-primary z-[997]" />
         </Transition.Child>
         <div className="fixed inset-0 overflow-y-auto z-[998]">
           <div className="flex min-h-full items-center justify-center p-4 text-center">
@@ -43,10 +43,10 @@ const SettingsModal = ({ isOpen, onOpen, onClose }) => {
               <Dialog.Panel className="w-full max-w-md transform overflow-hidden flex flex-col rounded-2xl bg-neumorph-primary shadow-neumorphic border-[1px] border-black dark:border-white border-opacity-10 dark:border-opacity-10 p-6 text-left align-middle transition-all z-[999]">
                 <Dialog.Title
                   as="div"
-                  className="neumorphic-chip h-[3rem] flex gap-3 px-3 text-lg md:text-xl lg:text-2xl font-medium items-center mb-12"
+                  className="neumorphic-chip text-primary text-opacity-50 h-[3rem] flex gap-3 px-3 items-center mb-6 "
                 >
-                  <IoSettingsSharp size={20} />
-                  <span>User Preferences</span>
+                  <IoSettingsSharp size={20} className="ml-4" />
+                  <span className="text-base lg:text-lg font-medium ">User Preferences</span>
                 </Dialog.Title>
                 <div className="mt-4 p-2 flex flex-col gap-8">
                   <div className="flex items-center gap-5 px-2">
@@ -75,7 +75,7 @@ const SettingsModal = ({ isOpen, onOpen, onClose }) => {
                     />
                     <label
                       htmlFor="preferredEmail"
-                      className="w-[325px] text-sm opacity-60 pl-1"
+                      className="w-[325px] text-sm text-primary text-opacity-60 pl-1"
                     >
                       Email above will be used to get notifications
                     </label>
