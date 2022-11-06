@@ -16,7 +16,6 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { SkeletonTheme } from "react-loading-skeleton";
 import { ToastContainer } from "react-toastify";
 import AppLayout from "../components/Shared/AppLayout";
-import AppNavigation from "../components/Shared/AppNavigation";
 import UserPreferencesProvider from "../context/UserPreferencesProvider";
 
 // Create a client
@@ -44,14 +43,13 @@ function MyApp({ Component, pageProps }) {
           >
             {typeof window !== "undefined" && (
               <>
-                <AppNavigation />
                 <AppLayout>
                   <Component {...pageProps} />
                 </AppLayout>
               </>
             )}
           </SkeletonTheme>
-          <ReactQueryDevtools position="bottom-left" />
+          <ReactQueryDevtools position="top-left" />
           <ToastContainer
             position="top-right"
             autoClose={2000}

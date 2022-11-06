@@ -1,14 +1,18 @@
 import { cva, type VariantProps } from "class-variance-authority";
+import useScrollDirection from "../../../utils/useScrollDirection";
 
-const headerStyles = cva("neumorphic-bottom-bar");
+const bottombarStyles = cva("neumorphic-bottom-bar");
 
 export interface BottomBarProps
     extends React.HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof headerStyles> { }
+    VariantProps<typeof bottombarStyles> { }
 
 const BottomBar = ({ className, ...props }: BottomBarProps) => {
+
+    const scroll = useScrollDirection();
+
     return (
-        <footer className={headerStyles({ class: className })} {...props}>
+        <footer className={`${bottombarStyles({ class: className })} ${scroll === "down" ? "hidden" : "flex"}`} {...props}>
             {props.children}
         </footer>
     );

@@ -568,7 +568,7 @@
     @apply w-full h-full rounded text-primary text-opacity-50;
   }
   .mobile-option.active {
-    @apply shadow-neumorphic-inner text-primary;
+    @apply text-primary;
   }
 }
 
