@@ -88,7 +88,7 @@ export const SearchKeyboardKeyIcon = (props: SVGProps<SVGSVGElement>) => {
         width="1.2em"
         height="1.2em"
         viewBox="0 0 256 256"
-        fill="rgb(var(--primary))"
+        fill="rgb(var(--primary)/0.5)"
         stroke="rgb(var(--neumorph-accent))"
         {...props}
       >

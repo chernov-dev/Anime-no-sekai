@@ -9,10 +9,10 @@ export interface HeaderProps extends React.HTMLAttributes<HTMLDivElement>, Varia
 
 const Header = ({ className, ...props }: HeaderProps) => {
 
-  const scroll = useScrollDirection(1);
+  const scroll = useScrollDirection(5);
 
   return (
-    <header className={`${headerStyles({ class: className })} ${scroll === "down" ? "hidden" : "flex"}`} {...props}>
+    <header className={`${headerStyles({ class: className })} ${scroll === "down" ? "translate-y-[-100px]" : ''}`} {...props}>
       {props.children}
     </header>
   );

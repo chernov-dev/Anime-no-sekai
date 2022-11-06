@@ -3,7 +3,7 @@
 @layer components {
   .neumorphic-header {
     @apply z-[999] left-0 w-full self-center
-    flex items-center gap-4 justify-between bg-neumorph-primary px-3 py-4 h-[80px];
+    flex items-center gap-4 justify-between bg-neumorph-primary px-3 py-4 h-[80px] transition-all duration-200 ease-in-out translate-y-0;
   }
 
   .neumorphic-sidebar {
@@ -558,10 +558,7 @@
   }
 
   .neumorphic-bottom-bar {
-    @apply fixed w-full bottom-0 flex bg-neumorph-primary shadow-neumorphic-inner h-[60px] z-[999] my-auto;
-  }
-  .neumorphic-bottom-bar::before {
-    @apply absolute -top-4 content-[""] w-full h-4 bg-neumorph-primary;
+    @apply fixed w-full bottom-0 flex bg-neumorph-primary shadow-neumorphic-inner h-[60px] z-[999] my-auto transition-all duration-200 ease-linear scale-y-100;
   }
 
   .mobile-option {

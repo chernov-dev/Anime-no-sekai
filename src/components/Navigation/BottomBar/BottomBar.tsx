@@ -9,10 +9,10 @@ export interface BottomBarProps
 
 const BottomBar = ({ className, ...props }: BottomBarProps) => {
 
-    const scroll = useScrollDirection();
+    const scroll = useScrollDirection(10, 50);
 
     return (
-        <footer className={`${bottombarStyles({ class: className })} ${scroll === "down" ? "hidden" : "flex"}`} {...props}>
+        <footer className={`${bottombarStyles({ class: className })} ${scroll === "down" ? "translate-y-[100px]" : ''}`} {...props}>
             {props.children}
         </footer>
     );

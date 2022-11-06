@@ -21,13 +21,6 @@ export const navOptions = [
         tooltip: "Recent anime",
     },
     {
-        name: "Favorite",
-        href: "/favourite",
-        icon: <HiHeart size={22} />,
-        accessKey: "x",
-        tooltip: "Check out your favorite anime",
-    },
-    {
         name: "Popular",
         href: "/popular",
         icon: <DiCodeigniter size={22} />,
@@ -41,6 +34,14 @@ export const navOptions = [
         accessKey: "v",
         tooltip: "Upcoming anime",
     },
+    {
+        name: "Favorite",
+        href: "/favourite",
+        icon: <HiHeart size={22} />,
+        accessKey: "x",
+        tooltip: "Check out your favorite anime",
+    },
+
     // {
     //   name: "Random",
     //   href: `/anime/${data}`,
@@ -53,6 +54,7 @@ export const navOptions = [
 const AppNavigation = () => {
 
     const mobileDetect = useMobileDetect();
+
     return (
         <>
             {mobileDetect.isDesktop() && <DekstopNavigation navOptions={navOptions} />}

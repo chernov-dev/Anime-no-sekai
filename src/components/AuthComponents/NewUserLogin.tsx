@@ -15,28 +15,28 @@ const NewUserLogin = ({
 }) => {
   return (
     <>
-      <div className="auth-header flex flex-col items-center gap-1 text-2xl">
+      <div className="auth-header flex flex-col items-center gap-1 text-3xl">
         Welcome
-        <p className="text-base text-primary text-opacity-75">Lets get started</p>
+        <p className="text-xl text-primary text-opacity-75">Lets get started</p>
       </div>
       <form className="auth-inputs flex flex-col gap-4 rounded-[1rem]">
         <input
           type="email"
           name="email"
-          placeholder="Your email here"
-          className="neumorphic-input"
+          placeholder="Email"
+          className="neumorphic-input text-lg"
           onChange={(e) => setEmail(e.target.value)}
         />
         <input
           type="password"
           name="password"
-          placeholder="Your password here"
-          className="neumorphic-input"
+          placeholder="Password"
+          className="neumorphic-input text-lg"
           onChange={(e) => setPassword(e.target.value)}
         />
         <Link
           href={"/forgot"}
-          className="text-sm float-left pl-3 underline opacity-70"
+          className="text-base float-left pl-3 underline opacity-70"
         >
           Forgot password?
         </Link>
@@ -44,7 +44,7 @@ const NewUserLogin = ({
           <Spinner />
         ) : (
           <button
-            className="neumorphic-btn secondary w-1/2 self-center mt-4"
+            className="neumorphic-btn secondary w-1/2 self-center mt-4 text-lg"
             type="button"
             onClick={() => onSubmit()}
           >
@@ -54,7 +54,7 @@ const NewUserLogin = ({
       </form>
       <Link
         href={"/auth/signup"}
-        className="text-sm text-center underline opacity-70"
+        className="text-base text-center underline opacity-70"
       >
         Sign up{" "}
       </Link>

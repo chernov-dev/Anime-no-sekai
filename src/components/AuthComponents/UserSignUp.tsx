@@ -3,9 +3,9 @@ import Link from "next/link";
 const UserSignUp = ({ handleSubmit, setEmail, setPassword, setUsername }) => {
   return (
     <>
-      <div className="auth-header flex flex-col items-center gap-1 text-2xl">
+      <div className="auth-header flex flex-col items-center gap-1 text-3xl">
         Welcome
-        <p className="text-base opacity-75">Lets save your data</p>
+        <p className="text-xl opacity-75">Lets save your data</p>
       </div>
       <form
         className="auth-inputs flex flex-col gap-2 rounded-[1rem]"
@@ -13,32 +13,32 @@ const UserSignUp = ({ handleSubmit, setEmail, setPassword, setUsername }) => {
         <input
           type="text"
           name="username"
-          placeholder="Your username here"
-          className="neumorphic-input"
+          placeholder="Username"
+          className="neumorphic-input text-lg"
           onChange={(e) => setUsername(e.target.value)}
           required
         />
         <input
           type="email"
           name="email"
-          placeholder="Your email here"
-          className="neumorphic-input"
+          placeholder="Email"
+          className="neumorphic-input text-lg"
           onChange={(e) => setEmail(e.target.value)}
           required
         />
         <input
           type="password"
           name="password"
-          placeholder="Your password here"
-          className="neumorphic-input"
+          placeholder="Password"
+          className="neumorphic-input text-lg"
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        <button className="neumorphic-btn secondary w-1/2 self-center mt-4" type="button" onClick={() => handleSubmit()}>
+        <button className="neumorphic-btn secondary w-1/2 self-center mt-4 text-lg" type="button" onClick={() => handleSubmit()}>
           Sign up
         </button>
       </form>
-      <Link href={"/auth/login"} className="text-sm text-center">
+      <Link href={"/auth/login"} className="text-base text-center underline opacity-70">
         Already have an account?
       </Link>
     </>

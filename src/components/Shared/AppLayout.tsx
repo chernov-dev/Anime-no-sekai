@@ -15,11 +15,13 @@ const AppLayout = ({ children }) => {
             >
                 {children}
             </main>
-            {mobileDetect.isMobile() && (<>
-                <BottomBar>
-                    <MobileNavigationOptions options={navOptions} />
-                </BottomBar>
-            </>)}
+            {mobileDetect.isMobile() && (
+                <>
+                    <BottomBar>
+                        <MobileNavigationOptions options={navOptions} />
+                    </BottomBar>
+                </>
+            )}
         </>
     );
 };
