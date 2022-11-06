@@ -33,12 +33,14 @@ const NavigationMenu = ({ options }) => {
                 </div>
                 <div className="flex flex-col gap-5 px-5 py-2 text-primary h-full">
                   {options.map((option, index) => (
-                    <>
+                    <div key={option.name}>
                       {/* Skipping first element */}
-                      {index !== 0 && <Menu.Item key={option.name}>
-                        <NavigationLink option={option} />
-                      </Menu.Item>}
-                    </>
+                      {index !== 0 && (
+                        <Menu.Item>
+                          <NavigationLink option={option} />
+                        </Menu.Item>
+                      )}
+                    </div>
                   ))}
                 </div>
               </Menu.Items>

@@ -3,17 +3,17 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { IoPlayCircleSharp } from "react-icons/io5";
-import { EffectFade, Mousewheel, Pagination } from "swiper";
+import { Autoplay, EffectFade, Mousewheel, Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { animeApi } from "../../../api/Anime_API";
 import { formatDate, handleDate } from "../../../utils/handleDate";
 
 // Import Swiper styles
+import { CgTime } from "react-icons/cg";
 import "swiper/css";
 import "swiper/css/effect-fade";
 import "swiper/css/mousewheel";
-import "swiper/css/pagination";
-import AnsSvgLogo from "../../../../public/AnsSvgLogo";
+import "swiper/css/navigation";
 import { shimmer, toBase64 } from "../../Shared/shimmer";
 import AnimeScheduleSkeleton from "./AnimeScheduleSkeleton";
 
@@ -29,6 +29,7 @@ const AnimeSchedule = () => {
     formatDate({ date: today, showSeconds: true })
   );
 
+
   useEffect(() => {
     const timer = setInterval(() => {
       let now = new Date();
@@ -41,55 +42,27 @@ const AnimeSchedule = () => {
   }, []);
 
   return (
-    <div className="w-full h-fit shadow-neumorphic neumorphic-border rounded-lg">
-      <div className="flex flex-col h-[10rem] bg-neumorph-primary dark:bg-neumorph-secondary rounded-lg relative">
-        <div
-          className="absolute flex flex-wrap justify-between gap-0 md:gap-2 pl-4 rounded-t-lg h-full
-           top-0 left-0 z-30 w-full font-bold bg-black bg-opacity-60"
-        >
-          <div className="text-lg w-full flex flex-wrap items-center justify-around">
-            <p className="text-neumorph-accent mix-blend-plus-lighter">
-              Estimated Anime schedule
-            </p>
-            <p
-              className="text-neumorph-accent mix-blend-plus-lighter 
-              text-lg"
-            >
-              {currentTime}
-            </p>
-          </div>
-        </div>
-        <AnsSvgLogo
-          style={{
-            width: "100%",
-            height: "inherit",
-            borderRadius: "inherit",
-          }}
-          preserveAspectRatio="xMinYMin slice"
-          color="black"
-          filter="brightness(0.2) sepia(1) hue-rotate(180deg) saturate(5)"
-          className="fill-neumorph-secondary dark:fill-neumorph-primary opacity-60"
-        />
-      </div>
+    <div className="shadow-neumorphic p-4 rounded-[inherit] flex flex-wrap gap-4">
+      <div className="section-heading pl-2 mb-2">Estimated Schedule</div>
       <Swiper
-        modules={[Pagination, Mousewheel, EffectFade]}
+        modules={[Mousewheel, EffectFade, Autoplay, Navigation]}
         grabCursor={true}
         slidesPerView={1}
         mousewheel={true}
+        autoplay={{ pauseOnMouseEnter: true, delay: 10000 }}
+        navigation={{ enabled: true, prevEl: "swiper-navigation-btn" }}
         effect="fade"
         fadeEffect={{ crossFade: true }}
-        pagination={{ clickable: true }}
-        className="mt-4"
       >
         {(isLoading || isError) && <AnimeScheduleSkeleton />}
         {(!isLoading || isSuccess) &&
           data.results.map((anime) => {
             return (
-              <SwiperSlide key={anime.id + anime.episode} className="my-10">
-                <div className="h-full flex flex-col sm:flex-row justify-between p-4 lg:px-8 items-center gap-2 text-sm md:text-base">
+              <SwiperSlide key={anime.id + anime.episode}>
+                <div className="h-full flex flex-col sm:flex-row justify-between items-center text-sm md:text-base">
                   <Link
                     href={`/anime/${anime.id}`}
-                    className="grow relative w-full h-full"
+                    className="absolute h-full w-full z-0"
                   >
                     <Image
                       src={anime.image}
@@ -99,21 +72,21 @@ const AnimeSchedule = () => {
                       sizes="(max-width: 768px) 50vw,
                   (max-width: 1200px) 70vw"
                       blurDataURL={`data:image/svg+xml;base64,${toBase64(
-                        shimmer(320, 70)
+                        shimmer(120, 190)
                       )}`}
                       className="object-cover object-center rounded-lg filter"
                     />
                   </Link>
-                  <div className="m-0 sm:mx-4 flex w-full flex-col flex-wrap justify-center sm:justify-between items-center gap-2 sm:gap-4 text-sm md:text-base">
-                    <div className="text-center">
+                  <div className="py-4 px-2 z-10 flex w-full flex-col flex-wrap justify-center sm:justify-between items-center gap-2 sm:gap-4 text-base rounded-lg backdrop-blur-sm backdrop-brightness-50">
+                    <div className="text-center z-20">
                       <span className="text-base line-clamp-1 font-semibold">
                         {anime.title.userPreferred}
                       </span>
-                      <span className="text-sm line-clamp-1">
+                      <span className="text-sm line-clamp-1 ">
                         {anime.title.native}
                       </span>
                     </div>
-                    <span className="text-black dark:text-white text-opacity-60 dark:text-opacity-60 font-medium">
+                    <span className="text-base font-medium">
                       {handleDate(anime.airingAt)}
                     </span>
                     <Link
@@ -122,7 +95,7 @@ const AnimeSchedule = () => {
                       className="neumorphic-btn secondary gap-2 h-7 text-sm md:text-base"
                     >
                       <IoPlayCircleSharp size={20} />
-                      <span> Episode {anime.episode}</span>
+                      <span className="whitespace-nowrap"> Episode {anime.episode}</span>
                     </Link>
                   </div>
                 </div>
@@ -130,6 +103,13 @@ const AnimeSchedule = () => {
             );
           })}
       </Swiper>
+      <div className="flex justify-between w-full p-2 items-center">
+        <p className="text-primary text-base text-opacity-70">Current time</p>
+        <div className="neumorphic-chip w-fit">
+          <CgTime size={20} className="text-primary text-opacity-50" />
+          <p className="text-primary text-opacity-70">{currentTime}</p>
+        </div>
+      </div>
     </div>
   );
 };

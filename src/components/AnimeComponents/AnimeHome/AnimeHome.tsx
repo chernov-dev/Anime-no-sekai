@@ -85,7 +85,7 @@ const AnimeHome = ({
                 />}
               </div>
             </div>
-            <Tab.Panels className={"mt-6"}>
+            <Tab.Panels className={"my-6"}>
               <Tab.Panel>
                 <AnimeGridLayoutView anime={animeData?.anime ?? undefined} />
               </Tab.Panel>

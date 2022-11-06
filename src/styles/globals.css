@@ -3,7 +3,11 @@
 @tailwind components;
 
 @layer components {
-  .page-layout {
+  .mobile-layout {
+    @apply my-[80px];
+  }
+
+  .desktop-layout {
     @apply m-0 md:ml-[80px];
   }
 }
@@ -146,6 +150,10 @@ body {
 .swiper-pagination {
   top: 0 !important;
   height: fit-content;
+}
+
+.swiper-navigation-btn {
+  @apply: text-primary;
 }
 
 .title {
