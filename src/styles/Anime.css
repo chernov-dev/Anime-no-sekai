@@ -100,7 +100,7 @@
   }
 
   .anime-img {
-    @apply rounded-lg rounded-bl-none rounded-br-none h-[240px] sm:h-[280px] md:h-[300px] lg:h-[280px] xl:h-[240px] aspect-[16/9] relative;
+    @apply rounded-lg rounded-bl-none rounded-br-none h-[280px] sm:h-[260px] md:h-[280px] lg:h-[260px] xl:h-[280px] 3xl:h-[340px] aspect-[16/9] relative;
     position: relative;
   }
 
@@ -110,7 +110,7 @@
   }
 
   .anime-home__title {
-    @apply leading-[1.1] text-primary text-base text-center;
+    @apply text-primary font-sans font-normal text-base text-center line-clamp-2;
   }
   .anime-subtitle {
     @apply text-primary leading-3 text-sm md:text-lg;
@@ -262,7 +262,7 @@
   }
 
   .anime-home__grid {
-    @apply grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-4 lg:gap-8 mx-2 lg:mx-4;
+    @apply grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 3xl:grid-cols-5 gap-4 lg:gap-8 mx-2 lg:mx-4;
   }
 
   .anime-home__grid > div {
@@ -270,8 +270,8 @@
     transition: scale 350ms ease, opacity 350ms linear;
   }
 
-  .anime-home__grid .anime-upcoming-item__wrapper {
-    @apply text-center w-full sm:w-1/2 lg:w-1/3 p-[0.5rem];
+  .anime-upcoming__grid {
+    @apply grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 lg:gap-8 mx-2 lg:mx-4;
   }
   .anime-home__grid > div:hover {
     scale: 0.95;

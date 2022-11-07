@@ -27,7 +27,7 @@ const UpcomingAnimeScreen = () => {
         <div className="anime-home__header">
           <p className="text-lg md:text-xl section-heading section-heading my-4">Upcoming</p>
         </div>
-        <div className={`anime-home__grid`}>
+        <div className={`anime-upcoming__grid`}>
           {isLoading && <Spinner />}
           {data &&
             data.data.map((anime: IAnimeResult, index) => (

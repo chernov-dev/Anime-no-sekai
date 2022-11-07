@@ -10,7 +10,7 @@ const AnimeFavoriteList = ({ anime, ongoing, completed }) => {
       <div className="px-4 w-full">
         <Tab.Group>
           <div className="anime-home__header">
-            <h1 className="text-lg md:text-xl section-heading section-heading my-4">Your favorite list</h1>
+            <h1 className="text-lg md:text-xl section-heading">Your favorite list</h1>
             <AnimeFavoriteFilter />
           </div>
           {(!anime && anime?.length) && (
@@ -23,7 +23,7 @@ const AnimeFavoriteList = ({ anime, ongoing, completed }) => {
               </div>
             </div>
           )}
-          <Tab.Panels>
+          <Tab.Panels className={"my-8"}>
             <Tab.Panel>
               <AnimeGridLayoutView anime={anime} />
             </Tab.Panel>

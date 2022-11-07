@@ -3,11 +3,11 @@
 @layer components {
   .neumorphic-header {
     @apply z-[999] left-0 w-full self-center
-    flex items-center gap-4 justify-between bg-neumorph-primary px-3 py-4 h-[80px] transition-all duration-200 ease-in-out translate-y-0;
+    flex items-center gap-4 bg-neumorph-primary justify-between px-3 py-4 h-[80px] transition-all duration-200 ease-in-out translate-y-0;
   }
 
   .neumorphic-sidebar {
-    @apply fixed top-[10px] left-0 h-screen z-[998] w-fit px-2
+    @apply fixed top-0 left-0 h-screen z-[998] w-fit px-2
     hidden md:flex flex-col bg-neumorph-primary text-primary text-opacity-50;
   }
 
@@ -17,17 +17,26 @@
 
   .neumorphic-sidebar__list-item {
     @apply w-14 h-14 rounded-[50%] shadow-neumorphic border-[1px] border-black dark:border-white border-opacity-10 dark:border-opacity-10
-    hover:text-secondary hover:rounded-xl transition-all duration-200 ease-in relative;
+    hover:text-secondary hover:rounded-xl transition-all duration-200 ease-in relative bg-neumorph-primary;
+  }
+
+  .neumorphic-sidebar__list-item:active {
+    @apply shadow-neumorphic-inner rounded-[25%];
   }
 
   .neumorphic-sidebar__list-item.active {
     @apply shadow-neumorphic-inner rounded-[25%];
   }
+
   .neumorphic-sidebar__list-item::after {
     @apply scale-0 absolute content-[""] w-[16px] h-full bg-neumorph-accent top-0 -left-[25.2px] rounded-3xl transition-all duration-200 ease-linear;
   }
   .neumorphic-sidebar__list-item:hover::after {
     @apply scale-100;
+  }
+
+  .neumorphic-sidebar__list:first-child {
+    @apply mt-2;
   }
 
   .neumorphic-sidebar__list-item.active::after {
@@ -49,8 +58,8 @@
 
   .neumorphic-dropdown ul {
     @apply flex flex-col h-full bg-neumorph-primary rounded-xl list-none items-center mt-2.5 mb-1 py-1.5 lg:flex-row lg:m-0 gap-0.5;
-    box-shadow: inset 14px 14px 28px var(--neumorph-primary-dark),
-      inset -14px -14px 28px var(--neumorph-primary-light);
+    box-shadow: inset 14px 14px 28px rgb(var(--neumorph-primary-dark)),
+      inset -14px -14px 28px rgb(var(--neumorph-primary-light));
     overflow: hidden;
   }
 
@@ -73,7 +82,7 @@
   }
 
   .neumorphic-segmented-control {
-    @apply shadow-neumorphic;
+    @apply shadow-neumorphic bg-neumorph-primary;
     padding: 1rem;
     height: 3rem;
     border-radius: 0.8rem;
@@ -151,7 +160,7 @@
     flex-direction: column;
     gap: 0.75rem;
     position: relative;
-    @apply text-base;
+    @apply text-base bg-neumorph-primary;
   }
   /* 
 .neumorphic-list::after {
@@ -224,7 +233,7 @@
   }
 
   .neumorphic-navigation-group {
-    @apply shadow-neumorphic lg:flex !important;
+    @apply shadow-neumorphic bg-neumorph-primary lg:flex !important;
     width: 20.4rem;
     height: 3rem;
     border-radius: 0.75rem;
@@ -308,7 +317,7 @@
     position: relative;
     cursor: pointer;
     border-radius: 1.6rem;
-    @apply shadow-neumorphic;
+    @apply shadow-neumorphic bg-neumorph-primary;
   }
   .neumorphic-switch label::after {
     content: "";
@@ -344,7 +353,7 @@
     padding: 0.3rem 0.4rem;
     min-height: 2rem;
     border-radius: 0.75rem;
-    @apply shadow-neumorphic text-xs md:text-sm border-[1px] border-black dark:border-white border-opacity-10 dark:border-opacity-10;
+    @apply shadow-neumorphic bg-neumorph-primary text-xs md:text-sm border-[1px] border-black dark:border-white border-opacity-10 dark:border-opacity-10;
     display: flex;
     gap: 0.35rem;
     align-items: center;
@@ -378,7 +387,7 @@
     align-items: center;
   }
   .neumorphic-circle button {
-    @apply text-gray-700 shadow-neumorphic;
+    @apply text-gray-700 shadow-neumorphic bg-neumorph-primary;
     background-color: var(--neumorph-primary-light);
     grid-row: 1 / 2;
     grid-column: 1 / 2;
@@ -432,28 +441,30 @@
   }
 
   .neumorphic-input {
-    @apply text-primary shadow-neumorphic-inner;
-    min-height: 3rem;
-    border: none;
-    border-radius: 0.75rem;
-    padding-left: 0.8rem;
-    background: none;
-    font-family: inherit;
+    @apply text-primary shadow-neumorphic-inner rounded-xl border-none min-h-[3rem] pl-3 bg-neumorph-primary ring-primary ring-opacity-10 !important;
   }
 
   .neumorphic-input::placeholder {
     @apply text-primary text-opacity-50;
   }
 
+  .neumorphic-input:autofill,
+  .neumorphic-input:-webkit-autofill,
+  .neumorphic-input:-webkit-autofill:hover,
+  .neumorphic-input:-webkit-autofill:focus {
+    transition: background-color 600000s 0s, color 600000s 0s;
+    @apply shadow-neumorphic text-primary bg-neumorph-primary !important;
+  }
+
   .neumorphic-input:focus {
-    outline: none;
-    @apply shadow-neumorphic;
+    @apply shadow-neumorphic !important;
   }
 
   .neumorphic-search {
     position: relative;
     display: flex;
     align-items: center;
+    @apply bg-neumorph-primary;
   }
   .neumorphic-search > input {
     @apply text-primary text-xs md:text-sm xl:text-base shadow-neumorphic-inner ring-1 ring-black dark:ring-white ring-opacity-10 dark:ring-opacity-10;
@@ -508,7 +519,7 @@
   .neumorphic-icon {
     display: flex;
     justify-content: space-between;
-    @apply shadow-neumorphic text-primary text-opacity-50 border-[1px] border-black dark:border-white border-opacity-10 dark:border-opacity-10;
+    @apply shadow-neumorphic bg-neumorph-primary text-primary text-opacity-50 border-[1px] border-black dark:border-white border-opacity-10 dark:border-opacity-10;
     min-width: 35px;
     aspect-ratio: 1/1;
     border-radius: 50%;

@@ -4,13 +4,13 @@ import { useEffect, useState } from "react";
 import NewUserLogin from "../../../components/AuthComponents/NewUserLogin";
 import UserIsBackLogin from "../../../components/AuthComponents/UserIsBackLogin";
 import AuthLayout from "../../../components/Shared/AuthLayout";
+import { useUserPreferences } from "../../../context/UserPreferencesProvider";
 import useLogin from "../../../hooks/useLogin";
-import usePersistState from "../../../utils/usePersistState";
 
 const LoginPage = () => {
   let router = useRouter();
 
-  const [cachedUser, setCachedUser] = usePersistState("ans-user__cached", null);
+  const { user, setUser } = useUserPreferences();
 
   const [loading, setLoading] = useState(true);
   const [email, setEmail] = useState("");
@@ -25,13 +25,17 @@ const LoginPage = () => {
 
   const loginMutation = useLogin({ email, password });
 
+  const onSubmit = (e) => {
+    e.preventDefault();
+    loginMutation.mutate();
+  }
+
   if (loginMutation.isSuccess) {
-    location.href = "/home";
-    localStorage.removeItem("ans-user__cached");
+    router.replace('/profile', undefined, { shallow: true })
   }
 
   const handleWrongUserButtonClick = () => {
-    setCachedUser(null);
+    setUser(null);
   };
 
   const err = loginMutation.error;
@@ -44,21 +48,21 @@ const LoginPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <AuthLayout error={err instanceof Error && err.message}>
-        {cachedUser ? (
+        {user ? (
           <UserIsBackLogin
-            user={cachedUser}
+            user={user}
             onWrongUserButtonClick={handleWrongUserButtonClick}
             setPassword={setPassword}
             setEmail={setEmail}
             isLoading={loginMutation.isLoading}
-            onSubmit={loginMutation.mutate}
+            onSubmit={onSubmit}
           />
         ) : (
           <NewUserLogin
             setEmail={setEmail}
             setPassword={setPassword}
             isLoading={loginMutation.isLoading}
-            onSubmit={loginMutation.mutate}
+            onSubmit={onSubmit}
           />
         )}
       </AuthLayout>

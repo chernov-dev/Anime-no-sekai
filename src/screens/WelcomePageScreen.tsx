@@ -9,8 +9,8 @@ const WelcomePageScreen = () => {
   return (
     <>
       <div className="section-welcome">
-        <div className="h-full w-full flex flex-col items-center justify-center px-2 gap-5">
-          <h1 className="text-2xl md:text-4xl p-2 uppercase">
+        <div className="h-full w-full flex flex-col items-center mt-5 px-2 gap-5">
+          <h1 className="text-5xl p-2 uppercase font-bold text-primary">
             Anime no Sekai
           </h1>
           <div className="welcome-logo">
@@ -20,18 +20,26 @@ const WelcomePageScreen = () => {
               stroke="red"
             />
           </div>
-          <span className="text-lg max-w-2xl">
-            <b className="text-neumorph-accent">Anime no Sekai</b> will let you{" "}
-            <b className="text-neumorph-accent">watch, track, get notified</b>{" "}
-            when anime is out and{" "}
-            <b>
-              <span className="text-neumorph-accent">
-                synchronize everything{" "}
-              </span>{" "}
-              between your devices
-            </b>
-            .
-          </span>
+          <div className="text-lg max-w-2xl text-center my-4 flex flex-col">
+            <span className="">
+              <b className="text-neumorph-accent text-opacity-70 text-xl">ANS</b>
+              {" "} will let you{" "}
+              <span className="text-neumorph-accent text-opacity-70">watch, track, search </span>your<b> favorite </b>
+              anime.
+            </span>
+            <span className="">
+              As well as{" "}
+              <span className="text-neumorph-accent text-opacity-70">
+                synchronize {" "}
+              </span>
+              everything
+              {" "}
+              <b>
+                between your devices
+              </b>
+              .
+            </span>
+          </div>
           <Link passHref href={"/home"}>
             <button className="neumorphic-btn secondary p-2 text-lg gap-1 font-semibold h-12">
               <span>Go to Home</span> <IoArrowForwardCircleSharp size={32} />
@@ -43,24 +51,24 @@ const WelcomePageScreen = () => {
       <section id="app-examples-section" className="mt-14">
         <div className="favorite-anime-example-row">
           <div className="example-img h-[325px]"></div>
-          <div className="flex flex-col justify-center gap-4 h-[325px] max-w-[500px] text-center shadow-neumorphic rounded-lg p-4">
+          <div className="flex flex-col justify-center gap-4 h-[325px] max-w-[500px] text-center shadow-neumorphic bg-neumorph-primary rounded-lg p-4">
             <h1 className="text-2xl uppercase inline-flex justify-center items-center gap-2">
-              Syncing <GoSync size={28} className="text-neumorph-accent" />
+              Syncing <GoSync size={28} className="text-neumorph-accent text-opacity-70" />
             </h1>
             <div className="rounded-2xl bg-opacity-20 inline-flex items-center gap-2">
               <p className="">
                 Log in to your Google account to{" "}
                 <b>sync your favorite anime and episodes you have watched</b>{" "}
-                between your <b className="text-neumorph-accent">devices</b>
+                between your <b className="text-neumorph-accent text-opacity-70">devices</b>
               </p>
             </div>
           </div>
         </div>
         <div className="favorite-anime-example-row">
-          <div className="flex flex-col justify-center gap-4 h-[325px] max-w-[500px] text-center shadow-neumorphic rounded-lg p-4">
+          <div className="flex flex-col justify-center gap-4 h-[325px] max-w-[500px] text-center shadow-neumorphic bg-neumorph-primary rounded-lg p-4">
             <h1 className="text-2xl uppercase inline-flex justify-center items-center gap-2">
               Preferences{" "}
-              <RiHeartAddFill size={28} className="text-neumorph-accent" />
+              <RiHeartAddFill size={28} className="text-neumorph-accent text-opacity-70" />
             </h1>
             <div className=" rounded-2xl bg-opacity-20 flex flex-col items-center gap-2">
               <span className="whitespace-wrap">
@@ -68,7 +76,7 @@ const WelcomePageScreen = () => {
                   Add{" "}
                   <b>
                     anime to your{" "}
-                    <span className="text-neumorph-accent">favorite list</span>
+                    <span className="text-neumorph-accent text-opacity-70">favorite list</span>
                   </b>{" "}
                   and <b>view them on a separate page</b>.
                 </p>
@@ -79,10 +87,10 @@ const WelcomePageScreen = () => {
         </div>
         <div className="favorite-anime-example-row">
           <div className="example-img h-[325px]"></div>
-          <div className="flex flex-col justify-center gap-4 h-[325px] max-w-[500px] text-center shadow-neumorphic rounded-lg p-4">
+          <div className="flex flex-col justify-center gap-4 h-[325px] max-w-[500px] text-center shadow-neumorphic bg-neumorph-primary rounded-lg p-4">
             <h1 className="text-2xl uppercase inline-flex justify-center items-center gap-2">
               Notifications{" "}
-              <RiNotification3Fill size={28} className="text-neumorph-accent" />
+              <RiNotification3Fill size={28} className="text-neumorph-accent text-opacity-70" />
             </h1>
             <div className="rounded-2xl bg-opacity-20 flex flex-col items-center gap-2">
               <span className="whitespace-wrap">
@@ -90,7 +98,7 @@ const WelcomePageScreen = () => {
                   Subscribe{" "}
                   <b>
                     and get{" "}
-                    <span className="text-neumorph-accent">
+                    <span className="text-neumorph-accent text-opacity-70">
                       notified weekly{" "}
                     </span>
                   </b>

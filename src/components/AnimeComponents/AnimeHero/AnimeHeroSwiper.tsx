@@ -40,18 +40,18 @@ const AnimeHeroSwiper = () => {
                 key={anime.id}
                 className="flex flex-col-reverse lg:flex-row gap-5 rounded-2xl p-4"
               >
-                <div className="h-auto sm:h-[22rem] lg:h-[30rem] lg:w-[40%] shadow-neumorphic px-6 py-4 rounded-[inherit] flex flex-col gap-4 justify-center text-primary">
+                <div className="h-auto sm:h-[22rem] lg:h-[30rem] lg:w-[40%] shadow-neumorphic bg-neumorph-primary px-6 py-4 rounded-[inherit] flex flex-col gap-4 justify-center text-primary">
                   <div className="text-center">
-                    <h1 className="anime-title text-xl lg:text-2xl line-clamp-1">
+                    <h1 className="anime-title text-3xl line-clamp-1">
                       {anime.title.english ?? anime.title.userPreferred}
                     </h1>
-                    <div className="anime-subtitle text-base lg:text-xl line-clamp-1">
+                    <div className="anime-subtitle text-xl line-clamp-1">
                       {anime.title.native}
                     </div>
                   </div>
                   <AnimeHeroExtraInfo anime={anime} />
                   <div className="grow flex gap-2 flex-col anime-desc">
-                    <p className="line-clamp-3">
+                    <p className="line-clamp-3 text-primary text-opacity-70">
                       {parse(anime.description)}
                     </p>
                   </div>
@@ -65,11 +65,11 @@ const AnimeHeroSwiper = () => {
                     Play now
                   </button>
                 </div>
-                <div className="h-[15rem] sm:h-[22rem] lg:h-[30rem] w-full grow rounded-[inherit] relative border-4 border-dotted neumorphic-border">
+                <div className="h-[15rem] sm:h-[22rem] lg:h-[30rem] w-full grow rounded-[inherit] relative">
                   <Image
                     src={anime.cover}
                     alt={`${anime.title.english} cover image`}
-                    className="object-cover object-center rounded-2xl p-2"
+                    className="object-cover object-center rounded-2xl"
                     style={{ filter: "brightness(75%) saturate(140%)" }}
                     fill={true}
                     sizes={"70vw"}

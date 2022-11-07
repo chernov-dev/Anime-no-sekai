@@ -9,10 +9,7 @@ function WelcomePage() {
         <meta name="description" content="ANS - animevost API" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      <main className="flex flex-col justify-center w-full">
-        <WelcomePageScreen />
-      </main>
+      <WelcomePageScreen />
     </>
   );
 }

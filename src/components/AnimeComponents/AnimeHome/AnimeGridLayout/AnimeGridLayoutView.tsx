@@ -106,9 +106,9 @@ const Item = ({
             />
           </div>
           <div className="anime-home__grid-item__title py-2 ">
-            <p className="line-clamp-2 anime-home__title">
+            <span className="anime-home__title">
               {title ?? <Skeleton width={"80%"} />}
-            </p>
+            </span>
           </div>
         </div>
       </Link>

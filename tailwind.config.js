@@ -12,6 +12,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      screens: {
+        "3xl": "1680px",
+      },
       boxShadow: {
         neumorphic:
           "0.3rem 0.3rem 0.6rem rgb(var(--neumorph-primary-dark) / 1), -0.2rem -0.2rem 0.5rem rgb(var(--neumorph-primary-light) / 1)",
@@ -65,20 +68,21 @@ module.exports = {
         "2xs": [-3, 1.4],
         xs: [-2, 1.4],
         sm: [-1, 1.6],
-        base: [-0.5, 1.6],
-        lg: [0.5, 1.6],
+        base: [-0.5, 1.2],
+        lg: [0.5, 1.2],
         xl: [1, 1.2],
-        "2xl": [1.5, 1.2],
-        "3xl": [2, 1.2],
-        "4xl": [2.5, 1.1],
-        "5xl": [3, 1.1],
-        "6xl": [4, 1.1],
-        "7xl": [5, 1],
-        "8xl": [6, 1],
-        "9xl": [7, 1],
+        "2xl": [2, 1.2],
+        "3xl": [3, 1.2],
+        "4xl": [4, 1.1],
+        "5xl": [5, 1.1],
+        "6xl": [6, 1.1],
+        "7xl": [7, 1],
+        "8xl": [8, 1],
+        "9xl": [9, 1],
       },
     }),
     require("@tailwindcss/aspect-ratio"),
     require("@tailwindcss/line-clamp"),
+    require("@tailwindcss/forms"),
   ],
 };

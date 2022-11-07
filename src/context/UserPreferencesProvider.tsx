@@ -41,7 +41,7 @@ const UserPreferencesProvider = ({ children }: { children: React.ReactNode }) =>
   const [isLoading, setIsLoading] = useState(true);
   // Caching User preferences states
   const [favoriteIds, setFavoriteIds] = useState<number[]>([]);
-  const [user, setUser] = useState<IUserType | undefined>(undefined);
+  const [user, setUser] = useSessionStorage<IUserType | undefined>("ans-user", undefined);
   const [layout, setLayout] = useSessionStorage("ans-layout", "grid");
   const [theme, setTheme] = useSessionStorage("ans-theme", getInitialTheme());
 
@@ -66,14 +66,7 @@ const UserPreferencesProvider = ({ children }: { children: React.ReactNode }) =>
       }
     }
     setIsLoading(false);
-  }, [
-    userFetched.data,
-    userFetched.isSuccess,
-    userFavoriteIds.isSuccess,
-    userFavoriteIds.data,
-    setLayout,
-    setTheme,
-  ]);
+  }, [userFetched.data, userFetched.isSuccess, userFavoriteIds.isSuccess, userFavoriteIds.data, setLayout, setTheme, setUser]);
 
   return (
     <>

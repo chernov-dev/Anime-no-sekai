@@ -22,6 +22,7 @@ const AppLayout = ({ children }) => {
                     </BottomBar>
                 </>
             )}
+
         </>
     );
 };

@@ -42,7 +42,7 @@ const AnimeSchedule = () => {
   }, []);
 
   return (
-    <div className="shadow-neumorphic p-4 rounded-[inherit] flex flex-wrap gap-4">
+    <div className="shadow-neumorphic bg-neumorph-primary p-4 rounded-[inherit] flex flex-wrap gap-4">
       <div className="section-heading pl-2 mb-2">Estimated Schedule</div>
       <Swiper
         modules={[Mousewheel, EffectFade, Autoplay, Navigation]}
@@ -77,7 +77,8 @@ const AnimeSchedule = () => {
                       className="object-cover object-center rounded-lg filter"
                     />
                   </Link>
-                  <div className="py-4 px-2 z-10 flex w-full flex-col flex-wrap justify-center sm:justify-between items-center gap-2 sm:gap-4 text-base rounded-lg backdrop-blur-sm backdrop-brightness-50">
+                  <div className="py-4 px-2 z-10 flex w-full flex-col flex-wrap justify-center sm:justify-between 
+                  items-center gap-2 sm:gap-4 text-base rounded-lg backdrop-blur-sm bg-neumorph-primary bg-opacity-40 dark:backdrop-brightness-50 border-[3px] border-dotted border-primary border-opacity-50">
                     <div className="text-center z-20">
                       <span className="text-base line-clamp-1 font-semibold">
                         {anime.title.userPreferred}

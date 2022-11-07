@@ -1,9 +1,11 @@
 import { Menu, Transition } from "@headlessui/react";
 import { useRouter } from "next/router";
 import { Fragment, useState } from "react";
-import { AiFillHeart, AiFillSetting } from "react-icons/ai";
-import { CgLogOut, CgProfile } from "react-icons/cg";
+import { AiFillHeart } from "react-icons/ai";
+import { CgLogOut } from "react-icons/cg";
+import { FaUserNinja } from "react-icons/fa";
 import { FiLogIn, FiLogOut, FiSettings } from "react-icons/fi";
+import { GoSettings } from "react-icons/go";
 import useLogOut from "../../../hooks/useLogout";
 import useUser from "../../../hooks/useUser";
 import SettingsModal from "../../Modals/SettingsModal";
@@ -19,7 +21,7 @@ const NavigationUserDropdownMenu = () => {
   const logoutMutation = useLogOut();
 
   if (logoutMutation.isSuccess) {
-    router.push("/auth/login");
+    router.replace("/", undefined, { shallow: true });
   }
 
   const handleMenuDropdownClose = () => {
@@ -31,7 +33,7 @@ const NavigationUserDropdownMenu = () => {
       <Menu as="div" className="relative inline-block text-left">
         <div>
           <Menu.Button className="neumorphic-btn primary">
-            {user.isLoading ? <Spinner size={20} /> : <CgProfile size={24} />}
+            {user.isLoading ? <Spinner size={20} /> : <FaUserNinja size={22} />}
           </Menu.Button>
         </div>
         <Transition
@@ -43,7 +45,7 @@ const NavigationUserDropdownMenu = () => {
           leaveFrom="transform opacity-100 scale-100"
           leaveTo="transform opacity-0 scale-95"
         >
-          <Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-neumorph-secondary rounded-md bg-neumorph-primary ring-1 ring-black dark:ring-white ring-opacity-10 dark:ring-opacity-10 shadow-neumorphic focus:outline-none">
+          <Menu.Items className="absolute right-0 mt-8 w-56 origin-top-right divide-y divide-neumorph-secondary rounded-md bg-neumorph-primary ring-1 ring-primary ring-opacity-30 shadow-neumorphic focus:outline-none">
             {user.isSuccess && (
               <>
                 <div className="px-1 py-1">
@@ -55,7 +57,7 @@ const NavigationUserDropdownMenu = () => {
                           : "text-primary"
                           } group flex gap-2 w-full items-center rounded-md px-2 py-2 text-sm md:text-base`}
                         onClick={() => {
-                          location.href = "/favourite";
+                          location.href = "/profile";
                         }}
                       >
                         <AiFillHeart size={20} />
@@ -74,7 +76,7 @@ const NavigationUserDropdownMenu = () => {
                           setSettingsOpen((prev) => !prev);
                         }}
                       >
-                        <AiFillSetting size={20} />
+                        <GoSettings size={20} />
                         Settings
                       </button>
                     )}
@@ -89,10 +91,6 @@ const NavigationUserDropdownMenu = () => {
                           : "text-primary "
                           } group flex gap-2 w-full items-center rounded-md px-2 py-2 text-sm md:text-base`}
                         onClick={() => {
-                          localStorage.setItem(
-                            "ans-user__cached",
-                            JSON.stringify(user.data)
-                          );
                           logoutMutation.mutate();
                         }}
                       >

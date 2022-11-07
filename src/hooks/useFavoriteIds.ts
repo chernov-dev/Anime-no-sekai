@@ -14,12 +14,13 @@ const fetchFavoriteIds = async (user_id) => {
   if (error) {
     throw new Error(error.message);
   }
+  
   const userFavoriteListId = data.map((item) => item.anime_id);
   return userFavoriteListId;
 };
 
 export default function useFavoriteIds() {
-  const user = supabase.auth.user() ?? null;
+  const user = supabase.auth.user();
   const favorites = useQuery(["ans-favoriteIds", user?.id], () =>
     fetchFavoriteIds(user?.id)
   );

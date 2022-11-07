@@ -36,7 +36,7 @@ export const navOptions = [
     },
     {
         name: "Favorite",
-        href: "/favourite",
+        href: "/profile",
         icon: <HiHeart size={22} />,
         accessKey: "x",
         tooltip: "Check out your favorite anime",
