@@ -1,4 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useRouter } from "next/router";
 import supabase from "../supabase/supabase-js";
 
 
@@ -12,10 +13,12 @@ const logout = async () => {
 
 export default function useLogOut() {
   const queryClient = useQueryClient()
-  
+  const router = useRouter();
+
   return useMutation(() => logout(), {
     onSuccess: () => {
       queryClient.removeQueries()
+      router.replace("/");
     }
   })
 }

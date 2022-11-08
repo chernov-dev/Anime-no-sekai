@@ -5,7 +5,6 @@ import "../styles/Neumorphic.css";
 
 import "../styles/globals.css";
 
-import { Miss_Fajardose, Noto_Sans_JP, Rubik } from "@next/font/google";
 import {
   Hydrate,
   QueryClient,
@@ -18,9 +17,18 @@ import { ToastContainer } from "react-toastify";
 import AppLayout from "../components/Shared/AppLayout";
 import UserPreferencesProvider from "../context/UserPreferencesProvider";
 
+import { Miss_Fajardose, Noto_Sans_JP, Rubik } from "@next/font/google";
+
+//Importing fonts using NEXT JS font feature
 const rubik = Rubik({ subsets: ["latin"] });
 const missFajadose = Miss_Fajardose({ weight: "400" });
 const notoSansJP = Noto_Sans_JP({ subsets: ["japanese"], weight: "500" });
+
+const fontFamily = ` html {
+  font-family: ${notoSansJP.style.fontFamily},
+    ${rubik.style.fontFamily},
+    ${missFajadose.style.fontFamily};
+}`;
 
 // Create a client
 const queryClient = new QueryClient({
@@ -45,15 +53,12 @@ function MyApp({ Component, pageProps }) {
             highlightColor="rgb(var(--neumorph-primary-light))"
             duration={3}
           >
+            {/* Injecting fonts to head globally*/}
+            <style jsx global>
+              {fontFamily}
+            </style>
             {typeof window !== "undefined" && (
               <>
-                <style jsx global>{`
-                  html {
-                    font-family: ${notoSansJP.style.fontFamily},
-                      ${rubik.style.fontFamily},
-                      ${missFajadose.style.fontFamily};
-                  }
-                `}</style>
                 <AppLayout>
                   <Component {...pageProps} />
                 </AppLayout>

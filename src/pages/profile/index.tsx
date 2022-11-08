@@ -1,12 +1,11 @@
 import Head from "next/head";
-import React from "react";
 import ProtectedWrapper from "../../components/AuthComponents/Protected";
 
 import UserScreen from "../../screens/UserScreen";
 
 
 const UserFavouriteAnimePage = () => {
-  
+
   return (
     <ProtectedWrapper>
       <Head>
@@ -14,9 +13,7 @@ const UserFavouriteAnimePage = () => {
         <meta name="description" content="ANS - animevost API" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="w-full">
-        <UserScreen/>
-      </main>
+      <UserScreen />
     </ProtectedWrapper>
   );
 };

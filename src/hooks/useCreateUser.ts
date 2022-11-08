@@ -16,6 +16,7 @@ const createUser = async (user: User) => {
     .single();
 
   if (userWithUsername) {
+    console.log("found user with username ", userWithUsername)
     throw new Error("User with username exists");
   }
 

@@ -19,6 +19,11 @@ const SignupPage = ({ }) => {
     username,
   });
 
+  const onSubmit = (e) => {
+    e.preventDefault()
+    createUserMutation.mutate()
+  }
+
   if (createUserMutation.isSuccess) {
     router.push("/home");
   }
@@ -37,7 +42,7 @@ const SignupPage = ({ }) => {
           <Spinner />
         ) : (
           <UserSignUp
-            handleSubmit={createUserMutation.mutate}
+            handleSubmit={onSubmit}
             setEmail={setEmail}
             setPassword={setPassword}
             setUsername={setUsername}

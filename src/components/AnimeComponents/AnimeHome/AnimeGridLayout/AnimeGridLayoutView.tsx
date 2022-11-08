@@ -4,10 +4,8 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { BsHeartFill } from "react-icons/bs";
 import Skeleton from "react-loading-skeleton";
-import {
-  useUserPreferences
-} from "../../../../context/UserPreferencesProvider";
 import useAddFavorite from "../../../../hooks/useAddFavorite";
+import useFavoriteIds from "../../../../hooks/useFavoriteIds";
 import useRemoveFavorite from "../../../../hooks/useRemoveFavorite";
 import { IAnimeResult } from "../../../../types/Anime";
 import { shimmer, toBase64 } from "../../../Shared/shimmer";
@@ -22,16 +20,18 @@ const Item = ({
   children: JSX.Element;
   bulletIndex?: number;
 }) => {
-
   const router = useRouter();
 
   let title =
-    (anime?.title.english ?? anime?.title.userPreferred ?? anime?.title.romaji) ?? null;
+    anime?.title.english ??
+    anime?.title.userPreferred ??
+    anime?.title.romaji ??
+    null;
 
   let tooltip = `${title}`;
   let imageUrl = anime?.image;
 
-  const { favoriteIds } = useUserPreferences();
+  const { data: favoriteIds } = useFavoriteIds();
   const addFavorite = useAddFavorite(anime?.id);
   const removeFavorite = useRemoveFavorite(anime?.id);
 
@@ -77,16 +77,30 @@ const Item = ({
                       addFavorite.mutate();
                     }}
                   >
-                    {anime?.id ? <BsHeartFill
-                      size={25}
-                      className={
-                        "text-white text-opacity-50 hover:text-neumorph-accent transition-colors"
-                      }
-                    /> : <Skeleton circle width={"2rem"} height={"2rem"} style={{ lineHeight: "inherit" }} />}
+                    {anime?.id ? (
+                      <BsHeartFill
+                        size={25}
+                        className={
+                          "text-white text-opacity-50 hover:text-neumorph-accent transition-colors"
+                        }
+                      />
+                    ) : (
+                      <Skeleton
+                        circle
+                        width={"2rem"}
+                        height={"2rem"}
+                        style={{ lineHeight: "inherit" }}
+                      />
+                    )}
                   </button>
                 )}
               </div>
-              {!imageUrl ? <Skeleton height={"82%"} style={{ lineHeight: "inherit", borderRadius: "inherit" }} /> :
+              {!imageUrl ? (
+                <Skeleton
+                  height={"82%"}
+                  style={{ lineHeight: "inherit", borderRadius: "inherit" }}
+                />
+              ) : (
                 <Image
                   src={imageUrl}
                   alt="anime poster"
@@ -99,11 +113,10 @@ const Item = ({
                   blurDataURL={`data:image/svg+xml;base64,${toBase64(
                     shimmer(300, 205)
                   )}`}
-                />}
+                />
+              )}
             </div>
-            <AnimeCardFooterExtraDetails
-              anime={anime}
-            />
+            <AnimeCardFooterExtraDetails anime={anime} />
           </div>
           <div className="anime-home__grid-item__title py-2 ">
             <span className="anime-home__title">
@@ -125,7 +138,6 @@ const AnimeGridLayoutView = ({
   children?: JSX.Element;
   bullets?: boolean;
 }) => {
-
   {
     if (anime == (undefined || null)) {
       anime = [...Array(4)];

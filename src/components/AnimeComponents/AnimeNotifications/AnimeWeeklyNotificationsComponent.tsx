@@ -1,4 +1,3 @@
-import Skeleton from "react-loading-skeleton";
 import AnimeWeeklyNotificationSwitch from "./AnimeWeeklyNotificationSwitch";
 
 const AnimeWeeklyNotificationsComponent = ({
@@ -11,18 +10,12 @@ const AnimeWeeklyNotificationsComponent = ({
       <h1 className="text-base md:text-xl text-primary">
         Weekly notifications
       </h1>
-      <p className="text-primary">
-        Ongoing Anime:{" "}
-        <span className="text-neumorph-accent">{ongoingNumber || <Skeleton width="5rem" />}</span>
-      </p>
       <div className="flex gap-3 items-center">
         <AnimeWeeklyNotificationSwitch
           enabled={enabled}
           setEnabled={setEnabled}
         />{" "}
-        <span className="text-primary text-sm">
-          Subscribe to updates
-        </span>
+        <span className="text-primary text-sm">Subscribe to updates</span>
       </div>
       <p className="text-primary text-sm">
         Emails are sent every{" "}

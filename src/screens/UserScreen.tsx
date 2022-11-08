@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import AnimeFavoriteList from "../components/AnimeComponents/AnimeFavorite/AnimeFavoriteList";
 import AnimeWeeklyNotificationsComponent from "../components/AnimeComponents/AnimeNotifications/AnimeWeeklyNotificationsComponent";
-import UserProfileInfoComponent from "../components/UserComponents/UserProfileInfoComponent";
+import UserFavoriteInfoCard from "../components/UserComponents/UserFavoriteInfoCard";
+import UserProfileInfoCard from "../components/UserComponents/UserProfileInfoCard";
 import useFavorites from "../hooks/useFavorites";
 import { IAnimeInfo } from "../types/Anime";
-
 
 function recommendedBasedOnfavorite(favoriteList: IAnimeInfo[], quantity) {
   let recommendedBasedOnfavorite = [];
@@ -28,26 +28,25 @@ const UserScreen = () => {
   const [recommended, setRecommended] = useState([]);
 
   const { data: favorite, isLoading, isSuccess } = useFavorites();
-  const [ongoing, setOngoing] = useState(undefined);
-  const [completed, setCompleted] = useState(undefined);
+  const [ongoing, setOngoing] = useState([]);
+  const [completed, setCompleted] = useState([]);
+  const [enabled, setEnabled] = useState(false);
 
   useEffect(() => {
     // setRecommended(recommendedBasedOnfavorite(favorite, 10));
     if (isSuccess) {
-      setOngoing((prev) =>
+      setOngoing(
         favorite.filter((anime) => {
           if (anime.status) return anime.status == "Ongoing";
         })
       );
-      setCompleted((prev) =>
+      setCompleted(
         favorite.filter((anime) => {
           if (anime.status) return anime.status == "Completed";
         })
       );
     }
   }, [favorite, isSuccess]);
-
-  const [enabled, setEnabled] = useState(false);
 
   return (
     <>
@@ -60,11 +59,12 @@ const UserScreen = () => {
           />
         </div>
         <aside className="anime-home__sidebar flex flex-col gap-4 p-3">
-          <UserProfileInfoComponent favoritesQuantity={favorite?.length} />
+          <UserFavoriteInfoCard favoritesQuantity={favorite?.length} />
+          <UserProfileInfoCard />
           <AnimeWeeklyNotificationsComponent
             enabled={enabled}
             setEnabled={setEnabled}
-            ongoingNumber={ongoing?.length}
+            ongoingNumber={ongoing.length}
           />
         </aside>
         {/* {recommended.length > 0 && (

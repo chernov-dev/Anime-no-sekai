@@ -17,7 +17,7 @@ const fetchFavoriteIds = async (user_id) => {
   
   const userFavoriteListId = data.map((item) => item.anime_id);
   return userFavoriteListId;
-};
+};  
 
 export default function useFavoriteIds() {
   const user = supabase.auth.user();

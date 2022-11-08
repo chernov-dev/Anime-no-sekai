@@ -1,16 +1,15 @@
 import { useEffect, useState } from "react";
 import "react-toastify/dist/ReactToastify.css";
-import { useUserPreferences } from "../../context/UserPreferencesProvider";
 import useAddFavorite from "../../hooks/useAddFavorite";
+import useFavoriteIds from "../../hooks/useFavoriteIds";
 import useRemoveFavorite from "../../hooks/useRemoveFavorite";
 import ShareOptionsContainer from "./ShareOptionsContainer";
 
 const ShareOptions = ({ anime }) => {
-
   const removeFavorite = useRemoveFavorite(anime.id);
   const addFavorite = useAddFavorite(anime.id);
 
-  const { favoriteIds } = useUserPreferences();
+  const { data: favoriteIds } = useFavoriteIds();
 
   const [liked, setLiked] = useState(false);
 
@@ -20,20 +19,14 @@ const ShareOptions = ({ anime }) => {
 
   const onHeartClick = (e) => {
     e.stopPropagation();
-    if(liked) {
-      removeFavorite.mutate()
+    if (liked) {
+      removeFavorite.mutate();
+    } else {
+      addFavorite.mutate();
     }
-    else {
-      addFavorite.mutate()
-    }
-  }
+  };
 
-  return (
-    <ShareOptionsContainer
-      liked={liked}
-      onHeartClick={onHeartClick}
-    />
-  );
+  return <ShareOptionsContainer liked={liked} onHeartClick={onHeartClick} />;
 };
 
 export default ShareOptions;

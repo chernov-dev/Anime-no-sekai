@@ -9,6 +9,7 @@ const UserSignUp = ({ handleSubmit, setEmail, setPassword, setUsername }) => {
       </div>
       <form
         className="auth-inputs flex flex-col gap-2 rounded-[1rem]"
+        onSubmit={handleSubmit}
       >
         <input
           type="text"
@@ -34,7 +35,7 @@ const UserSignUp = ({ handleSubmit, setEmail, setPassword, setUsername }) => {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        <button className="neumorphic-btn secondary w-1/2 self-center mt-4 text-lg" type="submit" onClick={() => handleSubmit()}>
+        <button className="neumorphic-btn secondary w-1/2 self-center mt-4 text-lg" type="submit">
           Sign up
         </button>
       </form>

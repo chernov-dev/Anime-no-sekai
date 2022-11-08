@@ -72,16 +72,16 @@ body {
 }
 
 .section-welcome {
-  z-index: 100;
+  z-index: 1000;
   width: 100%;
-  height: 90vh;
+  height: 85vh;
 }
 
 .welcome-logo {
   width: 100%;
-  max-width: 800px;
+  max-width: 500px;
   overflow: hidden;
-  aspect-ratio: 2.5/1;
+  aspect-ratio: 2/1;
   border-radius: 2rem;
   position: relative;
   @apply bg-neumorph-primary;

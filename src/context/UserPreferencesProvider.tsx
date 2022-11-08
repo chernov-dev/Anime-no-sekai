@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useSessionStorage } from 'usehooks-ts';
+import { useSessionStorage } from "usehooks-ts";
 import PageLoader from "../components/Shared/PageLoader";
 import useFavoriteIds from "../hooks/useFavoriteIds";
 import useUser from "../hooks/useUser";
@@ -20,8 +20,6 @@ export function getInitialTheme() {
 }
 
 export type IUserPreferencesContextType = {
-  favoriteIds: number[];
-  setFavoriteIds: React.Dispatch<React.SetStateAction<[]>>;
   user: IUserType;
   setUser: React.Dispatch<React.SetStateAction<IUserType>>;
   theme: string;
@@ -30,18 +28,24 @@ export type IUserPreferencesContextType = {
   setLayout: React.Dispatch<React.SetStateAction<string>>;
 };
 
-const UserPreferencesContext =
-  React.createContext<IUserPreferencesContextType | undefined>(undefined);
+const UserPreferencesContext = React.createContext<
+  IUserPreferencesContextType | undefined
+>(undefined);
 
-
-const UserPreferencesProvider = ({ children }: { children: React.ReactNode }) => {
+const UserPreferencesProvider = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => {
   const userFavoriteIds = useFavoriteIds();
   const userFetched = useUser();
 
   const [isLoading, setIsLoading] = useState(true);
   // Caching User preferences states
-  const [favoriteIds, setFavoriteIds] = useState<number[]>([]);
-  const [user, setUser] = useSessionStorage<IUserType | undefined>("ans-user", undefined);
+  const [user, setUser] = useSessionStorage<IUserType | undefined>(
+    "ans-user",
+    undefined
+  );
   const [layout, setLayout] = useSessionStorage("ans-layout", "grid");
   const [theme, setTheme] = useSessionStorage("ans-theme", getInitialTheme());
 
@@ -60,33 +64,29 @@ const UserPreferencesProvider = ({ children }: { children: React.ReactNode }) =>
       setLayout(layout);
       setUser(user as IUserType);
       setTheme(theme);
-      if (userFavoriteIds.isSuccess) {
-        let ids = userFavoriteIds.data;
-        setFavoriteIds(ids);
-      }
     }
     setIsLoading(false);
-  }, [userFetched.data, userFetched.isSuccess, userFavoriteIds.isSuccess, userFavoriteIds.data, setLayout, setTheme, setUser]);
+  }, [userFetched.isSuccess]);
 
   return (
     <>
-      {!isLoading && <UserPreferencesContext.Provider
-        value={{
-          favoriteIds,
-          setFavoriteIds,
-          user,
-          setUser,
-          theme,
-          setTheme,
-          layout,
-          setLayout,
-        }}
-      >
-        {isLoading && <PageLoader />}
-        {!isLoading && children}
-      </UserPreferencesContext.Provider>}
+      {!isLoading && (
+        <UserPreferencesContext.Provider
+          value={{
+            user,
+            setUser,
+            theme,
+            setTheme,
+            layout,
+            setLayout,
+          }}
+        >
+          {isLoading && <PageLoader />}
+          {!isLoading && children}
+        </UserPreferencesContext.Provider>
+      )}
     </>
-  )
+  );
 };
 export default UserPreferencesProvider;
 
@@ -94,7 +94,7 @@ export function useUserPreferences() {
   const userPreferences = useContext(UserPreferencesContext);
   if (!userPreferences)
     throw new Error(
-      'No UserPrerferences.Provider found when calling useUserPreferences.'
+      "No UserPrerferences.Provider found when calling useUserPreferences."
     );
   return userPreferences;
 }

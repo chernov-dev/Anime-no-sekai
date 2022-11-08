@@ -1,5 +1,4 @@
 import Head from "next/head";
-import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import NewUserLogin from "../../../components/AuthComponents/NewUserLogin";
 import UserIsBackLogin from "../../../components/AuthComponents/UserIsBackLogin";
@@ -8,10 +7,7 @@ import { useUserPreferences } from "../../../context/UserPreferencesProvider";
 import useLogin from "../../../hooks/useLogin";
 
 const LoginPage = () => {
-  let router = useRouter();
-
   const { user, setUser } = useUserPreferences();
-
   const [loading, setLoading] = useState(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -28,11 +24,7 @@ const LoginPage = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     loginMutation.mutate();
-  }
-
-  if (loginMutation.isSuccess) {
-    router.replace('/profile', undefined, { shallow: true })
-  }
+  };
 
   const handleWrongUserButtonClick = () => {
     setUser(null);
