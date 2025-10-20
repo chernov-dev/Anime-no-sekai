@@ -12,7 +12,10 @@ export default function AnimeDetailsPage() {
     data: animeDetails,
     isLoading: isAnimeLoading,
     isSuccess: isAnimeSuccess,
-  } = useQuery(["anime-details", animeId], () => animeApi.getAnimeById(+animeId));
+  } = useQuery({
+    queryKey: ["anime-details", animeId],
+    queryFn: () => animeApi.getAnimeById(+animeId)
+  });
 
   // const {
   //   data: animePlaylist,
@@ -41,9 +44,10 @@ export const getServerSideProps = async (context) => {
   const queryClient = new QueryClient();
   const { animeId } = context.query;
 
-  await queryClient.prefetchQuery(["anime-details", animeId], () =>
-    animeApi.getAnimeById(animeId)
-  );
+  await queryClient.prefetchQuery({
+    queryKey: ["anime-details", animeId],
+    queryFn: () => animeApi.getAnimeById(animeId)
+  });
   // await queryClient.prefetchQuery(["anime-playlist", animeId], () =>
   //   getPlaylistById(animeId)
   // );

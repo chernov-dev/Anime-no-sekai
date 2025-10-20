@@ -15,7 +15,8 @@ export default function useLogOut() {
   const queryClient = useQueryClient()
   const router = useRouter();
 
-  return useMutation(() => logout(), {
+  return useMutation({
+    mutationFn: () => logout(),
     onSuccess: () => {
       queryClient.removeQueries()
       router.replace("/");

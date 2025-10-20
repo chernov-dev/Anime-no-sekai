@@ -2,7 +2,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import React from "react";
 import { AiFillStar } from "react-icons/ai";
-import { A11y, Mousewheel, Pagination } from "swiper";
+import { A11y, Mousewheel, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { IAnimeResult } from "../../../../types/Anime";
 import ShareOptions from "../../../Shared/ShareOptions";

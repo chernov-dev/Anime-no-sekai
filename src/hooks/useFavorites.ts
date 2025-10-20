@@ -39,8 +39,9 @@ const fetchUserFavoriteAnime = async (idList: any[]) => {
 
 export default function useFavorites() {
   const user = supabase.auth.user() ?? null;
-  const favorites = useQuery(["ans-favorites", user?.id], () =>
-    fetchFavorites(user?.id)
-  );
+  const favorites = useQuery({
+    queryKey: ["ans-favorites", user?.id],
+    queryFn: () => fetchFavorites(user?.id)
+  });
   return favorites;
 }

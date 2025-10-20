@@ -10,9 +10,10 @@ import { IAnimeResult } from "../types/Anime";
 const UpcomingAnimeScreen = () => {
   const [currentPage, setCurrentPage] = useState(1);
 
-  const { data, isLoading, isSuccess } = useQuery(["anime-upcoming"], () =>
-    animeApi.getUpcomingAnimes()
-  );
+  const { data, isLoading, isSuccess } = useQuery({
+    queryKey: ["anime-upcoming"],
+    queryFn: () => animeApi.getUpcomingAnimes()
+  });
 
   if (isLoading) {
     return <PageLoader />;

@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { IoPlayCircleSharp } from "react-icons/io5";
-import { Autoplay, EffectFade, Mousewheel, Navigation } from "swiper";
+import { Autoplay, EffectFade, Mousewheel, Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { animeApi } from "../../../api/Anime_API";
 import { formatDate, handleDate } from "../../../utils/handleDate";
@@ -18,10 +18,10 @@ import { shimmer, toBase64 } from "../../Shared/shimmer";
 import AnimeScheduleSkeleton from "./AnimeScheduleSkeleton";
 
 const AnimeSchedule = () => {
-  const { data, isLoading, isSuccess, isError } = useQuery(
-    ["anime-schedule"],
-    () => animeApi.getAiringSchedule()
-  );
+  const { data, isLoading, isSuccess, isError } = useQuery({
+    queryKey: ["anime-schedule"],
+    queryFn: () => animeApi.getAiringSchedule()
+  });
 
   const today = new Date();
 

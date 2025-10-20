@@ -46,14 +46,14 @@ const LoginPage = () => {
             onWrongUserButtonClick={handleWrongUserButtonClick}
             setPassword={setPassword}
             setEmail={setEmail}
-            isLoading={loginMutation.isLoading}
+            isLoading={loginMutation.isPending}
             onSubmit={onSubmit}
           />
         ) : (
           <NewUserLogin
             setEmail={setEmail}
             setPassword={setPassword}
-            isLoading={loginMutation.isLoading}
+            isLoading={loginMutation.isPending}
             onSubmit={onSubmit}
           />
         )}

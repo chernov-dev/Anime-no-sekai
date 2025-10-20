@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import supabase from "../supabase/supabase-js";
 
 const login = async ({ email, password }) => {
-  const data = await supabase.auth.signIn({
+  const data = await supabase.auth.signInWithPassword({
     email,
     password,
   });
@@ -18,9 +18,10 @@ const login = async ({ email, password }) => {
 
 export default function useLogin({ email, password }) {
   let router = useRouter();
-  return useMutation(["ans-login"], () => login({ email, password }), {
+  return useMutation({
+    mutationFn: () => login({ email, password }),
     onSuccess: () => {
       router.replace("/home");
-    },
+    }
   });
 }

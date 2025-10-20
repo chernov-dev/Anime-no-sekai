@@ -21,8 +21,9 @@ const fetchFavoriteIds = async (user_id) => {
 
 export default function useFavoriteIds() {
   const user = supabase.auth.user();
-  const favorites = useQuery(["ans-favoriteIds", user?.id], () =>
-    fetchFavoriteIds(user?.id)
-  );
+  const favorites = useQuery({
+    queryKey: ["ans-favoriteIds", user?.id],
+    queryFn: () => fetchFavoriteIds(user?.id)
+  });
   return favorites;
 }

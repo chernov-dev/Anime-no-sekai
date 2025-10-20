@@ -10,7 +10,7 @@ const TopTrendingList = () => {
     data: topAiring,
     isLoading: isAiringLoading,
     isSuccess: isAiringSuccess,
-  } = useQuery(["anime-airing"], () => getAnimeTopAiring());
+  } = useQuery({ queryKey: ["anime-airing"], queryFn: () => getAnimeTopAiring() });
 
   let airingList = [...Array(9)];
 

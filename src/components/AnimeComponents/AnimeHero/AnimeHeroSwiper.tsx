@@ -1,5 +1,5 @@
 import { BsPlayCircleFill } from "react-icons/bs";
-import { Autoplay } from "swiper";
+import { Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { shimmer, toBase64 } from "../../Shared/shimmer";
 
@@ -20,7 +20,7 @@ const AnimeHeroSwiper = () => {
     isLoading: isTrendingLoading,
     isSuccess: isTrendingSuccess,
     isError: isTrendingError,
-  } = useQuery(["anime-trending"], () => animeApi.getTrending({ perPage: 9 }));
+  } = useQuery({ queryKey: ["anime-trending"], queryFn: () => animeApi.getTrending({ perPage: 9 }) });
 
   return (
     <div className="z-10 lg:p-6 lg:px-5 lg:ml-0 overflow-y-hidden flex items-center justify-center">

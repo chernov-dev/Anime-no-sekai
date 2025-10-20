@@ -31,15 +31,17 @@ const AnimeHome = ({
     data: animeData,
     isLoading: isAnimeDataLoading,
     isSuccess: isAnimeDataSuccess,
-  } = useQuery(["anime-recent", currentPage], () =>
-    animeApi.getRecentEpisodes({ page: currentPage })
-  );
+  } = useQuery({
+    queryKey: ["anime-recent", currentPage],
+    queryFn: () => animeApi.getRecentEpisodes({ page: currentPage })
+  });
 
   //Preloading next page
   const nextPage = useMemo(() => currentPage + 1, [currentPage]);
-  const { data: nextPageData } = useQuery(["anime-recent", nextPage], () =>
-    animeApi.getRecentEpisodes({ page: nextPage })
-  );
+  const { data: nextPageData } = useQuery({
+    queryKey: ["anime-recent", nextPage],
+    queryFn: () => animeApi.getRecentEpisodes({ page: nextPage })
+  });
 
   const { layout, setLayout }: any = useUserPreferences();
   const isGridLayout = layout == "grid" ? true : false;
