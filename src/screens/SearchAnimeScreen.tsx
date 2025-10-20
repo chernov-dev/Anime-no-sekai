@@ -6,10 +6,10 @@ import TopTrendingList from '../components/AnimeComponents/AnimeTopTrending/TopT
 
 const SearchAnimeScreen = ({ animeName }) => {
 
-  const { data, isLoading, status } = useQuery(
-    ["anime-search", animeName],
-    () => animeApi.advancedSearch({ query: animeName })
-  );
+  const { data, isLoading, status } = useQuery({
+    queryKey: ["anime-search", animeName],
+    queryFn: () => animeApi.advancedSearch({ query: animeName })
+  });
   if (status == "success" && data.length == 0) {
     return (
       <Error

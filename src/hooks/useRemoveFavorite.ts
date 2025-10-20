@@ -24,10 +24,11 @@ export default function useRemoveFavorite(animeId: any) {
   const user = supabase.auth.user();
   let refetchTimeout = 5000;
 
-  return useMutation(() => removeFavorite(animeId, user?.id), {
+  return useMutation({
+    mutationFn: () => removeFavorite(animeId, user?.id),
     onSuccess: () => {
       toast.promise(
-        queryClient.refetchQueries(["ans-favoriteIds"]),
+        queryClient.refetchQueries({ queryKey: ["ans-favoriteIds"] }),
         {
           pending: "Removing anime from Favorites",
           success: "Removed from Favorites",
@@ -37,7 +38,7 @@ export default function useRemoveFavorite(animeId: any) {
       );
       const updateSoon = async () => {
         await sleep(refetchTimeout);
-        queryClient.refetchQueries(["ans-favorites"]);
+        queryClient.refetchQueries({ queryKey: ["ans-favorites"] });
       };
       toast.promise(
         updateSoon,
@@ -48,6 +49,6 @@ export default function useRemoveFavorite(animeId: any) {
         },
         { toastId: updateSoon.name, type: "info"}
       );
-    },
+    }
   });
 }

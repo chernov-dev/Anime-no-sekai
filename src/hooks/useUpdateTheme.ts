@@ -16,7 +16,7 @@ export default function useUpdateTheme() {
   const targetTheme = theme === "dark" ? "light" : "dark";
 
   const user = supabase.auth.user();
-  return useMutation(["ans-theme"], () =>
-    updateTheme(user.id, targetTheme).then(() => setTheme(targetTheme))
-  );
+  return useMutation({
+    mutationFn: () => updateTheme(user.id, targetTheme).then(() => setTheme(targetTheme))
+  });
 }

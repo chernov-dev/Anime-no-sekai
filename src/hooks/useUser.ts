@@ -28,5 +28,8 @@ export const getUser = async (userId) => {
 
 export default function useUser() {
   const user = supabase.auth.user();
-  return useQuery<IUserType>(['ans-user'], () => getUser(user.id))
+  return useQuery<IUserType>({
+    queryKey: ['ans-user'],
+    queryFn: () => getUser(user.id)
+  })
 }

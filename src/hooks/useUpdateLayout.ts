@@ -16,7 +16,7 @@ export default function useUpdateLayout() {
   const targetLayout = layout === "grid" ? "fullwidth" : "grid";
 
   const user = supabase.auth.user();
-  return useMutation(["ans-layout"], () =>
-    updateLayout(user.id, targetLayout).then(() => setLayout(targetLayout))
-  );
+  return useMutation({
+    mutationFn: () => updateLayout(user.id, targetLayout).then(() => setLayout(targetLayout))
+  });
 }

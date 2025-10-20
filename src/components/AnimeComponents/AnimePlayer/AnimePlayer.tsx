@@ -10,10 +10,10 @@ const AnimePlayer = ({ episodes, animeCover }) => {
   const [selectedEpisodeId, setSelectedEpisodeId] = useState(episodes[0].id ?? "");
   const episodeTitle = episodes.find((episode : IAnimeEpisode) => episode.id == selectedEpisodeId).title;
 
-  const { data, isLoading, isSuccess } = useQuery(
-    ["anime-playlist", selectedEpisodeId],
-    () => getEpisodeStreamingLinks(selectedEpisodeId),
-  );
+  const { data, isLoading, isSuccess } = useQuery({
+    queryKey: ["anime-playlist", selectedEpisodeId],
+    queryFn: () => getEpisodeStreamingLinks(selectedEpisodeId)
+  });
 
   //React Player SSR fix
   const [hasWindow, setHasWindow] = useState(false);

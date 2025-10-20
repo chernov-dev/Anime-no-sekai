@@ -6,7 +6,7 @@ import "../styles/Neumorphic.css";
 import "../styles/globals.css";
 
 import {
-  Hydrate,
+  HydrationBoundary,
   QueryClient,
   QueryClientProvider,
 } from "@tanstack/react-query";
@@ -45,8 +45,8 @@ const isReady = typeof window !== "undefined";
 
 function MyApp({ Component, pageProps }) {
   return (
-    <QueryClientProvider client={queryClient} contextSharing={true}>
-      <Hydrate state={pageProps.dehydratedState}>
+    <QueryClientProvider client={queryClient}>
+      <HydrationBoundary state={pageProps.dehydratedState}>
         <UserPreferencesProvider>
           <SkeletonTheme
             baseColor="rgb(var(--neumorph-primary-dark))"
@@ -80,7 +80,7 @@ function MyApp({ Component, pageProps }) {
             pauseOnHover
           />
         </UserPreferencesProvider>
-      </Hydrate>
+      </HydrationBoundary>
     </QueryClientProvider>
   );
 }

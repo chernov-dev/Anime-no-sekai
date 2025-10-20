@@ -12,7 +12,10 @@ export default function AnimeDetailsPage() {
     data: animeDetails,
     isLoading: isAnimeLoading,
     isSuccess: isAnimeSuccess,
-  } = useQuery(["anime-details", animeId], () => animeApi.getAnimeById(+animeId));
+  } = useQuery({
+    queryKey: ["anime-details", animeId],
+    queryFn: () => animeApi.getAnimeById(+animeId)
+  });
 
   // const {
   //   data: animePlaylist,

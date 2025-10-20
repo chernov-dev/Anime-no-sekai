@@ -18,9 +18,10 @@ const login = async ({ email, password }) => {
 
 export default function useLogin({ email, password }) {
   let router = useRouter();
-  return useMutation(["ans-login"], () => login({ email, password }), {
+  return useMutation({
+    mutationFn: () => login({ email, password }),
     onSuccess: () => {
       router.replace("/home");
-    },
+    }
   });
 }

@@ -14,10 +14,10 @@ const PopularAnimeScreen = ({
 }) => {
   const [currentPage, setCurrentPage] = useState(1);
 
-  const { data, isLoading, isSuccess } = useQuery(
-    ["anime-popular", currentPage],
-    () => animeApi.getPopular(currentPage)
-  );
+  const { data, isLoading, isSuccess } = useQuery({
+    queryKey: ["anime-popular", currentPage],
+    queryFn: () => animeApi.getPopular(currentPage)
+  });
 
   // const paginate = (pageNumber: number) => {
   //   return setCurrentPage(pageNumber);

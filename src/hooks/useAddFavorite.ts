@@ -19,7 +19,10 @@ const addFavorite = async (animeId: string, userId: string) => {
 export default function useAddFavorite(anime_id: string) {
   const queryClient = useQueryClient();
   const user = supabase.auth.user();
-  return useMutation(() => addFavorite(anime_id, user?.id),{onSuccess: () => {
-    toast.promise(queryClient.refetchQueries(['ans-favoriteIds']),{pending: "Adding anime to Favorites" , success: "Added to Favorites", error: "Error occured"}, {toastId: anime_id});
-  }});
+  return useMutation({
+    mutationFn: () => addFavorite(anime_id, user?.id),
+    onSuccess: () => {
+      toast.promise(queryClient.refetchQueries({ queryKey: ['ans-favoriteIds'] }),{pending: "Adding anime to Favorites" , success: "Added to Favorites", error: "Error occured"}, {toastId: anime_id});
+    }
+  });
 }

@@ -32,7 +32,8 @@ const createUser = async (user: User) => {
 };
 
 export default function useCreateUser(user: User) {
-  return useMutation(() => createUser(user), {
+  return useMutation({
+    mutationFn: () => createUser(user),
     onSuccess: async (data) => {
       const { data: insertData, error: insertDataError } = await supabase
         .from("users")
@@ -47,6 +48,6 @@ export default function useCreateUser(user: User) {
       }
 
       return insertData;
-    },
+    }
   });
 }
