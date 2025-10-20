@@ -40,7 +40,7 @@ export default function useCreateUser(user: User) {
         .insert({
           email: user.email,
           username: user.username,
-          id: data.user.id,
+          id: data.data.user.id,
         });
      
       if (insertDataError) {

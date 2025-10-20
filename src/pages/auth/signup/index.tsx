@@ -38,7 +38,7 @@ const SignupPage = ({ }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <AuthLayout error={err instanceof Error && err.message}>
-        {createUserMutation.isLoading ? (
+        {createUserMutation.isPending ? (
           <Spinner />
         ) : (
           <UserSignUp

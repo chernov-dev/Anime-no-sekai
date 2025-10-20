@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import supabase from "../supabase/supabase-js";
 
 const login = async ({ email, password }) => {
-  const data = await supabase.auth.signIn({
+  const data = await supabase.auth.signInWithPassword({
     email,
     password,
   });

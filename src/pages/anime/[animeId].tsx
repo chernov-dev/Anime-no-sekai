@@ -44,9 +44,10 @@ export const getServerSideProps = async (context) => {
   const queryClient = new QueryClient();
   const { animeId } = context.query;
 
-  await queryClient.prefetchQuery(["anime-details", animeId], () =>
-    animeApi.getAnimeById(animeId)
-  );
+  await queryClient.prefetchQuery({
+    queryKey: ["anime-details", animeId],
+    queryFn: () => animeApi.getAnimeById(animeId)
+  });
   // await queryClient.prefetchQuery(["anime-playlist", animeId], () =>
   //   getPlaylistById(animeId)
   // );
