@@ -17,7 +17,7 @@ import { ToastContainer } from "react-toastify";
 import AppLayout from "../components/Shared/AppLayout";
 import UserPreferencesProvider from "../context/UserPreferencesProvider";
 
-import { Miss_Fajardose, Noto_Sans_JP, Rubik } from "@next/font/google";
+import { Miss_Fajardose, Noto_Sans_JP, Rubik } from "next/font/google";
 
 //Importing fonts using NEXT JS font feature
 const rubik = Rubik({ subsets: ["latin"] });
